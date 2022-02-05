@@ -1,10 +1,11 @@
-import React from 'react';
+import { Layout, Login } from "../src/components";
+
 
 const index = () => {
   return (
-    <h1>
-      My-Profile
-    </h1>
+    <Layout description={"ConnectMe Login"}>
+      <Login />
+    </Layout>
   );
 };
 
