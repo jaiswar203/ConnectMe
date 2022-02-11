@@ -1,6 +1,5 @@
 import { Layout, Login } from "../src/components";
 
-
 const Logins = () => {
     
     return (
