@@ -1,7 +1,7 @@
 import { Layout, Login } from "../src/components";
 
 
-const login = () => {
+const Logins = () => {
     
     return (
         <Layout title={`${true ? "Login" : "Sign Up"}`}>
@@ -10,4 +10,4 @@ const login = () => {
     );
 };
 
-export default login;
+export default Logins;
