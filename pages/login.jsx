@@ -1,10 +1,10 @@
 import { Layout, Login } from "../src/components";
-import { useSession } from "next-auth/react";
+
 
 const login = () => {
-    const session=useSession()
+    
     return (
-        <Layout title={`${session?.data!==null ? "Login" : "Sign Up"}`}>
+        <Layout title={`${true ? "Login" : "Sign Up"}`}>
             <Login />
         </Layout>
     );

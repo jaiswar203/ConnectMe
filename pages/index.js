@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const index = () => {
+const Index = () => {
   const { authData } = useSelector((state) => state.AuthRedu);
   const router = useRouter();
 
@@ -16,4 +16,4 @@ const index = () => {
   return <Layout description={"ConnectMe Login"}></Layout>;
 };
 
-export default index;
+export default Index;

@@ -79,7 +79,7 @@ const login = () => {
           )}
           <div className="email">
             <TextField variant="outlined" label="Email" focused={errors?.email && true} type="email" fullWidth color={errors?.email ? "secondary" : "primary"} {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} />
-            <span>{errors?.email?.type = "required" && "Pls Enter Your Email"}</span>
+            {/* <span>{errors?.email?.type = "required" && "Pls Enter Your Email"}</span> */}
           </div>
           <div className="password">
             <TextField variant="outlined" label="Password" focused={errors?.password} type={icon ? "password" : "text"} color={errors?.password ? "secondary" : "primary"} {...register("password", { required: true })} fullWidth InputProps={{
@@ -92,7 +92,7 @@ const login = () => {
                 </InputAdornment>
               )
             }} />
-            <span>{errors?.password?.type = "required" && "Pls Enter Your Password"}</span>
+            {/* <span>{errors?.password?.type = "required" && "Pls Enter Your Password"}</span> */}
           </div>
           <motion.button type="submit" whileHover={{ x: 5, y: -5, background: "white", color: "black", border: "1px solid black" }} className="submit">
             <h3>Submit</h3>
