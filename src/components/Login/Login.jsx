@@ -80,7 +80,7 @@ const Login = () => {
           <div className="email">
             <TextField variant="outlined" label="Email" focused={errors?.email && true} type="email" fullWidth color={errors?.email & SignUp ? "secondary" : "primary"} {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} />
             {SignUp && (
-              <span>{errors?.email?.type = "required" && "Pls Enter Your Email"}</span>
+              <span>{errors?.email?.type === "required" && "Pls Enter Your Email"}</span>
 
             )} 
           </div>
@@ -95,7 +95,7 @@ const Login = () => {
               )
             }} />
             {SignUp && (
-              <span>{errors?.password?.type = "required" && "Pls Enter Your Password"}</span>
+              <span>{errors?.password?.type === "required" && "Pls Enter Your Password"}</span>
             )}
           </div>
           <motion.button type="submit" whileHover={{ x: 5, y: -5, background: "white", color: "black", border: "1px solid black" }} className="submit">
