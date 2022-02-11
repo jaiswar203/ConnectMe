@@ -1,11 +1,11 @@
-import { Layout } from "../src/components";
+import { Layout, Login } from "../src/components";
 
 
 const Logins = () => {
     
     return (
         <Layout title={`${true ? "Login" : "Sign Up"}`}>
-            {/* <Login /> */}
+            <Login />
         </Layout>
     );
 };

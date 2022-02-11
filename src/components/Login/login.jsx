@@ -14,7 +14,7 @@ import axios from "axios";
 
 
 
-const login = () => {
+const Login = () => {
   const [icon, setIcon] = useState(true);
   const { handleSubmit, formState: { errors }, register, reset } = useForm()
   const { authData } = useSelector((state) => state.AuthRedu)
@@ -114,4 +114,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
