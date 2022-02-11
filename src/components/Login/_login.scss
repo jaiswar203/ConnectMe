@@ -1,7 +1,96 @@
 .connectme__login{
-    padding: 5rem;
-
+    margin: 5rem ;
+    // border: 2px solid black;
     &-intro{
-        
+        @include center__element;
+        flex-direction: column;
+
+        h1{
+            font-size: 3rem;
+        }
+        p{
+            font-size: 1.3rem;
+        }
+    }
+    &-content{
+        margin-top: 5rem;
+        @include center__element;
+        justify-content: space-around;
+        &__manual{
+            width: 25rem;
+            @include center__element;
+            flex-direction: column;
+            
+            
+            svg{
+                // font-size: 2rem;
+            }
+            input{
+                // width: 10rem;
+            }
+            &>*{
+                margin-bottom: 1rem;
+            }
+            .email,.password{
+                width: 100%;
+                span{
+                    color: red;
+                }
+            }
+            .name{
+                @include center__element;
+
+                
+            }
+            button.submit{
+                padding: 1.4rem;
+                width: 100%;
+                background: black;
+                color: white;
+                @include center__element;
+            }
+
+        }
+        &__social{
+            @include center__element;
+            flex-direction: column;   
+            &__google{
+                cursor: pointer;
+                padding: 1rem;
+                width: 100%;
+                @include center__element;
+                
+                svg{
+                    font-size: 1.9rem;
+                    margin-right: 1rem;
+                }
+                color: black;
+                background: white;
+                margin-bottom: 1rem;                
+                
+            }
+        }
+    }
+    .divider{
+        &__line{
+            width: .15rem;
+            height: 3rem;
+            transform: rotate(15deg);
+            background: black;
+        }
+    }
+
+    @media screen and (max-width:750px) {
+        padding: 5rem 1rem;
+        margin: 0;
+
+        &-intro{
+            h1{
+                font-size: 2rem;
+            }
+            p{
+                font-size: 1rem;
+            }
+        }
     }
 }

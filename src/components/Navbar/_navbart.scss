@@ -1,0 +1,28 @@
+.connectme__header{
+    @include center__element;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+    &-signup{
+        .box{
+            padding: 1rem;
+            @include center__element;
+            width: 10rem;
+            background: black;
+            color: white;
+            p{
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    @media screen and (max-width:750px) {
+        &-signup{
+            
+            .box{
+                padding: .6rem 1rem;
+                width: 6rem;
+            }
+        }
+    }
+}

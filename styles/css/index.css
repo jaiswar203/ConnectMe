@@ -9,6 +9,206 @@
 }
 
 .connectme__login {
-  padding: 5rem;
+  margin: 5rem;
+}
+
+.connectme__login-intro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.connectme__login-intro h1 {
+  font-size: 3rem;
+}
+
+.connectme__login-intro p {
+  font-size: 1.3rem;
+}
+
+.connectme__login-content {
+  margin-top: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.connectme__login-content__manual {
+  width: 25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.connectme__login-content__manual > * {
+  margin-bottom: 1rem;
+}
+
+.connectme__login-content__manual .email, .connectme__login-content__manual .password {
+  width: 100%;
+}
+
+.connectme__login-content__manual .email span, .connectme__login-content__manual .password span {
+  color: red;
+}
+
+.connectme__login-content__manual .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.connectme__login-content__manual button.submit {
+  padding: 1.4rem;
+  width: 100%;
+  background: black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.connectme__login-content__social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.connectme__login-content__social__google {
+  cursor: pointer;
+  padding: 1rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+  background: white;
+  margin-bottom: 1rem;
+}
+
+.connectme__login-content__social__google svg {
+  font-size: 1.9rem;
+  margin-right: 1rem;
+}
+
+.connectme__login .divider__line {
+  width: .15rem;
+  height: 3rem;
+  -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+  background: black;
+}
+
+@media screen and (max-width: 750px) {
+  .connectme__login {
+    padding: 5rem 1rem;
+    margin: 0;
+  }
+  .connectme__login-intro h1 {
+    font-size: 2rem;
+  }
+  .connectme__login-intro p {
+    font-size: 1rem;
+  }
+}
+
+.connectme__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid black;
+}
+
+.connectme__header-signup .box {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 10rem;
+  background: black;
+  color: white;
+}
+
+.connectme__header-signup .box p {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 750px) {
+  .connectme__header-signup .box {
+    padding: .6rem 1rem;
+    width: 6rem;
+  }
 }
 /*# sourceMappingURL=index.css.map */
