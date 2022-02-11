@@ -1,4 +1,5 @@
-import { Layout, Login } from "../src/components";
+import { Layout } from "../src/components";
+import  Login  from "../src/components/Login/Login";
 
 const Logins = () => {
     
