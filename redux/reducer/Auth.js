@@ -4,13 +4,15 @@ const authReducer=(state={authData:null,allUser:null},action)=>{
             localStorage.setItem('UserAuth',JSON.stringify({...action?.data}))
             return {...state,authData: action?.data}
         case "LOGOUT":{
-            localStorage.clear("UserAuth")
+            localStorage.removeItem("UserAuth")
             return {...state,authData:null}
         }
         case "FETCH":
             return {...state,allUser: action?.data}
         case "GET_ALL":
             return {...state,authData: action?.data}
+        case "USER_ERROR":
+            return {...state,error: action?.error}
         default:
             return state
     }

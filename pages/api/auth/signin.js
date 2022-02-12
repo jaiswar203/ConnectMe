@@ -2,24 +2,23 @@ import { MongoClient } from "mongodb";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { email, name, username } = req.body;
+    const { email } = req.body;
     const client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db();
     const user = db.collection("userdatas");
 
     const existingUser = await user.findOne({ email });
-    const existingUserName = await user.findOne({ username });
 
-    if ( existingUser || existingUserName) {
+    if ( !existingUser ) {
       return res
         .status(404)
         .json({
-          message: `User Already Exist ${existingUser ? "with this gmail" : "with this name"} `,
+          message: "No User Found",
           
         });
     }
-    const result = await user.insertOne({ email, name, username });
-    res.status(201).json({ message: "SignUp SuccessFull", result });
+    
+    res.status(201).json({ message: "SignUp SuccessFull", existingUser });
 
     client.close();
   }

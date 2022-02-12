@@ -4,15 +4,17 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const Index = () => {
-  const { authData } = useSelector((state) => state.AuthRedu);
+  const state = useSelector((state) => state.AuthRedu);
+  const authData=state?.authData
   const router = useRouter();
 
   useEffect(() => {
-    if (!authData) {
-      router.push("/login");
-      return <h1>Redirecting to Login Page</h1>;
-    }
+      if (!authData?.status===200) {
+        router.push("/login");
+        return <h1>Redirecting to Login Page</h1>;
+      }
   }, [authData]);
+  console.log({authData})
   return <Layout description={"ConnectMe Login"}></Layout>;
 };
 

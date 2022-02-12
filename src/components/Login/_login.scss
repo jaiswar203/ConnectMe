@@ -1,96 +1,182 @@
-.connectme__login{
-    margin: 5rem ;
-    // border: 2px solid black;
-    &-intro{
+.connectme__login {
+  margin: 5rem;
+  // border: 2px solid black;
+  &-intro {
+    @include center__element;
+    flex-direction: column;
+
+    h1 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.3rem;
+    }
+  }
+  &-content {
+    margin-top: 5rem;
+    @include center__element;
+    flex-direction: column;
+    &__manual {
+      @include center__element;
+      flex-direction: column;
+      width: 26rem;
+      @media screen and (max-width: 470px) {
+        width: 100%;
+      }
+
+      svg {
+        // font-size: 2rem;
+      }
+      input {
+        // width: 10rem;
+      }
+      & > * {
+        margin-bottom: 1rem;
+      }
+      .email,
+      .password {
+        width: 100%;
+        span {
+          color: red;
+        }
+      }
+      .name {
         @include center__element;
-        flex-direction: column;
-
-        h1{
-            font-size: 3rem;
-        }
-        p{
-            font-size: 1.3rem;
-        }
-    }
-    &-content{
-        margin-top: 5rem;
+      }
+      button.submit {
+        padding: 1.4rem;
+        width: 100%;
+        background: black;
+        color: white;
         @include center__element;
-        justify-content: space-around;
-        &__manual{
-            width: 25rem;
-            @include center__element;
-            flex-direction: column;
-            
-            
-            svg{
-                // font-size: 2rem;
-            }
-            input{
-                // width: 10rem;
-            }
-            &>*{
-                margin-bottom: 1rem;
-            }
-            .email,.password{
-                width: 100%;
-                span{
-                    color: red;
-                }
-            }
-            .name{
-                @include center__element;
-
-                
-            }
-            button.submit{
-                padding: 1.4rem;
-                width: 100%;
-                background: black;
-                color: white;
-                @include center__element;
-            }
-
-        }
-        &__social{
-            @include center__element;
-            flex-direction: column;   
-            &__google{
-                cursor: pointer;
-                padding: 1rem;
-                width: 100%;
-                @include center__element;
-                
-                svg{
-                    font-size: 1.9rem;
-                    margin-right: 1rem;
-                }
-                color: black;
-                background: white;
-                margin-bottom: 1rem;                
-                
-            }
-        }
+      }
     }
-    .divider{
-        &__line{
-            width: .15rem;
-            height: 3rem;
-            transform: rotate(15deg);
-            background: black;
+  }
+
+  &-model {
+    @include center__element;
+    top: 0;
+    z-index: 1;
+    transform: translate(0, 50%) !important;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    .cross{
+      position: absolute;
+      
+      top: 0;
+      left: 21rem;
+      right: 0;
+      bottom: 18rem;
+      svg{
+        z-index: 2;
+        font-size: 1.7rem
+      }
+      
+      @include center__element;
+      flex-direction: column;
+      color: white;
+
+    }
+    &__data {
+      padding: 1.5rem;
+      margin: 5rem;
+      position: relative;
+      top: 0;
+      left: 0;
+      @include center__element;
+      flex-direction: column;
+      width: 23rem;
+      
+      height: 20rem;
+      background-color: black;
+      z-index: 1;
+      right: 0;
+      bottom: 0;
+
+      span{
+        color: red;
+      }
+      fieldset{
+        border-color: white;
+      }
+      input{
+        color: white;
+      }
+      label{
+        color: white;
+      }
+      .username{
+        width: 20rem;
+      }
+      
+      .google {
+        position: absolute;
+        margin-top: 10rem;
+        @include center__element;
+        padding: 1.1rem;
+        width: 20rem;
+        background: white;
+        color: black;
+      }
+      @media screen and (max-width:500px) {
+        margin: 2rem 1rem;
+        .username{
+          width: 100%;
+          
         }
+        .google{
+          width: 90%;
+        }
+      }
     }
 
-    @media screen and (max-width:750px) {
-        padding: 5rem 1rem;
-        margin: 0;
+  }
 
-        &-intro{
-            h1{
-                font-size: 2rem;
-            }
-            p{
-                font-size: 1rem;
-            }
-        }
+  @media screen and (max-width: 430px) {
+    &-content {
+      margin-top: 3.5rem;
     }
+  }
+  .divider {
+    @include center__element;
+  }
+  .auth {
+    margin-top: 0.8rem;
+    @include center__element;
+    flex-direction: column;
+    width: 26rem;
+
+    @media screen and (max-width: 470px) {
+      width: 100%;
+    }
+    .google {
+      cursor: pointer;
+      padding: 1rem;
+      width: 100%;
+      @include center__element;
+
+      svg {
+        font-size: 1.9rem;
+        margin-right: 1rem;
+      }
+      color: black;
+      background: white;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    padding: 5rem 1rem;
+    margin: 0;
+
+    &-intro {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
 }

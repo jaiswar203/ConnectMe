@@ -47,12 +47,13 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .connectme__login-content__manual {
-  width: 25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -66,17 +67,26 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 26rem;
+}
+
+@media screen and (max-width: 470px) {
+  .connectme__login-content__manual {
+    width: 100%;
+  }
 }
 
 .connectme__login-content__manual > * {
   margin-bottom: 1rem;
 }
 
-.connectme__login-content__manual .email, .connectme__login-content__manual .password {
+.connectme__login-content__manual .email,
+.connectme__login-content__manual .password {
   width: 100%;
 }
 
-.connectme__login-content__manual .email span, .connectme__login-content__manual .password span {
+.connectme__login-content__manual .email span,
+.connectme__login-content__manual .password span {
   color: red;
 }
 
@@ -108,7 +118,31 @@
           align-items: center;
 }
 
-.connectme__login-content__social {
+.connectme__login-model {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  z-index: 1;
+  -webkit-transform: translate(0, 50%) !important;
+          transform: translate(0, 50%) !important;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.connectme__login-model .cross {
+  position: absolute;
+  top: 0;
+  left: 21rem;
+  right: 0;
+  bottom: 18rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -122,9 +156,134 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  color: white;
 }
 
-.connectme__login-content__social__google {
+.connectme__login-model .cross svg {
+  z-index: 2;
+  font-size: 1.7rem;
+}
+
+.connectme__login-model__data {
+  padding: 1.5rem;
+  margin: 5rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 23rem;
+  height: 20rem;
+  background-color: black;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+}
+
+.connectme__login-model__data span {
+  color: red;
+}
+
+.connectme__login-model__data fieldset {
+  border-color: white;
+}
+
+.connectme__login-model__data input {
+  color: white;
+}
+
+.connectme__login-model__data label {
+  color: white;
+}
+
+.connectme__login-model__data .username {
+  width: 20rem;
+}
+
+.connectme__login-model__data .google {
+  position: absolute;
+  margin-top: 10rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.1rem;
+  width: 20rem;
+  background: white;
+  color: black;
+}
+
+@media screen and (max-width: 500px) {
+  .connectme__login-model__data {
+    margin: 2rem 1rem;
+  }
+  .connectme__login-model__data .username {
+    width: 100%;
+  }
+  .connectme__login-model__data .google {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .connectme__login-content {
+    margin-top: 3.5rem;
+  }
+}
+
+.connectme__login .divider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.connectme__login .auth {
+  margin-top: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 26rem;
+}
+
+@media screen and (max-width: 470px) {
+  .connectme__login .auth {
+    width: 100%;
+  }
+}
+
+.connectme__login .auth .google {
   cursor: pointer;
   padding: 1rem;
   width: 100%;
@@ -142,17 +301,9 @@
   margin-bottom: 1rem;
 }
 
-.connectme__login-content__social__google svg {
+.connectme__login .auth .google svg {
   font-size: 1.9rem;
   margin-right: 1rem;
-}
-
-.connectme__login .divider__line {
-  width: .15rem;
-  height: 3rem;
-  -webkit-transform: rotate(15deg);
-          transform: rotate(15deg);
-  background: black;
 }
 
 @media screen and (max-width: 750px) {
@@ -208,7 +359,7 @@
 @media screen and (max-width: 750px) {
   .connectme__header-signup .box {
     padding: .6rem 1rem;
-    width: 6rem;
+    width: 7rem;
   }
 }
 /*# sourceMappingURL=index.css.map */

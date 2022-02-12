@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { signOut, useSession } from 'next-auth/react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { existingUserData } from '../../../redux/action/Auth';
@@ -7,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router';
 
 const Navbar = () => {
-    const session = useSession()
-    const { authData } = useSelector((state) => state.AuthRedu)
+    
+    const state = useSelector((state) => state.AuthRedu)
+    const authData=state?.authData
     const dispacth = useDispatch()
     const router = useRouter()
 
     useEffect(() => {
         const data = localStorage.getItem("UserAuth")
-        // setUserData(JSON.parse(data))
         dispacth(existingUserData(JSON.parse(data)))
     }, [dispacth])
     const { signup } = router.query
