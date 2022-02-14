@@ -16,15 +16,15 @@ import axios from "axios";
 
 const Login = () => {
   const [icon, setIcon] = useState(true);
-  const { handleSubmit, formState: { errors }, register, reset } = useForm()
+  const [askUserName, setaskUserName] = useState("")
   const [askUserNamePermission, setAskUserNamePermission] = useState(false)
+  const { handleSubmit, formState: { errors }, register, reset } = useForm()
   const state = useSelector((state) => state.AuthRedu)
   const authData = state?.authData
   const dispacth = useDispatch()
   const router = useRouter()
-  const [askUserName, setaskUserName] = useState("")
 
-  console.log({ state })
+  
 
   const { signup: SignUp } = router.query
 
@@ -41,14 +41,10 @@ const Login = () => {
     }
   }
 
-  useEffect(() => {
-    dispacth(getAllUser())
-  }, [dispacth])
-
+  
   const googleSuccess = async (res) => {
     const { name, email } = res?.profileObj
     const token = res?.tokenId
-    // console.log(name + "__" + Math.random().toString(36).substr(2, 9),{ data: res.profileObj})
     if (SignUp) {
       try {
         const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
@@ -70,23 +66,27 @@ const Login = () => {
   }
 
   const googleFailure = (err) => {
-
+    console.log(err) 
   }
 
-  if (authData?.status === 200) {
-    router.push(`/${authData?.data?.User?.username}`)
-  }
-
-  // if (authData) {
-  //   router.push("/")
-  //   return (
-  //     <h1>Redirecting to Home</h1>
-  //   )
-  // }
   useEffect(() => {
-
+    
   }, [askUserName])
-  console.log({ askUserName })
+  useEffect(() => {
+    dispacth(getAllUser())
+  }, [dispacth])
+
+  if (authData) {
+    router.push(`/${authData?.existingUser?.username}`)
+  }
+
+  if (authData!==null) {
+    // router.push("/")
+    return (
+      <h1>Redirecting to Home</h1>
+    )
+  }
+  
   return (
     <div className='connectme__login'>
       <div className="connectme__login-intro">

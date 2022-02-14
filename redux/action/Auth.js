@@ -1,6 +1,6 @@
 import * as api from '../../api'
 
-export const signInUser=(formData,history)=>async(dispatch)=>{
+export const signInUser=(formData)=>async(dispatch)=>{
     try {
         const {data}=await api.loginUser(formData)
         dispatch({type:"AUTH",data})
@@ -10,11 +10,11 @@ export const signInUser=(formData,history)=>async(dispatch)=>{
     }
 }
 
-export const signUpUser=(formData,history)=>async(dispatch)=>{
+export const signUpUser=(formData)=>async(dispatch)=>{
     try {
-        const {data,status}=await api.createUser(formData)
-        dispatch({type:"AUTH",data:{data,status}})
-        console.log({formData})
+        const {data: {User,token,message}}=await api.createUser(formData)
+        dispatch({type:"AUTH",data:{existingUser: User,message,token}})
+        
     } catch (error) {
         dispatch({type:"USER_ERROR",error: error?.response?.data})
     }
@@ -23,7 +23,6 @@ export const signUpUser=(formData,history)=>async(dispatch)=>{
 export const getAllUser=()=>async(dispatch)=>{
     try {
         const {data}=await api.getAllUser()
-        console.log({data})
         dispatch({type:"FETCH",data})
     } catch (error) {
         console.log(error)

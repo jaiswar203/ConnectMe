@@ -9,10 +9,8 @@ const Index = () => {
   const router = useRouter();
 
   useEffect(() => {
-      if (!authData?.status===200) {
         router.push("/login");
         return <h1>Redirecting to Login Page</h1>;
-      }
   }, [authData]);
   console.log({authData})
   return <Layout description={"ConnectMe Login"}></Layout>;

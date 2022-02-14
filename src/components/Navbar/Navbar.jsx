@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { existingUserData } from '../../../redux/action/Auth';
 import { useDispatch, useSelector } from 'react-redux'
+import decode from 'jwt-decode'
 import { useRouter } from 'next/router';
 
 const Navbar = () => {
@@ -12,9 +13,22 @@ const Navbar = () => {
     const dispacth = useDispatch()
     const router = useRouter()
 
+    const logout=()=>{
+        dispacth({type:"LOGOUT"})
+        router.push("/")
+
+    }
     useEffect(() => {
         const data = localStorage.getItem("UserAuth")
         dispacth(existingUserData(JSON.parse(data)))
+
+        const token=authData?.token
+
+        if(token){
+            const decodeToken=decode(token)
+            if(decodeToken.exp * 1000 < new Date().getTime()) logout()
+        }
+
     }, [dispacth])
     const { signup } = router.query
 
