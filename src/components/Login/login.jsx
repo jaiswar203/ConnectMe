@@ -47,7 +47,7 @@ const Login = () => {
     const token = res?.tokenId
     if (SignUp) {
       try {
-        const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
+        const { data:{existingUser} } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
         dispacth({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
         dispacth({ type: "USER_ERROR", error: error.response })

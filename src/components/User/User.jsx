@@ -1,9 +1,11 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter, FaImdb } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp, FaPhone, FaEnvelope, FaImdb } from 'react-icons/fa'
+import { AiFillMessage } from 'react-icons/ai'
 import { CgWebsite } from 'react-icons/cg'
 import Testimonial from "./subcomponents/Testimonial"
+import Portfolio from "./subcomponents/Portfolio"
 
 const User = () => {
   const [width, setWidth] = useState(1000)
@@ -79,10 +81,30 @@ const User = () => {
       transition: {
         type: "spring",
         stiffness: 300
-      }
+      },
     },
     hidden: {
       x: 100,
+      opacity: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300
+      }
+    }
+  }
+  const childVariantForConnect = {
+    visible: {
+      x: 0,
+      opacity: 1,
+      speed: 50,
+      transition: {
+        type: "spring",
+        stiffness: 300
+      },
+    },
+    hidden: {
+      x: 100,
+      y: 0,
       opacity: 0,
       transition: {
         type: "spring",
@@ -117,9 +139,32 @@ const User = () => {
       name: "WebSite"
     },
   ]
+
+  const connects = [
+    {
+      item: <FaWhatsapp />,
+      name: "Whatsapp",
+      link: "https://wa.me/394997499"
+    },
+    {
+      item: <FaPhone />,
+      name: "Call",
+      link: "tel:771894974"
+    },
+    {
+      item: <FaEnvelope />,
+      name: "Mail",
+      link: "mailto:zeus@zeus.com"
+    },
+    {
+      item: <AiFillMessage />,
+      name: "SMS",
+      link: "sms:+917715969989"
+    },
+  ]
   return (
     <div className="connectme__user">
-      <motion.div className="connectme__user-background" initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
+      <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
         <Image src={"https://res.cloudinary.com/redwine/image/upload/v1644848677/1000_cka9mr.jpg"} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
       </motion.div>
       <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -100, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
@@ -167,8 +212,8 @@ const User = () => {
           </div>
           <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {socialHandle.map((d) => (
-              <a href="#" target="_blank"  key={d.name}>
-                <motion.div className="item"  variants={childVariantForSocial} viewport={{ once: true }} whileHover={{scale:1.2,color:"red"}}>
+              <a href="#" target="_blank" key={d.name}>
+                <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }}>
                   {d.item}
                   <motion.p> {d.name}</motion.p>
                 </motion.div>
@@ -176,7 +221,24 @@ const User = () => {
             ))}
           </motion.div>
         </div>
-        {/* <Testimonial /> */}
+        <div className="connectme__user-connects">
+          <div className="connectme__user-connects__title">
+            <h1>Personal Connects</h1>
+          </div>
+          <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            {
+              connects.map((d) => (
+                <a href={d.link} key={d.name} target="_blank"   >
+                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: -20, scale: 1.1 }} >
+                    {d.item}
+                  </motion.div>
+                </a>
+              ))
+            }
+          </motion.div>
+        </div>
+        <Testimonial />
+        {/* <Portfolio /> */}
       </div>
     </div>
   )
