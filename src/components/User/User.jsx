@@ -229,7 +229,7 @@ const User = () => {
           <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {
               connects.map((d) => (
-                <a href={d.link} key={d.name} target="_blank"   >
+                <a href={d.link} key={d.name} target="_blank"  ref="noreferrer" >
                   <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: -20, scale: 1.1 }} >
                     {d.item}
                   </motion.div>
