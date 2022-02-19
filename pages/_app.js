@@ -22,6 +22,7 @@ const store = createStore(
 );
 
 import "../styles/css/index.css";
+import 'swiper/css'
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 

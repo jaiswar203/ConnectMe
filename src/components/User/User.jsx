@@ -5,7 +5,8 @@ import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp, FaPhone, Fa
 import { AiFillMessage } from 'react-icons/ai'
 import { CgWebsite } from 'react-icons/cg'
 import Testimonial from "./subcomponents/Testimonial"
-import Portfolio from "./subcomponents/Portfolio"
+import { data } from "../../db/data"
+import Port from "./subcomponents/Port"
 
 const User = () => {
   const [width, setWidth] = useState(1000)
@@ -238,7 +239,9 @@ const User = () => {
           </motion.div>
         </div>
         <Testimonial />
-        {/* <Portfolio /> */}
+        <Port data={data.portfolioData} title={"PortFolio"} link="portfolio" />
+        <Port data={data.portfolioData} title={"Services"} link="services" />
+        
       </div>
     </div>
   )
