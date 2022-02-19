@@ -213,7 +213,7 @@ const User = () => {
           </div>
           <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {socialHandle.map((d) => (
-              <a href="#" target="_blank" key={d.name}>
+              <a href="#" target="_blank" key={d.name} rel="noreferrer"> 
                 <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }}>
                   {d.item}
                   <motion.p> {d.name}</motion.p>

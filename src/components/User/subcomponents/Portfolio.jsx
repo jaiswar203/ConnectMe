@@ -102,7 +102,7 @@ const Portfolio = () => {
                 <div className="connectme__user-portfolio__content__lower">
                     <motion.div className="grid" >
                         {itemData.map((d, i) => (
-                            <motion.div className="grid__item" initial={{ scale: 1.1, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * .4 }} onClick={() => {
+                            <motion.div className="grid__item" initial={{ scale: 1.1, opacity: 0 }} key={d.title} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * .4 }} onClick={() => {
                                 setShowModal(true)
                                 setimgUrl(d.img)
                             }}>
