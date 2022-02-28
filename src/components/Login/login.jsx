@@ -24,7 +24,6 @@ const Login = () => {
   const dispacth = useDispatch()
   const router = useRouter()
 
-  
 
   const { signup: SignUp } = router.query
 
@@ -41,23 +40,23 @@ const Login = () => {
     }
   }
 
-  
+
   const googleSuccess = async (res) => {
     const { name, email } = res?.profileObj
     const token = res?.tokenId
     if (SignUp) {
       try {
-        const { data:{existingUser} } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
+        const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
         dispacth({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
         dispacth({ type: "USER_ERROR", error: error.response })
       }
-    }else{
+    } else {
       try {
         const { data: { existingUser } } = await axios.post("/api/auth/signin", { email })
         dispacth({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
-        if(error?.response?.status===404){
+        if (error?.response?.status === 404) {
           const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
           dispacth({ type: "AUTH", data: { existingUser, token } })
         }
@@ -66,27 +65,21 @@ const Login = () => {
   }
 
   const googleFailure = (err) => {
-    console.log(err) 
+    console.log(err)
   }
 
   useEffect(() => {
-    
+
   }, [askUserName])
   useEffect(() => {
     dispacth(getAllUser())
   }, [dispacth])
 
-  if (authData) {
-    router.push(`/${authData?.existingUser?.username}`)
+  if (authData && !SignUp) {
+    router.push(`/edit/${authData?.existingUser?.username}`)
+  } else if (authData && SignUp) {
+    router.push("/?generateprofile=true")
   }
-
-  if (authData!==null) {
-    // router.push("/")
-    return (
-      <h1>Redirecting to Home</h1>
-    )
-  }
-  
   return (
     <div className='connectme__login'>
       <div className="connectme__login-intro">
@@ -117,14 +110,16 @@ const Login = () => {
                 <span>User Already Exist</span>
               )
             }
+
             {
-              state?.error?.status === 404 && (
-                <span>No User Founded</span>
-              )
+              !SignUp ?
+                state?.error?.status === 404 && (
+                  <span>No User Founded</span>
+                ) : null
             }
           </div>
           <div className="password">
-            <TextField variant="outlined" label="Password" focused={errors?.password } type={icon ? "password" : "text"} color={errors?.password || SignUp ? "secondary" : "primary"} {...register("password", { required: true, minLength: 8 })} fullWidth InputProps={{
+            <TextField variant="outlined" label="Password" focused={errors?.password} type={icon ? "password" : "text"} color={errors?.password || SignUp ? "secondary" : "primary"} {...register("password", { required: true, minLength: 8 })} fullWidth InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setIcon(!icon)}>

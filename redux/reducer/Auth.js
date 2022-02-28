@@ -1,4 +1,4 @@
-const authReducer=(state={authData:null,allUser:null},action)=>{
+const authReducer=(state={allUser:null},action)=>{
     switch (action.type) {
         case "AUTH":
             localStorage.setItem('UserAuth',JSON.stringify({...action?.data}))
@@ -13,6 +13,9 @@ const authReducer=(state={authData:null,allUser:null},action)=>{
             return {...state,authData: action?.data}
         case "USER_ERROR":
             return {...state,error: action?.error}
+        case "GET_USER_BY_ID":
+            localStorage.setItem("UserAuth",JSON.stringify({...action?.data}))
+            return {...state,data: action?.data}
         default:
             return state
     }

@@ -14,7 +14,7 @@ const Detail = () => {
 
   },[authData])
   return (
-    <User />
+    <User edit={false} />
   )
 }
 

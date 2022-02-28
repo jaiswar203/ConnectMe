@@ -4,7 +4,7 @@ const API = axios.create({ baseURL: "http://localhost:4000" });
 
 
 API.interceptors.request.use((req) => {
-  if (localStorage.getItem("UserData")) {
+  if (localStorage.getItem("UserAuth")) {
     req.headers.Authorization = `Bearer ${
       JSON.parse(localStorage.getItem("UserAuth"))?.token
     }`;
@@ -20,3 +20,13 @@ export const getAllUser = () => API.get("/user",{
     "Authorization":`Bearer ${JSON.parse(localStorage.getItem("UserAuth"))?.token}`
   }
 });
+
+export const getUserById=(id)=>API.get(`/user/${id}`)
+
+
+export const createProfile=(data)=>API.post("/profile",data)
+export const getAllProfile=()=>API.get("/profile")
+export const getProfileById=(data,id)=>API.post(`/profile/${id}`,data)
+export const updateProfileById=(data,id)=>API.patch(`/profile/${id}`,data)
+export const deleteProfileById=(id)=>API.delete(`/profile/${id}`)
+export const askForPrivateProfile=(data,id)=>API.post(`/profile/ask-for-profile/${id}`,data)

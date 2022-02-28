@@ -1,11 +1,13 @@
 import { GrGrid, GrGallery } from 'react-icons/gr'
 import { AiFillPlayCircle } from 'react-icons/ai'
+import { FaEdit } from 'react-icons/fa'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Modal from '../../modal/Modal'
 import { useEffect, useState } from 'react'
 
-const Portfolio = () => {
+const Portfolio = ({edit}) => {
+    console.log({edit})
     const [showModal, setShowModal] = useState(false)
     const [imgUrl, setimgUrl] = useState("")
     const [showNext, setShowNext] = useState(0)
@@ -86,14 +88,19 @@ const Portfolio = () => {
         <div className="connectme__user-portfolio">
             <div className="connectme__user-portfolio__title">
                 <h1>PortFolio</h1>
+                {edit && (
+                    <div className="background">
+                        <FaEdit />
+                    </div>
+                )}
             </div>
             <div className="connectme__user-portfolio__content">
                 <div className="connectme__user-portfolio__content__upper">
                     {
                         sectionItem.map((d, i) => (
-                            <div className="item" key={d.id} onClick={()=>setShowBar(true)}>
+                            <div className="item" key={d.id} onClick={() => setShowBar(true)}>
                                 {d.item}
-                                <span  className={`${showBar & d.id===i && "show"}`}></span>
+                                <span className={`${showBar & d.id === i && "show"}`}></span>
                             </div>
                         ))
                     }

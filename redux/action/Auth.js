@@ -4,7 +4,6 @@ export const signInUser=(formData)=>async(dispatch)=>{
     try {
         const {data}=await api.loginUser(formData)
         dispatch({type:"AUTH",data})
-        // history.push("/")
     } catch (error) {
         dispatch({type:"USER_ERROR",error: error?.response})
     }
@@ -34,5 +33,14 @@ export const existingUserData=(data)=>async(dispatch)=>{
         dispatch({type:"GET_ALL",data})
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const getUserById=(id)=>async(dispatch)=>{
+    try {
+        const {data}=await api.getUserById(id)
+        dispatch({type:"GET_USER_BY_ID",data})
+    } catch (error) {
+        console.log({error})
     }
 }

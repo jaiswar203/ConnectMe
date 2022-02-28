@@ -1,6 +1,7 @@
 
 import { SwiperSlide, Swiper } from 'swiper/react'
 import { BsArrowRight } from 'react-icons/bs'
+import { FaEdit } from 'react-icons/fa'
 import SwiperCore, { Autoplay } from 'swiper'
 import Image from 'next/image'
 import Modal from "../../modal/Modal"
@@ -8,12 +9,12 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import Link from 'next/link'
 
-const Port = ({data,title,link=""}) => {
+const Port = ({ data, title, link = "", edit }) => {
     const [showModal, setShowModal] = useState(false)
     const [index, setIndex] = useState(0)
-    
+
     const newData = data
-    var refinedData=newData[index]
+    var refinedData = newData[index]
 
     const breakpoint = {
         400: {
@@ -39,31 +40,36 @@ const Port = ({data,title,link=""}) => {
     }
 
     useEffect(() => {
-        
-    }, [showModal,index])
-    useEffect(()=>{
 
-    },[refinedData])
-    
+    }, [showModal, index])
+    useEffect(() => {
 
-    if(index<0){
-        setIndex(newData.length-1)
-    }else if(index>newData.length-1){
+    }, [refinedData])
+
+
+    if (index < 0) {
+        setIndex(newData.length - 1)
+    } else if (index > newData.length - 1) {
         setIndex(0)
         console.log("limit Reached")
     }
-    
-    
+
+
     return (
         <div className="connectme__user-services">
             <div className="connectme__user-services__title">
                 <h1>{title && title}</h1>
+                {edit && (
+                    <div className="background">
+                        <FaEdit />
+                    </div>
+                )}
             </div>
             <motion.div className="connectme__user-services__content" >
                 <Swiper loop={true} slidesPerView={1} breakpoints={breakpoint} spaceBetween={50} autoplay speed={600} modules={[Autoplay]}>
-                    {newData.map((d,i) => (
+                    {newData.map((d, i) => (
                         <SwiperSlide key={d.title}>
-                            <motion.div className="image" initial={{x:100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{delay: i<4 && .5 *i  }}  whileHover={{ scale: 1.1 }} onClick={() => {
+                            <motion.div className="image" whileHover={{ scale: 1.1 }} onClick={() => {
                                 setIndex(i)
                                 setShowModal(true)
                             }
@@ -76,12 +82,13 @@ const Port = ({data,title,link=""}) => {
             </motion.div>
             <div className="connectme__user-services__more" >
                 <Link href={`/${link}`} passHref>
-                <motion.div className="" initial={{ x: -300, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} whileHover={{ scale: 1.1, x: 10 }}>
-                    <BsArrowRight />
-                </motion.div>
+                    <motion.div className="" initial={{ x: -300, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} whileHover={{ scale: 1.1, x: 10 }}>
+                        <BsArrowRight />
+                    </motion.div>
                 </Link>
             </div>
             {showModal && (
+
                 <Modal img={refinedData?.img} setModal={setShowModal} setIndex={setIndex} index={index} />
             )}
         </div>

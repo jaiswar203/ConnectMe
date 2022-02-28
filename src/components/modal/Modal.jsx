@@ -20,10 +20,10 @@ const Modal = ({ isImg = true, isIframe = false,index, img, setModal,setIndex })
                 </motion.div>
                 {isImg && (
                     <div className="connectme__modal-button">
-                        <motion.div className="item"  whileHover={{scale:1.1}}  onClick={()=>setIndex(index-1)}>
+                        <motion.div className="item"  whileHover={{scale:1.1}}  onClick={()=>setIndex(index-1)} whileTap={{scale:1.1}}>
                             <FaArrowLeft />
                         </motion.div>
-                        <motion.div className="item"   whileHover={{scale:1.1}} onClick={()=>setIndex(index+1)}>
+                        <motion.div className="item"   whileHover={{scale:1.1}} onClick={()=>setIndex(index+1)} whileTap={{scale:1.1}}>
                             <FaArrowRight />
                         </motion.div>
                     </div>

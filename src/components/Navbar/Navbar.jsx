@@ -36,6 +36,7 @@ const Navbar = () => {
         dispacth({ type: "LOGOUT" })
     }
     console.log({ authData })
+    
 
     return (
         <header className='connectme__header'>

@@ -20,8 +20,8 @@ export default async function handler(req, res) {
     }
 
     try {
-      await user.insertOne({ email, name, username });
-      res.status(201).json({ message: "SignUp SuccessFull", existingUser: {email,name,username} });
+      const {insertedId}=await user.insertOne({ email, name, username });
+      res.status(201).json({ message: "SignUp SuccessFull", existingUser: {email,name,username,_id:insertedId} });
     } catch (error) {
       res.status(501).json({ message: "Try Again" });
       

@@ -14,7 +14,6 @@ export default async function handler(req, res) {
         .status(404)
         .json({
           message: "No User Found",
-          
         });
     }
     
