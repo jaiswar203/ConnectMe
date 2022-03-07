@@ -28,12 +28,20 @@
     .info {
       @include center__element;
       flex-direction: column;
+
+      &__name,&__city{
+        @include center__element;
+        svg{
+          margin-left: .4rem;
+          margin-bottom: .2rem;
+        }
+      }
     }
     img {
       border-radius: 1rem;
     }
     .background {
-      color: white;
+      color: black;
       position: relative;
       top: 2.4rem;
       z-index: 1;
@@ -92,6 +100,7 @@
   &-interests {
     margin-top: 4rem;
 
+    
     &__title {
       @include center__element;
       justify-content: flex-end;
@@ -115,6 +124,13 @@
 
       @mixin random-bgr {
         background: rgb(random(255), random(255), random(255));
+      }
+      .background{
+        position: relative;
+        bottom: 0.3rem;
+        left: 0.5rem;
+
+        color: black;
       }
       .bodies {
         flex: 0 0 calc(16.66% - 20px);
@@ -144,12 +160,6 @@
       @include center__element;
       justify-content: flex-start;
 
-      .background {
-        margin-left: 0.4rem;
-        width: 2rem;
-        margin-top: -1rem;
-        font-size: 1.4rem;
-      }
     }
     &__content {
       overflow-x: hidden;
@@ -168,9 +178,17 @@
           margin-top: 0.5rem;
         }
       }
+      .background {
+        position: absolute;
+        margin-bottom: 4rem;
+        margin-left: 4rem;
+        svg{
+          font-size: 1rem !important;
+        }
+      }
     }
   }
-  
+
   &-testimonial {
     margin-top: 4rem;
     &__title {
@@ -183,10 +201,16 @@
         font-size: 1.4rem;
       }
     }
-    
+
     &__content {
       margin-top: 2rem;
-
+      
+      .background{
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        font-size: 2rem;
+      }
       &-carousel {
         img {
           border-radius: 20px;
@@ -221,10 +245,10 @@
       }
     }
   }
-  
+
   &-connects {
     margin-top: 4rem;
-    
+
     &__title {
       @include center__element;
       justify-content: flex-end;
@@ -242,6 +266,15 @@
       justify-content: space-between;
       svg {
         font-size: 4rem;
+      }
+
+      .background {
+        position: absolute;
+        margin-bottom: 4rem;
+        margin-left: 5rem;
+        svg{
+          font-size: 1rem !important;
+        }
       }
 
       @media screen and (max-width: 1200px) {
@@ -279,7 +312,6 @@
       margin-top: 2rem;
       @include center__element;
       flex-direction: column;
-
       padding: 1rem;
 
       &__upper {
@@ -338,9 +370,17 @@
         font-size: 1.4rem;
       }
     }
-    
+
     &__content {
       margin-top: 3rem;
+
+      .background{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        font-size: 2rem;
+      }
 
       img {
         border-radius: 1rem;
@@ -398,6 +438,11 @@
       margin-left: 0.3rem;
     }
     &__content {
+      .background{
+        position: relative;
+        right: -.3rem;
+        top: -.4rem;
+      }
       width: 40rem;
       position: absolute;
       background: gray;
@@ -516,6 +561,79 @@
 
     svg {
       font-size: 2rem;
+    }
+  }
+}
+
+.connectme__edit {
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  z-index: 34;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  &-close {
+    position: absolute;
+    font-size: 2.5rem;
+    top: 0;
+    right: 0;
+  }
+  &-modal {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    background: black;
+    color: white;
+    padding: 3rem;
+    border-radius: 5px;
+
+    .title {
+      @include center__element;
+      margin-bottom: 2rem;
+    }
+
+    .content {
+      &-array{
+        @include center__element;
+        flex-direction: column;
+        &>*{
+          margin-bottom: 1rem;
+        }
+      }
+      @include center__element;
+      input {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 0.3rem;
+      }
+      .edit {
+        position: absolute;
+        right: 3rem;
+        top: 8rem;
+        border-left: 2px solid black;
+        color: black;
+        svg {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .button {
+      padding: 1rem;
+      margin-top: 1rem;
+      @include center__element;
+      button {
+        width: 50%;
+        font-size: 1.3rem;
+        /* height: 1.5rem; */
+        border-radius: 5px;
+        padding: 0.5rem;
+      }
     }
   }
 }

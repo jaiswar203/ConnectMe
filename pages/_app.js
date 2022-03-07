@@ -6,10 +6,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
-
+import decode from 'jwt-decode'
 import { SessionProvider } from "next-auth/react";
 
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -23,8 +23,10 @@ const store = createStore(
 
 import "../styles/css/index.css";
 import 'swiper/css'
+import { useRouter } from "next/router";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
+
 
 export default function MyApp(props) {
   const {

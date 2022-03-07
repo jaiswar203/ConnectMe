@@ -30,7 +30,7 @@ const Login = () => {
   useEffect(() => {
 
   }, [icon])
-
+  console.log({state})
 
   const onSubmit = async (data) => {
     if (Boolean(SignUp)) {
@@ -75,6 +75,11 @@ const Login = () => {
     dispacth(getAllUser())
   }, [dispacth])
 
+  if(!state?.error?.isVerified && !SignUp) {
+    return (
+      <h1>Verify Your Email</h1>
+    )
+  }
   if (authData && !SignUp) {
     router.push(`/edit/${authData?.existingUser?.username}`)
   } else if (authData && SignUp) {

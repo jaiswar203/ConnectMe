@@ -26,9 +26,10 @@ const Navbar = () => {
 
         if(token){
             const decodeToken=decode(token)
-            if(decodeToken.exp * 1000 < new Date().getTime()) logout()
+            if(decodeToken.exp * 1000 < new Date().getTime()) 
+            return logout()
+            console.log(token)
         }
-
     }, [dispacth])
     const { signup } = router.query
 

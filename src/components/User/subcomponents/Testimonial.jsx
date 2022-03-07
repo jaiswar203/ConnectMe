@@ -5,12 +5,13 @@ import SwiperCore, { Autoplay } from 'swiper'
 
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import Image from 'next/image'
-import { FaPlayCircle,FaEdit } from 'react-icons/fa'
+import { FaPlayCircle, FaEdit } from 'react-icons/fa'
 import Modal from '../../modal/Modal'
 
-const Testimonial = ({edit}) => {
+const Testimonial = ({ edit, data ,openEditHandler}) => {
     const [showVid, setShowVid] = useState(false)
     const [number, setNumber] = useState(0)
+    const [vidUrl, setvidUrl] = useState("")
     const breakpoints = {
         "600": {
             slidesPerView: 2
@@ -32,28 +33,31 @@ const Testimonial = ({edit}) => {
         <div className="connectme__user-testimonial">
             <div className="connectme__user-testimonial__title">
                 <h1>Testimonial</h1>
-                {edit && (
-              <div className="background">
-                <FaEdit />
-              </div>
-            )}
             </div>
             <div className="connectme__user-testimonial__content">
                 <Swiper loop={true} slidesPerView={1} spaceBetween={50} breakpoints={breakpoints} autoplay speed={600} modules={[Autoplay]}>
-                    {newData.map((d, i) => (
-                        <SwiperSlide className='connectme__user-testimonial__content-carousel' key={d.name}>
-
-                            <motion.div>
-                                <Image src={d.img} width={560} height={350} objectFit="cover" layout="responsive" />
-                                <div className="play-button" onClick={() => {
-                                    setShowVid(true)
-                                    setNumber(i)
-                                }} >
-                                    <FaPlayCircle />
+                    {data?.map((d, i) => (
+                        <>
+                            <SwiperSlide className='connectme__user-testimonial__content-carousel' key={d.name}>
+                            {edit && (
+                                <div className="background" onClick={()=> edit && openEditHandler(d.img,"Testimonial",`testimonial`,{isSubDoc:true,_id:d._id,testimonial: true})}>
+                                    <FaEdit />
                                 </div>
-                            </motion.div>
+                            )}
 
-                        </SwiperSlide>
+                                <motion.div>
+                                    <Image src={d.img} width={560} height={350} objectFit="cover" layout="responsive" />
+                                    <div className="play-button" onClick={() => {
+                                        setShowVid(true)
+                                        setvidUrl(d.vid)
+                                        setNumber(i)
+                                    }} >
+                                        <FaPlayCircle />
+                                    </div>
+                                </motion.div>
+
+                            </SwiperSlide>
+                        </>
                     ))}
                 </Swiper>
             </div>

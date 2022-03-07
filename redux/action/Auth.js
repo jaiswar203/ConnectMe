@@ -5,7 +5,7 @@ export const signInUser=(formData)=>async(dispatch)=>{
         const {data}=await api.loginUser(formData)
         dispatch({type:"AUTH",data})
     } catch (error) {
-        dispatch({type:"USER_ERROR",error: error?.response})
+        dispatch({type:"USER_ERROR",error: error?.response?.data})
     }
 }
 

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { m, motion } from "framer-motion"
 import { FaInstagram, FaEdit, FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp, FaPhone, FaEnvelope, FaImdb } from 'react-icons/fa'
 import { AiFillMessage } from 'react-icons/ai'
 import { CgWebsite } from 'react-icons/cg'
@@ -9,19 +9,29 @@ import { data } from "../../db/data"
 import Port from "./subcomponents/Port"
 import Modal from "./subcomponents/Modal"
 import { useDispatch, useSelector } from "react-redux"
+import { useRouter } from 'next/router'
+// import { getProfileById } from "../../../api"
+import { getProfileById } from "../../../redux/action/Profile"
+import Edit from "./subcomponents/Edit"
 
 
 const User = ({ edit }) => {
   const [width, setWidth] = useState(1000)
-  const state=useSelector((state)=>state)
+  const state = useSelector((state) => state)
   const [bannerHeight, setBannerHeight] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [imgProp, setImgProp] = useState({ w: 200, h: 250 })
+  const dispatch = useDispatch()
+  const { profile } = state.profileReducer
+  const router = useRouter()
+  const profileData = profile !== null ? profile?.data : []
+  // edititable content
+  const [openEdit, setOpenEdit] = useState(false)
+  const [editData, setEditData] = useState({ title: "", name: "", data: null })
 
 
   // editable
   const [editModal, setEditModal] = useState(edit)
-  console.log({editModal})
 
   useEffect(() => {
 
@@ -73,7 +83,7 @@ const User = ({ edit }) => {
       transition: {
         ease: [.5, .01, -0.05, .95],
         duration: 2
-      }  
+      }
     },
     hidden: {
       y: -100,
@@ -110,59 +120,54 @@ const User = ({ edit }) => {
     }
   }
 
-  const socialHandle = [
-    {
-      item: <FaInstagram />,
-      name: "Instagram"
-    },
-    {
-      item: <FaFacebook />,
-      name: "Facebook"
-    },
-    {
-      item: <FaTwitter />,
-      name: "Twitter"
-    },
-    {
-      item: <FaLinkedin />,
-      name: "Linkedin"
-    },
-    {
-      item: <FaImdb />,
-      name: "IMDB"
-    },
-    {
-      item: <CgWebsite />,
-      name: "WebSite"
-    },
-  ]
 
   const connects = [
     {
       item: <FaWhatsapp />,
       name: "Whatsapp",
-      link: "https://wa.me/394997499"
+      link: `https://wa.me/${profileData?.personal?.whatsapp}`,
+      forupdate: profileData?.personal?.whatsapp
     },
     {
       item: <FaPhone />,
       name: "Call",
-      link: "tel:771894974"
+      link: `tel:${profileData?.personal?.phone}`,
+      forupdate: profileData?.personal?.phone 
     },
     {
       item: <FaEnvelope />,
       name: "Mail",
-      link: "mailto:zeus@zeus.com"
+      link: `mailto:${profileData?.personal?.mail}`,
+      forupdate: profileData?.personal?.mail 
     },
     {
       item: <AiFillMessage />,
       name: "SMS",
-      link: "sms:+917715969989"
+      link: `sms:${profileData?.personal?.message}`,
+      forupdate: profileData?.personal?.mail 
     },
   ]
 
   useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))
+    if (edit && data) {
+      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
+    }
+    const profileData = JSON.parse(localStorage.getItem("profile"))
+    if (profileData !== null && !profileData?.isUserAdmin) {
+      router.push("/?not-authorized")
+      return (
+        <h1>
+          You Are not the account admin
+        </h1>
+      )
+    }
 
-  }, [showModal])
+    if (edit && router.query.id !== data?.existingUser?.username) {
+      router.push(`/edit/${data?.existingUser?.username}`)
+      return null
+    }
+  }, [showModal, dispatch, router.query])
 
   const BorderComp = () => {
     return (
@@ -176,17 +181,17 @@ const User = ({ edit }) => {
     {
       id: 0,
       name: "Profession",
-      item: "Entertainment"
+      item: profileData?.additional?.profession
     },
     {
       id: 1,
       name: "Speciality",
-      item: "Actor"
+      item: profileData?.additional?.speciality
     },
     {
       id: 2,
       name: "BirthDate",
-      item: "June 10,1986"
+      item: profileData?.additional?.birthdate
     },
   ]
 
@@ -233,38 +238,111 @@ const User = ({ edit }) => {
     )
   }
 
+  useEffect(() => {
+
+  }, [editData, openEdit])
 
   
+  const logout=()=>{
+    dispatch({type:"LOGOUT"})
+    router.push("/")
+  }
+  useEffect(()=>{
+    const data=localStorage.getItem("UserAuth")?.token
+
+    if(data){
+      const decodedData=decode(data)
+      if(decodedData.exp * 1000 < new Date().getTime()) return logout()
+
+    }
+  },[dispatch])
+
+  const socialHandle = [
+    {
+      item: <FaInstagram />,
+      name: "Instagram",
+      link: profileData?.social?.insta
+    },
+    {
+      item: <FaFacebook />,
+      name: "Facebook",
+      link: profileData?.social?.facebook
+    },
+    {
+      item: <FaTwitter />,
+      name: "Twitter",
+      link: profileData?.social?.twitter
+    },
+    {
+      item: <FaLinkedin />,
+      name: "Linkedin",
+      link: profileData?.social?.linkedin
+    },
+    {
+      item: <FaImdb />,
+      name: "IMDB",
+      link: profileData?.social?.imdb
+    },
+    {
+      item: <CgWebsite />,
+      name: "WebSite",
+      link: profileData?.social?.website
+    },
+  ]
+
+  if (profile === null) {
+    return <h1>..waiting</h1>
+  }
+
+  const openEditHandler = (data, title, name, isSubDoc = {}) => {
+    setEditData({ ...editData, title: title, name: name, data: data, isSubDoc })
+    setOpenEdit(true)
+  }
   return (
     <div className="connectme__user">
       <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
-        <Image src={"https://res.cloudinary.com/redwine/image/upload/v1644848677/1000_cka9mr.jpg"} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
+        <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
         {edit && (
-          <div className="background">
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background")} whileTap={{ scale: 1.1 }}>
             <FaEdit />
-          </div>
+          </motion.div>
         )}
       </motion.div>
       <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -100, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
         {edit && (
-          <div className="background">
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg")} whileTap={{ scale: 1.1 }}>
             <FaEdit />
-          </div>
+          </motion.div>
         )}
-        <Image src={"https://res.cloudinary.com/redwine/image/upload/v1644848807/photo-1494790108377-be9c29b29330_zrapqv.jpg"} width={imgProp.w} height={imgProp.h} objectFit="cover" />
+        <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" />
         <div className="info">
-          <h2>Billy Gomez</h2>
-          <p>New York,USA</p>
+          <div className="info__name">
+            <h2>{profileData?.name}</h2>
+            {edit && (
+              <motion.div className="background-name" onClick={() => edit && openEditHandler(profileData?.name, "Name", "name")} whileTap={{ scale: 1.1 }}>
+                <FaEdit />
+              </motion.div>
+            )}
+          </div>
+          <div className="info__city">
+            <p>{profileData?.city}</p>
+            {edit && (
+              <motion.div className="background-city" onClick={() => edit && openEditHandler(profileData?.city, "City", "city")} whileTap={{ scale: 1.1 }}>
+                <FaEdit />
+              </motion.div>
+            )}
+          </div>
         </div>
       </motion.div>
       <div className="lower__sec">
         <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
           {userDetail.map((d) => (
             <motion.div className="connectme__user-detail__item" key={d.name} variants={childForDetail} >
+
               {edit && (
-                <div className="background">
+                <motion.div className="background" onClick={() => edit && openEditHandler(d.item, `${d.name}`, `additional.${d.name.toLowerCase()}`, true)} whileTap={{ scale: 1.1 }}>
                   <FaEdit />
-                </div>
+                </motion.div>
               )}
               <p>{d.name}</p>
               <h3>{d.item}</h3>
@@ -277,30 +355,27 @@ const User = ({ edit }) => {
             <h1>About Me</h1>
           )}
           {edit && (
-            <div className="background">
+            <motion.div className="background" whileTap={{ scale: 1.1 }}>
               <h1>About Me</h1>
-              <FaEdit />
-            </div>
+              <FaEdit onClick={() => edit && openEditHandler(profileData?.about, "About", "about")} />
+            </motion.div>
           )}
           <ReadMore>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam veritatis velit repudiandae odio aut quo suscipit, sit ut ad voluptates ipsam sapiente corporis neque aspernatur dolor dolore, inventore minima tempore.
-            Error doloremque accusamus quas, officia maiores, quidem a architecto quis veniam iste debitis? Quibusdam et itaque quae quasi excepturi hic aperiam temporibus minus vitae modi, enim ullam alias deleniti? Commodi
+            {profileData?.about}
           </ReadMore>
         </div>
         <BorderComp />
         <div className="connectme__user-interests">
           <div className="connectme__user-interests__title">
-            {edit && (
-              <div className="background">
-                <FaEdit />
-              </div>
-            )}
             <h1>Interests</h1>
           </div>
           <motion.div className="connectme__user-interests__info" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }} >
-            {interests.map((d) => (
-              <motion.div className="bodies" key={d} variants={childVariantForInterests} viewport={{ once: true }}>
-                <p>{d}</p>
+            {profileData?.interests.map((d) => (
+              <motion.div className="bodies" key={d._id} variants={childVariantForInterests} viewport={{ once: true }} >
+                <p>{d.data}</p>
+                <div className="background" onClick={() => edit && openEditHandler(d.data, "Interests", 'interests', { isSubDoc: true, _id: d._id })}>
+                  <FaEdit />
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -309,17 +384,17 @@ const User = ({ edit }) => {
         <div className="connectme__user-social">
           <div className="connectme__user-social__title">
             <h1>Social Handles</h1>
-            {edit && (
-              <div className="background">
-                <FaEdit />
-              </div>
-            )}
           </div>
           <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {socialHandle.map((d) => (
-              <a href="#" target="_blank" key={d.name} rel="noreferrer">
-                <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }}>
+              <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
+                <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}`)}>
                   {d.item}
+                  {edit && (
+                    <div className="background">
+                      <FaEdit />
+                    </div>
+                  )}
                   <motion.p> {d.name}</motion.p>
                 </motion.div>
               </a>
@@ -329,19 +404,19 @@ const User = ({ edit }) => {
         <BorderComp />
         <div className="connectme__user-connects">
           <div className="connectme__user-connects__title">
-            {edit && (
-              <div className="background">
-                <FaEdit />
-              </div>
-            )}
-            
+
             <h1>Personal Connects</h1>
           </div>
           <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {
               connects.map((d) => (
-                <a href={d.link} key={d.name} target="_blank" rel="noreferrer"  >
-                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: -20, scale: 1.1 }} >
+                <a href={ edit? null : d.link} key={d.name} target="_blank" rel="noreferrer"  >
+                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: !edit && -20, scale: !edit && 1.1 }}  onClick={() => openEditHandler(d.forupdate, "Personal Connects", `personal.${d.name.toLowerCase()}`)} >
+                    {edit && (
+                      <div className="background">
+                        <FaEdit />
+                      </div>
+                    )}
                     {d.item}
                   </motion.div>
                 </a>
@@ -350,11 +425,11 @@ const User = ({ edit }) => {
           </motion.div>
         </div>
         <BorderComp />
-        <Testimonial edit={edit} />
+        <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
         <BorderComp />
-        <Port data={data.portfolioData} title={"PortFolio"} link="portfolio" edit={edit} />
+        <Port data={profileData?.portfolio} title={"PortFolio"} link="portfolio" edit={edit} openEditHandler={openEditHandler} />
         <BorderComp />
-        <Port data={data.portfolioData} title={"Services"} link="services" edit={edit} />
+        <Port data={profileData?.services} title={"Services"} link="services" edit={edit} openEditHandler={openEditHandler} />
         <BorderComp />
         <div className="connectme__user-personal">
           <div className="connectme__user-personal__title">
@@ -368,12 +443,19 @@ const User = ({ edit }) => {
         </div>
         {
           showModal && (
-            <Modal setModal={setShowModal} edit={edit} />
+            <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo} openEditHandler={openEditHandler} />
           )
         }
       </div>
+      {
+        openEdit && (
+          <Edit modal={setOpenEdit} data={editData} />
+        )
+      }
     </div>
   )
 }
 
 export default User
+
+

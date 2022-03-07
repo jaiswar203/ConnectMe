@@ -9,7 +9,7 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import Link from 'next/link'
 
-const Port = ({ data, title, link = "", edit }) => {
+const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     const [showModal, setShowModal] = useState(false)
     const [index, setIndex] = useState(0)
 
@@ -54,27 +54,31 @@ const Port = ({ data, title, link = "", edit }) => {
         console.log("limit Reached")
     }
 
+    if (data === null) {
+        return null
+    }
 
     return (
         <div className="connectme__user-services">
             <div className="connectme__user-services__title">
                 <h1>{title && title}</h1>
-                {edit && (
-                    <div className="background">
-                        <FaEdit />
-                    </div>
-                )}
+
             </div>
             <motion.div className="connectme__user-services__content" >
                 <Swiper loop={true} slidesPerView={1} breakpoints={breakpoint} spaceBetween={50} autoplay speed={600} modules={[Autoplay]}>
-                    {newData.map((d, i) => (
-                        <SwiperSlide key={d.title}>
-                            <motion.div className="image" whileHover={{ scale: 1.1 }} onClick={() => {
-                                setIndex(i)
-                                setShowModal(true)
+                    {newData?.map((d, i) => (
+                        <SwiperSlide key={d._id}>
+                            <motion.div className="image" whileHover={{ scale: !edit && 1.1 }} onClick={() =>  {
+                                !edit && setIndex(i)
+                                !edit && setShowModal(true)
                             }
                             }>
-                                <Image src={d.img} width={300} height={300} objectFit="cover" />
+                                {edit && (
+                                    <div className="background" onClick={()=>openEditHandler(d.data,title,`${title?.toLowerCase()}`,{isSubDoc: true,_id:d._id})}>
+                                        <FaEdit />
+                                    </div>
+                                )}
+                                <Image src={d.data} width={300} height={300} objectFit="cover" />
                             </motion.div>
                         </SwiperSlide>
                     ))}
@@ -88,8 +92,7 @@ const Port = ({ data, title, link = "", edit }) => {
                 </Link>
             </div>
             {showModal && (
-
-                <Modal img={refinedData?.img} setModal={setShowModal} setIndex={setIndex} index={index} />
+                <Modal img={refinedData?.data} setModal={setShowModal} setIndex={setIndex} index={index} />
             )}
         </div>
     )
