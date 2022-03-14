@@ -14,27 +14,36 @@ const Index = () => {
   const router = useRouter();
   const { generateprofile } = router.query;
 
-  useEffect(async () => {
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"));
+    if (state?.profileReducer?.profile) {
+      dispatch(getUserById(data?.existingUser?._id));
+      router.push(`/edit/${data?.existingUser?.username}`);
+    }
+  }, [ state]);
+  
+  useEffect(()=>{
     if (generateprofile && authData !== null) {
       const data = JSON.parse(localStorage.getItem("UserAuth"));
+  
       dispatch(
         createProfile({
           ...demoProfile,
           createdBy: data?.existingUser?._id,
         })
       );
-      setTimeout(() => {
-        dispatch(getUserById(data?.existingUser?._id))
-      }, 3000);
+  
+      
     }
-  }, [dispatch]);
-  console.log({state})
+
+  },[dispatch])
+
   useEffect(() => {
     if (authData === null) {
       router.push("/login");
     }
   }, [authData]);
-  
+
   return (
     <Layout description={"ConnectMe Login"}>
       {!authData && <h1>Redirecting to Login Page</h1>}

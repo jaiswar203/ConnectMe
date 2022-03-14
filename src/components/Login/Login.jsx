@@ -20,6 +20,7 @@ const Login = () => {
   const [askUserNamePermission, setAskUserNamePermission] = useState(false)
   const { handleSubmit, formState: { errors }, register, reset } = useForm()
   const state = useSelector((state) => state.AuthRedu)
+  const modalData=useSelector((state)=>state.modal)
   const authData = state?.authData
   const dispacth = useDispatch()
   const router = useRouter()
@@ -30,7 +31,7 @@ const Login = () => {
   useEffect(() => {
 
   }, [icon])
-  console.log({state})
+  console.log({ state })
 
   const onSubmit = async (data) => {
     if (Boolean(SignUp)) {
@@ -56,10 +57,11 @@ const Login = () => {
         const { data: { existingUser } } = await axios.post("/api/auth/signin", { email })
         dispacth({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
-        if (error?.response?.status === 404) {
-          const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
-          dispacth({ type: "AUTH", data: { existingUser, token } })
-        }
+        dispacth({type:"USER_ERROR",error: error.response})
+        // if (error?.response?.status === 404) {
+        //   const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
+        //   dispacth({ type: "AUTH", data: { existingUser, token } })
+        // }
       }
     }
   }
@@ -73,18 +75,22 @@ const Login = () => {
   }, [askUserName])
   useEffect(() => {
     dispacth(getAllUser())
-  }, [dispacth])
+    if (authData && !SignUp) {
+      if(authData?.existingUser?.isVerified && authData?.existingUser?.profile){
+        router.push(`/edit/${authData?.existingUser?.username}`)
+      }else{
+        dispacth({type:"MESSAGE",data:{type:"error",message:"Your account isn't verified"}})
+        dispacth({type:"LOGOUT"})
+        console.log("Your are not verified")
+      }
+      // router.push(`/confirm/${authData?.authData?.existingUser?.username}`)
+    } else if (authData && SignUp) {
+      router.push(`/confirm/${authData?.existingUser?.username}?confirmyourmail=true`)
+      // router.push("/?generateprofile=true")
+    }
+  }, [dispacth,authData,SignUp,router])
 
-  if(!state?.error?.isVerified && !SignUp) {
-    return (
-      <h1>Verify Your Email</h1>
-    )
-  }
-  if (authData && !SignUp) {
-    router.push(`/edit/${authData?.existingUser?.username}`)
-  } else if (authData && SignUp) {
-    router.push("/?generateprofile=true")
-  }
+  console.log({modalData})
   return (
     <div className='connectme__login'>
       <div className="connectme__login-intro">
@@ -106,7 +112,7 @@ const Login = () => {
             </>
           )}
           <div className="email">
-            <TextField variant="outlined" label="Email" focused={errors?.email && true} type="email" fullWidth color={errors?.email || SignUp ? "secondary" : "primary"} {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} />
+            <TextField variant="outlined" label="Email" focused={errors?.email && true} type="email" fullWidth color={errors?.email && SignUp ? "secondary" : "primary"} {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} />
             {SignUp && (
               <span>{errors?.email?.type === "required" && "Pls Enter Your Email"}</span>
             )}
@@ -124,7 +130,7 @@ const Login = () => {
             }
           </div>
           <div className="password">
-            <TextField variant="outlined" label="Password" focused={errors?.password} type={icon ? "password" : "text"} color={errors?.password || SignUp ? "secondary" : "primary"} {...register("password", { required: true, minLength: 8 })} fullWidth InputProps={{
+            <TextField variant="outlined" label="Password" focused={errors?.password} type={icon ? "password" : "text"} color={errors?.password && SignUp ? "secondary" : "primary"} {...register("password", { required: true, minLength: 8 })} fullWidth InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setIcon(!icon)}>
@@ -195,7 +201,7 @@ const Login = () => {
               </div>
               <motion.div className="connectme__login-model__data" initial={{ y: 200, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
                 <TextField variant="outlined" label="UserName" color={state?.error?.status === 404 ? "error" : "primary"} type="text" className="username" onChange={(e) => setaskUserName(e.target.value)} fullWidth />
-                {state?.error?.status === 404 & askUserNamePermission ? (
+                {state?.error?.status === 404 && !SignUp && askUserNamePermission ? (
                   <span>
                     User Already Exist
                   </span>

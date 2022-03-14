@@ -1,47 +1,90 @@
-import * as api from '../../api'
+import * as api from "../../api";
 
-export const createProfile=(formData)=>async(dispatch) =>{
-    try {
-        const {data}= await api.createProfile(formData) 
-        dispatch({type:"CREATE_PROFILE",data})
-    } catch (error) {
-        console.log({error})
-    }   
-}
+export const createProfile = (formData) => async (dispatch) => {
+  try {
+    const { data } = await api.createProfile(formData);
+    dispatch({ type: "CREATE_PROFILE", data });
+  } catch (error) {
+    console.log({ error });
+  }
+};
 
-export const getProfileById=(formData,id)=>async(dispatch)=>{
-    try {
-        const {data}=await api.getProfileById(formData,id)
-        dispatch({type:"FETCH_PROFILE_BY_ID",data})
-    } catch (error) {
-        console.log(error)
+export const getProfileById = (formData, id) => async (dispatch) => {
+  try {
+    const { data } = await api.getProfileById(formData, id);
+    dispatch({ type: "FETCH_PROFILE_BY_ID", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProfileByUserName = (id,formData,auth) => async (dispatch) => {
+  try {
+    if (id !== undefined) {
+      console.log({id,formData})
+      const { data } = await api.getProfileByUsername(id,formData,auth);
+      dispatch({ type: "FETCH_PROFILE_BY_USERNAME", data });
     }
-}
+  } catch (error) {
+    dispatch({ type: "PROFILE_ERROR", data: error?.response?.data });
+  }
+};
 
-export const updateProfile=(formData,id)=>async(dispatch)=>{
+export const updateProfile = (formData, id) => async (dispatch) => {
+  try {
+    const { data } = await api.updateProfileById(formData, id);
+    dispatch({ type: "UPDATE_PROFILE", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateSubDocInProfileById = (formData, id, subdoc) => async (dispatch) => {
     try {
-        const {data}=await api.updateProfileById(formData,id)
-        dispatch({type:"UPDATE_PROFILE",data})
+      const { data } = await api.updateSubDocInProfileById(
+        formData,
+        id,
+        subdoc
+      );
+      dispatch({ type: "UPDATE_SUBDOC_IN_PROFILE", data });
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
+};
+
+export const deleteSubDocInProfileById=(formData,id,query)=>async(dispatch)=>{
+  try {
+    console.log({formData,id,query})
+    const {data}=await api.deleteSubDocInProfileById(formData,id,query)
+    dispatch({type:"DELETE_SUBDOC_IN_PROFILE_BY_ID",data})
+  } catch (error) {
+    console.log({error})
+  }
 }
 
-export const updateSubDocInProfileById=(formData,id,subdoc)=>async(dispatch)=>{
-    try {
-        const {data}=await api.updateSubDocInProfileById(formData,id,subdoc)
-        dispatch({type:"UPDATE_SUBDOC_IN_PROFILE",data})
-    } catch (error) {
-        console.log(error)
-    }
+export const deleteProfile = (formData, id) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteProfileById(formData, id);
+    dispatch({ type: "DELETE_PROFILE", data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addImageInProfile=(formData,id,query)=>async(dispatch)=>{
+  try {
+    const {data}=await api.addImage(formData,id,query)
+    dispatch({type:"ADD_IMAGE",data})
+  } catch (error) {
+    console.log({error})
+  }
 }
 
-export const deleteProfile=(formData,id)=>async(dispatch)=>{
-    try {
-        const {data}=await api.deleteProfileById(formData,id)
-        dispatch({type:"DELETE_PROFILE",data})
-    } catch (error) {
-        console.log(error)
-    }
+export const profileRequests=(formData,id)=>async(dispatch)=>{
+  try {
+    const {data}=await api.profileRequests(formData,id)
+    dispatch({type:"PROFILE_REQUEST",data})
+  } catch (error) {
+    console.log(error)
+  }
 }
-

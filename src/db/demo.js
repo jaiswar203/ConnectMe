@@ -38,10 +38,10 @@ const demoProfile={
         "linkedin":"https://www.linkedin.com/"
     },
     "personal":{
-        "whatsapp":"https://wa.me/394997499",
-        "phone":"tel:771894974",
-        "mail":"mailto:zeus@zeus.com",
-        "message":"sms:+917715969989"
+        "whatsapp":"394997499",
+        "phone":"771894974",
+        "mail":"zeus@zeus.com",
+        "message":"+917715969989"
     },
     "testimonial":[
         {
@@ -62,38 +62,38 @@ const demoProfile={
     "portfolio":[
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         },
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         },
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         },
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         }
     ],
     "services":[
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         },
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         },
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
         },
         {
             
-            "data":"https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg"
-        }
+            "data":"https://res.cloudinary.com/redwine/image/upload/v1647183270/connectme/37375020_q5hxb2.jpg"
+        },
     ],
     "userInfo":[
         {

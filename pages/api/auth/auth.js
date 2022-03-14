@@ -33,6 +33,7 @@ export default async function handler(req, res) {
     try {
       const User = await user.insertOne({ email, name, username,isVerified:false });
       const {insertedId}=User
+      const createUserData=await user.findOne({email})
       const verificaitonToekn = jwt.sign({ ID: insertedId }, "verify", {
         expiresIn: "1d",
       });
@@ -47,7 +48,7 @@ export default async function handler(req, res) {
         .status(201)
         .json({
           message: "SignUp SuccessFull",
-          existingUser: { email, name, username, _id: insertedId },
+          existingUser: { email, name, username, _id: insertedId,createUserData },
         });
     } catch (error) {
       console.log({error})

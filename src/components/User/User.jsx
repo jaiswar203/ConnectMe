@@ -11,8 +11,10 @@ import Modal from "./subcomponents/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from 'next/router'
 // import { getProfileById } from "../../../api"
-import { getProfileById } from "../../../redux/action/Profile"
+import { getProfileById, getProfileByUserName, updateProfile } from "../../../redux/action/Profile"
 import Edit from "./subcomponents/Edit"
+import jwtDecode from "jwt-decode"
+import PopupModal from "../modal/Popup"
 
 
 const User = ({ edit }) => {
@@ -22,16 +24,22 @@ const User = ({ edit }) => {
   const [showModal, setShowModal] = useState(false)
   const [imgProp, setImgProp] = useState({ w: 200, h: 250 })
   const dispatch = useDispatch()
-  const { profile } = state.profileReducer
+  const { profile, error } = state.profileReducer
   const router = useRouter()
   const profileData = profile !== null ? profile?.data : []
   // edititable content
   const [openEdit, setOpenEdit] = useState(false)
   const [editData, setEditData] = useState({ title: "", name: "", data: null })
 
+  const [isPrivate, setIsPrivate] = useState(null)
+
+  const { query } = router
 
   // editable
-  const [editModal, setEditModal] = useState(edit)
+  const [privacyModal, setPrivacyModal] = useState(false)
+  const [popUpData, setPopUpData] = useState({
+    success: null,setModal: null,message:"",title:"",handler: null
+  })
 
   useEffect(() => {
 
@@ -63,6 +71,7 @@ const User = ({ edit }) => {
   const interests = [
     "Music", "Singing", "Reading", "Dancing", "Music", "Singing", "Reading", "Dancing"
   ]
+  
 
   const parentVariantForInterests = {
     visible: {
@@ -132,27 +141,39 @@ const User = ({ edit }) => {
       item: <FaPhone />,
       name: "Call",
       link: `tel:${profileData?.personal?.phone}`,
-      forupdate: profileData?.personal?.phone 
+      forupdate: profileData?.personal?.phone
     },
     {
       item: <FaEnvelope />,
       name: "Mail",
       link: `mailto:${profileData?.personal?.mail}`,
-      forupdate: profileData?.personal?.mail 
+      forupdate: profileData?.personal?.mail
     },
     {
       item: <AiFillMessage />,
       name: "SMS",
       link: `sms:${profileData?.personal?.message}`,
-      forupdate: profileData?.personal?.mail 
+      forupdate: profileData?.personal?.mail
     },
   ]
+  console.log({ profile, error })
+
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
-    if (edit && data) {
+    if (edit) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
+    if (!edit) {
+      if(data!==undefined){
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id },true))
+      }else{
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id },false))
+      }
+    }
+
+
+
     const profileData = JSON.parse(localStorage.getItem("profile"))
     if (profileData !== null && !profileData?.isUserAdmin) {
       router.push("/?not-authorized")
@@ -162,10 +183,14 @@ const User = ({ edit }) => {
         </h1>
       )
     }
+    
 
     if (edit && router.query.id !== data?.existingUser?.username) {
       router.push(`/edit/${data?.existingUser?.username}`)
       return null
+    }
+    if (edit && data === null) {
+      router.push("/login")
     }
   }, [showModal, dispatch, router.query])
 
@@ -242,20 +267,25 @@ const User = ({ edit }) => {
 
   }, [editData, openEdit])
 
-  
-  const logout=()=>{
-    dispatch({type:"LOGOUT"})
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" })
     router.push("/")
   }
-  useEffect(()=>{
-    const data=localStorage.getItem("UserAuth")?.token
+  useEffect(() => {
+    const data=JSON.parse(localStorage.getItem("UserAuth"))?.token
+    const profile=JSON.parse(localStorage.getItem("profile"))?.data
 
     if(data){
-      const decodedData=decode(data)
+      const decodedData=jwtDecode(data)
       if(decodedData.exp * 1000 < new Date().getTime()) return logout()
 
+    }    
+    if(profile!==undefined){
+      setIsPrivate(profile?.isPrivate)
+      console.log({isPrivate})
     }
-  },[dispatch])
+  }, [dispatch,isPrivate])
 
   const socialHandle = [
     {
@@ -290,27 +320,48 @@ const User = ({ edit }) => {
     },
   ]
 
+  // if (error) {
+  //   return (
+  //     <h1>{error?.message}</h1>
+  //   )
+  // }
+  if(error){
+    return (
+      <PopupModal success={false} confirm={true} message={error?.message} title={error.title}  />
+    )
+  }
   if (profile === null) {
     return <h1>..waiting</h1>
   }
-
-  const openEditHandler = (data, title, name, isSubDoc = {}) => {
-    setEditData({ ...editData, title: title, name: name, data: data, isSubDoc })
+  
+  const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false) => {
+    setEditData({ ...editData, title: title, name: name, data: data, isSubDoc, fileUploader })
     setOpenEdit(true)
   }
+
+
+  const privacyHandler=(decision)=>{
+    const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+    console.log({decision})
+    dispatch(updateProfile({userId: data?._id,data: decision},data?.profile))
+    setPrivacyModal(true)
+  }
+
+
+  
   return (
     <div className="connectme__user">
       <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
         <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
         {edit && (
-          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background")} whileTap={{ scale: 1.1 }}>
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, true)} whileTap={{ scale: 1.1 }}>
             <FaEdit />
           </motion.div>
         )}
       </motion.div>
       <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -100, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
         {edit && (
-          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg")} whileTap={{ scale: 1.1 }}>
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, true)} whileTap={{ scale: 1.1 }}>
             <FaEdit />
           </motion.div>
         )}
@@ -410,8 +461,8 @@ const User = ({ edit }) => {
           <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {
               connects.map((d) => (
-                <a href={ edit? null : d.link} key={d.name} target="_blank" rel="noreferrer"  >
-                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: !edit && -20, scale: !edit && 1.1 }}  onClick={() => openEditHandler(d.forupdate, "Personal Connects", `personal.${d.name.toLowerCase()}`)} >
+                <a href={edit ? null : d.link} key={d.name} target="_blank" rel="noreferrer"  >
+                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: !edit && -20, scale: !edit && 1.1 }} onClick={() => openEditHandler(d.forupdate, "Personal Connects", `personal.${d.name.toLowerCase()}`)} >
                     {edit && (
                       <div className="background">
                         <FaEdit />
@@ -452,10 +503,21 @@ const User = ({ edit }) => {
           <Edit modal={setOpenEdit} data={editData} />
         )
       }
+      {edit && (
+        <div className="connectme__user-setting">
+          <motion.div className="private" whileTap={{scale:1.1}} initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} onClick={()=>privacyHandler({isPrivate:!isPrivate})}>
+            <h3>Make Account {profileData?.isPrivate ? "Public": "Private"}</h3>
+          </motion.div>
+          <motion.div className="request" whileTap={{scale:1.1}} initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}}>
+            <h3>Requests</h3>
+          </motion.div>
+        </div>
+      )}
+      {privacyModal && (
+        <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private" } Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
+      )}
     </div>
   )
 }
 
 export default User
-
-

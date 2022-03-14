@@ -300,7 +300,14 @@
     margin-top: 12rem;
     &__title {
       @include center__element;
-      justify-content: flex-start;
+      justify-content: space-between;
+      .add{
+        cursor: pointer;
+        background: black;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+      }
       .background {
         margin-left: 0.4rem;
         width: 2rem;
@@ -362,7 +369,15 @@
 
     &__title {
       @include center__element;
-      justify-content: flex-start;
+      justify-content: space-between;
+
+      .add{
+        cursor: pointer;
+        background: black;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+      }
       .background {
         margin-left: 0.4rem;
         width: 2rem;
@@ -380,6 +395,23 @@
         left: 0;
         top: 0;
         font-size: 2rem;
+        
+        svg{
+          fill: gray; 
+        }
+      }
+      
+      .delete{
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        font-size: 2rem;
+        
+        svg{
+          fill: gray; 
+        }
+        
       }
 
       img {
@@ -524,7 +556,23 @@
       padding: 0 1rem;
     }
   }
+
+  &-setting{
+    margin-top: 3rem;
+    @include center__element;
+    padding: 0 2rem;
+    justify-content: space-between;
+
+
+    .private,.request{
+      padding: 1rem;
+      background: black;
+      color: white;
+      border-radius: 5px;
+    }
+  }
 }
+
 .modal {
   position: fixed;
   height: 100vh;
@@ -563,14 +611,15 @@
       font-size: 2rem;
     }
   }
+
 }
+
+
 
 .connectme__edit {
   position: fixed;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  
   width: 100%;
   top: 50%;
   left: 50%;
@@ -586,12 +635,34 @@
   }
   &-modal {
     position: absolute;
-    top: 40%;
-    left: 30%;
     background: black;
     color: white;
+    top: 50%;
+    width: 25rem;
     padding: 3rem;
     border-radius: 5px;
+    transform: translate(-50%, -50%) !important;
+    left: 50%;
+
+    .uploader{
+      @include center__element;
+      flex-direction: column;
+      input{
+        margin: 1rem 0;
+        font-size: 1rem;
+      }
+      &_button{
+        padding: 0.1rem 1rem;
+        background: white;
+        color: black;
+        font-size: .7rem;
+        border-radius: 5px;
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      width: 100%;
+    }
 
     .title {
       @include center__element;
@@ -606,6 +677,7 @@
           margin-bottom: 1rem;
         }
       }
+      
       @include center__element;
       input {
         width: 100%;
@@ -635,5 +707,90 @@
         padding: 0.5rem;
       }
     }
+  } 
+}
+
+.outer__shell{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  z-index: 34;
+  // -webkit-backdrop-filter: blur(2px);
+  // backdrop-filter: blur(2px);
+
+  .connectme__message-modal{
+    position: absolute;
+    background: black;
+    color: white;
+    top: 50%;
+    width: 28rem;
+    padding: 3rem;
+    border-radius: 5px;
+    transform: translate(-50%, -50%) !important;
+    left: 50%;
+
+    
+
+    .divider{
+      width: 100%;
+      height: .15rem;
+      background: white;
+    }
+
+    &__title{
+      @include center__element;
+      flex-direction: column;
+      span{
+        width: 50%;
+        height: .15rem;
+        background-color: white;
+      }
+    }
+    &__content{
+      margin-top: 2rem;
+      @include center__element;
+      flex-direction: column;
+      .message{
+        @include center__element;
+        h3{
+          text-align: center;
+        }
+      }
+
+      .confirm{
+        cursor: pointer;
+        margin-top: 2rem;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        padding: .6rem 1rem;
+      }
+      .success{
+        margin-top: 2rem;
+        @include center__element;
+        justify-content: space-between;
+        padding: 0 3rem;
+        width: 100%;
+
+        .yes,.no{
+          cursor: pointer;
+          width: 5rem;
+          // padding: 1rem;
+          height: 2rem;
+          background: white;
+          color: black;
+          @include center__element;
+
+        }
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      width: 100%;
+    }
   }
+  
 }

@@ -9,15 +9,15 @@ export default async function handler(req, res) {
 
     const existingUser = await user.findOne({ email });
 
-    if ( !existingUser ) {
+    if (!existingUser) {
+      return res.status(404).json({
+        message: "No User Found",
+      });
+    } else {
       return res
-        .status(404)
-        .json({
-          message: "No User Found",
-        });
+        .status(201)
+        .json({ message: "SignUp SuccessFull", existingUser });
     }
-    
-    res.status(201).json({ message: "SignUp SuccessFull", existingUser });
 
     client.close();
   }

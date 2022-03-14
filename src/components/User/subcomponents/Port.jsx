@@ -2,16 +2,25 @@
 import { SwiperSlide, Swiper } from 'swiper/react'
 import { BsArrowRight } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
+import {MdDelete} from 'react-icons/md'
 import SwiperCore, { Autoplay } from 'swiper'
 import Image from 'next/image'
 import Modal from "../../modal/Modal"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import Link from 'next/link'
+import Edit from './Edit'
+import { useDispatch } from 'react-redux'
+import { deleteSubDocInProfileById } from '../../../../redux/action/Profile'
 
 const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     const [showModal, setShowModal] = useState(false)
     const [index, setIndex] = useState(0)
+
+    const [editData, setEditData] = useState({})
+    const [openEdit, setOpenEdit] = useState(false)
+
+    const dispatch=useDispatch()
 
     const newData = data
     var refinedData = newData[index]
@@ -58,27 +67,53 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
         return null
     }
 
+    const addImageHandler = (fileUploader = true, addImage = true) => {
+        setEditData({ fileUploader, title, addImage, query: title.toLowerCase() })
+        setOpenEdit(true)
+    }
+
+    useEffect(() => {
+
+    }, [editData, openEdit])
+    
+
+    const deleteSubDoc=(id)=>{
+        const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+        const profile=JSON.parse(localStorage.getItem("profile"))
+
+        console.log({user,id})
+        dispatch(deleteSubDocInProfileById({subId:id,userId: user?._id},user?.profile,title.toLowerCase()))
+    }
     return (
         <div className="connectme__user-services">
             <div className="connectme__user-services__title">
                 <h1>{title && title}</h1>
-
+                {edit && (
+                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => addImageHandler(true, true)} >
+                        <h2>Add {title}</h2>
+                    </motion.div>
+                )}
             </div>
             <motion.div className="connectme__user-services__content" >
                 <Swiper loop={true} slidesPerView={1} breakpoints={breakpoint} spaceBetween={50} autoplay speed={600} modules={[Autoplay]}>
                     {newData?.map((d, i) => (
                         <SwiperSlide key={d._id}>
-                            <motion.div className="image" whileHover={{ scale: !edit && 1.1 }} onClick={() =>  {
+                            <motion.div className="image" whileHover={{ scale: !edit && 1.1 }} onClick={() => {
                                 !edit && setIndex(i)
                                 !edit && setShowModal(true)
                             }
                             }>
                                 {edit && (
-                                    <div className="background" onClick={()=>openEditHandler(d.data,title,`${title?.toLowerCase()}`,{isSubDoc: true,_id:d._id})}>
-                                        <FaEdit />
-                                    </div>
+                                    <>
+                                        <div className="background" onClick={() => openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, true)}>
+                                            <FaEdit />
+                                        </div>
+                                        <div className="delete" onClick={()=>deleteSubDoc(d._id)}>
+                                            <MdDelete />
+                                        </div>
+                                    </>
                                 )}
-                                <Image src={d.data} width={300} height={300} objectFit="cover" />
+                                <Image src={d.data} width={400} height={400} objectFit="cover" />
                             </motion.div>
                         </SwiperSlide>
                     ))}
@@ -94,6 +129,11 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
             {showModal && (
                 <Modal img={refinedData?.data} setModal={setShowModal} setIndex={setIndex} index={index} />
             )}
+            {
+                openEdit && (
+                    <Edit modal={setOpenEdit} data={editData} />
+                )
+            }
         </div>
     )
 }
