@@ -83,6 +83,7 @@ export const addImageInProfile=(formData,id,query)=>async(dispatch)=>{
 export const profileRequests=(formData,id)=>async(dispatch)=>{
   try {
     const {data}=await api.profileRequests(formData,id)
+    console.log({formData,id})
     dispatch({type:"PROFILE_REQUEST",data})
   } catch (error) {
     console.log(error)

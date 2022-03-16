@@ -1,20 +1,34 @@
 import Image from "next/image"
+import Link from 'next/link'
 import { useEffect, useState } from "react"
 import { m, motion } from "framer-motion"
 import { FaInstagram, FaEdit, FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp, FaPhone, FaEnvelope, FaImdb } from 'react-icons/fa'
 import { AiFillMessage } from 'react-icons/ai'
 import { CgWebsite } from 'react-icons/cg'
-import Testimonial from "./subcomponents/Testimonial"
+
+
+import Instagram from "./logo/insta"
+import Gmail from "./logo/gmail"
+
 import { data } from "../../db/data"
 import Port from "./subcomponents/Port"
+import Testimonial from './subcomponents/Testimonial'
 import Modal from "./subcomponents/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from 'next/router'
 // import { getProfileById } from "../../../api"
-import { getProfileById, getProfileByUserName, updateProfile } from "../../../redux/action/Profile"
+import { getProfileById, getProfileByUserName, profileRequests, updateProfile } from "../../../redux/action/Profile"
 import Edit from "./subcomponents/Edit"
 import jwtDecode from "jwt-decode"
 import PopupModal from "../modal/Popup"
+import Facebook from "./logo/facebook"
+import Twitter from "./logo/twitter"
+import Linkedin from "./logo/linkedin"
+import IMDB from "./logo/imdb"
+import Website from "./logo/website"
+import Phone from "./logo/phone"
+import WhatsApp from "./logo/whatsapp"
+import SMS from "./logo/Sms"
 
 
 const User = ({ edit }) => {
@@ -38,7 +52,7 @@ const User = ({ edit }) => {
   // editable
   const [privacyModal, setPrivacyModal] = useState(false)
   const [popUpData, setPopUpData] = useState({
-    success: null,setModal: null,message:"",title:"",handler: null
+    success: null, setModal: null, message: "", title: "", handler: null
   })
 
   useEffect(() => {
@@ -71,7 +85,7 @@ const User = ({ edit }) => {
   const interests = [
     "Music", "Singing", "Reading", "Dancing", "Music", "Singing", "Reading", "Dancing"
   ]
-  
+
 
   const parentVariantForInterests = {
     visible: {
@@ -132,25 +146,25 @@ const User = ({ edit }) => {
 
   const connects = [
     {
-      item: <FaWhatsapp />,
+      item: <WhatsApp />,
       name: "Whatsapp",
       link: `https://wa.me/${profileData?.personal?.whatsapp}`,
       forupdate: profileData?.personal?.whatsapp
     },
     {
-      item: <FaPhone />,
+      item: <Phone />,
       name: "Call",
       link: `tel:${profileData?.personal?.phone}`,
       forupdate: profileData?.personal?.phone
     },
     {
-      item: <FaEnvelope />,
+      item: <Gmail />,
       name: "Mail",
       link: `mailto:${profileData?.personal?.mail}`,
       forupdate: profileData?.personal?.mail
     },
     {
-      item: <AiFillMessage />,
+      item: <SMS />,
       name: "SMS",
       link: `sms:${profileData?.personal?.message}`,
       forupdate: profileData?.personal?.mail
@@ -165,10 +179,10 @@ const User = ({ edit }) => {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     if (!edit) {
-      if(data!==undefined){
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id },true))
-      }else{
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id },false))
+      if (data !== undefined) {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true))
+      } else {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false))
       }
     }
 
@@ -183,7 +197,7 @@ const User = ({ edit }) => {
         </h1>
       )
     }
-    
+
 
     if (edit && router.query.id !== data?.existingUser?.username) {
       router.push(`/edit/${data?.existingUser?.username}`)
@@ -197,7 +211,7 @@ const User = ({ edit }) => {
   const BorderComp = () => {
     return (
       <div className="border">
-        <span></span>
+        <b class="hr anim"></b>
       </div>
     )
   }
@@ -255,7 +269,7 @@ const User = ({ edit }) => {
 
     return (
       <p>
-        {!readMore ? shorten(text, 150) : text}
+        {!readMore ? shorten(text, 250) : text}
         <span onClick={toggleReadMore}>
           {readMore ? "less" : "more"}
         </span>
@@ -273,48 +287,48 @@ const User = ({ edit }) => {
     router.push("/")
   }
   useEffect(() => {
-    const data=JSON.parse(localStorage.getItem("UserAuth"))?.token
-    const profile=JSON.parse(localStorage.getItem("profile"))?.data
+    const data = JSON.parse(localStorage.getItem("UserAuth"))?.token
+    const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
-    if(data){
-      const decodedData=jwtDecode(data)
-      if(decodedData.exp * 1000 < new Date().getTime()) return logout()
+    if (data) {
+      const decodedData = jwtDecode(data)
+      if (decodedData.exp * 1000 < new Date().getTime()) return logout()
 
-    }    
-    if(profile!==undefined){
-      setIsPrivate(profile?.isPrivate)
-      console.log({isPrivate})
     }
-  }, [dispatch,isPrivate])
+    if (profile !== undefined) {
+      setIsPrivate(profile?.isPrivate)
+      console.log({ isPrivate })
+    }
+  }, [dispatch, isPrivate])
 
   const socialHandle = [
     {
-      item: <FaInstagram />,
+      item: <Instagram />,
       name: "Instagram",
       link: profileData?.social?.insta
     },
     {
-      item: <FaFacebook />,
+      item: <Facebook />,
       name: "Facebook",
       link: profileData?.social?.facebook
     },
     {
-      item: <FaTwitter />,
+      item: <Twitter />,
       name: "Twitter",
       link: profileData?.social?.twitter
     },
     {
-      item: <FaLinkedin />,
+      item: <Linkedin />,
       name: "Linkedin",
       link: profileData?.social?.linkedin
     },
     {
-      item: <FaImdb />,
+      item: <IMDB />,
       name: "IMDB",
       link: profileData?.social?.imdb
     },
     {
-      item: <CgWebsite />,
+      item: <Website />,
       name: "WebSite",
       link: profileData?.social?.website
     },
@@ -325,30 +339,32 @@ const User = ({ edit }) => {
   //     <h1>{error?.message}</h1>
   //   )
   // }
-  if(error){
-    return (
-      <PopupModal success={false} confirm={true} message={error?.message} title={error.title}  />
-    )
-  }
+  // const sendRequestHandler=()=>{
+  //   const data=JSON.parse(localStorage.getItem("UserAuth"))
+  //   dispatch(profileRequests({userId: data?._id},query?.id))
+  // }
+  // if(error){
+  //   return (
+  //     <PopupModal success={false} confirm={true} message={error?.message} title={error.title} handler={sendRequestHandler}  />
+  //   )
+  // }
   if (profile === null) {
     return <h1>..waiting</h1>
   }
-  
+
   const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false) => {
     setEditData({ ...editData, title: title, name: name, data: data, isSubDoc, fileUploader })
     setOpenEdit(true)
   }
 
 
-  const privacyHandler=(decision)=>{
-    const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-    console.log({decision})
-    dispatch(updateProfile({userId: data?._id,data: decision},data?.profile))
+  const privacyHandler = (decision) => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+    console.log({ decision })
+    dispatch(updateProfile({ userId: data?._id, data: decision }, data?.profile))
     setPrivacyModal(true)
   }
 
-
-  
   return (
     <div className="connectme__user">
       <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
@@ -416,6 +432,7 @@ const User = ({ edit }) => {
           </ReadMore>
         </div>
         <BorderComp />
+
         <div className="connectme__user-interests">
           <div className="connectme__user-interests__title">
             <h1>Interests</h1>
@@ -424,14 +441,19 @@ const User = ({ edit }) => {
             {profileData?.interests.map((d) => (
               <motion.div className="bodies" key={d._id} variants={childVariantForInterests} viewport={{ once: true }} >
                 <p>{d.data}</p>
-                <div className="background" onClick={() => edit && openEditHandler(d.data, "Interests", 'interests', { isSubDoc: true, _id: d._id })}>
-                  <FaEdit />
-                </div>
+                {
+                  edit && (
+                    <div className="background" onClick={() => openEditHandler(d.data, "Interests", 'interests', { isSubDoc: true, _id: d._id })}>
+                      <FaEdit />
+                    </div>
+                  )
+                }
               </motion.div>
             ))}
           </motion.div>
         </div>
         <BorderComp />
+
         <div className="connectme__user-social">
           <div className="connectme__user-social__title">
             <h1>Social Handles</h1>
@@ -439,10 +461,10 @@ const User = ({ edit }) => {
           <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {socialHandle.map((d) => (
               <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
-                <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}`)}>
+                <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
                   {d.item}
                   {edit && (
-                    <div className="background">
+                    <div className="background" onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}`)}>
                       <FaEdit />
                     </div>
                   )}
@@ -453,6 +475,7 @@ const User = ({ edit }) => {
           </motion.div>
         </div>
         <BorderComp />
+
         <div className="connectme__user-connects">
           <div className="connectme__user-connects__title">
 
@@ -462,9 +485,9 @@ const User = ({ edit }) => {
             {
               connects.map((d) => (
                 <a href={edit ? null : d.link} key={d.name} target="_blank" rel="noreferrer"  >
-                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: !edit && -20, scale: !edit && 1.1 }} onClick={() => openEditHandler(d.forupdate, "Personal Connects", `personal.${d.name.toLowerCase()}`)} >
+                  <motion.div variants={childVariantForConnect} viewport={{ once: true }} whileHover={{ y: !edit && -20, scale: !edit && 1.1 }} >
                     {edit && (
-                      <div className="background">
+                      <div className="background" onClick={() => openEditHandler(d.forupdate, "Personal Connects", `personal.${d.name.toLowerCase()}`)} >
                         <FaEdit />
                       </div>
                     )}
@@ -476,12 +499,16 @@ const User = ({ edit }) => {
           </motion.div>
         </div>
         <BorderComp />
+
         <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
+
         <BorderComp />
         <Port data={profileData?.portfolio} title={"PortFolio"} link="portfolio" edit={edit} openEditHandler={openEditHandler} />
         <BorderComp />
+
         <Port data={profileData?.services} title={"Services"} link="services" edit={edit} openEditHandler={openEditHandler} />
         <BorderComp />
+
         <div className="connectme__user-personal">
           <div className="connectme__user-personal__title">
             <h1>Personal Info</h1>
@@ -492,6 +519,22 @@ const User = ({ edit }) => {
             </motion.div>
           </div>
         </div>
+        <BorderComp />
+        {!edit
+          && (
+            <div className="connectme__user-footer">
+              <div className="text">
+                <h3>Want to create amazing profile like this?</h3>
+              </div>
+              <div className="content">
+                <Link href={"login?signup=true"} passHref>
+                  <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
+                    <h2>Why Not</h2>
+                  </motion.div>
+                </Link>
+              </div>
+            </div>
+          )}
         {
           showModal && (
             <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo} openEditHandler={openEditHandler} />
@@ -505,16 +548,16 @@ const User = ({ edit }) => {
       }
       {edit && (
         <div className="connectme__user-setting">
-          <motion.div className="private" whileTap={{scale:1.1}} initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} onClick={()=>privacyHandler({isPrivate:!isPrivate})}>
-            <h3>Make Account {profileData?.isPrivate ? "Public": "Private"}</h3>
+          <motion.div className="private" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} onClick={() => privacyHandler({ isPrivate: !isPrivate })}>
+            <h3>Make Account {profileData?.isPrivate ? "Public" : "Private"}</h3>
           </motion.div>
-          <motion.div className="request" whileTap={{scale:1.1}} initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}}>
+          <motion.div className="request" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }}>
             <h3>Requests</h3>
           </motion.div>
         </div>
       )}
       {privacyModal && (
-        <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private" } Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
+        <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private"} Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
       )}
     </div>
   )

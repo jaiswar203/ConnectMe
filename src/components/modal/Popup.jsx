@@ -22,7 +22,7 @@ const PopupModal = ({ message, title, success = true, error = false, confirm = f
                     {
                         confirm && (
                         <div className="success" >
-                            <motion.div className="yes" whileTap={{ scale: 1.1 }} >   
+                            <motion.div className="yes" whileTap={{ scale: 1.1 }} onClick={handler}>   
                                 <h3>Yes</h3>
                             </motion.div>
                             <motion.div className="no" whileTap={{ scale: 1.1 }}> 

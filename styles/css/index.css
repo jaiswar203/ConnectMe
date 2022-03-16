@@ -233,6 +233,16 @@ A {
 .connectme__user {
   margin-bottom: 5rem;
 }
+.connectme__user-background {
+  border-radius: 2rem;
+  background: #ffffff;
+  box-shadow: 32px 22px 10px #696969, -11px -11px 22px #ffffff;
+}
+@media screen and (min-width: 750px) {
+  .connectme__user-background {
+    border-radius: 5rem;
+  }
+}
 .connectme__user-background img {
   border-bottom-left-radius: 5rem !important;
   border-bottom-right-radius: 5rem !important;
@@ -260,11 +270,21 @@ A {
   align-items: center;
   flex-direction: column;
 }
+.connectme__user-profile span:first-child {
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 11px 11px 22px #696969, -11px -11px 22px #ffffff;
+}
 .connectme__user-profile .info {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.connectme__user-profile .info h2 {
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .connectme__user-profile .info__name, .connectme__user-profile .info__city {
   display: flex;
@@ -310,6 +330,10 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  padding: 1rem;
 }
 .connectme__user-detail .background {
   width: 1rem;
@@ -328,6 +352,10 @@ A {
 }
 .connectme__user-about p {
   margin-top: 0.5rem;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  padding: 1rem;
 }
 .connectme__user-about p span {
   margin-left: 0.5rem;
@@ -386,64 +414,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #f95f9c;
+  background: #c53c01;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #d786d5;
+  background: #5f9570;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #7249be;
+  background: #b01229;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #f7827c;
+  background: #5153e2;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #6ed168;
+  background: #cf1d32;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #259088;
+  background: #fdea70;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #b29b76;
+  background: #5958ba;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #31ffc8;
+  background: #ba49b2;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #039f55;
+  background: #10ad95;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #a4d496;
+  background: #828937;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #643662;
+  background: #7e4b2e;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #d50f8a;
+  background: #28bc48;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #a466e5;
+  background: #96d1e7;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #c9e918;
+  background: #68c2a9;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #2577b1;
+  background: #ff1630;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #ed0b66;
+  background: #718392;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #b81acc;
+  background: #88b9c5;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #53216d;
+  background: #ede693;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #cc6808;
+  background: #01f2a6;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #026b45;
+  background: #174009;
 }
 .connectme__user-social {
   margin-top: 4rem;
@@ -461,6 +489,10 @@ A {
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  margin-top: 2rem;
 }
 .connectme__user-social__content .item {
   display: flex;
@@ -469,7 +501,8 @@ A {
   flex-direction: column;
 }
 .connectme__user-social__content .item svg {
-  font-size: 3rem;
+  width: 3rem !important;
+  height: 3rem !important;
 }
 .connectme__user-social__content .item p {
   font-weight: bold;
@@ -481,6 +514,8 @@ A {
   margin-left: 4rem;
 }
 .connectme__user-social__content .background svg {
+  width: auto !important;
+  height: auto !important;
   font-size: 1rem !important;
 }
 .connectme__user-testimonial {
@@ -500,6 +535,10 @@ A {
 }
 .connectme__user-testimonial__content {
   margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 20px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
 }
 .connectme__user-testimonial__content .background {
   position: absolute;
@@ -551,6 +590,10 @@ A {
   font-size: 1.4rem;
 }
 .connectme__user-connects__content {
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  padding: 1rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -559,15 +602,18 @@ A {
   justify-content: space-between;
 }
 .connectme__user-connects__content svg {
-  font-size: 4rem;
+  width: 3rem !important;
+  height: 3rem !important;
 }
 .connectme__user-connects__content .background {
   position: absolute;
   margin-bottom: 4rem;
-  margin-left: 5rem;
+  margin-left: 3rem;
 }
 .connectme__user-connects__content .background svg {
   font-size: 1rem !important;
+  width: auto !important;
+  height: auto !important;
 }
 @media screen and (max-width: 1200px) {
   .connectme__user-connects__content {
@@ -576,7 +622,7 @@ A {
 }
 @media screen and (max-width: 500px) {
   .connectme__user-connects__content {
-    margin: 3rem 2rem;
+    margin: 3rem 0;
   }
   .connectme__user-connects__content svg {
     font-size: 3rem;
@@ -682,6 +728,10 @@ A {
 }
 .connectme__user-services__content {
   margin-top: 3rem;
+  border-radius: 10px;
+  background: #e0e0e0;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  padding: 1rem;
 }
 .connectme__user-services__content .background {
   position: absolute;
@@ -730,6 +780,9 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.connectme__user-personal__content h3 {
+  cursor: pointer;
 }
 .connectme__user-personal__content .button {
   border-radius: 5px;
@@ -820,10 +873,69 @@ A {
   justify-content: center;
   align-items: center;
 }
-.connectme__user .border span {
+.connectme__user .border .hr {
   width: 100%;
-  height: 0.15rem;
-  background: black;
+  height: 1px;
+  display: block;
+  position: relative;
+  margin-bottom: 0em;
+  padding: 2em 0;
+}
+.connectme__user .border .hr:after, .connectme__user .border .hr:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 50%;
+  left: 0;
+}
+.connectme__user .border .hr:before {
+  background: linear-gradient(90deg, #10111F 0%, #10111F 50%, transparent 50%, transparent 100%);
+  background-size: 15px;
+  background-position: center;
+  z-index: 1;
+}
+.connectme__user .border .hr:after {
+  transition: opacity 0.3s ease, -webkit-animation 0.3s ease;
+  transition: opacity 0.3s ease, animation 0.3s ease;
+  transition: opacity 0.3s ease, animation 0.3s ease, -webkit-animation 0.3s ease;
+  background: linear-gradient(to right, #62efab 5%, #f2ea7d 15%, #f2ea7d 25%, #ff8797 35%, #ff8797 45%, #e1a4f4 55%, #e1a4f4 65%, #82fff4 75%, #82fff4 85%, #62efab 95%);
+  background-size: 200%;
+  background-position: 0%;
+  -webkit-animation: bar 5s linear infinite;
+          animation: bar 5s linear infinite;
+}
+@-webkit-keyframes bar {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+@keyframes bar {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+.connectme__user .border .hr.anim:before {
+  background: linear-gradient(90deg, #10111F 0%, #10111F 5%, transparent 5%, transparent 10%, #10111F 10%, #10111F 15%, transparent 15%, transparent 20%, #10111F 20%, #10111F 25%, transparent 25%, transparent 30%, #10111F 30%, #10111F 35%, transparent 35%, transparent 40%, #10111F 40%, #10111F 45%, transparent 45%, transparent 50%, #10111F 50%, #10111F 55%, transparent 55%, transparent 60%, #10111F 60%, #10111F 65%, transparent 65%, transparent 70%, #10111F 70%, #10111F 75%, transparent 75%, transparent 80%, #10111F 80%, #10111F 85%, transparent 85%, transparent 90%, #10111F 90%, #10111F 95%, transparent 95%, transparent 100%);
+  background-size: 150px;
+  background-position: center;
+  z-index: 1;
+  -webkit-animation: bar 120s linear infinite;
+          animation: bar 120s linear infinite;
+}
+.connectme__user .border .hr.anim:hover:before {
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+}
+.connectme__user .border .hr.anim:hover:after {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 @media screen and (max-width: 1000px) {
   .connectme__user .lower__sec {
@@ -857,11 +969,34 @@ A {
   padding: 0 2rem;
   justify-content: space-between;
 }
-.connectme__user-setting .private, .connectme__user-setting .request {
+.connectme__user-setting .private,
+.connectme__user-setting .request {
   padding: 1rem;
   background: black;
   color: white;
   border-radius: 5px;
+}
+.connectme__user-footer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.connectme__user-footer .content__button {
+  padding: 1rem;
+  cursor: pointer;
+  background: black;
+  color: white;
+  border-radius: 5px;
+}
+.connectme__user-footer .content__button h2 {
+  cursor: pointer;
+}
+@media screen and (max-width: 560px) {
+  .connectme__user-footer .text {
+    width: 50%;
+  }
 }
 
 .modal {
@@ -1073,7 +1208,8 @@ A {
   padding: 0 3rem;
   width: 100%;
 }
-.outer__shell .connectme__message-modal__content .success .yes, .outer__shell .connectme__message-modal__content .success .no {
+.outer__shell .connectme__message-modal__content .success .yes,
+.outer__shell .connectme__message-modal__content .success .no {
   cursor: pointer;
   width: 5rem;
   height: 2rem;
