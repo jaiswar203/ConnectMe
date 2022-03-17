@@ -1,23 +1,25 @@
 import Image from "next/image"
 import Link from 'next/link'
 import { useEffect, useState } from "react"
-import { m, motion } from "framer-motion"
-import { FaInstagram, FaEdit, FaFacebook, FaLinkedin, FaTwitter, FaWhatsapp, FaPhone, FaEnvelope, FaImdb } from 'react-icons/fa'
-import { AiFillMessage } from 'react-icons/ai'
-import { CgWebsite } from 'react-icons/cg'
+import { motion } from "framer-motion"
+import { FaEdit } from "react-icons/fa"
 
 
 import Instagram from "./logo/insta"
 import Gmail from "./logo/gmail"
 
-import { data } from "../../db/data"
 import Port from "./subcomponents/Port"
 import Testimonial from './subcomponents/Testimonial'
 import Modal from "./subcomponents/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from 'next/router'
-// import { getProfileById } from "../../../api"
+import { AiFillSetting } from 'react-icons/ai'
+import {VscFeedback} from 'react-icons/vsc'
+import {BsInfoCircle} from 'react-icons/bs'
+
 import { getProfileById, getProfileByUserName, profileRequests, updateProfile } from "../../../redux/action/Profile"
+
+// icons 
 import Edit from "./subcomponents/Edit"
 import jwtDecode from "jwt-decode"
 import PopupModal from "../modal/Popup"
@@ -55,6 +57,9 @@ const User = ({ edit }) => {
     success: null, setModal: null, message: "", title: "", handler: null
   })
 
+  const [showEditOptionOnViewSide, setShowEditOptionOnViewSide] = useState(false)
+
+  const [userName, setUserName] = useState("")
   useEffect(() => {
 
     window.addEventListener("resize", () => {
@@ -187,6 +192,9 @@ const User = ({ edit }) => {
     }
 
 
+    if (data) {
+      setUserName(data?.existingUser?.username)
+    }
 
     const profileData = JSON.parse(localStorage.getItem("profile"))
     if (profileData !== null && !profileData?.isUserAdmin) {
@@ -234,6 +242,7 @@ const User = ({ edit }) => {
     },
   ]
 
+
   const childForDetail = {
     hidden: {
       x: 50,
@@ -278,8 +287,17 @@ const User = ({ edit }) => {
   }
 
   useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))
 
-  }, [editData, openEdit])
+    if (data !== undefined && query && !edit) {
+      if (data?.existingUser?.username === query.id) {
+        setShowEditOptionOnViewSide(true)
+      } else {
+        setShowEditOptionOnViewSide(false)
+      }
+    }
+  }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
+
 
 
   const logout = () => {
@@ -299,6 +317,9 @@ const User = ({ edit }) => {
       setIsPrivate(profile?.isPrivate)
       console.log({ isPrivate })
     }
+
+    // if(data)
+
   }, [dispatch, isPrivate])
 
   const socialHandle = [
@@ -401,6 +422,17 @@ const User = ({ edit }) => {
           </div>
         </div>
       </motion.div>
+
+      {showEditOptionOnViewSide && (
+        <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => router.push(`/edit/${userName}`)}>
+          <div className="edit__button">
+            <AiFillSetting />
+            <div className="text">
+              <h3>Edit</h3>
+            </div>
+          </div>
+        </motion.div>
+      )}
       <div className="lower__sec">
         <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
           {userDetail.map((d) => (
@@ -475,11 +507,9 @@ const User = ({ edit }) => {
           </motion.div>
         </div>
         <BorderComp />
-
         <div className="connectme__user-connects">
           <div className="connectme__user-connects__title">
-
-            <h1>Personal Connects</h1>
+            <h1>ConnectMe</h1>
           </div>
           <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {
@@ -503,10 +533,10 @@ const User = ({ edit }) => {
         <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
 
         <BorderComp />
-        <Port data={profileData?.portfolio} title={"PortFolio"} link="portfolio" edit={edit} openEditHandler={openEditHandler} />
+        <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${userName}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
         <BorderComp />
 
-        <Port data={profileData?.services} title={"Services"} link="services" edit={edit} openEditHandler={openEditHandler} />
+        <Port data={profileData?.services} title={"Services"} link={`/gallery/${userName}?content=services`} edit={edit} openEditHandler={openEditHandler} />
         <BorderComp />
 
         <div className="connectme__user-personal">
@@ -515,6 +545,7 @@ const User = ({ edit }) => {
           </div>
           <div className="connectme__user-personal__content">
             <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
+              <BsInfoCircle />
               <h3>Get Perosnal Info</h3>
             </motion.div>
           </div>
@@ -548,9 +579,9 @@ const User = ({ edit }) => {
       }
       {edit && (
         <div className="connectme__user-setting">
-          <motion.div className="private" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} onClick={() => privacyHandler({ isPrivate: !isPrivate })}>
+          <div className="private" >
             <h3>Make Account {profileData?.isPrivate ? "Public" : "Private"}</h3>
-          </motion.div>
+          </div>
           <motion.div className="request" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }}>
             <h3>Requests</h3>
           </motion.div>
@@ -559,6 +590,15 @@ const User = ({ edit }) => {
       {privacyModal && (
         <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private"} Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
       )}
+      <BorderComp />
+      <div className="connectme__user-feedback">
+        <a href="mailto:info@connectme.com">
+          <motion.div className="feedback" whileTap={{ scale: 1.1 }}>
+            <VscFeedback />
+            <h2>Offer FeedBack</h2>
+          </motion.div>
+        </a>
+      </div>
     </div>
   )
 }

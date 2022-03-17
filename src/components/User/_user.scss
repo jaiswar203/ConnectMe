@@ -23,6 +23,31 @@
       font-size: 2rem;
     }
   }
+
+  &-edit__button{
+    position: fixed;
+    z-index: 111;
+    bottom: 6rem;
+    left: -1.7rem;
+    
+    .edit__button{
+      @include center__element;
+      transform: rotate(-90deg);
+      background: black;
+      color: white;
+      padding: .4rem 1rem;
+      justify-content: space-between;
+      
+      // border-bottom-right-radius: 5px;
+      // border-bottom-right-radius: 5px;
+      border-radius: 0 0 5px 5px;
+      cursor: pointer;
+
+      &>*{
+        margin-right: .4rem;
+      }
+    }
+  }
   &-profile {
     position: relative;
     // top: 50%;
@@ -93,7 +118,7 @@
     .background {
       width: 1rem;
       position: relative;
-      left: 5.5rem;
+      left: 5rem;
       color: black;
       top: 1.4rem;
     }
@@ -488,7 +513,11 @@
       margin-top: 2rem;
       @include center__element;
 
+      svg{
+        font-size: 2rem;
+      }
       h3 {
+        margin-left: 1rem;
         cursor: pointer;
       }
       .button {
@@ -733,6 +762,7 @@
     @include center__element;
     padding: 0 2rem;
     justify-content: space-between;
+    
 
     .private,
     .request {
@@ -765,6 +795,27 @@
     @media screen and (max-width: 560px) {
       .text {
         width: 50%;
+      }
+    }
+  }
+
+  &-feedback{
+    @include center__element;
+    margin-top: 2rem;
+    .feedback{
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 5px;
+      background: black;
+      color: white;
+      @include center__element;
+      justify-content: space-between;
+
+      svg{
+        font-size: 2rem;
+      }
+      h2{
+        margin-left: 1rem;
       }
     }
   }

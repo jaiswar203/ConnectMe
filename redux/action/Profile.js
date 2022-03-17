@@ -21,7 +21,7 @@ export const getProfileById = (formData, id) => async (dispatch) => {
 export const getProfileByUserName = (id,formData,auth) => async (dispatch) => {
   try {
     if (id !== undefined) {
-      console.log({id,formData})
+      console.log({id,formData,auth})
       const { data } = await api.getProfileByUsername(id,formData,auth);
       dispatch({ type: "FETCH_PROFILE_BY_USERNAME", data });
     }
