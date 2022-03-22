@@ -31,11 +31,11 @@ const Gallery = ({ data,title ,content}) => {
                 <h1>{content.toUpperCase()} of {title}</h1>
             </div>
             <div className="border">
-                <b class="hr anim"></b>
+                <b className="hr anim"></b>
             </div>
             <div className="connectme__gallery-content" >
                 {data.map((d,i) => (
-                    <motion.div initial={{opacity:0,x:50}} animate={{opacity:1,x:0}} transition={{delay: i*.3}}  onClick={()=>{
+                    <motion.div initial={{opacity:0,x:50}} animate={{opacity:1,x:0}} transition={{delay: i*.3}} key={d.data} onClick={()=>{
                         setIndex(i)
                         setModal(true)
                     }}>

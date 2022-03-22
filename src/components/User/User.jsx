@@ -230,7 +230,7 @@ const User = ({ edit }) => {
   const BorderComp = () => {
     return (
       <div className="border">
-        <b class="hr anim"></b>
+        <b className="hr anim"></b>
       </div>
     )
   }

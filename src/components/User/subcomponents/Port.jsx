@@ -2,7 +2,7 @@
 import { SwiperSlide, Swiper } from 'swiper/react'
 import { BsArrowRight } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
-import {MdDelete} from 'react-icons/md'
+import { MdDelete } from 'react-icons/md'
 import SwiperCore, { Autoplay } from 'swiper'
 import Image from 'next/image'
 import Modal from "../../modal/Modal"
@@ -20,7 +20,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     const [editData, setEditData] = useState({})
     const [openEdit, setOpenEdit] = useState(false)
 
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
 
     const newData = data
     var refinedData = newData[index]
@@ -50,12 +50,19 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     useEffect(() => {
 
-    }, [showModal, index])
+    }, [showModal, index,editData, openEdit])
     useEffect(() => {
 
     }, [refinedData])
 
 
+    
+    const addImageHandler = (fileUploader = true, addImage = true) => {
+        setEditData({ fileUploader, title, addImage, query: title.toLowerCase() })
+        setOpenEdit(true)
+    }
+
+    
     if (index < 0) {
         setIndex(newData.length - 1)
     } else if (index > newData.length - 1) {
@@ -67,23 +74,14 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
         return null
     }
 
-    const addImageHandler = (fileUploader = true, addImage = true) => {
-        setEditData({ fileUploader, title, addImage, query: title.toLowerCase() })
-        setOpenEdit(true)
+    const deleteSubDoc = (id) => {
+        const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+        const profile = JSON.parse(localStorage.getItem("profile"))
+
+        console.log({ user, id })
+        dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, title.toLowerCase()))
     }
-
-    useEffect(() => {
-
-    }, [editData, openEdit])
     
-
-    const deleteSubDoc=(id)=>{
-        const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-        const profile=JSON.parse(localStorage.getItem("profile"))
-
-        console.log({user,id})
-        dispatch(deleteSubDocInProfileById({subId:id,userId: user?._id},user?.profile,title.toLowerCase()))
-    }
     return (
         <div className="connectme__user-services">
             <div className="connectme__user-services__title">
@@ -105,10 +103,10 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                             }>
                                 {edit && (
                                     <>
-                                        <div className="background" onClick={() => openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, {active:true,data:"image/*"})}>
+                                        <div className="background" onClick={() => openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, { active: true, data: "image/*" })}>
                                             <FaEdit />
                                         </div>
-                                        <div className="delete" onClick={()=>deleteSubDoc(d._id)}>
+                                        <div className="delete" onClick={() => deleteSubDoc(d._id)}>
                                             <MdDelete />
                                         </div>
                                     </>
