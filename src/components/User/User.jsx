@@ -14,8 +14,9 @@ import Modal from "./subcomponents/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from 'next/router'
 import { AiFillSetting } from 'react-icons/ai'
-import {VscFeedback} from 'react-icons/vsc'
-import {BsInfoCircle} from 'react-icons/bs'
+import { VscFeedback } from 'react-icons/vsc'
+import { BsInfoCircle } from 'react-icons/bs'
+import { IoIosDocument } from 'react-icons/io'
 
 import { getProfileById, getProfileByUserName, profileRequests, updateProfile } from "../../../redux/action/Profile"
 
@@ -31,6 +32,7 @@ import Website from "./logo/website"
 import Phone from "./logo/phone"
 import WhatsApp from "./logo/whatsapp"
 import SMS from "./logo/Sms"
+import ToggleSwitch from "./subcomponents/Toggle"
 
 
 const User = ({ edit }) => {
@@ -58,6 +60,9 @@ const User = ({ edit }) => {
   })
 
   const [showEditOptionOnViewSide, setShowEditOptionOnViewSide] = useState(false)
+
+  // toggle 
+  const [pdfData, setPdfData] = useState(false)
 
   const [userName, setUserName] = useState("")
   useEffect(() => {
@@ -87,9 +92,7 @@ const User = ({ edit }) => {
 
   }, [imgProp.w, imgProp.h])
 
-  const interests = [
-    "Music", "Singing", "Reading", "Dancing", "Music", "Singing", "Reading", "Dancing"
-  ]
+  
 
 
   const parentVariantForInterests = {
@@ -184,9 +187,11 @@ const User = ({ edit }) => {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     if (!edit) {
-      if (data !== undefined) {
+      if (data !== null) {
+        console.log("runn", data)
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true))
       } else {
+        console.log("runn nit")
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false))
       }
     }
@@ -197,6 +202,11 @@ const User = ({ edit }) => {
     }
 
     const profileData = JSON.parse(localStorage.getItem("profile"))
+
+    if(profileData){
+      setPdfData(profileData?.data?.document?.active)
+    }
+
     if (profileData !== null && !profileData?.isUserAdmin) {
       router.push("/?not-authorized")
       return (
@@ -214,7 +224,8 @@ const User = ({ edit }) => {
     if (edit && data === null) {
       router.push("/login")
     }
-  }, [showModal, dispatch, router.query])
+  }, [showModal, dispatch, router.query,pdfData])
+  console.log({pdfData})
 
   const BorderComp = () => {
     return (
@@ -318,7 +329,6 @@ const User = ({ edit }) => {
       console.log({ isPrivate })
     }
 
-    // if(data)
 
   }, [dispatch, isPrivate])
 
@@ -391,14 +401,14 @@ const User = ({ edit }) => {
       <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
         <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
         {edit && (
-          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, true)} whileTap={{ scale: 1.1 }}>
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, {active:true,data:"image/*"})} whileTap={{ scale: 1.1 }}>
             <FaEdit />
           </motion.div>
         )}
       </motion.div>
       <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -100, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
         {edit && (
-          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, true)} whileTap={{ scale: 1.1 }}>
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, {active:true,data:"image/*"})} whileTap={{ scale: 1.1 }}>
             <FaEdit />
           </motion.div>
         )}
@@ -422,6 +432,9 @@ const User = ({ edit }) => {
           </div>
         </div>
       </motion.div>
+      <div className="connectme__user-tagline">
+
+      </div>
 
       {showEditOptionOnViewSide && (
         <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => router.push(`/edit/${userName}`)}>
@@ -550,9 +563,47 @@ const User = ({ edit }) => {
             </motion.div>
           </div>
         </div>
-        <BorderComp />
+        {profileData?.document.active && !edit ? (
+          <>
+            <BorderComp />
+            <div className="connectme__user-document">
+              <div className="connectme__user-document__title">
+                <h1>Documentation</h1>
+              </div>
+              <div className="connectme__user-document__content">
+                <motion.div className="button" whileTap={{ scale: 1.1 }} onClick={()=>window.open(profileData?.document?.data, "_blank") }>
+                  <IoIosDocument />
+                  <h3>Get PDF</h3>
+                </motion.div>
+              </div>
+            </div>
+          </>
+        ) : edit && (
+          <>
+          <BorderComp />
+          <div className="connectme__user-document">
+              <div className="connectme__user-document__title">
+                <h1>Documentation</h1>
+                <ToggleSwitch  label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} apiId="document.active" />
+              </div>
+              <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`,{isSubDoc:false},{active:true,data:"application/pdf"})} >
+                <motion.div className="button" whileTap={{ scale: 1.1 }} >
+                  <IoIosDocument />
+                  <h3>Get PDF</h3>
+                </motion.div>
+                {edit &&
+                  (<div className="background" >
+                    <FaEdit />
+                  </div>)
+                }
+              </div>
+            </div>
+          </>
+        )}
         {!edit
           && (
+            <>
+            <BorderComp />
             <div className="connectme__user-footer">
               <div className="text">
                 <h3>Want to create amazing profile like this?</h3>
@@ -560,11 +611,12 @@ const User = ({ edit }) => {
               <div className="content">
                 <Link href={"login?signup=true"} passHref>
                   <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
-                    <h2>Why Not</h2>
+                    <h3>Why Not</h3>
                   </motion.div>
                 </Link>
               </div>
             </div>
+            </>
           )}
         {
           showModal && (
@@ -577,7 +629,7 @@ const User = ({ edit }) => {
           <Edit modal={setOpenEdit} data={editData} />
         )
       }
-      {edit && (
+      {/* {edit && (
         <div className="connectme__user-setting">
           <div className="private" >
             <h3>Make Account {profileData?.isPrivate ? "Public" : "Private"}</h3>
@@ -586,7 +638,7 @@ const User = ({ edit }) => {
             <h3>Requests</h3>
           </motion.div>
         </div>
-      )}
+      )} */}
       {privacyModal && (
         <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private"} Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
       )}
@@ -595,10 +647,11 @@ const User = ({ edit }) => {
         <a href="mailto:info@connectme.com">
           <motion.div className="feedback" whileTap={{ scale: 1.1 }}>
             <VscFeedback />
-            <h2>Offer FeedBack</h2>
+            <h3>Offer FeedBack</h3>
           </motion.div>
         </a>
       </div>
+
     </div>
   )
 }

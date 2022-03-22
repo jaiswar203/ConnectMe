@@ -303,7 +303,7 @@ A {
   flex-direction: column;
 }
 .connectme__user-profile .info h2 {
-  background: -webkit-linear-gradient(#eee, #333);
+  background: -webkit-linear-gradient(#000000, #ff0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -435,64 +435,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #05c290;
+  background: #3b43f0;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #307fb9;
+  background: #a1a392;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #55b5cc;
+  background: #13fa1e;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #d351e4;
+  background: #bef6c8;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #59ea97;
+  background: #76375f;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #121182;
+  background: #24aefa;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #4317e6;
+  background: #0815f6;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #d6890f;
+  background: #ecfbfe;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #49ec74;
+  background: #12ddcd;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #f4bc88;
+  background: #73a6a7;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #72b47c;
+  background: #207371;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #bc0a53;
+  background: #96d97b;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #b21bf8;
+  background: #cb3be6;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #25dd9f;
+  background: #a5cb2c;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #354d76;
+  background: #08ac26;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #7de511;
+  background: #462245;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #945ff6;
+  background: #6526d3;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #33b7b7;
+  background: #42e368;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #cc201f;
+  background: #765e89;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #81247f;
+  background: #291312;
 }
 .connectme__user-social {
   margin-top: 4rem;
@@ -1001,6 +1001,75 @@ A {
   color: white;
   border-radius: 5px;
 }
+.connectme__user {
+  text-align: center;
+}
+.connectme__user .toggle-switch {
+  position: relative;
+  width: 75px;
+  display: inline-block;
+  text-align: left;
+  top: 8px;
+}
+.connectme__user .checkbox {
+  display: none;
+}
+.connectme__user .label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0 solid #bbb;
+  border-radius: 20px;
+}
+.connectme__user .inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.connectme__user .inner:before,
+.connectme__user .inner:after {
+  float: left;
+  width: 50%;
+  height: 36px;
+  padding: 0;
+  line-height: 36px;
+  color: #fff;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.connectme__user .inner:before {
+  content: "YES";
+  padding-left: 10px;
+  background-color: #060;
+  color: #fff;
+}
+.connectme__user .inner:after {
+  content: "NO";
+  padding-right: 10px;
+  background-color: #bbb;
+  color: #fff;
+  text-align: right;
+}
+.connectme__user .switch {
+  display: block;
+  width: 24px;
+  margin: 5px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 40px;
+  border: 0 solid #bbb;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+.connectme__user .checkbox:checked + .label .inner {
+  margin-left: 0;
+}
+.connectme__user .checkbox:checked + .label .switch {
+  right: 0px;
+}
 .connectme__user-footer {
   margin-top: 3rem;
   display: flex;
@@ -1043,8 +1112,42 @@ A {
 .connectme__user-feedback .feedback svg {
   font-size: 2rem;
 }
-.connectme__user-feedback .feedback h2 {
+.connectme__user-feedback .feedback h3 {
   margin-left: 1rem;
+}
+.connectme__user-document__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.connectme__user-document__content {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.connectme__user-document__content .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  background: black;
+  color: white;
+}
+.connectme__user-document__content .button svg {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+.connectme__user-document__content .background {
+  color: white;
+  position: relative;
+  top: -1.2rem;
+  z-index: 1;
+  font-size: 1.5rem;
+  left: -1.5rem;
 }
 
 .modal {

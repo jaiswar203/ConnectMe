@@ -9,6 +9,10 @@ const demoProfile={
         "speciality":"Actor",
         "birthdate":"19th June,1960"
     },
+    "document":{
+        "active":false,
+        "data":"http://www.africau.edu/images/default/sample.pdf"
+    },
     "interests":[
         {
             "data":"Dancing"

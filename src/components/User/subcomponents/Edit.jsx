@@ -71,9 +71,9 @@ const Edit = ({ modal, data }) => {
                     <h1>{data?.title}</h1>
                 </div>
                 {
-                    data?.fileUploader ? (
+                    data?.fileUploader?.active ? (
                         <div className="uploader">
-                            <input type="file" accept="image/*" name={data?.name} onChange={(e)=>setCloudImage(e.target.files[0])} />
+                            <input type="file" accept={`${data?.fileUploader?.data}`} name={data?.name} onChange={(e)=>setCloudImage(e.target.files[0])} />
                             <div className="uploader_button" onClick={uploadImage} >
                                 <h1>Submit </h1>
                             </div>

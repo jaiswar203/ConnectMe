@@ -32,6 +32,7 @@ export const getProfileByUserName = (id,formData,auth) => async (dispatch) => {
 
 export const updateProfile = (formData, id) => async (dispatch) => {
   try {
+    console.log({formData,id}) 
     const { data } = await api.updateProfileById(formData, id);
     dispatch({ type: "UPDATE_PROFILE", data });
   } catch (error) {

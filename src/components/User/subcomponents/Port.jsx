@@ -105,7 +105,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                             }>
                                 {edit && (
                                     <>
-                                        <div className="background" onClick={() => openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, true)}>
+                                        <div className="background" onClick={() => openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, {active:true,data:"image/*"})}>
                                             <FaEdit />
                                         </div>
                                         <div className="delete" onClick={()=>deleteSubDoc(d._id)}>
