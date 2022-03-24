@@ -57,7 +57,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
 
     
-    const addImageHandler = (fileUploader, addImage = true) => {
+    const addImageHandler = (addImage = true) => {
         setEditData({ fileUploader:{active:true,data:"image/*"}, title, addImage, query: title.toLowerCase() })
         setOpenEdit(true)
     }
@@ -87,7 +87,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
             <div className="connectme__user-services__title">
                 <h1>{title && title}</h1>
                 {edit && (
-                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => addImageHandler(true, true)} >
+                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => addImageHandler(true)} >
                         <h2>Add {title}</h2>
                     </motion.div>
                 )}

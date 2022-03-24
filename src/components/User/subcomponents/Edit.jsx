@@ -49,15 +49,17 @@ const Edit = ({ modal, data }) => {
         axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload",file).then((res)=>{
             
             if(data?.isSubDoc?.isSubDoc){
+                console.log("sp")
                 
                 dispatch(updateSubDocInProfileById({subId: data?.isSubDoc?._id,userId: user?._id,newData: res.data.secure_url},profile?._id,data?.name))
             }else if(data?.addImage){
+                console.log("sprue")
                 console.log(res.data.secure_url)
                 dispatch(addImageInProfile({data: res.data.secure_url,userId: user?._id },profile?._id,data?.query))
             }else{
+                console.log("running")
                 dispatch(updateProfile({userId: user?._id,data: {[data?.name]: res.data.secure_url}},profile?._id))
             }
-            Router.reload()
         })
 
     }
@@ -75,9 +77,9 @@ const Edit = ({ modal, data }) => {
                     data?.fileUploader?.active ? (
                         <div className="uploader">
                             <input type="file" accept={`${data?.fileUploader?.data}`} name={data?.name} onChange={(e)=>setCloudImage(e.target.files[0])} />
-                            <div className="uploader_button" onClick={uploadImage} >
+                            <motion.div className="uploader_button" onClick={uploadImage}  whileTap={{scale:1.1}} style={{cursor:"pointer"}}>
                                 <h1>Submit </h1>
-                            </div>
+                            </motion.div>
                         </div>
 
                     ) : (

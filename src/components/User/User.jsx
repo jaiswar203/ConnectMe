@@ -94,7 +94,6 @@ const User = ({ edit }) => {
 
   
 
-
   const parentVariantForInterests = {
     visible: {
       opacity: 1,
@@ -331,6 +330,7 @@ const User = ({ edit }) => {
 
 
   }, [dispatch, isPrivate])
+
 
   const socialHandle = [
     {

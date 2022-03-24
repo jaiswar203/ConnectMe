@@ -35,6 +35,7 @@ export const updateProfile = (formData, id) => async (dispatch) => {
     console.log({formData,id}) 
     const { data } = await api.updateProfileById(formData, id);
     dispatch({ type: "UPDATE_PROFILE", data });
+    
   } catch (error) {
     console.log(error);
   }
