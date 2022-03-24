@@ -61,6 +61,7 @@ const Edit = ({ modal, data }) => {
         })
 
     }
+    console.log({data})
     return (
         <div className="connectme__edit">
             <motion.div className="connectme__edit-modal" whileInView={{ y: 0, opacity: 1 }} initial={{ y: 200, opacity: 0 }}>
