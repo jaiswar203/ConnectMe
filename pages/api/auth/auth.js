@@ -1,19 +1,16 @@
 import { MongoClient } from "mongodb";
-import nodemailer from "nodemailer";
+
 import jwt from 'jsonwebtoken'
 
+import sgMail from '@sendgrid/mail'
+
+const api_key="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"
+
+sgMail.setApiKey(api_key)
+
 export default async function handler(req, res) {
+  
   if (req.method === "POST") {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      host: "smtp.gmail.com",
-      auth: {
-        type: "login",
-        user: "jaiswar2203@gmail.com",
-        pass: "Jstar30don",
-      },
-      from: "jaiswar2203@gmail.com",
-    });
     const { email, name, username } = req.body;
     const client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db();
@@ -38,12 +35,16 @@ export default async function handler(req, res) {
         expiresIn: "1d",
       });
 
-      const url = `http://localhost:4000/user/verify/${verificaitonToekn}`;
-      await transporter.sendMail({
-        to: email,
-        subject: "Verify Account",
-        html: `Click <a href='${url}'>here</a> to confirm your email`,
-      });
+      const url = `https://connectmev2.herokuapp.com/user/verify/${verificaitonToekn}`;
+
+      const message={
+        to:email,
+        from:"info@connectme.co.in",
+        subject:"Verify Account",     
+        html: `Click <a href='${url}'>here</a> to confirm your email`
+      }
+      
+      await sgMail.send(message)
       res
         .status(201)
         .json({
