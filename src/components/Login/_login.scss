@@ -7,6 +7,7 @@
 
     h1 {
       font-size: 3rem;
+      color: $primary-color;
     }
     p {
       font-size: 1.3rem;
@@ -46,8 +47,7 @@
       button.submit {
         padding: 1.4rem;
         width: 100%;
-        background: black;
-        color: white;
+        @include box_color;
         @include center__element;
       }
     }
@@ -116,6 +116,7 @@
         @include center__element;
         padding: 1.1rem;
         width: 20rem;
+        
         background: white;
         color: black;
       }

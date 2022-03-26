@@ -8,11 +8,17 @@
             padding: 1rem;
             @include center__element;
             width: 10rem;
-            background: black;
-            color: white;
+            @include box_color;
+            cursor: pointer;
             p{
                 font-size: 1.2rem;
             }
+        }
+    }
+
+    &-icon{
+        img{
+            width: 10rem;
         }
     }
 

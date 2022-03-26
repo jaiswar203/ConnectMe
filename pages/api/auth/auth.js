@@ -1,12 +1,24 @@
 import { MongoClient } from "mongodb";
 
 import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
 
-import sgMail from '@sendgrid/mail'
+// import sgMail from '@sendgrid/mail'
 
-const api_key="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"
+// const api_key="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"
 
-sgMail.setApiKey(api_key)
+// sgMail.setApiKey(api_key)
+
+let transporter=nodemailer.createTransport({
+  name:"www.connectme.co.in",
+  host:"us2.smtp.mailhostbox.com",
+  port:25,
+  secure:false,
+  auth:{
+    user:"info@connectme.co.in",
+    pass:"uscjCqY7"
+  }
+})
 
 export default async function handler(req, res) {
   
@@ -39,12 +51,22 @@ export default async function handler(req, res) {
 
       const message={
         to:email,
-        from:"info@connectme.co.in",
+        from:" ConnectMe <info@connectme.co.in>",
         subject:"Verify Account",     
+        text:"Email Verification",
         html: `Click <a href='${url}'>here</a> to confirm your email`
       }
-      
-      await sgMail.send(message)
+
+      await transporter.sendMail(message,(err,info)=>{
+        if(err){
+          console.log({err})
+          return
+        }
+        console.log("Message Sent Successfully")
+        console.log({info})
+        transporter.close()
+      })
+
       res
         .status(201)
         .json({

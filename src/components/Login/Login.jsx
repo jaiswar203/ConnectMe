@@ -94,7 +94,7 @@ const Login = () => {
   return (
     <div className='connectme__login'>
       <div className="connectme__login-intro">
-        <motion.h1 initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 200 }}>{SignUp ? "Create" : "Login to Your"} Your Account</motion.h1>
+        <motion.h1 initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 200 }}>{SignUp ? "Create" : "Login to "} Your Account</motion.h1>
         <motion.p initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 200, delay: .8 }}>Create Awesome Intro for your film debut</motion.p>
       </div>
       <div className="connectme__login-content">
@@ -151,8 +151,8 @@ const Login = () => {
               )
             }
           </div>
-          <motion.button type="submit" whileHover={{ x: 5, y: -5, background: "white", color: "black", border: "1px solid black" }} className="submit">
-            <h3>Submit</h3>
+          <motion.button type="submit" whileHover={{ x: 5, y: -5, border: "1px solid black" }} className="submit">
+            <h2>Submit</h2>
           </motion.button>
         </motion.form>
         <div className="divider">
@@ -168,7 +168,7 @@ const Login = () => {
         </div>
         <div className="auth">
           {SignUp ? (
-            <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ x: 5, y: -5, background: "black", color: "white", border: "1px solid black" }} onClick={() => setAskUserNamePermission(!askUserNamePermission)} >
+            <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ x: 5, y: -5,  border: "1px solid black" }} onClick={() => setAskUserNamePermission(!askUserNamePermission)} >
               <AiFillGoogleCircle />
               <p>{SignUp ? "SignUp" : "SignIn"} With Google</p>
             </motion.div>
@@ -177,7 +177,7 @@ const Login = () => {
             <GoogleLogin
               clientId="997233871583-5eppubk9g40htsamhqs4t15mcer7ejk0.apps.googleusercontent.com"
               render={(renderprops) => (
-                <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ x: 5, y: -5, background: "black", color: "white", border: "1px solid black" }} onClick={renderprops.onClick} >
+                <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ x: 5, y: -5, background: "black", color: "#3080C0", border: "1px solid #3080C0" }} onClick={renderprops.onClick} >
                   <AiFillGoogleCircle />
                   <p>{SignUp ? "SignUp" : "SignIn"} With Google</p>
                 </motion.div>
@@ -209,7 +209,7 @@ const Login = () => {
                 <GoogleLogin
                   clientId="997233871583-5eppubk9g40htsamhqs4t15mcer7ejk0.apps.googleusercontent.com"
                   render={(renderprops) => (
-                    <motion.button className="google" disabled={askUserName === "" ? true : false} style={{ background: askUserName === '' ? "gray" : "white" }} initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileTap={{ scale: 1.02 }} onClick={renderprops.onClick} >
+                    <motion.button className="google" disabled={askUserName === "" ? true : false} style={{ background: askUserName === '' ? "gray" : "white" }} whileHover={{background:"#3080C0",color:"white"}} initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileTap={{ scale: 1.02 }} onClick={renderprops.onClick} >
                       <p>SignUp With Google</p>
                     </motion.button>
                   )}

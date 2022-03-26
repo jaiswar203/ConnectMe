@@ -22,3 +22,20 @@ A{
 
 $bg: #10111F;
 $barsize: 15px;
+
+
+$primary-color: #3080C0;
+$secondary-color: #fff;
+$dark-color: #000;
+
+
+@mixin box_color {
+  background: $primary-color !important;
+  color: $secondary-color !important;
+  
+  &:hover{
+    color: $primary-color !important;
+    background-color: $secondary-color !important;
+
+  }
+}
