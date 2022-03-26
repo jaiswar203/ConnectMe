@@ -45,7 +45,7 @@ const Navbar = () => {
             <div className="connectme__header-icon">
                 {/* <h1>ConnectMe</h1> */}
                 {/* <Image src={"https://res.cloudinary.com/redwine/image/upload/v1648287707/Linkedin-Logo_zimkn0.png"} width={100} height={100} layout="responsive" objectFit="contain" /> */}
-                <img src="/pc2.png" alt="logo" />
+                <img src="/main.png" alt="logo" />
             </div>
             <div className="connectme__header-signup">
                 {
