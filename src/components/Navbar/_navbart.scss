@@ -18,7 +18,11 @@
 
     &-icon{
         img{
-            width: 10rem;
+            width: 13rem;
+
+            @media screen and (max-width:750px) {
+                width: 10rem;
+            }
         }
     }
 

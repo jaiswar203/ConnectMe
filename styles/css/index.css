@@ -234,7 +234,12 @@ A {
   font-size: 1.2rem;
 }
 .connectme__header-icon img {
-  width: 10rem;
+  width: 13rem;
+}
+@media screen and (max-width: 750px) {
+  .connectme__header-icon img {
+    width: 10rem;
+  }
 }
 @media screen and (max-width: 750px) {
   .connectme__header-signup .box {
@@ -284,12 +289,17 @@ A {
   justify-content: center;
   align-items: center;
   transform: rotate(-90deg);
-  background: black;
-  color: white;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
   padding: 0.4rem 1rem;
   justify-content: space-between;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
+}
+.connectme__user-edit__button .edit__button:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
 }
 .connectme__user-edit__button .edit__button > * {
   margin-right: 0.4rem;
@@ -316,7 +326,7 @@ A {
   flex-direction: column;
 }
 .connectme__user-profile .info h2 {
-  background: -webkit-linear-gradient(#000000, #ff0000);
+  background: -webkit-linear-gradient(#000000, #3080C0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -448,64 +458,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #6c1b7c;
+  background: #57b23b;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #2fc159;
+  background: #72242e;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #8c9237;
+  background: #aa08c8;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #2d0c35;
+  background: #495c8f;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #3bf593;
+  background: #cfc649;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #86e77b;
+  background: #5f9697;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #b565f2;
+  background: #4239df;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #5cf7e8;
+  background: #0ff5bd;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #b4efc4;
+  background: #0b8061;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #cd210e;
+  background: #8b4bcc;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #09ab4e;
+  background: #f6ed19;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #9731e1;
+  background: #28e455;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #2fa947;
+  background: #65ed7b;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #6b36fc;
+  background: #bf58ed;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #936a7c;
+  background: #062820;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #7e8728;
+  background: #25a9f4;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #8e7fce;
+  background: #cf55fa;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #6a366d;
+  background: #693587;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #2a0301;
+  background: #95241e;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #353d9e;
+  background: #198a72;
 }
 .connectme__user-social {
   margin-top: 4rem;
@@ -749,10 +759,15 @@ A {
 }
 .connectme__user-services__title .add {
   cursor: pointer;
-  background: black;
-  color: white;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+}
+.connectme__user-services__title .add:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
 }
 .connectme__user-services__title .background {
   margin-left: 0.4rem;
@@ -829,8 +844,13 @@ A {
   align-items: center;
   padding: 1rem;
   width: 15rem;
-  background: black;
-  color: white;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
+}
+.connectme__user-personal__content .button:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
 }
 .connectme__user-modal {
   position: fixed;
@@ -1093,9 +1113,14 @@ A {
 .connectme__user-footer .content__button {
   padding: 1rem;
   cursor: pointer;
-  background: black;
-  color: white;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
   border-radius: 5px;
+}
+.connectme__user-footer .content__button:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
 }
 .connectme__user-footer .content__button h2 {
   cursor: pointer;
@@ -1115,12 +1140,17 @@ A {
   cursor: pointer;
   padding: 1rem;
   border-radius: 5px;
-  background: black;
-  color: white;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+}
+.connectme__user-feedback .feedback:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
 }
 .connectme__user-feedback .feedback svg {
   font-size: 2rem;
@@ -1147,12 +1177,17 @@ A {
   padding: 1rem;
   cursor: pointer;
   border-radius: 5px;
-  background: black;
-  color: white;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
 }
 .connectme__user-document__content .button svg {
   font-size: 2rem;
   margin-right: 1rem;
+}
+.connectme__user-document__content .button:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
 }
 .connectme__user-document__content .background {
   color: white;

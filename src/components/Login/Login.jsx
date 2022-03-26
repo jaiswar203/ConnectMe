@@ -12,7 +12,8 @@ import { getAllUser, signInUser, signUpUser } from "../../../redux/action/Auth";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
 
-
+import {createProfile} from '../../../redux/action/Profile'
+import {demoProfile} from '../../db/demo'
 
 const Login = () => {
   const [icon, setIcon] = useState(true);
@@ -22,7 +23,7 @@ const Login = () => {
   const state = useSelector((state) => state.AuthRedu)
   const modalData=useSelector((state)=>state.modal)
   const authData = state?.authData
-  const dispacth = useDispatch()
+  const dispatch = useDispatch()
   const router = useRouter()
 
 
@@ -35,9 +36,9 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     if (Boolean(SignUp)) {
-      dispacth(signUpUser(data, router))
+      dispatch(signUpUser(data, router))
     } else {
-      dispacth(signInUser(data, router))
+      dispatch(signInUser(data, router))
     }
   }
 
@@ -48,19 +49,19 @@ const Login = () => {
     if (SignUp) {
       try {
         const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
-        dispacth({ type: "AUTH", data: { existingUser, token } })
+        dispatch({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
-        dispacth({ type: "USER_ERROR", error: error.response })
+        dispatch({ type: "USER_ERROR", error: error.response })
       }
     } else {
       try {
         const { data: { existingUser } } = await axios.post("/api/auth/signin", { email })
-        dispacth({ type: "AUTH", data: { existingUser, token } })
+        dispatch({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
-        dispacth({type:"USER_ERROR",error: error.response})
+        dispatch({type:"USER_ERROR",error: error.response})
         // if (error?.response?.status === 404) {
         //   const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
-        //   dispacth({ type: "AUTH", data: { existingUser, token } })
+        //   dispatch({ type: "AUTH", data: { existingUser, token } })
         // }
       }
     }
@@ -74,21 +75,28 @@ const Login = () => {
 
   }, [askUserName])
   useEffect(() => {
-    dispacth(getAllUser())
+    dispatch(getAllUser())
     if (authData && !SignUp) {
       if(authData?.existingUser?.isVerified && authData?.existingUser?.profile){
         router.push(`/edit/${authData?.existingUser?.username}`)
+      }else if(!authData?.existingUser?.profile){
+        dispatch({type:"MESSAGE",data:{type:"error",message:"Your Profile Doen't Created , Please Wait while creating your Profile"}})
+        dispatch(
+          createProfile({
+            ...demoProfile,
+            createdBy: authData?.existingUser?._id,
+          })
+        );
       }else{
-        dispacth({type:"MESSAGE",data:{type:"error",message:"Your account isn't verified"}})
-        dispacth({type:"LOGOUT"})
-        console.log("Your are not verified")
+        dispatch({type:"MESSAGE",data:{type:"error",message:"Your account isn't verified"}})
+        dispatch({type:"LOGOUT"})
       }
       // router.push(`/confirm/${authData?.authData?.existingUser?.username}`)
     } else if (authData && SignUp) {
       router.push(`/confirm/${authData?.existingUser?.username}?confirmyourmail=true`)
       // router.push("/?generateprofile=true")
     }
-  }, [dispacth,authData,SignUp,router])
+  }, [dispatch,authData,SignUp,router])
 
   console.log({modalData})
   return (

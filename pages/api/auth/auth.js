@@ -1,28 +1,18 @@
 import { MongoClient } from "mongodb";
 
-import jwt from 'jsonwebtoken'
-import nodemailer from 'nodemailer'
+import jwt from 'jsonwebtoken';
 
-// import sgMail from '@sendgrid/mail'
+const postmark=require("postmark")
 
-// const api_key="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"
+const emailSend= new postmark.ServerClient("d1f350b1-dc6a-4842-b191-3b02dd68f054")
 
-// sgMail.setApiKey(api_key)
-
-let transporter=nodemailer.createTransport({
-  name:"www.connectme.co.in",
-  host:"us2.smtp.mailhostbox.com",
-  port:25,
-  secure:false,
-  auth:{
-    user:"info@connectme.co.in",
-    pass:"uscjCqY7"
-  }
-})
+const dev_server="http://localhost:4000"
+const prod_server="https://connectmev2.herokuapp.com"
 
 export default async function handler(req, res) {
   
   if (req.method === "POST") {
+    console.log({postmark})
     const { email, name, username } = req.body;
     const client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db();
@@ -47,24 +37,24 @@ export default async function handler(req, res) {
         expiresIn: "1d",
       });
 
-      const url = `https://connectmev2.herokuapp.com/user/verify/${verificaitonToekn}`;
+      const url = `${prod_server}/user/verify/${verificaitonToekn}`;
 
       const message={
+        from:" info@connectme.co.in",
         to:email,
-        from:" ConnectMe <info@connectme.co.in>",
         subject:"Verify Account",     
         text:"Email Verification",
         html: `Click <a href='${url}'>here</a> to confirm your email`
       }
 
-      await transporter.sendMail(message,(err,info)=>{
-        if(err){
-          console.log({err})
-          return
-        }
-        console.log("Message Sent Successfully")
-        console.log({info})
-        transporter.close()
+      // email sending through third party api
+      
+      emailSend.sendEmail({
+        From:"info@connectme.co.in",
+        To:email,
+        Subject:"Verify Account",
+        TextBody:"Email Verification",
+        HtmlBody:`Click <a href='${url}'>here</a> to confirm your email`
       })
 
       res

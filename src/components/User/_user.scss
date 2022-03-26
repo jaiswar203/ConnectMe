@@ -33,8 +33,8 @@
     .edit__button {
       @include center__element;
       transform: rotate(-90deg);
-      background: black;
-      color: white;
+      @include box_color;
+      border: 1px solid $primary-color;
       padding: 0.4rem 1rem;
       justify-content: space-between;
 
@@ -68,7 +68,7 @@
       flex-direction: column;
 
       h2 {
-        background: -webkit-linear-gradient(#000000, #ff0000);
+        background: -webkit-linear-gradient(#000000, $primary-color);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -441,8 +441,8 @@
 
       .add {
         cursor: pointer;
-        background: black;
-        color: white;
+        @include box_color;
+        border: 1px solid $primary-color;
         padding: 0.5rem 1rem;
         border-radius: 5px;
       }
@@ -524,8 +524,9 @@
         @include center__element;
         padding: 1rem;
         width: 15rem;
-        background: black;
-        color: white;
+        @include box_color;
+        border: 1px solid $primary-color;
+        
       }
     }
   }
@@ -851,8 +852,8 @@
       &__button {
         padding: 1rem;
         cursor: pointer;
-        background: black;
-        color: white;
+        @include box_color;
+        border: 1px solid $primary-color;
         border-radius: 5px;
 
         h2 {
@@ -875,8 +876,8 @@
       cursor: pointer;
       padding: 1rem;
       border-radius: 5px;
-      background: black;
-      color: white;
+      @include box_color;
+      border: 1px solid $primary-color;
       @include center__element;
       justify-content: space-between;
 
@@ -907,18 +908,25 @@
         padding: 1rem;
         cursor: pointer;
         border-radius: 5px;
-        background: black;
-        color: white;
+        @include box_color;
+        border: 1px solid $primary-color;
+        
       }
 
       .background {
         color: white;
+        
+        
         position: relative;
         top: -1.2rem;
         z-index: 1;
         font-size: 1.5rem;
         left: -1.5rem;
+
+        
       }
+
+      
     }
   }
 }
