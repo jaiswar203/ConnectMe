@@ -59,10 +59,6 @@ const Login = () => {
         dispatch({ type: "AUTH", data: { existingUser, token } })
       } catch (error) {
         dispatch({type:"USER_ERROR",error: error.response})
-        // if (error?.response?.status === 404) {
-        //   const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
-        //   dispatch({ type: "AUTH", data: { existingUser, token } })
-        // }
       }
     }
   }
@@ -91,10 +87,8 @@ const Login = () => {
         dispatch({type:"MESSAGE",data:{type:"error",message:"Your account isn't verified"}})
         dispatch({type:"LOGOUT"})
       }
-      // router.push(`/confirm/${authData?.authData?.existingUser?.username}`)
     } else if (authData && SignUp) {
       router.push(`/confirm/${authData?.existingUser?.username}?confirmyourmail=true`)
-      // router.push("/?generateprofile=true")
     }
   }, [dispatch,authData,SignUp,router])
 
