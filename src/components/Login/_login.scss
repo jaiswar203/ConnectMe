@@ -8,9 +8,11 @@
     h1 {
       font-size: 3rem;
       color: $primary-color;
+      @include click_font;
     }
     p {
       font-size: 1.3rem;
+      font-weight: 400;
     }
   }
   &-content {
@@ -30,6 +32,7 @@
       }
       input {
         // width: 10rem;
+        @include click_font;
       }
       & > * {
         margin-bottom: 1rem;
@@ -45,14 +48,16 @@
         @include center__element;
       }
       button.submit {
-        padding: 1.4rem;
+        @include click_font;
+        padding: 1rem;
+        border-radius: 5px;
         width: 100%;
         @include box_color;
         @include center__element;
       }
     }
   }
-
+  
   &-model {
     @include center__element;
     top: 0;
@@ -113,10 +118,12 @@
       .google {
         position: absolute;
         margin-top: 10rem;
+        @include click_font;
         @include center__element;
-        padding: 1.1rem;
+        padding: 1rem;
         width: 20rem;
         
+        border-radius: 5px;
         background: white;
         color: black;
       }
@@ -131,7 +138,7 @@
         }
       }
     }
-
+    
   }
 
   @media screen and (max-width: 430px) {
@@ -146,15 +153,17 @@
     margin-top: 0.8rem;
     @include center__element;
     flex-direction: column;
-    width: 26rem;
-
+    width: 24rem;
+    
     @media screen and (max-width: 470px) {
       width: 100%;
     }
     .google {
+      @include click_font;
       cursor: pointer;
       padding: 1rem;
       width: 100%;
+      border-radius: 5px;
       @include center__element;
 
       svg {

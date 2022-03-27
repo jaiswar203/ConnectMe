@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         expiresIn: "1d",
       });
 
-      const url = `${prod_server}/user/verify/${verificaitonToekn}`;
+      const url = `${dev_server}/user/verify/${verificaitonToekn}`;
 
       const message={
         from:" info@connectme.co.in",

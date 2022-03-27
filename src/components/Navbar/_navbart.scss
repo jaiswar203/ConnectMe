@@ -9,6 +9,11 @@
             @include center__element;
             width: 10rem;
             @include box_color;
+            background-color: black !important;
+            border-radius: 5px;
+            color: $primary-color !important;
+
+            @include click_font;
             cursor: pointer;
             p{
                 font-size: 1.2rem;
@@ -30,7 +35,9 @@
         &-signup{
             
             .box{
-                padding: .6rem 1rem;
+                padding: .6rem;
+                // background-color: black !important;
+                // color: $primary-color !important;
                 width: 7rem;
             }
         }

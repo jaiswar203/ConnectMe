@@ -28,7 +28,7 @@
     position: fixed;
     z-index: 111;
     bottom: 6rem;
-    left: -1.7rem;
+    left: -1.8rem;
 
     .edit__button {
       @include center__element;
@@ -36,6 +36,7 @@
       @include box_color;
       border: 1px solid $primary-color;
       padding: 0.4rem 1rem;
+      @include click_font;
       justify-content: space-between;
 
       // border-bottom-right-radius: 5px;
@@ -71,6 +72,11 @@
         background: -webkit-linear-gradient(#000000, $primary-color);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        @include click_font;
+        font-weight: bold;
+      }
+      p {
+        @include normal_font;
       }
       &__name,
       &__city {
@@ -78,6 +84,19 @@
         svg {
           margin-left: 0.4rem;
           margin-bottom: 0.2rem;
+        }
+      }
+      &__tagline {
+        @include click_font;
+        padding: 1rem;
+        .quotes {
+          font-size: 2rem;
+
+          &:first-child {
+            border-radius: 0;
+            background:none;
+            box-shadow: none;
+          }
         }
       }
     }
@@ -104,7 +123,7 @@
     }
   }
   .lower__sec {
-    margin-top: -3rem;
+    margin-top: -5rem;
     padding: 0rem 10rem;
   }
   &-detail {
@@ -121,12 +140,23 @@
       color: black;
       top: 1.4rem;
     }
+
+    p {
+      @include click_font;
+      margin-bottom: 0.4rem;
+    }
+    h3 {
+      @include normal_font;
+    }
   }
   &-about {
-    margin-top: 4rem;
     @include center__element;
     flex-direction: column;
     align-items: flex-start;
+
+    h1 {
+      @include click_font;
+    }
 
     p {
       margin-top: 0.5rem;
@@ -134,6 +164,7 @@
       background: #e0e0e0;
       box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
       padding: 1rem;
+      @include normal_font;
 
       span {
         margin-left: 0.5rem;
@@ -150,11 +181,13 @@
     }
   }
   &-interests {
-    margin-top: 4rem;
-
     &__title {
       @include center__element;
       justify-content: flex-end;
+
+      h1 {
+        @include click_font;
+      }
       .background {
         margin-right: 0.3rem;
         margin-top: -1rem;
@@ -163,6 +196,7 @@
     }
     &__info {
       overflow-x: hidden;
+      @include normal_font;
       margin-top: 2rem;
       //   display: grid;
       //   grid-template-columns: repeat(6,1fr);
@@ -205,11 +239,13 @@
   }
 
   &-social {
-    margin-top: 4rem;
-
     &__title {
       @include center__element;
       justify-content: flex-start;
+
+      h1 {
+        @include click_font;
+      }
     }
     &__content {
       overflow-x: hidden;
@@ -230,6 +266,7 @@
         }
         p {
           font-weight: bold;
+          @include normal_font;
           margin-top: 0.5rem;
         }
       }
@@ -247,8 +284,10 @@
   }
 
   &-testimonial {
-    margin-top: 4rem;
     &__title {
+      h1 {
+        @include click_font;
+      }
       @include center__element;
       justify-content: flex-start;
       .background {
@@ -308,11 +347,12 @@
   }
 
   &-connects {
-    margin-top: 4rem;
-
     &__title {
       @include center__element;
       justify-content: flex-end;
+      h1 {
+        @include click_font;
+      }
       .background {
         margin-left: 0.4rem;
         width: 2rem;
@@ -369,6 +409,9 @@
     &__title {
       @include center__element;
       justify-content: space-between;
+      h1 {
+        @include click_font;
+      }
       .add {
         cursor: pointer;
         background: black;
@@ -433,12 +476,12 @@
   }
 
   &-services {
-    margin-top: 4rem;
-
     &__title {
       @include center__element;
       justify-content: space-between;
-
+      h1 {
+        @include click_font;
+      }
       .add {
         cursor: pointer;
         @include box_color;
@@ -502,11 +545,12 @@
   }
 
   &-personal {
-    margin-top: 4rem;
-
     &__title {
       @include center__element;
       justify-content: flex-end;
+      h1 {
+        @include click_font;
+      }
     }
     &__content {
       margin-top: 2rem;
@@ -522,11 +566,11 @@
       .button {
         border-radius: 5px;
         @include center__element;
+        @include click_font;
         padding: 1rem;
         width: 15rem;
         @include box_color;
         border: 1px solid $primary-color;
-        
       }
     }
   }
@@ -848,11 +892,15 @@
     @include center__element;
     justify-content: space-between;
 
+    h3 {
+      @include normal_font;
+    }
     .content {
       &__button {
         padding: 1rem;
         cursor: pointer;
         @include box_color;
+        @include click_font;
         border: 1px solid $primary-color;
         border-radius: 5px;
 
@@ -880,6 +928,7 @@
       border: 1px solid $primary-color;
       @include center__element;
       justify-content: space-between;
+      @include click_font;
 
       svg {
         font-size: 2rem;
@@ -894,6 +943,9 @@
     &__title {
       @include center__element;
       justify-content: space-between;
+      h1 {
+        @include click_font;
+      }
     }
     &__content {
       margin-top: 2rem;
@@ -910,23 +962,17 @@
         border-radius: 5px;
         @include box_color;
         border: 1px solid $primary-color;
-        
       }
 
       .background {
         color: white;
-        
-        
+
         position: relative;
         top: -1.2rem;
         z-index: 1;
         font-size: 1.5rem;
         left: -1.5rem;
-
-        
       }
-
-      
     }
   }
 }
@@ -1095,6 +1141,9 @@
 
     &__title {
       @include center__element;
+      h1 {
+        @include click_font;
+      }
       flex-direction: column;
       span {
         width: 50%;

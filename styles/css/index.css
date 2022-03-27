@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&family=Playfair+Display:wght@600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -24,9 +26,11 @@ A {
 .connectme__login-intro h1 {
   font-size: 3rem;
   color: #3080C0;
+  font-family: "Lora", serif !important;
 }
 .connectme__login-intro p {
   font-size: 1.3rem;
+  font-weight: 400;
 }
 .connectme__login-content {
   margin-top: 5rem;
@@ -47,6 +51,9 @@ A {
     width: 100%;
   }
 }
+.connectme__login-content__manual input {
+  font-family: "Lora", serif !important;
+}
 .connectme__login-content__manual > * {
   margin-bottom: 1rem;
 }
@@ -64,7 +71,9 @@ A {
   align-items: center;
 }
 .connectme__login-content__manual button.submit {
-  padding: 1.4rem;
+  font-family: "Lora", serif !important;
+  padding: 1rem;
+  border-radius: 5px;
   width: 100%;
   background: #3080C0 !important;
   color: #fff !important;
@@ -138,11 +147,13 @@ A {
 .connectme__login-model__data .google {
   position: absolute;
   margin-top: 10rem;
+  font-family: "Lora", serif !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.1rem;
+  padding: 1rem;
   width: 20rem;
+  border-radius: 5px;
   background: white;
   color: black;
 }
@@ -173,7 +184,7 @@ A {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 26rem;
+  width: 24rem;
 }
 @media screen and (max-width: 470px) {
   .connectme__login .auth {
@@ -181,9 +192,11 @@ A {
   }
 }
 .connectme__login .auth .google {
+  font-family: "Lora", serif !important;
   cursor: pointer;
   padding: 1rem;
   width: 100%;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -224,6 +237,10 @@ A {
   width: 10rem;
   background: #3080C0 !important;
   color: #fff !important;
+  background-color: black !important;
+  border-radius: 5px;
+  color: #3080C0 !important;
+  font-family: "Lora", serif !important;
   cursor: pointer;
 }
 .connectme__header-signup .box:hover {
@@ -243,7 +260,7 @@ A {
 }
 @media screen and (max-width: 750px) {
   .connectme__header-signup .box {
-    padding: 0.6rem 1rem;
+    padding: 0.6rem;
     width: 7rem;
   }
 }
@@ -282,7 +299,7 @@ A {
   position: fixed;
   z-index: 111;
   bottom: 6rem;
-  left: -1.7rem;
+  left: -1.8rem;
 }
 .connectme__user-edit__button .edit__button {
   display: flex;
@@ -293,6 +310,7 @@ A {
   color: #fff !important;
   border: 1px solid #3080C0;
   padding: 0.4rem 1rem;
+  font-family: "Lora", serif !important;
   justify-content: space-between;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
@@ -329,6 +347,12 @@ A {
   background: -webkit-linear-gradient(#000000, #3080C0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: "Lora", serif !important;
+  font-weight: bold;
+}
+.connectme__user-profile .info p {
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
 }
 .connectme__user-profile .info__name, .connectme__user-profile .info__city {
   display: flex;
@@ -338,6 +362,18 @@ A {
 .connectme__user-profile .info__name svg, .connectme__user-profile .info__city svg {
   margin-left: 0.4rem;
   margin-bottom: 0.2rem;
+}
+.connectme__user-profile .info__tagline {
+  font-family: "Lora", serif !important;
+  padding: 1rem;
+}
+.connectme__user-profile .info__tagline .quotes {
+  font-size: 2rem;
+}
+.connectme__user-profile .info__tagline .quotes:first-child {
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
 }
 .connectme__user-profile img {
   border-radius: 1rem;
@@ -366,7 +402,7 @@ A {
   }
 }
 .connectme__user .lower__sec {
-  margin-top: -3rem;
+  margin-top: -5rem;
   padding: 0rem 10rem;
 }
 .connectme__user-detail {
@@ -386,13 +422,23 @@ A {
   color: black;
   top: 1.4rem;
 }
+.connectme__user-detail p {
+  font-family: "Lora", serif !important;
+  margin-bottom: 0.4rem;
+}
+.connectme__user-detail h3 {
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
+}
 .connectme__user-about {
-  margin-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   align-items: flex-start;
+}
+.connectme__user-about h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-about p {
   margin-top: 0.5rem;
@@ -400,6 +446,8 @@ A {
   background: #e0e0e0;
   box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
   padding: 1rem;
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
 }
 .connectme__user-about p span {
   margin-left: 0.5rem;
@@ -415,14 +463,14 @@ A {
   font-size: 1.3rem;
   margin-left: 0.4rem;
 }
-.connectme__user-interests {
-  margin-top: 4rem;
-}
 .connectme__user-interests__title {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: flex-end;
+}
+.connectme__user-interests__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-interests__title .background {
   margin-right: 0.3rem;
@@ -431,6 +479,8 @@ A {
 }
 .connectme__user-interests__info {
   overflow-x: hidden;
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
   margin-top: 2rem;
   display: flex;
   justify-content: center;
@@ -458,73 +508,73 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #57b23b;
+  background: #2e17e9;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #72242e;
+  background: #dd388d;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #aa08c8;
+  background: #70fbfa;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #495c8f;
+  background: #77cc61;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #cfc649;
+  background: #910c55;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #5f9697;
+  background: #dc26c9;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #4239df;
+  background: #90d6f4;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #0ff5bd;
+  background: #86a586;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #0b8061;
+  background: #5b53ef;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #8b4bcc;
+  background: #1ec790;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #f6ed19;
+  background: #38d1e9;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #28e455;
+  background: #80bc96;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #65ed7b;
+  background: #e07afe;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #bf58ed;
+  background: #796b32;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #062820;
+  background: #968039;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #25a9f4;
+  background: #bfabf9;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #cf55fa;
+  background: #7c7a22;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #693587;
+  background: #4759cf;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #95241e;
+  background: #de7d6e;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #198a72;
-}
-.connectme__user-social {
-  margin-top: 4rem;
+  background: #15d668;
 }
 .connectme__user-social__title {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: flex-start;
+}
+.connectme__user-social__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-social__content {
   overflow-x: hidden;
@@ -550,6 +600,8 @@ A {
 }
 .connectme__user-social__content .item p {
   font-weight: bold;
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
   margin-top: 0.5rem;
 }
 .connectme__user-social__content .background {
@@ -562,14 +614,14 @@ A {
   height: auto !important;
   font-size: 1rem !important;
 }
-.connectme__user-testimonial {
-  margin-top: 4rem;
-}
 .connectme__user-testimonial__title {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: flex-start;
+}
+.connectme__user-testimonial__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-testimonial__title .background {
   margin-left: 0.4rem;
@@ -618,14 +670,14 @@ A {
   transition: all 0.3s ease-out;
   transform: scale(1.3);
 }
-.connectme__user-connects {
-  margin-top: 4rem;
-}
 .connectme__user-connects__title {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: flex-end;
+}
+.connectme__user-connects__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-connects__title .background {
   margin-left: 0.4rem;
@@ -689,6 +741,9 @@ A {
   align-items: center;
   justify-content: space-between;
 }
+.connectme__user-portfolio__title h1 {
+  font-family: "Lora", serif !important;
+}
 .connectme__user-portfolio__title .add {
   cursor: pointer;
   background: black;
@@ -748,14 +803,14 @@ A {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.connectme__user-services {
-  margin-top: 4rem;
-}
 .connectme__user-services__title {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+}
+.connectme__user-services__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-services__title .add {
   cursor: pointer;
@@ -815,14 +870,14 @@ A {
 .connectme__user-services__more svg {
   font-size: 3rem;
 }
-.connectme__user-personal {
-  margin-top: 4rem;
-}
 .connectme__user-personal__title {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: flex-end;
+}
+.connectme__user-personal__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-personal__content {
   margin-top: 2rem;
@@ -842,6 +897,7 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Lora", serif !important;
   padding: 1rem;
   width: 15rem;
   background: #3080C0 !important;
@@ -1110,11 +1166,16 @@ A {
   align-items: center;
   justify-content: space-between;
 }
+.connectme__user-footer h3 {
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
+}
 .connectme__user-footer .content__button {
   padding: 1rem;
   cursor: pointer;
   background: #3080C0 !important;
   color: #fff !important;
+  font-family: "Lora", serif !important;
   border: 1px solid #3080C0;
   border-radius: 5px;
 }
@@ -1147,6 +1208,7 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+  font-family: "Lora", serif !important;
 }
 .connectme__user-feedback .feedback:hover {
   color: #3080C0 !important;
@@ -1163,6 +1225,9 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+}
+.connectme__user-document__title h1 {
+  font-family: "Lora", serif !important;
 }
 .connectme__user-document__content {
   margin-top: 2rem;
@@ -1369,6 +1434,9 @@ A {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.outer__shell .connectme__message-modal__title h1 {
+  font-family: "Lora", serif !important;
 }
 .outer__shell .connectme__message-modal__title span {
   width: 50%;

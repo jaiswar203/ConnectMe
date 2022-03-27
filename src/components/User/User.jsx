@@ -92,7 +92,7 @@ const User = ({ edit }) => {
 
   }, [imgProp.w, imgProp.h])
 
-  
+
 
   const parentVariantForInterests = {
     visible: {
@@ -202,7 +202,7 @@ const User = ({ edit }) => {
 
     const profileData = JSON.parse(localStorage.getItem("profile"))
 
-    if(profileData){
+    if (profileData) {
       setPdfData(profileData?.data?.document?.active)
     }
 
@@ -223,8 +223,8 @@ const User = ({ edit }) => {
     if (edit && data === null) {
       router.push("/login")
     }
-  }, [showModal, dispatch, router.query,pdfData])
-  console.log({pdfData})
+  }, [showModal, dispatch, router.query, pdfData])
+  console.log({ pdfData })
 
   const BorderComp = () => {
     return (
@@ -401,14 +401,14 @@ const User = ({ edit }) => {
       <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
         <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
         {edit && (
-          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, {active:true,data:"image/*"})} whileTap={{ scale: 1.1 }}>
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })} whileTap={{ scale: 1.1 }}>
             <FaEdit />
           </motion.div>
         )}
       </motion.div>
       <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -100, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
         {edit && (
-          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, {active:true,data:"image/*"})} whileTap={{ scale: 1.1 }}>
+          <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })} whileTap={{ scale: 1.1 }}>
             <FaEdit />
           </motion.div>
         )}
@@ -430,22 +430,23 @@ const User = ({ edit }) => {
               </motion.div>
             )}
           </div>
+          <div className="info__tagline">
+            <h4> <span className="quotes">"</span>  Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking. -Steve Jobs <span className="quotes">"</span> </h4>
+          </div>
         </div>
       </motion.div>
-      <div className="connectme__user-tagline">
 
-      </div>
 
-      {showEditOptionOnViewSide && (
-        <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => router.push(`/edit/${userName}`)}>
-          <div className="edit__button">
-            <AiFillSetting />
-            <div className="text">
-              <h3>Edit</h3>
-            </div>
+
+      <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => { showEditOptionOnViewSide ? router.push(`/edit/${userName}`) : router.push(`/${userName}`) }}>
+        <div className="edit__button">
+          <AiFillSetting />
+          <div className="text">
+            <h3>{showEditOptionOnViewSide ? "Edit" : "View"}</h3>
           </div>
-        </motion.div>
-      )}
+        </div>
+      </motion.div>
+
       <div className="lower__sec">
         <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
           {userDetail.map((d) => (
@@ -571,7 +572,7 @@ const User = ({ edit }) => {
                 <h1>Documentation</h1>
               </div>
               <div className="connectme__user-document__content">
-                <motion.div className="button" whileTap={{ scale: 1.1 }} onClick={()=>window.open(profileData?.document?.data, "_blank") }>
+                <motion.div className="button" whileTap={{ scale: 1.1 }} onClick={() => window.open(profileData?.document?.data, "_blank")}>
                   <IoIosDocument />
                   <h3>Get PDF</h3>
                 </motion.div>
@@ -580,13 +581,13 @@ const User = ({ edit }) => {
           </>
         ) : edit && (
           <>
-          <BorderComp />
-          <div className="connectme__user-document">
+            <BorderComp />
+            <div className="connectme__user-document">
               <div className="connectme__user-document__title">
                 <h1>Documentation</h1>
-                <ToggleSwitch  label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} apiId="document.active" />
+                <ToggleSwitch label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} apiId="document.active" />
               </div>
-              <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`,{isSubDoc:false},{active:true,data:"application/pdf"})} >
+              <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`, { isSubDoc: false }, { active: true, data: "application/pdf" })} >
                 <motion.div className="button" whileTap={{ scale: 1.1 }} >
                   <IoIosDocument />
                   <h3>Get PDF</h3>
@@ -603,19 +604,19 @@ const User = ({ edit }) => {
         {!edit
           && (
             <>
-            <BorderComp />
-            <div className="connectme__user-footer">
-              <div className="text">
-                <h3>Want to create amazing profile like this?</h3>
+              <BorderComp />
+              <div className="connectme__user-footer">
+                <div className="text">
+                  <h3>Want to create amazing profile like this?</h3>
+                </div>
+                <div className="content">
+                  <Link href={"login?signup=true"} passHref>
+                    <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
+                      <h3>Why Not</h3>
+                    </motion.div>
+                  </Link>
+                </div>
               </div>
-              <div className="content">
-                <Link href={"login?signup=true"} passHref>
-                  <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
-                    <h3>Why Not</h3>
-                  </motion.div>
-                </Link>
-              </div>
-            </div>
             </>
           )}
         {
