@@ -1,6 +1,7 @@
 .connectme__gallery {
   padding: 3rem;
   &-title {
+    @include click_font;
     @include center__element;
   }
   .border {

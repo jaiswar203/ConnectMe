@@ -27,6 +27,7 @@ A {
   font-size: 3rem;
   color: #3080C0;
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__login-intro p {
   font-size: 1.3rem;
@@ -53,6 +54,7 @@ A {
 }
 .connectme__login-content__manual input {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__login-content__manual > * {
   margin-bottom: 1rem;
@@ -72,6 +74,7 @@ A {
 }
 .connectme__login-content__manual button.submit {
   font-family: "Lora", serif !important;
+  color: #3080C0;
   padding: 1rem;
   border-radius: 5px;
   width: 100%;
@@ -148,6 +151,7 @@ A {
   position: absolute;
   margin-top: 10rem;
   font-family: "Lora", serif !important;
+  color: #3080C0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,6 +197,7 @@ A {
 }
 .connectme__login .auth .google {
   font-family: "Lora", serif !important;
+  color: #3080C0;
   cursor: pointer;
   padding: 1rem;
   width: 100%;
@@ -241,6 +246,7 @@ A {
   border-radius: 5px;
   color: #3080C0 !important;
   font-family: "Lora", serif !important;
+  color: #3080C0;
   cursor: pointer;
 }
 .connectme__header-signup .box:hover {
@@ -311,6 +317,7 @@ A {
   border: 1px solid #3080C0;
   padding: 0.4rem 1rem;
   font-family: "Lora", serif !important;
+  color: #3080C0;
   justify-content: space-between;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
@@ -348,6 +355,7 @@ A {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "Lora", serif !important;
+  color: #3080C0;
   font-weight: bold;
 }
 .connectme__user-profile .info p {
@@ -365,6 +373,7 @@ A {
 }
 .connectme__user-profile .info__tagline {
   font-family: "Lora", serif !important;
+  color: #3080C0;
   padding: 1rem;
 }
 .connectme__user-profile .info__tagline .quotes {
@@ -424,6 +433,7 @@ A {
 }
 .connectme__user-detail p {
   font-family: "Lora", serif !important;
+  color: #3080C0;
   margin-bottom: 0.4rem;
 }
 .connectme__user-detail h3 {
@@ -439,6 +449,7 @@ A {
 }
 .connectme__user-about h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-about p {
   margin-top: 0.5rem;
@@ -471,6 +482,7 @@ A {
 }
 .connectme__user-interests__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-interests__title .background {
   margin-right: 0.3rem;
@@ -508,64 +520,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #2e17e9;
+  background: #8ba16f;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #dd388d;
+  background: #a66c73;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #70fbfa;
+  background: #a36bd0;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #77cc61;
+  background: #73fd25;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #910c55;
+  background: #43dd63;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #dc26c9;
+  background: #051a09;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #90d6f4;
+  background: #950964;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #86a586;
+  background: #d5497c;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #5b53ef;
+  background: #c760a5;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #1ec790;
+  background: #7bbc4a;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #38d1e9;
+  background: #06f3b8;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #80bc96;
+  background: #997fc0;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #e07afe;
+  background: #d499da;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #796b32;
+  background: #f0e276;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #968039;
+  background: #f1c365;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #bfabf9;
+  background: #ff952b;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #7c7a22;
+  background: #836fae;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #4759cf;
+  background: #a781ec;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #de7d6e;
+  background: #4f3a1f;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #15d668;
+  background: #114b9e;
 }
 .connectme__user-social__title {
   display: flex;
@@ -575,6 +587,7 @@ A {
 }
 .connectme__user-social__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-social__content {
   overflow-x: hidden;
@@ -622,6 +635,7 @@ A {
 }
 .connectme__user-testimonial__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-testimonial__title .background {
   margin-left: 0.4rem;
@@ -678,6 +692,7 @@ A {
 }
 .connectme__user-connects__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-connects__title .background {
   margin-left: 0.4rem;
@@ -743,6 +758,7 @@ A {
 }
 .connectme__user-portfolio__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-portfolio__title .add {
   cursor: pointer;
@@ -811,6 +827,7 @@ A {
 }
 .connectme__user-services__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-services__title .add {
   cursor: pointer;
@@ -878,6 +895,7 @@ A {
 }
 .connectme__user-personal__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-personal__content {
   margin-top: 2rem;
@@ -898,6 +916,7 @@ A {
   justify-content: center;
   align-items: center;
   font-family: "Lora", serif !important;
+  color: #3080C0;
   padding: 1rem;
   width: 15rem;
   background: #3080C0 !important;
@@ -1176,6 +1195,7 @@ A {
   background: #3080C0 !important;
   color: #fff !important;
   font-family: "Lora", serif !important;
+  color: #3080C0;
   border: 1px solid #3080C0;
   border-radius: 5px;
 }
@@ -1209,6 +1229,7 @@ A {
   align-items: center;
   justify-content: space-between;
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-feedback .feedback:hover {
   color: #3080C0 !important;
@@ -1228,6 +1249,7 @@ A {
 }
 .connectme__user-document__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .connectme__user-document__content {
   margin-top: 2rem;
@@ -1437,6 +1459,7 @@ A {
 }
 .outer__shell .connectme__message-modal__title h1 {
   font-family: "Lora", serif !important;
+  color: #3080C0;
 }
 .outer__shell .connectme__message-modal__title span {
   width: 50%;
@@ -1496,6 +1519,8 @@ A {
   padding: 3rem;
 }
 .connectme__gallery-title {
+  font-family: "Lora", serif !important;
+  color: #3080C0;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -28,7 +28,7 @@ const Gallery = ({ data,title ,content}) => {
     return (
         <div className="connectme__gallery">
             <div className="connectme__gallery-title">
-                <h1>{content.toUpperCase()} of {title}</h1>
+                <h1>{content} of {title}</h1>
             </div>
             <div className="border">
                 <b className="hr anim"></b>
