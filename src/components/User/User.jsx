@@ -430,9 +430,11 @@ const User = ({ edit }) => {
               </motion.div>
             )}
           </div>
-          <div className="info__tagline">
-            <h4> <span className="quotes">"</span>  Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking. -Steve Jobs <span className="quotes">"</span> </h4>
-          </div>
+          {profileData?.tagline && (
+            <div className="info__tagline">
+              <h4> <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span> </h4>
+            </div>
+          )}
         </div>
       </motion.div>
 
