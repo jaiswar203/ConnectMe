@@ -44,7 +44,7 @@ const User = ({ edit }) => {
   const [showModal, setShowModal] = useState(false)
   const [imgProp, setImgProp] = useState({ w: 200, h: 250 })
   const dispatch = useDispatch()
-  const { profile, error } = state.profileReducer
+  const { profile, error ,isLoading} = state.profileReducer
   const router = useRouter()
   const profileData = profile !== null ? profile?.data : []
   // edititable content
@@ -179,7 +179,7 @@ const User = ({ edit }) => {
       forupdate: profileData?.personal?.mail
     },
   ]
-  console.log({ profile, error })
+  console.log({ isLoading })
 
 
   useEffect(() => {
@@ -218,15 +218,18 @@ const User = ({ edit }) => {
     }
 
 
-    if (edit && router.query.id !== data?.existingUser?.username) {
-      router.push(`/edit/${data?.existingUser?.username}`)
-      return null
+    if (data) {
+      if (edit && router.query.id !== data?.existingUser?.username) {
+        router.push(`/edit/${data?.existingUser?.username}`)
+        return null
+      }
     }
-    if (edit && data === null) {
+
+    if(!data && edit){
       router.push("/login")
     }
-  }, [showModal, dispatch, router.query, pdfData])
-  console.log({ pdfData })
+
+  }, [showModal, dispatch, router.query])
 
   const BorderComp = () => {
     return (
@@ -325,13 +328,9 @@ const User = ({ edit }) => {
       if (decodedData.exp * 1000 < new Date().getTime()) return logout()
 
     }
-    if (profile !== undefined) {
-      setIsPrivate(profile?.isPrivate)
-      console.log({ isPrivate })
-    }
 
 
-  }, [dispatch, isPrivate])
+  }, [dispatch])
 
 
   const socialHandle = [
@@ -421,8 +420,8 @@ const User = ({ edit }) => {
             </div>
             {profileData?.tagline && (
               <div className="info__tagline">
-                <h4> <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span> 
-                
+                <h4> <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
+
                 </h4>
               </div>
             )}
@@ -621,7 +620,7 @@ const User = ({ edit }) => {
         </div>
         {
           openEdit && (
-            <Edit modal={setOpenEdit} data={editData} />
+            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={state} />
           )
         }
         {/* {edit && (
@@ -646,7 +645,6 @@ const User = ({ edit }) => {
             </motion.div>
           </a>
         </div>
-
       </div>
     </Layout>
   )

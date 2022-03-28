@@ -1,5 +1,9 @@
-const profileReducer=(state={profile:null,error:null},action)=>{
+const profileReducer=(state={profile:null,error:null,isLoading: false},action)=>{
     switch (action.type) {
+        case "START_LOADING":
+            return {...state,isLoading: true}
+        case "END_LOADING":
+            return {...state,isLoading: false}
         case "CREATE_PROFILE":
             return {...state,profile: action?.data}
         case "FETCH_PROFILE_BY_ID":

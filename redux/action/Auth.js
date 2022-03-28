@@ -2,20 +2,25 @@ import * as api from '../../api'
 
 export const signInUser=(formData)=>async(dispatch)=>{
     try {
+        dispatch({type:"START_LOADING"})
         const {data}=await api.loginUser(formData)
         dispatch({type:"AUTH",data})
+        dispatch({type:"END_LOADING"})
     } catch (error) {
-        dispatch({type:"USER_ERROR",error: error?.response?.data})
+        dispatch({type:"END_LOADING"})
+        dispatch({type:"USER_ERROR",error: error?.response})
     }
 }
 
 export const signUpUser=(formData)=>async(dispatch)=>{
     try {
+        dispatch({type:"START_LOADING"})
         const {data: {User,token,message}}=await api.createUser(formData)
         dispatch({type:"AUTH",data:{existingUser: User,message,token}})
-        
+        dispatch({type:"END_LOADING"})
     } catch (error) {
-        dispatch({type:"USER_ERROR",error: error?.response?.data})
+        dispatch({type:"END_LOADING"})
+        dispatch({type:"USER_ERROR",error: error?.response})
     }
 }
 

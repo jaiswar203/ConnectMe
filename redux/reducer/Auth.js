@@ -1,5 +1,9 @@
-const authReducer=(state={allUser:null},action)=>{
+const authReducer=(state={allUser:null,isLoading:false},action)=>{
     switch (action.type) {
+        case "START_LOADING":
+            return {...state,isLoading:true}
+        case "END_LOADING":
+            return {...state,isLoading: false}
         case "AUTH":
             localStorage.setItem('UserAuth',JSON.stringify({...action?.data}))
             return {...state,authData: action?.data}

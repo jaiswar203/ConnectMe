@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 import { getAllUser, signInUser, signUpUser } from "../../../redux/action/Auth";
 import GoogleLogin from "react-google-login";
@@ -42,6 +44,7 @@ const Login = () => {
     }
   }
 
+  
 
   const googleSuccess = async (res) => {
     const { name, email } = res?.profileObj
@@ -70,6 +73,7 @@ const Login = () => {
   useEffect(() => {
 
   }, [askUserName])
+  console.log({state  })
   useEffect(() => {
     dispatch(getAllUser())
     if (authData && !SignUp) {
@@ -154,7 +158,13 @@ const Login = () => {
             }
           </div>
           <motion.button type="submit"   className="submit">
-            <h2>Submit</h2>
+            {
+              state.isLoading ? (
+                <ClipLoader color="#000"  size={25} />
+              ): (
+                <h2>Submit</h2>
+              )
+            }
           </motion.button>
         </motion.form>
         <div className="divider">

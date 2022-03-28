@@ -32,34 +32,36 @@ export const getProfileByUserName = (id,formData,auth) => async (dispatch) => {
 
 export const updateProfile = (formData, id) => async (dispatch) => {
   try {
-    console.log({formData,id}) 
+    dispatch({type:"START_LOADING"})
     const { data } = await api.updateProfileById(formData, id);
     dispatch({ type: "UPDATE_PROFILE", data });
-    
+    dispatch({type:"END_LOADING"})
   } catch (error) {
     console.log(error);
   }
 };
 
 export const updateSubDocInProfileById = (formData, id, subdoc) => async (dispatch) => {
-    try {
+  try {
+      dispatch({type:"START_LOADING"})
       const { data } = await api.updateSubDocInProfileById(
         formData,
         id,
         subdoc
-      );
-      dispatch({ type: "UPDATE_SUBDOC_IN_PROFILE", data });
-    } catch (error) {
-      console.log(error);
-    }
-};
-
-export const deleteSubDocInProfileById=(formData,id,query)=>async(dispatch)=>{
-  try {
-    console.log({formData,id,query})
-    const {data}=await api.deleteSubDocInProfileById(formData,id,query)
-    dispatch({type:"DELETE_SUBDOC_IN_PROFILE_BY_ID",data})
-  } catch (error) {
+        );
+        dispatch({ type: "UPDATE_SUBDOC_IN_PROFILE", data });
+        dispatch({type:"END_LOADING"})
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
+    export const deleteSubDocInProfileById=(formData,id,query)=>async(dispatch)=>{
+      try {
+        console.log({formData,id,query})
+        const {data}=await api.deleteSubDocInProfileById(formData,id,query)
+        dispatch({type:"DELETE_SUBDOC_IN_PROFILE_BY_ID",data})
+      } catch (error) {
     console.log({error})
   }
 }
@@ -75,8 +77,10 @@ export const deleteProfile = (formData, id) => async (dispatch) => {
 
 export const addImageInProfile=(formData,id,query)=>async(dispatch)=>{
   try {
+    dispatch({type:"START_LOADING"})
     const {data}=await api.addImage(formData,id,query)
     dispatch({type:"ADD_IMAGE",data})
+    dispatch({type:"END_LOADING"})
   } catch (error) {
     console.log({error})
   }
