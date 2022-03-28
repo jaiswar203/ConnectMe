@@ -39,7 +39,8 @@ $dark-color: #000;
   &:hover{
     color: $primary-color !important;
     background-color: $secondary-color !important;
-
+    border: 1px solid black;
+    transition: all .1s ease-in;
   }
 }
 

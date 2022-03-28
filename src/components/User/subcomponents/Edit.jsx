@@ -26,6 +26,7 @@ const Edit = ({ modal, data }) => {
         } else {
             dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
         }
+        modal(false)
     }
     const handleChange = (e) => {
         e.preventDefault()
@@ -61,7 +62,8 @@ const Edit = ({ modal, data }) => {
                 dispatch(updateProfile({userId: user?._id,data: {[data?.name]: res.data.secure_url}},profile?._id))
             }
         })
-
+        modal(false)
+        
     }
     console.log({data})
     return (

@@ -87,6 +87,8 @@ A {
 .connectme__login-content__manual button.submit:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__login-model {
   display: flex;
@@ -252,6 +254,8 @@ A {
 .connectme__header-signup .box:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__header-signup .box p {
   font-size: 1.2rem;
@@ -325,6 +329,8 @@ A {
 .connectme__user-edit__button .edit__button:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-edit__button .edit__button > * {
   margin-right: 0.4rem;
@@ -520,64 +526,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #8ba16f;
+  background: #644838;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #a66c73;
+  background: #5b45f2;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #a36bd0;
+  background: #54d0d4;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #73fd25;
+  background: #136d21;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #43dd63;
+  background: #cbc28f;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #051a09;
+  background: #e097ab;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #950964;
+  background: #8555c6;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #d5497c;
+  background: #56e9cf;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #c760a5;
+  background: #017caf;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #7bbc4a;
+  background: #5b9579;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #06f3b8;
+  background: #556f61;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #997fc0;
+  background: #a5cf4f;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #d499da;
+  background: #afe9f2;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #f0e276;
+  background: #3cfc57;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #f1c365;
+  background: #4f6553;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #ff952b;
+  background: #eaf093;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #836fae;
+  background: #ff4fa0;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #a781ec;
+  background: #f1514e;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #4f3a1f;
+  background: #fcd23d;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #114b9e;
+  background: #2b9187;
 }
 .connectme__user-social__title {
   display: flex;
@@ -840,6 +846,8 @@ A {
 .connectme__user-services__title .add:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-services__title .background {
   margin-left: 0.4rem;
@@ -926,6 +934,8 @@ A {
 .connectme__user-personal__content .button:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-modal {
   position: fixed;
@@ -1202,6 +1212,8 @@ A {
 .connectme__user-footer .content__button:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-footer .content__button h2 {
   cursor: pointer;
@@ -1234,6 +1246,8 @@ A {
 .connectme__user-feedback .feedback:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-feedback .feedback svg {
   font-size: 2rem;
@@ -1275,6 +1289,8 @@ A {
 .connectme__user-document__content .button:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-document__content .background {
   color: white;

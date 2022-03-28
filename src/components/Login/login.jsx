@@ -153,7 +153,7 @@ const Login = () => {
               )
             }
           </div>
-          <motion.button type="submit" whileHover={{ x: 5, y: -5, border: "1px solid black" }} className="submit">
+          <motion.button type="submit"   className="submit">
             <h2>Submit</h2>
           </motion.button>
         </motion.form>
