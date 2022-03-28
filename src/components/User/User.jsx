@@ -44,7 +44,7 @@ const User = ({ edit }) => {
   const [showModal, setShowModal] = useState(false)
   const [imgProp, setImgProp] = useState({ w: 200, h: 250 })
   const dispatch = useDispatch()
-  const { profile, error ,isLoading} = state.profileReducer
+  const { profile, error, isLoading } = state.profileReducer
   const router = useRouter()
   const profileData = profile !== null ? profile?.data : []
   // edititable content
@@ -184,17 +184,17 @@ const User = ({ edit }) => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
-    const cookie=localStorage.getItem("unique")
+    const cookie = localStorage.getItem("unique")
     if (edit) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     if (!edit) {
       if (data !== null && cookie) {
         console.log("runn", data)
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true,cookie))
-      } else if(cookie) {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
+      } else if (cookie) {
         console.log("runn nit")
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false,cookie))
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false, cookie))
       }
     }
 
@@ -226,7 +226,7 @@ const User = ({ edit }) => {
       }
     }
 
-    if(!data && edit){
+    if (!data && edit) {
       router.push("/login")
     }
 
@@ -261,7 +261,7 @@ const User = ({ edit }) => {
     },
   ]
 
-  console.log({views: profileData?.views?.length})
+  console.log({ views: profileData?.views?.length })
 
   const childForDetail = {
     hidden: {
@@ -299,9 +299,15 @@ const User = ({ edit }) => {
     return (
       <p>
         {!readMore ? shorten(text, 250) : text}
-        <span onClick={toggleReadMore}>
+        
+        {
+          text.length > 250 && (
+
+            <span onClick={toggleReadMore}>
           {readMore ? "less" : "more"}
         </span>
+          )
+        }
       </p>
     )
   }
@@ -325,7 +331,7 @@ const User = ({ edit }) => {
     router.push("/")
   }
 
-  console.log({profile})
+  console.log({ profile })
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))?.token
     const profile = JSON.parse(localStorage.getItem("profile"))?.data
@@ -425,8 +431,8 @@ const User = ({ edit }) => {
             </div>
             {profileData?.tagline && (
               <div className="info__tagline">
-                <h4> <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
-
+                <h4>
+                  <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
                 </h4>
               </div>
             )}

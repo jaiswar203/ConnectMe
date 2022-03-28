@@ -433,7 +433,7 @@ A {
 .connectme__user-detail .background {
   width: 1rem;
   position: relative;
-  left: 5rem;
+  left: 7rem;
   color: black;
   top: 1.4rem;
 }
@@ -526,64 +526,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #644838;
+  background: #2fa4ea;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #5b45f2;
+  background: #2879f8;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #54d0d4;
+  background: #d43d87;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #136d21;
+  background: #c44a85;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #cbc28f;
+  background: #249c70;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #e097ab;
+  background: #f3bdc7;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #8555c6;
+  background: #c2a34b;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #56e9cf;
+  background: #6f437d;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #017caf;
+  background: #11f52c;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #5b9579;
+  background: #7ba49a;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #556f61;
+  background: #fb2414;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #a5cf4f;
+  background: #2c0f4e;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #afe9f2;
+  background: #21655c;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #3cfc57;
+  background: #0462d8;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #4f6553;
+  background: #d91b5b;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #eaf093;
+  background: #aed74b;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #ff4fa0;
+  background: #d44e4d;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #f1514e;
+  background: #e3e9b0;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #fcd23d;
+  background: #b6a995;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #2b9187;
+  background: #25c40c;
 }
 .connectme__user-social__title {
   display: flex;
