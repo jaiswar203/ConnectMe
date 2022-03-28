@@ -38,7 +38,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
-    "swiper": "^8.0.6"
+    "swiper": "^8.0.6",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "8.8.0",
