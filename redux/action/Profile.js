@@ -18,11 +18,11 @@ export const getProfileById = (formData, id) => async (dispatch) => {
   }
 };
 
-export const getProfileByUserName = (id,formData,auth) => async (dispatch) => {
+export const getProfileByUserName = (id,formData,auth,unique) => async (dispatch) => {
   try {
     if (id !== undefined) {
-      console.log({id,formData,auth})
-      const { data } = await api.getProfileByUsername(id,formData,auth);
+      console.log({id,formData,auth,unique})
+      const { data } = await api.getProfileByUsername(id,formData,auth,unique);
       dispatch({ type: "FETCH_PROFILE_BY_USERNAME", data });
     }
   } catch (error) {
@@ -93,5 +93,26 @@ export const profileRequests=(formData,id)=>async(dispatch)=>{
     dispatch({type:"PROFILE_REQUEST",data})
   } catch (error) {
     console.log(error)
+  }
+}
+
+
+export const likeProfile=(id)=>async(dispatch)=>{
+  try {
+    const {data}=await api.likeProfile(id)
+    dispatch({type:"LIKE_PROFILE",data})
+    
+  } catch (error) {
+    console.log({error})
+  }
+}
+
+export const viewProfile=(id,unique)=>async(dispatch)=>{
+  try {
+    console.log({id,unique}) 
+    const {data}=await api.viewProfile(id,unique)
+    dispatch({type:"VIEW_PROFILE",data})
+  } catch (error) {
+    console.log({error})
   }
 }

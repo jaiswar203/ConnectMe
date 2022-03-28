@@ -23,6 +23,10 @@ const profileReducer=(state={profile:null,error:null,isLoading: false},action)=>
             return {...state,requests: action?.data}
         case "DELETE_SUBDOC_IN_PROFILE_BY_ID":
             return {...state,profile: action?.data}
+        case "LIKE_PROFILE":
+            return {...state,profile: action?.data}
+        case "VIEW_PROFILE":
+            return {...state,profile: action?.data}
         default:
             return state
     }

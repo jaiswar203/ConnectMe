@@ -184,16 +184,17 @@ const User = ({ edit }) => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
+    const cookie=localStorage.getItem("unique")
     if (edit) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     if (!edit) {
-      if (data !== null) {
+      if (data !== null && cookie) {
         console.log("runn", data)
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true))
-      } else {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true,cookie))
+      } else if(cookie) {
         console.log("runn nit")
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false))
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false,cookie))
       }
     }
 
@@ -243,20 +244,24 @@ const User = ({ edit }) => {
     {
       id: 0,
       name: "Profession",
-      item: profileData?.additional?.profession
+      item: profileData?.additional?.profession,
+      editable: true
     },
     {
       id: 1,
       name: "Speciality",
-      item: profileData?.additional?.speciality
+      item: profileData?.additional?.speciality,
+      editable: false
     },
     {
       id: 2,
-      name: "BirthDate",
-      item: profileData?.additional?.birthdate
+      name: "Views",
+      item: `${profileData?.views?.length} view`,
+      editable: false
     },
   ]
 
+  console.log({views: profileData?.views?.length})
 
   const childForDetail = {
     hidden: {
@@ -319,6 +324,8 @@ const User = ({ edit }) => {
     dispatch({ type: "LOGOUT" })
     router.push("/")
   }
+
+  console.log({profile})
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))?.token
     const profile = JSON.parse(localStorage.getItem("profile"))?.data
@@ -328,8 +335,6 @@ const User = ({ edit }) => {
       if (decodedData.exp * 1000 < new Date().getTime()) return logout()
 
     }
-
-
   }, [dispatch])
 
 
@@ -445,7 +450,7 @@ const User = ({ edit }) => {
           <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
             {userDetail.map((d) => (
               <motion.div className="connectme__user-detail__item" key={d.name} variants={childForDetail} >
-                {edit && (
+                {edit && d.editable && (
                   <motion.div className="background" onClick={() => edit && openEditHandler(d.item, `${d.name}`, `additional.${d.name.toLowerCase()}`, true)} whileTap={{ scale: 1.1 }}>
                     <FaEdit />
                   </motion.div>
