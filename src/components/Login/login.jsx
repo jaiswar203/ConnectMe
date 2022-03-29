@@ -73,7 +73,7 @@ const Login = () => {
   useEffect(() => {
 
   }, [askUserName])
-  console.log({state  })
+  
   useEffect(() => {
     dispatch(getAllUser())
     if (authData && !SignUp) {
@@ -96,7 +96,7 @@ const Login = () => {
     }
   }, [dispatch,authData,SignUp,router])
 
-  console.log({modalData})
+  
   return (
     <div className='connectme__login'>
       <div className="connectme__login-intro">

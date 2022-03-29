@@ -338,13 +338,17 @@ const User = ({ edit }) => {
     const user = JSON.parse(localStorage.getItem("UserAuth"))
     // const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
-    const data = user?.token
+    /* Disabling Logout , if want to unable simply just uncomment below lines */
 
-    if (data) {
-      const decodedData = jwtDecode(data)
-      if (decodedData.exp * 1000 < new Date().getTime()) return logout()
+    // const data = user?.token
 
-    }
+    // if (data) {
+    //   const decodedData = jwtDecode(data)
+    //   if (decodedData.exp * 1000 < new Date().getTime()) return logout()
+      
+    //   const date=new Date().getTime()
+    //   console.log({decodedData,date})
+    // }
 
     const userData = user?.existingUser
 

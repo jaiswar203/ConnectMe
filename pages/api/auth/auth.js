@@ -55,14 +55,23 @@ export default async function handler(req, res) {
         Subject:"Verify Account",
         TextBody:"Email Verification",
         HtmlBody:`Click <a href='${url}'>here</a> to confirm your email`
+      }).then(()=>{
+        res
+          .status(201)
+          .json({
+            message: "SignUp SuccessFull",
+            existingUser: { email, name, username, _id: insertedId,createUserData },
+          });
+        }).catch((err)=>{
+          
+          res
+            .status(501)
+            .json({
+              message: "SignUp Failed",
+              err
+            });
       })
 
-      res
-        .status(201)
-        .json({
-          message: "SignUp SuccessFull",
-          existingUser: { email, name, username, _id: insertedId,createUserData },
-        });
     } catch (error) {
       console.log({error})
       res.status(501).json({ message: "Try Again",error });
