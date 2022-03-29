@@ -1,9 +1,9 @@
 import { MongoClient } from "mongodb";
 
 export default async function handler(req, res) {
+  const client = await MongoClient.connect(process.env.MONGODB_URI);
   if (req.method === "POST") {
     const { email } = req.body;
-    const client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db();
     const user = db.collection("userdatas");
 
@@ -19,6 +19,6 @@ export default async function handler(req, res) {
         .json({ message: "SignUp SuccessFull", existingUser });
     }
 
-    client.close();
   }
+  client.close();
 }
