@@ -126,6 +126,26 @@
     margin-top: -5rem;
     padding: 0rem 10rem;
   }
+
+  &-like{
+    margin-top: 2rem;
+    @include center__element;
+    .like__button{
+      padding: 1rem;
+      cursor: pointer;
+      @include center__element;
+      @include box_color;
+      border-radius: 5px;
+      
+      
+      svg{
+        font-size: 2rem;
+        margin-right: 1rem;
+        
+      }
+    }
+  }
+
   &-detail {
     @include center__element;
     justify-content: space-between;

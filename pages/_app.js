@@ -6,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
-import decode from 'jwt-decode'
+
 import { SessionProvider } from "next-auth/react";
 
 import { Provider, useDispatch } from "react-redux";

@@ -40,4 +40,3 @@ export const askForPrivateProfile=(data,id)=>API.post(`/profile/ask-for-profile/
 export const getProfileByUsername=(id,data,auth,unique)=>API.post(`/profile/search/${id}?authValue=${auth}&unique=${unique}`,data)
 
 export const likeProfile=(id)=>API.patch(`/profile/like/${id}`)
-export const viewProfile=(id,unique)=>API.get(`/profile/views/${id}?unique=${unique}`)

@@ -25,8 +25,6 @@ const profileReducer=(state={profile:null,error:null,isLoading: false},action)=>
             return {...state,profile: action?.data}
         case "LIKE_PROFILE":
             return {...state,profile: action?.data}
-        case "VIEW_PROFILE":
-            return {...state,profile: action?.data}
         default:
             return state
     }

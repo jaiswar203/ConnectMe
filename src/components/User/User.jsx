@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from 'next/link'
 
-import { getProfileById, getProfileByUserName, profileRequests, updateProfile } from "../../../redux/action/Profile"
+import { getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
 import Layout from '../Layout'
 
 import Port from "./subcomponents/Port"
@@ -19,6 +19,7 @@ import { AiFillSetting } from 'react-icons/ai'
 import { VscFeedback } from 'react-icons/vsc'
 import { BsInfoCircle } from 'react-icons/bs'
 import { IoIosDocument } from 'react-icons/io'
+import { FcLike, FcLikePlaceholder } from 'react-icons/fc'
 
 
 
@@ -50,6 +51,7 @@ const User = ({ edit }) => {
   // edititable content
   const [openEdit, setOpenEdit] = useState(false)
   const [editData, setEditData] = useState({ title: "", name: "", data: null })
+  const [isUserLikeProfile, setIsUserLikeProfile] = useState(false)
 
   const [isPrivate, setIsPrivate] = useState(null)
 
@@ -249,8 +251,8 @@ const User = ({ edit }) => {
     },
     {
       id: 1,
-      name: "Speciality",
-      item: profileData?.additional?.speciality,
+      name: "Likes",
+      item: `${profileData?.likes?.length} Likes`,
       editable: false
     },
     {
@@ -299,13 +301,13 @@ const User = ({ edit }) => {
     return (
       <p>
         {!readMore ? shorten(text, 250) : text}
-        
+
         {
           text.length > 250 && (
 
             <span onClick={toggleReadMore}>
-          {readMore ? "less" : "more"}
-        </span>
+              {readMore ? "less" : "more"}
+            </span>
           )
         }
       </p>
@@ -333,16 +335,34 @@ const User = ({ edit }) => {
 
   console.log({ profile })
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("UserAuth"))?.token
-    const profile = JSON.parse(localStorage.getItem("profile"))?.data
+    const user = JSON.parse(localStorage.getItem("UserAuth"))
+    // const profile = JSON.parse(localStorage.getItem("profile"))?.data
+
+    const data = user?.token
 
     if (data) {
       const decodedData = jwtDecode(data)
       if (decodedData.exp * 1000 < new Date().getTime()) return logout()
 
     }
-  }, [dispatch])
 
+    const userData = user?.existingUser
+
+    if (profile && user) {
+      const is_user_liked_this_profile = profileData.likes.find((d) => d === userData?._id)
+
+      if (is_user_liked_this_profile) {
+        console.log("runn")
+        setIsUserLikeProfile(true)
+      } else if (is_user_liked_this_profile === undefined) {
+        console.log("rn")
+        setIsUserLikeProfile(false)
+      }
+      console.log({ is_user_liked_this_profile })
+    }
+  }, [dispatch, isUserLikeProfile, profile])
+
+  console.log({ isUserLikeProfile })
 
   const socialHandle = [
     {
@@ -394,6 +414,11 @@ const User = ({ edit }) => {
     setPrivacyModal(true)
   }
 
+  const likeHandler = () => {
+    // const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+    dispatch(likeProfile(profileData?._id))
+  }
+
   return (
     <Layout title={router.query.id} description={profileData.about} navbar={false} >
       <div className="connectme__user">
@@ -439,6 +464,7 @@ const User = ({ edit }) => {
           </div>
         </motion.div>
 
+
         {
           JSON.parse(localStorage.getItem("UserAuth"))?.existingUser && (
             <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => { showEditOptionOnViewSide ? router.push(`/edit/${userName}`) : router.push(`/${userName}`) }}>
@@ -451,7 +477,6 @@ const User = ({ edit }) => {
             </motion.div>
           )
         }
-
         <div className="lower__sec">
           <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
             {userDetail.map((d) => (
@@ -466,6 +491,24 @@ const User = ({ edit }) => {
               </motion.div>
             ))}
           </motion.div>
+
+          {
+            !edit && JSON.parse(localStorage.getItem("UserAuth")) && (
+              <div className="connectme__user-like">
+                <div className="like__button" onClick={likeHandler}>
+                  {
+                    isUserLikeProfile ? (
+                      <FcLike />
+                    ) : (
+                      <FcLikePlaceholder />
+                    )
+                  }
+                  <h3>{ isUserLikeProfile ? "Dislike" : "Like"} This Profile</h3>
+                </div>
+              </div>
+            )
+          }
+
           <BorderComp />
           <div className="connectme__user-about">
             {!edit && (

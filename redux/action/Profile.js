@@ -107,12 +107,3 @@ export const likeProfile=(id)=>async(dispatch)=>{
   }
 }
 
-export const viewProfile=(id,unique)=>async(dispatch)=>{
-  try {
-    console.log({id,unique}) 
-    const {data}=await api.viewProfile(id,unique)
-    dispatch({type:"VIEW_PROFILE",data})
-  } catch (error) {
-    console.log({error})
-  }
-}
