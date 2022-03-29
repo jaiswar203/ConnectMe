@@ -12,7 +12,7 @@ const prod_server="https://connectmev2.herokuapp.com"
 export default async function handler(req, res) {
   
   if (req.method === "POST") {
-    console.log({postmark})
+    
     const { email, name, username } = req.body;
     const client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db();
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         expiresIn: "1d",
       });
 
-      const url = `${dev_server}/user/verify/${verificaitonToekn}`;
+      const url = `${prod_server}/user/verify/${verificaitonToekn}`;
 
       const message={
         from:" info@connectme.co.in",

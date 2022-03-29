@@ -44,12 +44,11 @@ const Testimonial = ({ edit, data ,openEditHandler}) => {
                                     <FaEdit />
                                 </div>
                             )}
-
                                 <motion.div>
-                                    <Image src={d.img} width={560} height={350} objectFit="cover" layout="responsive" />
+                                    <Image src={`https://img.youtube.com/vi/${d.uri}/hqdefault.jpg`} width={560} height={350} objectFit="cover" layout="responsive" />
                                     <div className="play-button" onClick={() => {
                                         setShowVid(true)
-                                        setvidUrl(d.vid)
+                                        setvidUrl(d.uri)
                                         setNumber(i)
                                     }} >
                                         <FaPlayCircle />
@@ -62,7 +61,7 @@ const Testimonial = ({ edit, data ,openEditHandler}) => {
                 </Swiper>
             </div>
             {showVid && (
-                <Modal isImg={false} img={"https://res.cloudinary.com/dykwfe4cr/video/upload/v1628828386/samples/sea-turtle.mp4"} setModal={setShowVid} />
+                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} />
             )}
         </div>
     )

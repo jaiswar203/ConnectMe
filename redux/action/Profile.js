@@ -97,9 +97,9 @@ export const profileRequests=(formData,id)=>async(dispatch)=>{
 }
 
 
-export const likeProfile=(id)=>async(dispatch)=>{
+export const likeProfile=(id,userId)=>async(dispatch)=>{
   try {
-    const {data}=await api.likeProfile(id)
+    const {data}=await api.likeProfile(id,userId)
     dispatch({type:"LIKE_PROFILE",data})
     
   } catch (error) {

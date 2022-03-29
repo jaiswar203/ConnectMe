@@ -358,9 +358,9 @@ const User = ({ edit }) => {
         console.log("rn")
         setIsUserLikeProfile(false)
       }
-      console.log({ is_user_liked_this_profile })
+      console.log({ is_user_liked_this_profile,likes: profileData?.likes })
     }
-  }, [dispatch, isUserLikeProfile, profile])
+  }, [dispatch, isUserLikeProfile, profile,profileData])
 
   console.log({ isUserLikeProfile })
 
@@ -415,8 +415,10 @@ const User = ({ edit }) => {
   }
 
   const likeHandler = () => {
-    // const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-    dispatch(likeProfile(profileData?._id))
+    const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+    console.log({id: data?._id})
+    dispatch(likeProfile(profileData?._id,data?._id))
+    
   }
 
   return (

@@ -50,18 +50,13 @@ const demoProfile={
     },
     "testimonial":[
         {
-            "vid":"https://res.cloudinary.com/dykwfe4cr/video/upload/v1628828386/samples/sea-turtle.mp4",
-            "img":"https://res.cloudinary.com/redwine/image/upload/v1643723869/Home/photo-1570612861542-284f4c12e75f_olvy7k.jpg"
+            "uri":"lT_ud0NY_MU"
         },
         {
-        
-            "vid":"https://res.cloudinary.com/dykwfe4cr/video/upload/v1628828386/samples/sea-turtle.mp4",
-            "img":"https://res.cloudinary.com/redwine/image/upload/v1643723869/Home/photo-1570612861542-284f4c12e75f_olvy7k.jpg"
+            "uri":"lT_ud0NY_MU"
         },
         {
-        
-            "vid":"https://res.cloudinary.com/dykwfe4cr/video/upload/v1628828386/samples/sea-turtle.mp4",
-            "img":"https://res.cloudinary.com/redwine/image/upload/v1643723869/Home/photo-1570612861542-284f4c12e75f_olvy7k.jpg"
+            "uri":"lT_ud0NY_MU"
         }
     ],
     "portfolio":[

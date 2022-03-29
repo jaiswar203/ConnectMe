@@ -427,7 +427,7 @@ A {
   align-items: center;
 }
 .connectme__user-like .like__button {
-  padding: 1rem;
+  padding: 0.7rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -552,64 +552,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #043150;
+  background: #2ffab6;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #65214a;
+  background: #ecbdbd;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #db4612;
+  background: #2da38e;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #b5e841;
+  background: #4d5606;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #e37198;
+  background: #3c26d5;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #aed740;
+  background: #7e5135;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #02f940;
+  background: #866a3c;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #9b38e8;
+  background: #d14dc2;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #ce78ed;
+  background: #092507;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #dceaa0;
+  background: #603142;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #e9435b;
+  background: #2bcafd;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #a10778;
+  background: #83df74;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #3e8313;
+  background: #7a4aea;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #3bf504;
+  background: #87ce54;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #308cef;
+  background: #2a4b81;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #18ee19;
+  background: #90915d;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #98a43c;
+  background: #fdd90e;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #99a5d8;
+  background: #68e3a0;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #717838;
+  background: #9c838f;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #ebf5d1;
+  background: #696b18;
 }
 .connectme__user-social__title {
   display: flex;
@@ -1366,6 +1366,23 @@ A {
 }
 .connectme__modal-button svg {
   font-size: 2rem;
+}
+@media screen and (max-width: 600px) {
+  .connectme__modal iframe {
+    width: 100% !important;
+  }
+}
+@media screen and (min-width: 600px) {
+  .connectme__modal iframe {
+    width: 800px !important;
+    height: 500px !important;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .connectme__modal iframe {
+    width: 1000px !important;
+    height: 700px !important;
+  }
 }
 
 .connectme__edit {

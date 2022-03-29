@@ -39,4 +39,4 @@ export const deleteSubDocInProfileById=(data,id,query)=>API.post(`/profile/delet
 export const askForPrivateProfile=(data,id)=>API.post(`/profile/ask-for-profile/${id}`,data)
 export const getProfileByUsername=(id,data,auth,unique)=>API.post(`/profile/search/${id}?authValue=${auth}&unique=${unique}`,data)
 
-export const likeProfile=(id)=>API.patch(`/profile/like/${id}`)
+export const likeProfile=(id,userId)=>API.patch(`/profile/like/${id}?userId=${userId}`)

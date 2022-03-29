@@ -131,7 +131,7 @@
     margin-top: 2rem;
     @include center__element;
     .like__button{
-      padding: 1rem;
+      padding: .7rem;
       cursor: pointer;
       @include center__element;
       @include box_color;
@@ -613,6 +613,7 @@
       margin-left: 0.3rem;
     }
     &__content {
+      
       .background {
         position: relative;
         right: -0.3rem;
@@ -642,11 +643,14 @@
         }
       }
 
+      
+
       @media screen and (max-width: 700px) {
         top: 20%;
         width: 80%;
         grid-template-columns: repeat(1, 1fr);
       }
+      
     }
 
     &__off {
@@ -1033,6 +1037,23 @@
 
     svg {
       font-size: 2rem;
+    }
+  }
+  @media screen and (max-width:600px) {
+    iframe{
+      width: 100% !important;
+    }
+  }
+  @media screen and (min-width:600px) {
+    iframe{
+      width: 800px !important; 
+      height: 500px !important;
+    }
+  }
+  @media screen and (min-width:1500px) {
+    iframe{
+      width: 1000px !important; 
+      height: 700px !important;
     }
   }
 }
