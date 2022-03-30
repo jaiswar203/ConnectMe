@@ -275,6 +275,20 @@ A {
   }
 }
 
+.connectme__home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+}
+.connectme__home-profile {
+  padding: 1rem;
+  background: #3080C0;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 .connectme__user {
   margin-bottom: 5rem;
 }
@@ -451,6 +465,7 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
   border-radius: 10px;
   background: #e0e0e0;
   box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
@@ -510,7 +525,22 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+.connectme__user-interests__title .add {
+  cursor: pointer;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+.connectme__user-interests__title .add:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-interests__title h1 {
   font-family: "Lora", serif !important;
@@ -552,64 +582,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #3aa0af;
+  background: #c6d3b5;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #0590f6;
+  background: #b5a25b;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #f9166c;
+  background: #bf480a;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #e7fb6e;
+  background: #afad72;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #dd5d63;
+  background: #a4fa16;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #989048;
+  background: #dcab81;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #065519;
+  background: #c15420;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #efdc35;
+  background: #019b8c;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #0a366c;
+  background: #8cecbe;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #e225ce;
+  background: #3dc2d1;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #7ef08d;
+  background: #f0a639;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #25b8de;
+  background: #ae1696;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #222e86;
+  background: #6df1f8;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #66405b;
+  background: #768573;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #f998a5;
+  background: #874535;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #1282f3;
+  background: #5fbccd;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #5945b0;
+  background: #1b2d2c;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #8f3a4d;
+  background: #8b480e;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #31983b;
+  background: #75a4d3;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #9aad11;
+  background: #6cb565;
 }
 .connectme__user-social__title {
   display: flex;
@@ -1515,8 +1545,8 @@ A {
 }
 .outer__shell .connectme__message-modal {
   position: absolute;
-  background: black;
-  color: white;
+  background: #3080C0;
+  color: black;
   top: 50%;
   width: 28rem;
   padding: 3rem;
@@ -1536,8 +1566,7 @@ A {
   flex-direction: column;
 }
 .outer__shell .connectme__message-modal__title h1 {
-  font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: white;
 }
 .outer__shell .connectme__message-modal__title span {
   width: 50%;
@@ -1559,13 +1588,21 @@ A {
 .outer__shell .connectme__message-modal__content .message h3 {
   text-align: center;
 }
-.outer__shell .connectme__message-modal__content .confirm {
+.outer__shell .connectme__message-modal__content .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.outer__shell .connectme__message-modal__content .confirm, .outer__shell .connectme__message-modal__content .home {
   cursor: pointer;
   margin-top: 2rem;
   background-color: white;
   color: black;
   border-radius: 5px;
   padding: 0.6rem 1rem;
+}
+.outer__shell .connectme__message-modal__content .home {
+  margin-left: 2rem;
 }
 .outer__shell .connectme__message-modal__content .success {
   margin-top: 2rem;

@@ -149,6 +149,7 @@
   &-detail {
     @include center__element;
     justify-content: space-between;
+    overflow: hidden;
     border-radius: 10px;
     background: #e0e0e0;
     box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
@@ -203,7 +204,16 @@
   &-interests {
     &__title {
       @include center__element;
-      justify-content: flex-end;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      .add {
+        cursor: pointer;
+        @include box_color;
+        border: 1px solid $primary-color;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+      }
+
 
       h1 {
         @include click_font;
@@ -255,6 +265,7 @@
           }
         }
       }
+      
     }
   }
 
@@ -1181,8 +1192,8 @@
 
   .connectme__message-modal {
     position: absolute;
-    background: black;
-    color: white;
+    background: $primary-color;
+    color: black;
     top: 50%;
     width: 28rem;
     padding: 3rem;
@@ -1199,7 +1210,7 @@
     &__title {
       @include center__element;
       h1 {
-        @include click_font;
+        color: white;
       }
       flex-direction: column;
       span {
@@ -1219,6 +1230,9 @@
         }
       }
 
+      .button{
+        @include center__element;
+      }
       .confirm {
         cursor: pointer;
         margin-top: 2rem;
@@ -1226,6 +1240,11 @@
         color: black;
         border-radius: 5px;
         padding: 0.6rem 1rem;
+      }
+
+      .home{
+        @extend .confirm;
+        margin-left: 2rem;
       }
       .success {
         margin-top: 2rem;

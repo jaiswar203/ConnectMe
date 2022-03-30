@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from 'next/link'
 
-import { getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
+import { deleteSubDocInProfileById, getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
 import Layout from '../Layout'
 
 import Port from "./subcomponents/Port"
@@ -36,6 +36,7 @@ import Phone from "./logo/phone"
 import WhatsApp from "./logo/whatsapp"
 import SMS from "./logo/Sms"
 import ToggleSwitch from "./subcomponents/Toggle"
+import { MdDelete } from "react-icons/md"
 
 
 const User = ({ edit }) => {
@@ -181,7 +182,7 @@ const User = ({ edit }) => {
       forupdate: profileData?.personal?.mail
     },
   ]
-  console.log({ isLoading })
+  console.log({ error })
 
 
   useEffect(() => {
@@ -192,10 +193,10 @@ const User = ({ edit }) => {
     }
     if (!edit) {
       if (data !== null && cookie) {
-        console.log("runn", data)
+
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
       } else if (cookie) {
-        console.log("runn nit")
+
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false, cookie))
       }
     }
@@ -333,7 +334,7 @@ const User = ({ edit }) => {
     router.push("/")
   }
 
-  console.log({ profile })
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("UserAuth"))
     // const profile = JSON.parse(localStorage.getItem("profile"))?.data
@@ -345,7 +346,7 @@ const User = ({ edit }) => {
     // if (data) {
     //   const decodedData = jwtDecode(data)
     //   if (decodedData.exp * 1000 < new Date().getTime()) return logout()
-      
+
     //   const date=new Date().getTime()
     //   console.log({decodedData,date})
     // }
@@ -362,11 +363,11 @@ const User = ({ edit }) => {
         console.log("rn")
         setIsUserLikeProfile(false)
       }
-      console.log({ is_user_liked_this_profile,likes: profileData?.likes })
+      console.log({ is_user_liked_this_profile, likes: profileData?.likes })
     }
-  }, [dispatch, isUserLikeProfile, profile,profileData])
+  }, [dispatch, isUserLikeProfile, profile, profileData, error])
 
-  console.log({ isUserLikeProfile })
+
 
   const socialHandle = [
     {
@@ -401,8 +402,17 @@ const User = ({ edit }) => {
     },
   ]
 
+
+  if (error?.type === "EXIST_ERROR") {
+    return (
+      <PopupModal success={false} title={"Data Not Found"} message={"No User with this Id"} />
+    )
+  }
+
   if (profile === null) {
-    return <h1>..waiting</h1>
+    return (
+      <PopupModal success={false} title={"Fetching"} message={"Wait While Fetching Data"} />
+    )
   }
 
   const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false) => {
@@ -413,16 +423,21 @@ const User = ({ edit }) => {
 
   const privacyHandler = (decision) => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-    console.log({ decision })
+
     dispatch(updateProfile({ userId: data?._id, data: decision }, data?.profile))
     setPrivacyModal(true)
   }
 
   const likeHandler = () => {
-    const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-    console.log({id: data?._id})
-    dispatch(likeProfile(profileData?._id,data?._id))
-    
+    const data = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+
+    dispatch(likeProfile(profileData?._id, data?._id))
+
+  }
+
+  const deleteSubDoc = (id, item) => {
+    const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+    dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, item))
   }
 
   return (
@@ -509,7 +524,7 @@ const User = ({ edit }) => {
                       <FcLikePlaceholder />
                     )
                   }
-                  <h3>{ isUserLikeProfile ? "Dislike" : "Like"} This Profile</h3>
+                  <h3>{isUserLikeProfile ? "Dislike" : "Like"} This Profile</h3>
                 </div>
               </div>
             )
@@ -535,10 +550,22 @@ const User = ({ edit }) => {
           <div className="connectme__user-interests">
             <div className="connectme__user-interests__title">
               <h1>Interests</h1>
+              {edit && (
+                <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Interests", `interests`, { testimonial: true })} >
+                  <h2>Add Interest</h2>
+                </motion.div>
+              )}
             </div>
             <motion.div className="connectme__user-interests__info" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }} >
               {profileData?.interests.map((d) => (
-                <motion.div className="bodies" key={d._id} variants={childVariantForInterests} viewport={{ once: true }} >
+                <div className="bodies" key={d._id}  >
+                  {
+                    edit && (
+                      <div className="background" onClick={() => deleteSubDoc(d._id, "interests")}>
+                        <MdDelete />
+                      </div>
+                    )
+                  }
                   <p>{d.data}</p>
                   {
                     edit && (
@@ -547,8 +574,9 @@ const User = ({ edit }) => {
                       </div>
                     )
                   }
-                </motion.div>
+                </div>
               ))}
+
             </motion.div>
           </div>
           <BorderComp />

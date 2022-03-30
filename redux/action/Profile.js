@@ -26,7 +26,7 @@ export const getProfileByUserName = (id,formData,auth,unique) => async (dispatch
       dispatch({ type: "FETCH_PROFILE_BY_USERNAME", data });
     }
   } catch (error) {
-    dispatch({ type: "PROFILE_ERROR", data: error?.response?.data });
+    dispatch({ type: "PROFILE_ERROR", data: {message:error?.response?.data,type:"EXIST_ERROR"} });
   }
 };
 

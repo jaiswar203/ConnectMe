@@ -30,7 +30,6 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
             slidesPerView: 4
         },
     }
-    const newData = data.videoData
 
     useEffect(() => {
 
