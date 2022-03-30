@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { data } from '../../../db/data'
-import { SwiperSlide, Swiper } from 'swiper/react'
-import SwiperCore, { Autoplay } from 'swiper'
 
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
+import { MdDelete } from 'react-icons/md'
+import { SwiperSlide, Swiper } from 'swiper/react'
+import { Autoplay } from 'swiper'
+
+import {  motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaPlayCircle, FaEdit } from 'react-icons/fa'
 import Modal from '../../modal/Modal'
+import { useDispatch } from 'react-redux'
+import { deleteSubDocInProfileById } from '../../../../redux/action/Profile'
 
-const Testimonial = ({ edit, data ,openEditHandler}) => {
+const Testimonial = ({ edit, data, openEditHandler }) => {
     const [showVid, setShowVid] = useState(false)
     const [number, setNumber] = useState(0)
     const [vidUrl, setvidUrl] = useState("")
+
+    const dispatch=useDispatch()
+
+
     const breakpoints = {
         "600": {
             slidesPerView: 2
@@ -29,26 +36,44 @@ const Testimonial = ({ edit, data ,openEditHandler}) => {
 
     }, [showVid, number])
 
+
+
+    const deleteSubDoc = (id) => {
+        const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+
+        console.log({ user, id })
+        dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, "testimonial"))
+    }
     return (
         <div className="connectme__user-testimonial">
             <div className="connectme__user-testimonial__title">
                 <h1>Testimonial</h1>
+                {edit && (
+                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Testimonial", `testimonial`, { testimonial: true })} >
+                        <h2>Add Video</h2>
+                    </motion.div>
+                )}
             </div>
             <div className="connectme__user-testimonial__content">
                 <Swiper loop={true} slidesPerView={1} spaceBetween={50} breakpoints={breakpoints} autoplay speed={600} modules={[Autoplay]} >
                     {data?.map((d, i) => (
                         <>
                             <SwiperSlide className='connectme__user-testimonial__content-carousel' key={d.name}>
-                            {edit && (
-                                <div className="background" onClick={()=> edit && openEditHandler(d.img,"Testimonial",`testimonial`,{isSubDoc:true,_id:d._id,testimonial: true})}>
-                                    <FaEdit />
-                                </div>
-                            )}
+                                {edit && (
+                                    <>
+                                        <div className="background" onClick={() => openEditHandler(d.data, "Testimonial", `testimonial`, { isSubDoc: true, _id: d._id })}>
+                                            <FaEdit />
+                                        </div>
+                                        <div className="delete" onClick={() => deleteSubDoc(d._id)}>
+                                            <MdDelete />
+                                        </div>
+                                    </>
+                                )}
                                 <motion.div>
-                                    <Image src={`https://img.youtube.com/vi/${d.uri}/hqdefault.jpg`} width={560} height={350} objectFit="cover" layout="responsive" />
+                                    <Image src={`https://img.youtube.com/vi/${d.data}/hqdefault.jpg`} width={560} height={350} objectFit="cover" layout="responsive" />
                                     <div className="play-button" onClick={() => {
                                         setShowVid(true)
-                                        setvidUrl(d.uri)
+                                        setvidUrl(d.data)
                                         setNumber(i)
                                     }} >
                                         <FaPlayCircle />

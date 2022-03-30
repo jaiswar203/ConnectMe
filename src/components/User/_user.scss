@@ -309,15 +309,17 @@
         @include click_font;
       }
       @include center__element;
-      justify-content: flex-start;
-      .background {
-        margin-left: 0.4rem;
-        width: 2rem;
-        margin-top: -1rem;
-        font-size: 1.4rem;
+      justify-content: space-between;
+
+      .add {
+        cursor: pointer;
+        @include box_color;
+        border: 1px solid $primary-color;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
       }
     }
-
+    
     &__content {
       margin-top: 2rem;
       padding: 1rem;
@@ -328,9 +330,23 @@
       .background {
         position: absolute;
         z-index: 1;
-        right: 0;
+        left: 0;
         font-size: 2rem;
+        color: gray;
       }
+
+      .delete {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        font-size: 2rem;
+
+        svg {
+          fill: gray;
+        }
+      }
+
       &-carousel {
         img {
           border-radius: 20px;

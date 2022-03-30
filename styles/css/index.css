@@ -552,64 +552,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #2ffab6;
+  background: #3aa0af;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #ecbdbd;
+  background: #0590f6;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #2da38e;
+  background: #f9166c;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #4d5606;
+  background: #e7fb6e;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #3c26d5;
+  background: #dd5d63;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #7e5135;
+  background: #989048;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #866a3c;
+  background: #065519;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #d14dc2;
+  background: #efdc35;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #092507;
+  background: #0a366c;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #603142;
+  background: #e225ce;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #2bcafd;
+  background: #7ef08d;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #83df74;
+  background: #25b8de;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #7a4aea;
+  background: #222e86;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #87ce54;
+  background: #66405b;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #2a4b81;
+  background: #f998a5;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #90915d;
+  background: #1282f3;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #fdd90e;
+  background: #5945b0;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #68e3a0;
+  background: #8f3a4d;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #9c838f;
+  background: #31983b;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #696b18;
+  background: #9aad11;
 }
 .connectme__user-social__title {
   display: flex;
@@ -663,17 +663,25 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .connectme__user-testimonial__title h1 {
   font-family: "Lora", serif !important;
   color: #3080C0;
 }
-.connectme__user-testimonial__title .background {
-  margin-left: 0.4rem;
-  width: 2rem;
-  margin-top: -1rem;
-  font-size: 1.4rem;
+.connectme__user-testimonial__title .add {
+  cursor: pointer;
+  background: #3080C0 !important;
+  color: #fff !important;
+  border: 1px solid #3080C0;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+.connectme__user-testimonial__title .add:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-testimonial__content {
   margin-top: 2rem;
@@ -685,8 +693,19 @@ A {
 .connectme__user-testimonial__content .background {
   position: absolute;
   z-index: 1;
-  right: 0;
+  left: 0;
   font-size: 2rem;
+  color: gray;
+}
+.connectme__user-testimonial__content .delete {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  font-size: 2rem;
+}
+.connectme__user-testimonial__content .delete svg {
+  fill: gray;
 }
 .connectme__user-testimonial__content-carousel img {
   border-radius: 20px;

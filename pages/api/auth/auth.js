@@ -18,8 +18,10 @@ export default async function handler(req, res) {
     const db = client.db();
     const user = db.collection("userdatas");
 
+    const newUsername=username.toLowerCase()
+
     const existingUser = await user.findOne({ email });
-    const existingUserName = await user.findOne({ username });
+    const existingUserName = await user.findOne({ username: newUsername });
 
     if (existingUser || existingUserName) {
       return res.status(404).json({
@@ -30,7 +32,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      const User = await user.insertOne({ email, name, username,isVerified:false });
+      const User = await user.insertOne({ email, name, username: newUsername,isVerified:false });
       const {insertedId}=User
       const createUserData=await user.findOne({email})
       const verificaitonToekn = jwt.sign({ ID: insertedId }, "verify", {
@@ -39,13 +41,7 @@ export default async function handler(req, res) {
 
       const url = `${prod_server}/user/verify/${verificaitonToekn}`;
 
-      const message={
-        from:" info@connectme.co.in",
-        to:email,
-        subject:"Verify Account",     
-        text:"Email Verification",
-        html: `Click <a href='${url}'>here</a> to confirm your email`
-      }
+      
 
       // email sending through third party api
       
@@ -60,7 +56,7 @@ export default async function handler(req, res) {
           .status(201)
           .json({
             message: "SignUp SuccessFull",
-            existingUser: { email, name, username, _id: insertedId,createUserData },
+            existingUser: { email, name, username: newUsername, _id: insertedId,createUserData },
           });
         }).catch((err)=>{
           

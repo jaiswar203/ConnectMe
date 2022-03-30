@@ -50,13 +50,13 @@ const demoProfile={
     },
     "testimonial":[
         {
-            "uri":"lT_ud0NY_MU"
+            "data":"lT_ud0NY_MU"
         },
         {
-            "uri":"lT_ud0NY_MU"
+            "data":"lT_ud0NY_MU"
         },
         {
-            "uri":"lT_ud0NY_MU"
+            "data":"lT_ud0NY_MU"
         }
     ],
     "portfolio":[

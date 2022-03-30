@@ -16,6 +16,8 @@ const Edit = ({ modal, data, isLoading, state }) => {
     const [runFunction, setRunFunction] = useState(false)
     const { profile } = state.profileReducer
 
+    const [vidUrl, setVidUrl] = useState("")
+
     useEffect(() => {
 
     }, [dispatch, formData, cloudImage])
@@ -27,17 +29,22 @@ const Edit = ({ modal, data, isLoading, state }) => {
 
         if (data?.isSubDoc?.isSubDoc) {
             dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data }, profile?._id, data?.name))
+        } else if (data?.isSubDoc?.testimonial) {
+            dispatch(addImageInProfile({ data: formData?.data, userId: user?._id }, profile?._id, data?.name))
         } else {
             dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
         }
         setRunFunction(true)
 
     }
+    console.log({data})
     const handleChange = (e) => {
         e.preventDefault()
 
         if (data?.isSubDoc?.isSubDoc) {
             console.log("exec")
+            setFormData({ ...formData, data: e.target.value })
+        } else if (data?.isSubDoc?.testimonial) {
             setFormData({ ...formData, data: e.target.value })
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -66,8 +73,6 @@ const Edit = ({ modal, data, isLoading, state }) => {
                 console.log("running")
                 dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
             }
-
-
         })
         setRunFunction(true)
     }
@@ -77,7 +82,7 @@ const Edit = ({ modal, data, isLoading, state }) => {
             setIsSuccess(true)
         }
 
-    }, [state, isSuccess, runFunction])
+    }, [state, isSuccess, runFunction, vidUrl])
 
 
     const onClickHandler = () => {
@@ -86,7 +91,14 @@ const Edit = ({ modal, data, isLoading, state }) => {
         modal(false)
     }
 
-    console.log({ runFunction, isSuccess })
+    // const addVideo=()=>{
+    //     const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+    //     const profile = JSON.parse(localStorage.getItem("profile"))?.data
+
+    //     if(data?.addImage){
+    //         dispatch(addImageInProfile({ data: vidUrl , userId: user?._id }, profile?._id, data?.query))
+    //     }
+    // }
     return (
         <div className="connectme__edit">
             <motion.div className="connectme__edit-modal" whileInView={{ y: 0, opacity: 1 }} initial={{ y: 200, opacity: 0 }}>
