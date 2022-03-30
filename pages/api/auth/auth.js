@@ -45,12 +45,15 @@ export default async function handler(req, res) {
 
       // email sending through third party api
       
-      emailSend.sendEmail({
+      emailSend.sendEmailWithTemplate({
         From:"info@connectme.co.in",
         To:email,
-        Subject:"Verify Account",
-        TextBody:"Email Verification",
-        HtmlBody:`Click <a href='${url}'>here</a> to confirm your email`
+        TemplateModel:{
+          "name": name,
+          "invite_sender_name":"ConnectMe",
+          "action_url": url
+        },
+        TemplateId:27491778
       }).then(()=>{
         res
           .status(201)
@@ -60,7 +63,7 @@ export default async function handler(req, res) {
           });
         }).catch((err)=>{
           
-          res
+          res  
             .status(501)
             .json({
               message: "SignUp Failed",
