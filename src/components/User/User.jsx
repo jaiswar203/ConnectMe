@@ -213,7 +213,7 @@ const User = ({ edit }) => {
     }
 
     if (profileData !== null && !profileData?.isUserAdmin) {
-      router.push("/?not-authorized")
+      // router.push("/?not-authorized")
       return (
         <h1>
           You Are not the account admin
