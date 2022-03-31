@@ -35,9 +35,7 @@ export default async function handler(req, res) {
       const User = await user.insertOne({ email, name, username: newUsername,isVerified:false });
       const {insertedId}=User
       const createUserData=await user.findOne({email})
-      const verificaitonToekn = jwt.sign({ ID: insertedId }, "verify", {
-        expiresIn: "1d",
-      });
+      const verificaitonToekn = jwt.sign({ ID: insertedId }, "verify",{});
 
       const url = `${prod_server}/user/verify/${verificaitonToekn}`;
 
