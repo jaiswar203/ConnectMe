@@ -14,7 +14,9 @@ const Edit = ({ modal, data, isLoading, state }) => {
 
     const [isSuccess, setIsSuccess] = useState(false)
     const [runFunction, setRunFunction] = useState(false)
-    const { profile } = state.profileReducer
+    const profile=state
+
+    
 
     const [vidUrl, setVidUrl] = useState("")
 
@@ -82,7 +84,7 @@ const Edit = ({ modal, data, isLoading, state }) => {
             setIsSuccess(true)
         }
 
-    }, [state, isSuccess, runFunction, vidUrl])
+    }, [state, isSuccess, runFunction, vidUrl,profile])
 
 
     const onClickHandler = () => {

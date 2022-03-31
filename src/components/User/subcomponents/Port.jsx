@@ -12,10 +12,13 @@ import Link from 'next/link'
 import Edit from './Edit'
 import { useDispatch } from 'react-redux'
 import { deleteSubDocInProfileById } from '../../../../redux/action/Profile'
+import { useSelector } from 'react-redux'
 
 const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     const [showModal, setShowModal] = useState(false)
     const [index, setIndex] = useState(0)
+
+    const {profile,isLoading}=useSelector((state)=>state.profileReducer)
 
     const [editData, setEditData] = useState({})
     const [openEdit, setOpenEdit] = useState(false)
@@ -24,6 +27,8 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     const newData = data
     var refinedData = newData[index]
+
+    console.log({profile})
 
     const breakpoint = {
         400: {
@@ -53,7 +58,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     }, [showModal, index,editData, openEdit])
     useEffect(() => {
 
-    }, [refinedData])
+    }, [refinedData,profile])
 
 
     
@@ -128,7 +133,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
             )}
             {
                 openEdit && (
-                    <Edit modal={setOpenEdit} data={editData} />
+                    <Edit modal={setOpenEdit} data={editData} state={profile} isLoading={isLoading} />
                 )
             }
         </div>

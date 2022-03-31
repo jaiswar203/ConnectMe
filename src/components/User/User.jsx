@@ -708,7 +708,7 @@ const User = ({ edit }) => {
         </div>
         {
           openEdit && (
-            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={state} />
+            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} />
           )
         }
         {/* {edit && (
