@@ -53,6 +53,7 @@ const User = ({ edit }) => {
   const [openEdit, setOpenEdit] = useState(false)
   const [editData, setEditData] = useState({ title: "", name: "", data: null })
   const [isUserLikeProfile, setIsUserLikeProfile] = useState(false)
+  const [isCrop, setIsCrop] = useState({crop: false, w:null,h: null})
 
   const [isPrivate, setIsPrivate] = useState(null)
 
@@ -85,8 +86,8 @@ const User = ({ edit }) => {
       setBannerHeight(700)
       setImgProp({ ...imgProp, w: 125, h: 175 })
     } else if (width < 500) {
-      setBannerHeight(1000)
-      setImgProp({ ...imgProp, w: 140, h: 180 })
+      setBannerHeight(700)
+      setImgProp({ ...imgProp, w: 120, h: 160 })
     } else {
       setBannerHeight(500)
       setImgProp({ ...imgProp, w: 200, h: 250 })
@@ -365,7 +366,7 @@ const User = ({ edit }) => {
       }
       console.log({ is_user_liked_this_profile, likes: profileData?.likes })
     }
-  }, [dispatch, isUserLikeProfile, profile, profileData, error])
+  }, [dispatch, isUserLikeProfile, profile, profileData, error,isCrop])
 
 
 
@@ -440,20 +441,29 @@ const User = ({ edit }) => {
     dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, item))
   }
 
+  const onClickHandler=(data)=>{
+    
+  }
   return (
     <Layout title={router.query.id} description={profileData.about} navbar={false} >
       <div className="connectme__user">
         <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
           <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
           {edit && (
-            <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })} whileTap={{ scale: 1.1 }}>
+            <motion.div className="background" onClick={() =>{
+              openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })
+              setIsCrop({crop: true,w: 540,h:164})
+            }} whileTap={{ scale: 1.1 }}>
               <FaEdit />
             </motion.div>
           )}
         </motion.div>
-        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -100, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
+        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -75, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
           {edit && (
-            <motion.div className="background" onClick={() => edit && openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })} whileTap={{ scale: 1.1 }}>
+            <motion.div className="background" onClick={() =>{
+              openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })
+              setIsCrop({crop: true,w: 200,h:250})
+            }} whileTap={{ scale: 1.1 }}>
               <FaEdit />
             </motion.div>
           )}
@@ -462,7 +472,7 @@ const User = ({ edit }) => {
             <div className="info__name">
               <h2>{profileData?.name}</h2>
               {edit && (
-                <motion.div className="background-name" onClick={() => edit && openEditHandler(profileData?.name, "Name", "name")} whileTap={{ scale: 1.1 }}>
+                <motion.div className="background-name" onClick={() => openEditHandler(profileData?.name, "Name", "name")} whileTap={{ scale: 1.1 }}>
                   <FaEdit />
                 </motion.div>
               )}
@@ -470,7 +480,7 @@ const User = ({ edit }) => {
             <div className="info__city">
               <p>{profileData?.city}</p>
               {edit && (
-                <motion.div className="background-city" onClick={() => edit && openEditHandler(profileData?.city, "City", "city")} whileTap={{ scale: 1.1 }}>
+                <motion.div className="background-city" onClick={() =>  openEditHandler(profileData?.city, "City", "city")} whileTap={{ scale: 1.1 }}>
                   <FaEdit />
                 </motion.div>
               )}
@@ -708,7 +718,7 @@ const User = ({ edit }) => {
         </div>
         {
           openEdit && (
-            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} />
+            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} crop={isCrop} setCrop={setIsCrop} />
           )
         }
         {/* {edit && (

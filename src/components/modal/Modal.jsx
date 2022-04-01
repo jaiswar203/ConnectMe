@@ -3,7 +3,7 @@ import { FaTimesCircle, FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import {useEffect} from 'react'
 
-const Modal = ({ isImg = true, isIframe = false,index, img, setModal,setIndex }) => {
+const Modal = ({ isImg = true,showNaviagtion=true ,isIframe = false,index, img, setModal,setIndex }) => {
     useEffect(()=>{
 
     },[img])
@@ -18,7 +18,7 @@ const Modal = ({ isImg = true, isIframe = false,index, img, setModal,setIndex })
                         <Image src={img} width={1900} layout="responsive" height={1000} objectFit="contain" />
                     ) : isIframe ? <iframe width="560" height="315" src={`https://www.youtube.com/embed/${img}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : <video src={img} autoPlay muted controls></video>}
                 </motion.div>
-                {isImg && (
+                {isImg && showNaviagtion && (
                     <div className="connectme__modal-button">
                         <motion.div className="item"  whileHover={{scale:1.1}}  onClick={()=>setIndex(index-1)} whileTap={{scale:1.1}}>
                             <FaArrowLeft />
