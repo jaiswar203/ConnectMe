@@ -8,10 +8,12 @@ import axios from "axios"
 import ClipLoader from "react-spinners/ClipLoader";
 import Crop from "../../modal/crop"
 
-const Edit = ({ modal, data, isLoading, state, crop = false ,setCrop}) => {
+const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, setCrop }) => {
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({})
     const [cloudImage, setCloudImage] = useState("")
+
+    console.log({multiple})
 
     const [isSuccess, setIsSuccess] = useState(false)
     const [runFunction, setRunFunction] = useState(false)
@@ -44,7 +46,7 @@ const Edit = ({ modal, data, isLoading, state, crop = false ,setCrop}) => {
         setRunFunction(true)
 
     }
-    console.log({ data ,crop})
+    console.log({ data, crop })
     const handleChange = (e) => {
         e.preventDefault()
 
@@ -64,10 +66,11 @@ const Edit = ({ modal, data, isLoading, state, crop = false ,setCrop}) => {
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
         const file = new FormData()
-        file.append('file', crop ? croppedUrl : cloudImage)
+
+
+        file.append('file', crop?.crop ? croppedUrl : cloudImage[0])
         file.append('upload_preset', 'profile')
         axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
-
             if (data?.isSubDoc?.isSubDoc) {
                 dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: res.data.secure_url }, profile?._id, data?.name))
             } else if (data?.addImage) {
@@ -77,6 +80,7 @@ const Edit = ({ modal, data, isLoading, state, crop = false ,setCrop}) => {
             }
         })
         setRunFunction(true)
+
     }
 
     useEffect(() => {
@@ -84,42 +88,53 @@ const Edit = ({ modal, data, isLoading, state, crop = false ,setCrop}) => {
             setIsSuccess(true)
         }
 
-    }, [state, isSuccess, runFunction, vidUrl, enableCrop,croppedUrl])
+    }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl])
 
 
-    console.log({crop})
+    console.log({ crop })
     const onCloseHandler = () => {
         setIsSuccess(false)
         setRunFunction(false)
 
-        if(crop?.crop){
-            setCrop({crop: false,w: null,h:null})
+        if (crop?.crop) {
+            setCrop({ crop: false, w: null, h: null })
         }
         modal(false)
 
     }
 
-    // const addVideo=()=>{
-    //     const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-    //     const profile = JSON.parse(localStorage.getItem("profile"))?.data
+    const addMultipleImage = () => {
+        const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+        const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
-    //     if(data?.addImage){
-    //         dispatch(addImageInProfile({ data: vidUrl , userId: user?._id }, profile?._id, data?.query))
-    //     }
-    // }
+        const file = new FormData()
+
+        for (let i = 0; i < cloudImage.length; i++) {
+            file.append('file', cloudImage[i])
+            file.append('upload_preset', 'profile')
+            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
+                if (data?.addImage) {
+                    dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
+                }
+            })
+            setRunFunction(true)
+        }
+    }
+
+    console.log({ cloudImage })
     const onChangeHandler = (event) => {
         if (crop?.crop) {
             if (event.target.files.length > 0) {
                 var src = URL.createObjectURL(event.target.files[0]);
                 setCropUrl(src)
-                setEnableCrop(true)   
+                setEnableCrop(true)
             }
-        }else{
-            setCloudImage(event.target.files[0])
+        } else {
+            setCloudImage(event.target.files)
         }
     }
 
-    console.log({croppedUrl})
+    console.log({ croppedUrl })
     return (
         <div className="connectme__edit">
             <motion.div className="connectme__edit-modal" whileInView={{ y: 0, opacity: 1 }} initial={{ y: 200, opacity: 0 }}>
@@ -132,12 +147,12 @@ const Edit = ({ modal, data, isLoading, state, crop = false ,setCrop}) => {
                 {
                     data?.fileUploader?.active ? (
                         <div className="uploader">
-                            <input type="file" accept={`${data?.fileUploader?.data}`} name={data?.name} onChange={(e) => onChangeHandler(e)} />
+                            <input type="file" accept={`${data?.fileUploader?.data}`} multiple={multiple} name={data?.name} onChange={(e) => onChangeHandler(e)} />
                             {isSuccess && (
                                 <p style={{ color: "green" }} >{data?.title} Updated</p>
                             )}
 
-                            <motion.div className="uploader_button" onClick={uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
+                            <motion.div className="uploader_button" onClick={ multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
                                 {isLoading ? (
                                     <ClipLoader size={35} color="#000" />
                                 ) : (

@@ -194,7 +194,6 @@ const User = ({ edit }) => {
     }
     if (!edit) {
       if (data !== null && cookie) {
-
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
       } else if (cookie) {
 
@@ -441,9 +440,7 @@ const User = ({ edit }) => {
     dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, item))
   }
 
-  const onClickHandler=(data)=>{
-    
-  }
+  
   return (
     <Layout title={router.query.id} description={profileData.about} navbar={false} >
       <div className="connectme__user">

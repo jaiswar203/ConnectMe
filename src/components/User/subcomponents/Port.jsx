@@ -20,6 +20,8 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     const {profile,isLoading}=useSelector((state)=>state.profileReducer)
 
+    const [multipleUpload, setMultipleUpload] = useState(false)
+
     const [editData, setEditData] = useState({})
     const [openEdit, setOpenEdit] = useState(false)
 
@@ -57,8 +59,14 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     }, [showModal, index,editData, openEdit])
     useEffect(() => {
+        if (index < 0) {
+            setIndex(newData.length - 1)
+        } else if (index > newData.length - 1) {
+            setIndex(0)
+            console.log("limit Reached")
+        }
 
-    }, [refinedData,profile])
+    }, [refinedData,profile,index,multipleUpload])
 
 
     
@@ -68,12 +76,6 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     }
 
     
-    if (index < 0) {
-        setIndex(newData.length - 1)
-    } else if (index > newData.length - 1) {
-        setIndex(0)
-        console.log("limit Reached")
-    }
 
     if (data === null) {
         return null
@@ -85,13 +87,19 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
         console.log({ user, id })
         dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, title.toLowerCase()))
     }
+
+    
     
     return (
         <div className="connectme__user-services">
             <div className="connectme__user-services__title">
                 <h1>{title && title}</h1>
                 {edit && (
-                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => addImageHandler(true)} >
+                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() =>{
+                        setMultipleUpload(true)
+                        addImageHandler(true)
+                    }
+                     } >
                         <h2>Add {title}</h2>
                     </motion.div>
                 )}
@@ -107,7 +115,10 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                             }>
                                 {edit && (
                                     <>
-                                        <div className="background" onClick={() => openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, { active: true, data: "image/*" })}>
+                                        <div className="background" onClick={() =>{
+                                            setMultipleUpload(false)
+                                             openEditHandler(d.data, title, `${title?.toLowerCase()}`, { isSubDoc: true, _id: d._id }, { active: true, data: "image/*" })
+                                        }}>
                                             <FaEdit />
                                         </div>
                                         <div className="delete" onClick={() => deleteSubDoc(d._id)}>
@@ -133,7 +144,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
             )}
             {
                 openEdit && (
-                    <Edit modal={setOpenEdit} data={editData} state={profile} isLoading={isLoading} />
+                    <Edit modal={setOpenEdit} data={editData} state={profile} isLoading={isLoading} multiple={multipleUpload} />
                 )
             }
         </div>
