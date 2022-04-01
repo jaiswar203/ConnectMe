@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+
 import { MdDelete } from 'react-icons/md'
 import { SwiperSlide, Swiper } from 'swiper/react'
 import { Autoplay } from 'swiper'
@@ -85,7 +86,7 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
                 </Swiper>
             </div>
             {showVid && (
-                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} />
+                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} progress={progress} />
             )}
         </div>
     )

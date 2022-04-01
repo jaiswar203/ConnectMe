@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { addImageInProfile, updateProfile, updateSubDocInProfileById } from "../../../../redux/action/Profile"
 import axios from "axios"
 
+
 import ClipLoader from "react-spinners/ClipLoader";
 import Crop from "../../modal/crop"
 
@@ -13,7 +14,7 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
     const [formData, setFormData] = useState({})
     const [cloudImage, setCloudImage] = useState("")
 
-    console.log({multiple})
+    console.log({ multiple })
 
     const [isSuccess, setIsSuccess] = useState(false)
     const [runFunction, setRunFunction] = useState(false)
@@ -26,6 +27,8 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
 
     // cropImage
     const [croppedUrl, setcroppedUrl] = useState("")
+
+    const [progress, setProgress] = useState()
 
     useEffect(() => {
 
@@ -88,7 +91,7 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
             setIsSuccess(true)
         }
 
-    }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl])
+    }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl, progress])
 
 
     console.log({ crop })
@@ -112,7 +115,12 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
         for (let i = 0; i < cloudImage.length; i++) {
             file.append('file', cloudImage[i])
             file.append('upload_preset', 'profile')
-            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
+            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file, {
+                onUploadProgress: data => {
+                    //Set the progress value to show the progress ba
+                    setProgress(Math.round((100 * data.loaded) / data.total))
+                }
+            }).then((res) => {
                 if (data?.addImage) {
                     dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
                 }
@@ -134,7 +142,7 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
         }
     }
 
-    console.log({ croppedUrl })
+    console.log({ progress })
     return (
         <div className="connectme__edit">
             <motion.div className="connectme__edit-modal" whileInView={{ y: 0, opacity: 1 }} initial={{ y: 200, opacity: 0 }}>
@@ -143,6 +151,7 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
                 </motion.div>
                 <div className="title">
                     <h1>{data?.title}</h1>
+                    
                 </div>
                 {
                     data?.fileUploader?.active ? (
@@ -152,7 +161,7 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
                                 <p style={{ color: "green" }} >{data?.title} Updated</p>
                             )}
 
-                            <motion.div className="uploader_button" onClick={ multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
+                            <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
                                 {isLoading ? (
                                     <ClipLoader size={35} color="#000" />
                                 ) : (
