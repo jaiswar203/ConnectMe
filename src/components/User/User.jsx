@@ -119,26 +119,6 @@ const User = ({ edit }) => {
       opacity: 0
     }
   }
-  const childVariantForInterests = {
-    visible: {
-      y: 0,
-      x: 0,
-      opacity: 1,
-      transition: {
-        ease: [.5, .01, -0.05, .95],
-        duration: 2
-      }
-    },
-    hidden: {
-      y: -100,
-      x: 50,
-      opacity: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300
-      }
-    }
-  }
   const childVariantForSocial = {
     visible: {
       x: 0,
@@ -194,53 +174,7 @@ const User = ({ edit }) => {
   console.log({ error })
 
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("UserAuth"))
-    const cookie = localStorage.getItem("unique")
-    if (edit) {
-      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
-    }
-    if (!edit) {
-      if (data !== null && cookie) {
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
-      } else if (cookie) {
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false, cookie))
-      }
-    }
-
-
-    if (data) {
-      setUserName(data?.existingUser?.username)
-    }
-
-    const profileData = JSON.parse(localStorage.getItem("profile"))
-
-    if (profileData) {
-      setPdfData(profileData?.data?.document?.active)
-    }
-
-    if (profileData !== null && !profileData?.isUserAdmin) {
-      // router.push("/?not-authorized")
-      return (
-        <h1>
-          You Are not the account admin
-        </h1>
-      )
-    }
-
-
-    if (data) {
-      if (edit && router.query.id !== data?.existingUser?.username) {
-        router.push(`/edit/${data?.existingUser?.username}`)
-        return null
-      }
-    }
-
-    if (!data && edit) {
-      router.push("/login")
-    }
-
-  }, [showModal, dispatch, router.query, popUpData])
+  
 
   const BorderComp = () => {
     return (
@@ -321,6 +255,54 @@ const User = ({ edit }) => {
       </p>
     )
   }
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))
+    const cookie = localStorage.getItem("unique")
+    if (edit) {
+      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
+    }
+    if (!edit) {
+      if (data !== null && cookie) {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
+      } else if (cookie) {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false, cookie))
+      }
+    }
+
+
+    if (data) {
+      setUserName(data?.existingUser?.username)
+    }
+
+    const profileData = JSON.parse(localStorage.getItem("profile"))
+
+    if (profileData) {
+      setPdfData(profileData?.data?.document?.active)
+    }
+
+    if (profileData !== null && !profileData?.isUserAdmin) {
+      // router.push("/?not-authorized")
+      return (
+        <h1>
+          You Are not the account admin
+        </h1>
+      )
+    }
+
+
+    if (data) {
+      if (edit && router.query.id !== data?.existingUser?.username) {
+        router.push(`/edit/${data?.existingUser?.username}`)
+        return null
+      }
+    }
+
+    if (!data && edit) {
+      router.push("/login")
+    }
+
+  }, [showModal, dispatch, router.query, popUpData])
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
