@@ -30,7 +30,7 @@ const Request = ({ data, setModal }) => {
                 <div className="connectme__user-request__container-content" style={{ overflowY: data.length > 6 && "scroll" }}>
                     {
                         data.map((d, i) => (
-                            <div className="connectme__user-request__container-content__item">
+                            <div className="connectme__user-request__container-content__item" key={d.username}>
                                 <div className="left">
                                     <div className="left__left">
                                         <h3>{i + 1}.</h3>
