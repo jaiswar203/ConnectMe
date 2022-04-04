@@ -1,6 +1,6 @@
 
 import { SwiperSlide, Swiper } from 'swiper/react'
-import { BsArrowRight } from 'react-icons/bs'
+import { BsThreeDots } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import SwiperCore, { Autoplay } from 'swiper'
@@ -135,7 +135,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
             <div className="connectme__user-services__more" >
                 <Link href={`/${link}`} passHref>
                     <motion.div className="" initial={{ x: -300, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} whileHover={{ scale: 1.1, x: 10 }}>
-                        <BsArrowRight />
+                        <BsThreeDots />
                     </motion.div>
                 </Link>
             </div>
