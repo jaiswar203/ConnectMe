@@ -14,6 +14,27 @@ A {
   color: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3080C0;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
 .connectme__login {
   margin: 5rem;
 }
@@ -582,64 +603,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #5ab9c5;
+  background: #7b911e;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #8f87e0;
+  background: #24dcf3;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #2e85ff;
+  background: #bcb79e;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #f3835b;
+  background: #a3cbd1;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #2e5b25;
+  background: #b27c55;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #55fb37;
+  background: #142f5f;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #49ac83;
+  background: #ed633d;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #66c90c;
+  background: #7b5e46;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #dc989a;
+  background: #e92f8d;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #762b5f;
+  background: #0b2805;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #1f62c0;
+  background: #b88501;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #0e5244;
+  background: #42cb75;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #d950db;
+  background: #4434ce;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #fdfe6a;
+  background: #46a91f;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #d62dcd;
+  background: #5f9143;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #7488ac;
+  background: #cd83c0;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #024831;
+  background: #327e2e;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #1cd6fa;
+  background: #40e3df;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #d68d9b;
+  background: #346e66;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #f2530d;
+  background: #50f91d;
 }
 .connectme__user-social__title {
   display: flex;
@@ -1193,6 +1214,15 @@ A {
   background: black;
   color: white;
   border-radius: 5px;
+  background: #3080C0 !important;
+  color: #fff !important;
+}
+.connectme__user-setting .private:hover,
+.connectme__user-setting .request:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user {
   text-align: center;
@@ -1374,6 +1404,111 @@ A {
   z-index: 1;
   font-size: 1.5rem;
   left: -1.5rem;
+}
+.connectme__user-request {
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  z-index: 34;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  align-items: center;
+}
+.connectme__user-request__container {
+  width: 27rem;
+  position: absolute;
+  background: gray;
+  padding: 3rem;
+  border-radius: 0.7rem;
+  flex-direction: column;
+}
+.connectme__user-request__container-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.connectme__user-request__container-title h1 {
+  border-bottom: 2px solid black;
+}
+.connectme__user-request__container-content {
+  height: 20rem;
+  overflow-x: hidden;
+  margin-top: 2rem;
+}
+.connectme__user-request__container-content__item {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.connectme__user-request__container-content__item .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.connectme__user-request__container-content__item .left__left {
+  margin-right: 1rem;
+}
+.connectme__user-request__container-content__item .left__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.connectme__user-request__container-content__item .left__right span {
+  font-size: 0.8rem;
+}
+.connectme__user-request__container-content__item .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.connectme__user-request__container-content__item .right__check, .connectme__user-request__container-content__item .right__wrong {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #41cb41;
+  border-radius: 50%;
+  color: white;
+}
+.connectme__user-request__container-content__item .right__check svg, .connectme__user-request__container-content__item .right__wrong svg {
+  font-size: 1.3rem;
+}
+.connectme__user-request__container-content__item .right__wrong {
+  color: black;
+  margin-left: 1rem;
+  background: #df0606;
+}
+@media screen and (max-width: 450px) {
+  .connectme__user-request__container-content {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+}
+.connectme__user-request__close .close {
+  position: absolute;
+  border-radius: 50%;
+  padding: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  top: 1rem;
+  right: 1rem;
+  color: #3080C0;
+  font-size: 1.4rem;
 }
 
 .modal {
@@ -1644,16 +1779,20 @@ A {
   flex-direction: row-reverse;
   padding: 2rem;
 }
-.connectme__cropper-action .cancel, .connectme__cropper-action .crop, .connectme__cropper-action .upload {
+.connectme__cropper-action .cancel,
+.connectme__cropper-action .crop,
+.connectme__cropper-action .upload {
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
-.connectme__cropper-action .crop, .connectme__cropper-action .upload {
+.connectme__cropper-action .crop,
+.connectme__cropper-action .upload {
   background: #3080C0 !important;
   color: #fff !important;
 }
-.connectme__cropper-action .crop:hover, .connectme__cropper-action .upload:hover {
+.connectme__cropper-action .crop:hover,
+.connectme__cropper-action .upload:hover {
   color: #3080C0 !important;
   background-color: #fff !important;
   border: 1px solid black;

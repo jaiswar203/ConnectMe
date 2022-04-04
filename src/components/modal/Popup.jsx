@@ -31,7 +31,7 @@ const PopupModal = ({ message, title, success = true, error = false, confirm = f
                                 <motion.div className="yes" whileTap={{ scale: 1.1 }} onClick={handler}>
                                     <h3>Yes</h3>
                                 </motion.div>
-                                <motion.div className="no" whileTap={{ scale: 1.1 }}>
+                                <motion.div className="no" whileTap={{ scale: 1.1 }} onClick={()=>setModal(false)}>
                                     <h3>No</h3>
                                 </motion.div>
                             </div>

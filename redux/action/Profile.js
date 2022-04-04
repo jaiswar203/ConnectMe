@@ -107,3 +107,11 @@ export const likeProfile=(id,userId)=>async(dispatch)=>{
   }
 }
 
+export const confirmRequest=(formData,id)=>async(dispatch)=> {
+  try {
+    const {data}=await api.askForPrivateProfile(formData,id)
+    dispatch({type:"CONFIRM_REQUEST",data: data})
+  } catch (error) {
+    
+  }
+}

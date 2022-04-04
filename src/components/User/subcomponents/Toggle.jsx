@@ -11,15 +11,16 @@ import { updateProfile } from '../../../../redux/action/Profile';
 const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
-    width: 42,
-    height: 26,
+    width: 60,
+    height: 34,
+
     padding: 0,
     '& .MuiSwitch-switchBase': {
         padding: 0,
         margin: 2,
         transitionDuration: '300ms',
         '&.Mui-checked': {
-            transform: 'translateX(16px)',
+            transform: 'translateX(27px)',
             color: '#fff',
             '& + .MuiSwitch-track': {
                 backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
@@ -46,8 +47,8 @@ const IOSSwitch = styled((props) => (
     },
     '& .MuiSwitch-thumb': {
         boxSizing: 'border-box',
-        width: 22,
-        height: 22,
+        width: 28,
+        height: 28,
     },
     '& .MuiSwitch-track': {
         borderRadius: 26 / 2,
@@ -59,7 +60,7 @@ const IOSSwitch = styled((props) => (
     },
 }));
 
-const  ToggleSwitch=({data,setHandler,apiId,profileId}) =>{
+const  ToggleSwitch=({data,setHandler,apiId,profileId,profile}) =>{
     const dispatch=useDispatch()
     
     useEffect(()=>{
@@ -68,13 +69,14 @@ const  ToggleSwitch=({data,setHandler,apiId,profileId}) =>{
 
     const onClickHandler=()=>{
         const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-        dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:!data}},profileId))
+        const data=profile.document.active ? false : true
+        dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:data}},profileId))
         setHandler(!data)
     }
     return (
         <FormGroup>
             <FormControlLabel
-                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={data} />}
+                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={profile?.document.active} />}
                 label=""
                 onClick={onClickHandler}
             />

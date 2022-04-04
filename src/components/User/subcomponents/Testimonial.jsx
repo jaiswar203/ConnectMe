@@ -86,7 +86,7 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
                 </Swiper>
             </div>
             {showVid && (
-                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} progress={progress} />
+                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} />
             )}
         </div>
     )

@@ -2,63 +2,6 @@ import { FaTimes, FaEdit } from 'react-icons/fa'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const Modal = ({ setModal, edit, data ,openEditHandler}) => {
-    const isUserAllowed = false
-    const itemData = [
-        {
-            title: "Name",
-            content: "Richa Kalra"
-        },
-        {
-            title: "Age",
-            content: 23
-        },
-        {
-            title: "Qualification",
-            content: "M.A Pychologist"
-        },
-        {
-            title: "Height",
-            content: 5.5
-        },
-        {
-            title: "Weight",
-            content: "53 kgs"
-        },
-        {
-            title: "Vitals",
-            content: "34-38-36"
-        },
-        {
-            title: "Shoe Size",
-            content: "6"
-        },
-        {
-            title: "Complextion",
-            content: "Fair"
-        },
-        {
-            title: "Eye Color",
-            content: "Brown"
-        },
-        {
-            title: "Hair Color",
-            content: "Black"
-        },
-        {
-            title: "Language",
-            content: "Hindi English ,Bengali"
-        },
-        {
-            title: "Location",
-            content: "Mumbai, Maharashtra"
-        },
-        {
-            title: "Contact Number",
-            content: "+918946764743"
-        },
-    ]
-
-
     return (
 
         <motion.div className="connectme__user-modal" exit={{ opacity: 0 }}>

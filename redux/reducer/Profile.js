@@ -20,10 +20,12 @@ const profileReducer=(state={profile:null,error:null,isLoading: false},action)=>
         case "ADD_IMAGE":
             return {...state,profile: action?.data}
         case "PROFILE_REQUEST":
-            return {...state,requests: action?.data}
+            return {...state,profile: action?.data}
         case "DELETE_SUBDOC_IN_PROFILE_BY_ID":
             return {...state,profile: action?.data}
         case "LIKE_PROFILE":
+            return {...state,profile: action?.data}
+        case "CONFIRM_REQUEST":
             return {...state,profile: action?.data}
         default:
             return state
