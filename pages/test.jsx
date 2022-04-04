@@ -3,7 +3,9 @@ import Request from '../src/components/User/subcomponents/Request'
 
 const Test = () => {
   return (
-    <Request />
+    <div className="connectme__test">
+      <h1>This page is for testing purpose</h1>
+    </div>
   )
 }
 
