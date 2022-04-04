@@ -9,7 +9,7 @@ import axios from "axios"
 import ClipLoader from "react-spinners/ClipLoader";
 import Crop from "../../modal/crop"
 
-const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, setCrop }) => {
+const Edit = ({ modal, data, isLoading, usetextarea=false,state, multiple = false, crop = false, setCrop,setTextArea }) => {
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({})
     const [cloudImage, setCloudImage] = useState("")
@@ -98,6 +98,7 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
     const onCloseHandler = () => {
         setIsSuccess(false)
         setRunFunction(false)
+        setTextArea(false)
 
         if (crop?.crop) {
             setCrop({ crop: false, w: null, h: null })
@@ -174,7 +175,13 @@ const Edit = ({ modal, data, isLoading, state, multiple = false, crop = false, s
 
                         <form onSubmit={handleSub}>
                             <div className="content">
-                                <input type="text" defaultValue={data?.data} name={data?.name} onChange={handleChange} />
+                                {usetextarea ? (
+                                    <textarea rows={3} defaultValue={data?.data} name={data?.name} onChange={handleChange} />
+
+                                ) : (
+                                    <input type="text" defaultValue={data?.data} name={data?.name} onChange={handleChange} />
+
+                                ) }
                                 {isSuccess && (
                                     <p style={{ color: "green" }} >{data?.title} Updated</p>
                                 )}

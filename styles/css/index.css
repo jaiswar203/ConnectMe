@@ -417,6 +417,9 @@ A {
   color: #3080C0;
   padding: 1rem;
 }
+.connectme__user-profile .info__tagline .background {
+  color: black;
+}
 .connectme__user-profile .info__tagline .quotes {
   font-size: 2rem;
 }
@@ -603,64 +606,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #7b911e;
+  background: #93903b;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #24dcf3;
+  background: #8a310b;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #bcb79e;
+  background: #6bcbcd;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #a3cbd1;
+  background: #0f54ca;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #b27c55;
+  background: #9a97f9;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #142f5f;
+  background: #eb5c86;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #ed633d;
+  background: #42d899;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #7b5e46;
+  background: #0242bb;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #e92f8d;
+  background: #74e0a0;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #0b2805;
+  background: #8bb00c;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #b88501;
+  background: #dc0bf8;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #42cb75;
+  background: #530d78;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #4434ce;
+  background: #78b0f9;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #46a91f;
+  background: #cdcbd7;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #5f9143;
+  background: #581b76;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #cd83c0;
+  background: #c54475;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #327e2e;
+  background: #59e825;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #40e3df;
+  background: #8d1daa;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #346e66;
+  background: #8d6777;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #50f91d;
+  background: #83a684;
 }
 .connectme__user-social__title {
   display: flex;
@@ -1081,7 +1084,7 @@ A {
   justify-content: center;
   align-items: center;
 }
-.connectme__user-modal__content .item .contemt {
+.connectme__user-modal__content .item .content {
   margin-left: 0.4rem;
   display: flex;
   justify-content: center;
@@ -1630,6 +1633,10 @@ A {
   justify-content: center;
   align-items: center;
 }
+.connectme__edit-modal .content textarea {
+  width: 100%;
+  font-size: 1.2rem;
+}
 .connectme__edit-modal .content-array {
   display: flex;
   justify-content: center;
@@ -1901,44 +1908,49 @@ A {
 .connectme__gallery-content {
   padding: 1rem;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
 }
 .connectme__gallery-content img {
   border: 0.5rem solid black !important;
 }
-@media screen and (min-width: 500px) {
+@media screen and (max-width: 360px) {
   .connectme__gallery-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 500px) {
   .connectme__gallery-content {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 750px) {
   .connectme__gallery-content {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1000px) {
   .connectme__gallery-content {
     grid-template-columns: repeat(5, 1fr);
   }
 }
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: 1400px) {
   .connectme__gallery-content {
     grid-template-columns: repeat(6, 1fr);
   }
 }
-@media screen and (min-width: 2200px) {
+@media screen and (min-width: 1800px) {
   .connectme__gallery-content {
     grid-template-columns: repeat(7, 1fr);
   }
 }
-@media screen and (min-width: 2600px) {
+@media screen and (min-width: 2200px) {
   .connectme__gallery-content {
     grid-template-columns: repeat(8, 1fr);
+  }
+}
+@media screen and (min-width: 2600px) {
+  .connectme__gallery-content {
+    grid-template-columns: repeat(9, 1fr);
   }
 }/*# sourceMappingURL=index.css.map */

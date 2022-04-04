@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
+import Gmail from "../User/logo/gmail";
+
 import ClipLoader from "react-spinners/ClipLoader";
 
 
@@ -181,7 +183,7 @@ const Login = () => {
         <div className="auth">
           {SignUp ? (
             <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ x: 5, y: -5,  border: "1px solid black" }} onClick={() => setAskUserNamePermission(!askUserNamePermission)} >
-              <AiFillGoogleCircle />
+              <Gmail w={33} h={33} />
               <p>{SignUp ? "SignUp" : "SignIn"} With Google</p>
             </motion.div>
 
@@ -190,7 +192,7 @@ const Login = () => {
               clientId="997233871583-5eppubk9g40htsamhqs4t15mcer7ejk0.apps.googleusercontent.com"
               render={(renderprops) => (
                 <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ x: 5, y: -5, background: "black", color: "#3080C0", border: "1px solid #3080C0" }} onClick={renderprops.onClick} >
-                  <AiFillGoogleCircle />
+                  <Gmail w={33} h={33} />
                   <p>{SignUp ? "SignUp" : "SignIn"} With Google</p>
                 </motion.div>
               )}

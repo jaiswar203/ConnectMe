@@ -17,15 +17,14 @@ import { FaEdit } from "react-icons/fa"
 import Gmail from "./logo/gmail"
 import { AiFillSetting } from 'react-icons/ai'
 import { VscFeedback } from 'react-icons/vsc'
-import { BsInfoCircle } from 'react-icons/bs'
+
 import { IoIosDocument } from 'react-icons/io'
-import { FcLike, FcLikePlaceholder } from 'react-icons/fc'
+import { FcLike, FcLikePlaceholder,FcLock } from 'react-icons/fc'
 
 
 
 // icons 
 import Edit from "./subcomponents/Edit"
-import jwtDecode from "jwt-decode"
 import PopupModal from "../modal/Popup"
 import Facebook from "./logo/facebook"
 import Twitter from "./logo/twitter"
@@ -77,6 +76,9 @@ const User = ({ edit }) => {
 
 
   const [userName, setUserName] = useState("")
+
+  const [textArea, setTextArea] = useState(false)
+
   useEffect(() => {
 
     window.addEventListener("resize", () => {
@@ -102,7 +104,7 @@ const User = ({ edit }) => {
 
   useEffect(() => {
 
-  }, [imgProp.w, imgProp.h, showPop,showRequesList])
+  }, [imgProp.w, imgProp.h, showPop, showRequesList,textArea])
 
 
 
@@ -490,11 +492,11 @@ const User = ({ edit }) => {
   }
 
 
-  const isUserAllowed=()=>{
-    if(profile.access){
-      return false 
-    }else{
-      return true 
+  const isUserAllowed = () => {
+    if (profile.access) {
+      return false
+    } else {
+      return true
     }
   }
 
@@ -534,7 +536,9 @@ const User = ({ edit }) => {
             <div className="info__city">
               <p>{profileData?.city}</p>
               {edit && (
-                <motion.div className="background-city" onClick={() => openEditHandler(profileData?.city, "City", "city")} whileTap={{ scale: 1.1 }}>
+                <motion.div className="background-city" onClick={() =>
+                 openEditHandler(profileData?.city, "City", "city")
+                 } whileTap={{ scale: 1.1 }}>
                   <FaEdit />
                 </motion.div>
               )}
@@ -544,6 +548,16 @@ const User = ({ edit }) => {
                 <h4>
                   <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
                 </h4>
+                {edit && (
+                  <motion.div className="background__tagline" onClick={() =>
+                    {
+                      setTextArea(true)
+                      openEditHandler(profileData?.tagline, "Tagline", "tagline")
+                    }
+                   } whileTap={{ scale: 1.1 }}>
+                    <FaEdit />
+                  </motion.div>
+                )}
               </div>
             )}
           </div>
@@ -602,7 +616,11 @@ const User = ({ edit }) => {
             {edit && (
               <motion.div className="background" whileTap={{ scale: 1.1 }}>
                 <h1>About Me</h1>
-                <FaEdit onClick={() => edit && openEditHandler(profileData?.about, "About", "about")} />
+                <FaEdit onClick={() =>{
+                  setTextArea(true)
+                  openEditHandler(profileData?.about, "About", "about")
+                }
+                  } />
               </motion.div>
             )}
             <ReadMore>
@@ -672,7 +690,7 @@ const User = ({ edit }) => {
             </div>
             <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               {
-                connects.map((d) => isUserAllowed() && profileData?._id !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile ? (
+                connects.map((d) => profileData?.isPrivate && isUserAllowed() && profileData?._id !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile ? (
                   <div className="privacy" onClick={() => {
                     setShowPop(true)
                     setPopUpData({ ...popUpData, success: false, confirm: true, setModal: setShowPop, message: "You are not allowed to access this Information ,Send Request to Owner", handler: requestHandler })
@@ -705,7 +723,7 @@ const User = ({ edit }) => {
             </div>
             <div className="connectme__user-personal__content">
               <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
-                <BsInfoCircle />
+                <FcLock />
                 <h3>Get Perosnal Info</h3>
               </motion.div>
             </div>
@@ -747,8 +765,9 @@ const User = ({ edit }) => {
               </div>
             </>
           )}
-          {!edit
-            && (
+
+          {!edit && userName !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.username
+            ? (
               <>
                 <BorderComp />
                 <div className="connectme__user-footer">
@@ -764,7 +783,7 @@ const User = ({ edit }) => {
                   </div>
                 </div>
               </>
-            )}
+            ) : null}
           {
             showModal && (
               <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo} openEditHandler={openEditHandler} />
@@ -773,7 +792,7 @@ const User = ({ edit }) => {
         </div>
         {
           openEdit && (
-            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} crop={isCrop} setCrop={setIsCrop} />
+            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} crop={isCrop} setCrop={setIsCrop} usetextarea={textArea} setTextArea={setTextArea} />
           )
         }
         {edit && (
@@ -786,7 +805,7 @@ const User = ({ edit }) => {
               }}>
                 <h3>Make Account {profileData?.isPrivate ? "Public" : "Private"}</h3>
               </div>
-              <motion.div className="request" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} onClick={()=>setShowRequesList(true)}>
+              <motion.div className="request" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} onClick={() => setShowRequesList(true)}>
                 <h3>Requests</h3>
               </motion.div>
             </div>

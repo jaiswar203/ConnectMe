@@ -89,6 +89,10 @@
       &__tagline {
         @include click_font;
         padding: 1rem;
+        .background{
+          color: black;
+      
+        }
         .quotes {
           font-size: 2rem;
 
@@ -659,7 +663,7 @@
         .title {
           @include center__element;
         }
-        .contemt {
+        .content {
           margin-left: 0.4rem;
           @include center__element;
         }
@@ -1242,6 +1246,10 @@
     }
 
     .content {
+      textarea{
+        width: 100%;
+        font-size: 1.2rem;
+      }
       &-array {
         @include center__element;
         flex-direction: column;
