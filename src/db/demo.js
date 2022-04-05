@@ -40,7 +40,9 @@ const demoProfile={
         "twitter":"https://www.twitter.com/",
         "imdb":"https://www.imdb.com/",
         "website":"https://www.website.com/",
-        "linkedin":"https://www.linkedin.com/"
+        "linkedin":"https://www.linkedin.com/",
+        "youtube": "https://www.youtube.com",
+        "wikipedia": "https://www.wikipedia.com"
     },
     "personal":{
         "whatsapp":"394997499",

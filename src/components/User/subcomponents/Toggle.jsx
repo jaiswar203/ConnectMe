@@ -71,7 +71,7 @@ const  ToggleSwitch=({data,setHandler,apiId,profileId,profile}) =>{
         const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
         const data=profile.document.active ? false : true
         dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:data}},profileId))
-        setHandler(!data)
+        // setHandler(!data)
     }
     return (
         <FormGroup>

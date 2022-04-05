@@ -606,64 +606,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #93903b;
+  background: #12a069;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #8a310b;
+  background: #4a43bd;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #6bcbcd;
+  background: #6f6d4e;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #0f54ca;
+  background: #5e174c;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #9a97f9;
+  background: #019606;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #eb5c86;
+  background: #ff109a;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #42d899;
+  background: #52a5ed;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #0242bb;
+  background: #415507;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #74e0a0;
+  background: #56d10c;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #8bb00c;
+  background: #ee36da;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #dc0bf8;
+  background: #95734f;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #530d78;
+  background: #d35d31;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #78b0f9;
+  background: #1b5133;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #cdcbd7;
+  background: #88f479;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #581b76;
+  background: #2607f5;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #c54475;
+  background: #fa82f0;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #59e825;
+  background: #702b45;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #8d1daa;
+  background: #cfad51;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #8d6777;
+  background: #72989d;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #83a684;
+  background: #c0bbfb;
 }
 .connectme__user-social__title {
   display: flex;
@@ -1067,6 +1067,25 @@ A {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
   top: 35%;
+}
+.connectme__user-modal__content .edit__once {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.connectme__user-modal__content .edit__once-button {
+  padding: 0.6rem 1rem;
+  background: #3080C0 !important;
+  color: #fff !important;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.connectme__user-modal__content .edit__once-button:hover {
+  color: #3080C0 !important;
+  background-color: #fff !important;
+  border: 1px solid black;
+  transition: all 0.1s ease-in;
 }
 .connectme__user-modal__content .background {
   position: relative;

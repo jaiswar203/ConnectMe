@@ -19,7 +19,7 @@ import { AiFillSetting } from 'react-icons/ai'
 import { VscFeedback } from 'react-icons/vsc'
 
 import { IoIosDocument } from 'react-icons/io'
-import { FcLike, FcLikePlaceholder,FcLock } from 'react-icons/fc'
+import { FcLike, FcLikePlaceholder, FcLock } from 'react-icons/fc'
 
 
 
@@ -32,6 +32,8 @@ import Linkedin from "./logo/linkedin"
 import IMDB from "./logo/imdb"
 import Website from "./logo/website"
 import Phone from "./logo/phone"
+import Youtube from "./logo/youtube"
+import Wikipedia from "./logo/wikipedia"
 import WhatsApp from "./logo/whatsapp"
 import SMS from "./logo/Sms"
 import ToggleSwitch from "./subcomponents/Toggle"
@@ -104,7 +106,7 @@ const User = ({ edit }) => {
 
   useEffect(() => {
 
-  }, [imgProp.w, imgProp.h, showPop, showRequesList,textArea])
+  }, [imgProp.w, imgProp.h, showPop, showRequesList, textArea])
 
 
 
@@ -173,8 +175,6 @@ const User = ({ edit }) => {
   ]
   console.log({ error })
 
-
-  
 
   const BorderComp = () => {
     return (
@@ -385,14 +385,24 @@ const User = ({ edit }) => {
       link: profileData?.social?.linkedin
     },
     {
-      item: <IMDB />,
-      name: "IMDB",
-      link: profileData?.social?.imdb
+      item: <Youtube />,
+      name: "Youtube",
+      link: profileData?.social?.youtube
     },
     {
       item: <Website />,
       name: "WebSite",
       link: profileData?.social?.website
+    },
+    {
+      item: <Wikipedia />,
+      name: "WikiPedia",
+      link: profileData?.social?.wikipedia
+    },
+    {
+      item: <IMDB />,
+      name: "IMDB",
+      link: profileData?.social?.imdb
     },
   ]
 
@@ -482,6 +492,14 @@ const User = ({ edit }) => {
     }
   }
 
+  function socialHandleFilter(arr, fromIndex, toIndex) {
+    var element = arr[fromIndex];
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, element);
+  }
+
+  
+
   return (
     <Layout title={router.query.id} description={profileData.about} navbar={false} >
       <div className="connectme__user">
@@ -496,7 +514,7 @@ const User = ({ edit }) => {
             </motion.div>
           )}
         </motion.div>
-        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: -75, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
+        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: edit ? -75 : -55, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
           {edit && (
             <motion.div className="background" onClick={() => {
               openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })
@@ -519,8 +537,8 @@ const User = ({ edit }) => {
               <p>{profileData?.city}</p>
               {edit && (
                 <motion.div className="background-city" onClick={() =>
-                 openEditHandler(profileData?.city, "City", "city")
-                 } whileTap={{ scale: 1.1 }}>
+                  openEditHandler(profileData?.city, "City", "city")
+                } whileTap={{ scale: 1.1 }}>
                   <FaEdit />
                 </motion.div>
               )}
@@ -531,12 +549,11 @@ const User = ({ edit }) => {
                   <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
                 </h4>
                 {edit && (
-                  <motion.div className="background__tagline" onClick={() =>
-                    {
-                      setTextArea(true)
-                      openEditHandler(profileData?.tagline, "Tagline", "tagline")
-                    }
-                   } whileTap={{ scale: 1.1 }}>
+                  <motion.div className="background__tagline" onClick={() => {
+                    setTextArea(true)
+                    openEditHandler(profileData?.tagline, "Tagline", "tagline")
+                  }
+                  } whileTap={{ scale: 1.1 }}>
                     <FaEdit />
                   </motion.div>
                 )}
@@ -598,11 +615,11 @@ const User = ({ edit }) => {
             {edit && (
               <motion.div className="background" whileTap={{ scale: 1.1 }}>
                 <h1>About Me</h1>
-                <FaEdit onClick={() =>{
+                <FaEdit onClick={() => {
                   setTextArea(true)
                   openEditHandler(profileData?.about, "About", "about")
                 }
-                  } />
+                } />
               </motion.div>
             )}
             <ReadMore>
@@ -650,7 +667,7 @@ const User = ({ edit }) => {
               <h1>Social Handles</h1>
             </div>
             <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              {socialHandle.map((d) => (
+              {socialHandle.map((d, i) => i < 6 && (
                 <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
                   <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
                     {d.item}

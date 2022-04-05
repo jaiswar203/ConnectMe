@@ -22,6 +22,11 @@ const Modal = ({ setModal, edit, data ,openEditHandler}) => {
                             )}
                         </motion.div>
                     ))}
+                    <div className="edit__once">
+                        <div className="edit__once-button">
+                            <h3>Edit Once</h3>
+                        </div>
+                    </div>
                 </motion.div>
                 <motion.div className="connectme__user-modal__off" onClick={() => setModal(false)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }}>
                     <FaTimes />

@@ -639,7 +639,21 @@
       @include center__element;
       margin-left: 0.3rem;
     }
+
+
     &__content {
+
+      .edit__once{
+        @include center__element;
+        width: 100%;
+        &-button{
+          padding: .6rem 1rem;
+          @include box_color;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+      }
+
       .background {
         position: relative;
         right: -0.3rem;
