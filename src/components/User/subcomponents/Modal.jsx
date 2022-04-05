@@ -16,7 +16,7 @@ const Modal = ({ setModal, edit, data ,openEditHandler}) => {
                                 <p>{d.data}</p>
                             </div>
                             {edit && (
-                                <div className="background" onClick={()=>openEditHandler(d.data,d.name,'userInfo',{isSubDoc: true,_id: d._id})}>
+                                <div className="background" onClick={()=>openEditHandler(d.data,d.name,'userInfo',{isSubDoc: true,_id: d._id,underneath: true})}>
                                     <FaEdit />
                                 </div>
                             )}

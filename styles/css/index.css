@@ -606,64 +606,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #12a069;
+  background: #2865c7;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #4a43bd;
+  background: #e55bbf;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #6f6d4e;
+  background: #03f808;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #5e174c;
+  background: #129d8e;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #019606;
+  background: #ca37af;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #ff109a;
+  background: #e237b7;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #52a5ed;
+  background: #b940bb;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #415507;
+  background: #b6304d;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #56d10c;
+  background: #11d11c;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #ee36da;
+  background: #4aea0a;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #95734f;
+  background: #2a7680;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #d35d31;
+  background: #e4d30c;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #1b5133;
+  background: #df81dc;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #88f479;
+  background: #73dfe8;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #2607f5;
+  background: #09164c;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #fa82f0;
+  background: #f98cc7;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #702b45;
+  background: #90f5c0;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #cfad51;
+  background: #2b5425;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #72989d;
+  background: #919835;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #c0bbfb;
+  background: #9903b9;
 }
 .connectme__user-social__title {
   display: flex;
@@ -793,7 +793,7 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 .connectme__user-connects__title h1 {
   font-family: "Lora", serif !important;
@@ -998,7 +998,7 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 .connectme__user-personal__title h1 {
   font-family: "Lora", serif !important;
@@ -1228,10 +1228,10 @@ A {
   justify-content: center;
   align-items: center;
   padding: 0 2rem;
-  justify-content: space-between;
 }
 .connectme__user-setting .private,
 .connectme__user-setting .request {
+  cursor: pointer;
   padding: 1rem;
   background: black;
   color: white;
@@ -1245,6 +1245,9 @@ A {
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
+}
+.connectme__user-setting .request {
+  padding: 1rem 8rem;
 }
 .connectme__user {
   text-align: center;

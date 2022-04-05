@@ -32,7 +32,7 @@ export const addImage=(data,id,query)=>API.post(`/profile/addimage/${id}?value=$
 export const getAllProfile=()=>API.get("/profile")
 export const getProfileById=(data,id)=>API.post(`/profile/${id}`,data)
 export const updateProfileById=(data,id)=>API.patch(`/profile/${id}`,data)
-export const updateSubDocInProfileById=(data,id,subdoc)=>API.patch(`/profile/sub/${id}?sub=${subdoc}`,data)
+export const updateSubDocInProfileById=(data,id,subdoc,underneath)=>API.patch(`/profile/sub/${id}?sub=${subdoc}&underneath=${underneath}`,data)
 export const deleteProfileById=(id)=>API.delete(`/profile/${id}`)
 export const deleteSubDocInProfileById=(data,id,query)=>API.post(`/profile/deletesub/${id}?sub=${query}`,data)
 export const getProfileByUsername=(id,data,auth,unique)=>API.post(`/profile/search/${id}?authValue=${auth}&unique=${unique}`,data)

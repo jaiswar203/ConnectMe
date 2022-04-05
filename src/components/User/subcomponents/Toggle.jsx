@@ -60,25 +60,34 @@ const IOSSwitch = styled((props) => (
     },
 }));
 
-const  ToggleSwitch=({data,setHandler,apiId,profileId,profile,isPrivate=false}) =>{
+const  ToggleSwitch=({data,setHandler,apiId,profileId,profile,isPrivate=false,info=false}) =>{
     const dispatch=useDispatch()
     
     useEffect(()=>{
 
     },[dispatch])
 
+    console.log({profileId,profile})
     const onClickHandler=()=>{
         const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-        const data=profile.document.active ? false : true
-        dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:data}},profileId))
+        
+        if(isPrivate){
+            console.log("udk")
+            dispatch(updateProfile( {userId: user?._id, data: {isPrivate:!profile.isPrivate}},profileId))
+        }else if(info){
+            dispatch(updateProfile( {userId: user?._id, data: {["userInfo.access"]:!profile.userInfo.access}},profileId))
+        }else{
+            const data=profile.document.active ? false : true
+            dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:data}},profileId))
+        }
         // setHandler(!data)
     }
 
-    // console.log({newdar: profile["document"]})
+    const checked=isPrivate ? profile?.isPrivate : info ? profile?.userInfo?.access :  profile?.document.active
     return (
         <FormGroup>
             <FormControlLabel
-                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={ profile?.document.active} />}
+                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={ checked} />}
                 label=""
                 onClick={onClickHandler}
             />

@@ -42,7 +42,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
         if (data?.isSubDoc?.isSubDoc) {
-            dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data }, profile?._id, data?.name))
+            dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data}, profile?._id, data?.name,data?.isSubDoc?.isSubDoc?.underneath ? true : false ))
         } else if (data?.isSubDoc?.testimonial) {
             dispatch(addImageInProfile({ data: formData?.data, userId: user?._id }, profile?._id, data?.name))
         } else {

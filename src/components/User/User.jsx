@@ -359,9 +359,9 @@ const User = ({ edit }) => {
     )
   }
 
-  
 
-  
+
+
 
   console.log({ request: profileData?.requests })
 
@@ -489,9 +489,9 @@ const User = ({ edit }) => {
 
   const isUserAllowed = () => {
     if (profile.access) {
-      return false
-    } else {
       return true
+    } else {
+      return false
     }
   }
 
@@ -501,7 +501,7 @@ const User = ({ edit }) => {
     arr.splice(toIndex, 0, element);
   }
 
-  
+
 
   return (
     <Layout title={router.query.id} description={profileData.about} navbar={false} >
@@ -688,11 +688,17 @@ const User = ({ edit }) => {
           <BorderComp />
           <div className="connectme__user-connects">
             <div className="connectme__user-connects__title">
+              {
+                profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
+
+                  <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} />
+                )
+              }
               <h1>ConnectMe</h1>
             </div>
             <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               {
-                connects.map((d) => profileData?.isPrivate && isUserAllowed() && profileData?._id !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile ? (
+                connects.map((d) => profileData?.isPrivate && !profile?.access && profileData?._id !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile ? (
                   <div className="privacy" onClick={() => {
                     setShowPop(true)
                     setPopUpData({ ...popUpData, success: false, confirm: true, setModal: setShowPop, message: "You are not allowed to access this Information ,Send Request to Owner", handler: requestHandler })
@@ -717,19 +723,41 @@ const User = ({ edit }) => {
           <BorderComp />
 
           <Port data={profileData?.services} title={"Services"} link={`/gallery/${userName}?content=services`} edit={edit} openEditHandler={openEditHandler} />
-          <BorderComp />
 
-          <div className="connectme__user-personal">
-            <div className="connectme__user-personal__title">
-              <h1>Personal Info</h1>
-            </div>
-            <div className="connectme__user-personal__content">
-              <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
-                <FcLock />
-                <h3>Get Perosnal Info</h3>
-              </motion.div>
-            </div>
-          </div>
+          {
+            profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (
+              <>
+                <BorderComp />
+                <div className="connectme__user-personal">
+                  <div className="connectme__user-personal__title">
+                    <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} />
+                    <h1>Personal Info</h1>
+                  </div>
+                  <div className="connectme__user-personal__content">
+                    <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
+                      <FcLock />
+                      <h3>Get Perosnal Info</h3>
+                    </motion.div>
+                  </div>
+                </div>
+              </>
+            ): profileData?.userInfo?.access && (
+              <>
+                <BorderComp />
+                <div className="connectme__user-personal">
+                  <div className="connectme__user-personal__title">
+                    <h1>Personal Info</h1>
+                  </div>
+                  <div className="connectme__user-personal__content">
+                    <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
+                      <FcLock />
+                      <h3>Get Perosnal Info</h3>
+                    </motion.div>
+                  </div>
+                </div>
+              </>
+            )
+          }
           {profileData?.document.active && !edit ? (
             <>
               <BorderComp />
@@ -788,7 +816,7 @@ const User = ({ edit }) => {
             ) : null}
           {
             showModal && (
-              <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo} openEditHandler={openEditHandler} />
+              <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo?.data} openEditHandler={openEditHandler} />
             )
           }
         </div>
@@ -801,14 +829,14 @@ const User = ({ edit }) => {
           <>
             <BorderComp />
             <div className="connectme__user-setting">
-              <div className="private" onClick={() => {
+              {/* <div className="private" onClick={() => {
                 setShowPop(true)
                 setPopUpData({ ...popUpData, success: false, confirm: true, setModal: setShowPop, message: `This Means your connects and personal info become ${profileData?.isPrivate ? "Public" : "Private"},are your sure ?`, handler: privacyHandler })
               }}>
                 <h3>Make Account {profileData?.isPrivate ? "Public" : "Private"}</h3>
-              </div>
+              </div> */}
               <motion.div className="request" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} onClick={() => setShowRequesList(true)}>
-                <h3>Requests</h3>
+                <h2>Requests</h2>
               </motion.div>
             </div>
           </>
