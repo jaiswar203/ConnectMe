@@ -108,6 +108,109 @@ const User = ({ edit }) => {
 
   }, [imgProp.w, imgProp.h, showPop, showRequesList, textArea])
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))
+    const cookie = localStorage.getItem("unique")
+    if (edit) {
+      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
+    }
+    if (!edit) {
+      if (data !== null && cookie) {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
+      } else if (cookie) {
+        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false, cookie))
+      }
+    }
+
+
+    if (data) {
+      setUserName(data?.existingUser?.username)
+    }
+
+    const profileData = JSON.parse(localStorage.getItem("profile"))
+
+    if (profileData) {
+      setPdfData(profileData?.data?.document?.active)
+    }
+
+    if (profileData !== null && !profileData?.isUserAdmin) {
+      // router.push("/?not-authorized")
+      return (
+        <h1>
+          You Are not the account admin
+        </h1>
+      )
+    }
+
+
+    if (data) {
+      if (edit && router.query.id !== data?.existingUser?.username) {
+        router.push(`/edit/${data?.existingUser?.username}`)
+        return null
+      }
+    }
+
+    if (!data && edit) {
+      router.push("/login")
+    }
+
+  }, [showModal, dispatch, router.query, popUpData])
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))
+
+    if (data !== undefined && query && !edit) {
+      if (data?.existingUser?.username === query.id) {
+        setShowEditOptionOnViewSide(true)
+      } else {
+        setShowEditOptionOnViewSide(false)
+      }
+    }
+  }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
+
+
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" })
+    router.push("/")
+  }
+
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("UserAuth"))
+    // const profile = JSON.parse(localStorage.getItem("profile"))?.data
+
+    /* Disabling Logout , if want to unable simply just uncomment below lines */
+
+    // const data = user?.token
+
+    // if (data) {
+    //   const decodedData = jwtDecode(data)
+    //   if (decodedData.exp * 1000 < new Date().getTime()) return logout()
+
+    //   const date=new Date().getTime()
+    //   console.log({decodedData,date})
+    // }
+
+    const userData = user?.existingUser
+
+    if (profile && user) {
+      const is_user_liked_this_profile = profileData.likes.find((d) => d === userData?._id)
+
+      if (is_user_liked_this_profile) {
+        console.log("runn")
+        setIsUserLikeProfile(true)
+      } else if (is_user_liked_this_profile === undefined) {
+        console.log("rn")
+        setIsUserLikeProfile(false)
+      }
+    }
+
+    if (user?.existingUser?._id !== profileData?.createdBy) {
+      profileData.requests = []
+
+    }
+  }, [dispatch, isUserLikeProfile, profile, popUpData, profileData, error, isCrop])
 
 
   const parentVariantForInterests = {
@@ -256,109 +359,9 @@ const User = ({ edit }) => {
     )
   }
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("UserAuth"))
-    const cookie = localStorage.getItem("unique")
-    if (edit) {
-      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
-    }
-    if (!edit) {
-      if (data !== null && cookie) {
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
-      } else if (cookie) {
-        dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, false, cookie))
-      }
-    }
+  
 
-
-    if (data) {
-      setUserName(data?.existingUser?.username)
-    }
-
-    const profileData = JSON.parse(localStorage.getItem("profile"))
-
-    if (profileData) {
-      setPdfData(profileData?.data?.document?.active)
-    }
-
-    if (profileData !== null && !profileData?.isUserAdmin) {
-      // router.push("/?not-authorized")
-      return (
-        <h1>
-          You Are not the account admin
-        </h1>
-      )
-    }
-
-
-    if (data) {
-      if (edit && router.query.id !== data?.existingUser?.username) {
-        router.push(`/edit/${data?.existingUser?.username}`)
-        return null
-      }
-    }
-
-    if (!data && edit) {
-      router.push("/login")
-    }
-
-  }, [showModal, dispatch, router.query, popUpData])
-
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("UserAuth"))
-
-    if (data !== undefined && query && !edit) {
-      if (data?.existingUser?.username === query.id) {
-        setShowEditOptionOnViewSide(true)
-      } else {
-        setShowEditOptionOnViewSide(false)
-      }
-    }
-  }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
-
-
-
-  const logout = () => {
-    dispatch({ type: "LOGOUT" })
-    router.push("/")
-  }
-
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("UserAuth"))
-    // const profile = JSON.parse(localStorage.getItem("profile"))?.data
-
-    /* Disabling Logout , if want to unable simply just uncomment below lines */
-
-    // const data = user?.token
-
-    // if (data) {
-    //   const decodedData = jwtDecode(data)
-    //   if (decodedData.exp * 1000 < new Date().getTime()) return logout()
-
-    //   const date=new Date().getTime()
-    //   console.log({decodedData,date})
-    // }
-
-    const userData = user?.existingUser
-
-    if (profile && user) {
-      const is_user_liked_this_profile = profileData.likes.find((d) => d === userData?._id)
-
-      if (is_user_liked_this_profile) {
-        console.log("runn")
-        setIsUserLikeProfile(true)
-      } else if (is_user_liked_this_profile === undefined) {
-        console.log("rn")
-        setIsUserLikeProfile(false)
-      }
-    }
-
-    if (user?.existingUser?._id !== profileData?.createdBy) {
-      profileData.requests = []
-
-    }
-  }, [dispatch, isUserLikeProfile, profile, popUpData, profileData, error, isCrop])
+  
 
   console.log({ request: profileData?.requests })
 
