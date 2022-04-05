@@ -60,7 +60,7 @@ const IOSSwitch = styled((props) => (
     },
 }));
 
-const  ToggleSwitch=({data,setHandler,apiId,profileId,profile}) =>{
+const  ToggleSwitch=({data,setHandler,apiId,profileId,profile,isPrivate=false}) =>{
     const dispatch=useDispatch()
     
     useEffect(()=>{
@@ -73,10 +73,12 @@ const  ToggleSwitch=({data,setHandler,apiId,profileId,profile}) =>{
         dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:data}},profileId))
         // setHandler(!data)
     }
+
+    // console.log({newdar: profile["document"]})
     return (
         <FormGroup>
             <FormControlLabel
-                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={profile?.document.active} />}
+                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={ profile?.document.active} />}
                 label=""
                 onClick={onClickHandler}
             />
