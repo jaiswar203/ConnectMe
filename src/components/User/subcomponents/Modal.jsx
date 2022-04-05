@@ -2,6 +2,7 @@ import { FaTimes, FaEdit } from 'react-icons/fa'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const Modal = ({ setModal, edit, data ,openEditHandler}) => {
+    console.log({data})
     return (
 
         <motion.div className="connectme__user-modal" exit={{ opacity: 0 }}>
