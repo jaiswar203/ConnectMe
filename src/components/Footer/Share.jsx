@@ -39,12 +39,12 @@ const Share = ({ setShare, username }) => {
                     </div>
                     <div className="social">
                         <motion.div className="social__item" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }}>
-                            <a href={`https://api.whatsapp.com/send?text=${url}/${username}`} target="_blank" rel="noopener" data-action="share/whatsapp/share">
+                            <a href={`https://api.whatsapp.com/send?text=${url}/${username}`} target="_blank" rel="noreferrer" data-action="share/whatsapp/share">
                                 <Whatsapp />
                             </a>
                         </motion.div>
                         <motion.div className="social__item" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }}>
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}/${username}`} target="_blank" rel="noopener">
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}/${username}`} target="_blank" rel="noreferrer">
                                 <Facebook />
                             </a>
                         </motion.div>
@@ -56,7 +56,7 @@ const Share = ({ setShare, username }) => {
                             <Linkedin />
                         </motion.div> */}
                         <motion.div className="social__item" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }}>
-                            <a href={`https://twitter.com/intent/tweet?url=${url}/${username}`} rel="noopener">
+                            <a href={`https://twitter.com/intent/tweet?url=${url}/${username}`} rel="noreferrer">
                                 <Twitter />
                             </a>
                         </motion.div>
