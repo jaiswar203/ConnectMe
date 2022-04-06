@@ -21,6 +21,9 @@ const authReducer=(state={allUser:null,isLoading:false},action)=>{
         case "GET_USER_BY_ID":
             localStorage.setItem("UserAuth",JSON.stringify({...action?.data}))
             return {...state,data: action?.data}
+        case "GET_CURRENT_USER":
+            const user=JSON.parse(localStorage.getItem("UserAuth"))
+            return {...state,user }
         default:
             return state
     }

@@ -49,3 +49,11 @@ export const getUserById=(id)=>async(dispatch)=>{
         console.log({error})
     }
 }
+
+export const getCurrentUserData=()=>async(dispatch)=>{
+    try {
+        dispatch({type:"GET_CURRENT_USER"})
+    } catch (error) {
+        console.log({error})
+    }
+}

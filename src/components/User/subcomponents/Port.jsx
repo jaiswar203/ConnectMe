@@ -28,12 +28,11 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     const dispatch = useDispatch()
 
     const newData = data
-    var refinedData = newData[index]
-
-    console.log({profile})
+    
+    
 
     const breakpoint = {
-        400: {
+        500: {
             slidesPerView: 2,
             spaceBetween: 10
         },
@@ -56,19 +55,21 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     }
 
     useEffect(() => {
-
+        
     }, [showModal, index,editData, openEdit])
     useEffect(() => {
         if (index < 0) {
             setIndex(newData.length - 1)
-        } else if (index > newData.length - 1) {
+        } else if (index >= newData.length - 1) {
             setIndex(0)
             console.log("limit Reached")
         }
-
+        
     }, [refinedData,profile,index,multipleUpload])
+    var refinedData = newData[index]
 
 
+    
     
     const addImageHandler = (addImage = true) => {
         setEditData({ fileUploader:{active:true,data:"image/*"}, title, addImage, query: title.toLowerCase() })

@@ -1,10 +1,11 @@
 import React from 'react'
+import SearchBar from '../src/components/Footer/SearchBar'
 
 
 const Test = () => {
   return (
     <div className="connectme__test">
-      <h1>This page is for testing purpose</h1>
+      <SearchBar />
     </div>
   )
 }

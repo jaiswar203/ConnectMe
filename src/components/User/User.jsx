@@ -15,7 +15,7 @@ import Modal from "./subcomponents/Modal"
 import Instagram from "./logo/insta"
 import { FaEdit } from "react-icons/fa"
 import Gmail from "./logo/gmail"
-import { AiFillSetting } from 'react-icons/ai'
+
 import { VscFeedback } from 'react-icons/vsc'
 
 import { IoIosDocument } from 'react-icons/io'
@@ -39,6 +39,8 @@ import SMS from "./logo/Sms"
 import ToggleSwitch from "./subcomponents/Toggle"
 import { MdDelete } from "react-icons/md"
 import Request from "./subcomponents/Request"
+import Share from "../Footer/Share"
+import SearchBar from "../Footer/SearchBar"
 
 
 const User = ({ edit }) => {
@@ -81,6 +83,11 @@ const User = ({ edit }) => {
 
   const [textArea, setTextArea] = useState(false)
 
+  // share 
+  const [share, setShare] = useState(false)
+  // search
+  const [searchBar, setSearchBar] = useState(false)
+
   useEffect(() => {
 
     window.addEventListener("resize", () => {
@@ -102,7 +109,7 @@ const User = ({ edit }) => {
       setBannerHeight(500)
       setImgProp({ ...imgProp, w: 200, h: 250 })
     }
-  }, [width, bannerHeight])
+  }, [width, bannerHeight,share,searchBar])
 
   useEffect(() => {
 
@@ -112,6 +119,9 @@ const User = ({ edit }) => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
     const cookie = localStorage.getItem("unique")
     if (edit) {
+      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
+    }
+    if(!edit && router.query.id=== data?.existingUser?.username){
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     if (!edit) {
@@ -127,6 +137,11 @@ const User = ({ edit }) => {
       setUserName(data?.existingUser?.username)
     }
 
+    if(profileData?._id ===data?.existingUser?.profile){
+
+    }
+    
+    
     const profileData = JSON.parse(localStorage.getItem("profile"))
 
     if (profileData) {
@@ -166,9 +181,11 @@ const User = ({ edit }) => {
         setShowEditOptionOnViewSide(false)
       }
     }
+
   }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
 
 
+  
 
   const logout = () => {
     dispatch({ type: "LOGOUT" })
@@ -198,10 +215,8 @@ const User = ({ edit }) => {
       const is_user_liked_this_profile = profileData.likes.find((d) => d === userData?._id)
 
       if (is_user_liked_this_profile) {
-        console.log("runn")
         setIsUserLikeProfile(true)
       } else if (is_user_liked_this_profile === undefined) {
-        console.log("rn")
         setIsUserLikeProfile(false)
       }
     }
@@ -276,7 +291,7 @@ const User = ({ edit }) => {
       forupdate: profileData?.personal?.mail
     },
   ]
-  console.log({ error })
+  
 
 
   const BorderComp = () => {
@@ -359,11 +374,6 @@ const User = ({ edit }) => {
     )
   }
 
-
-
-
-
-  console.log({ request: profileData?.requests })
 
 
   const socialHandle = [
@@ -461,7 +471,6 @@ const User = ({ edit }) => {
     }
   }
 
-  console.log({ popUpData })
 
 
   const connectsChildren = (d) => {
@@ -504,7 +513,7 @@ const User = ({ edit }) => {
 
 
   return (
-    <Layout title={router.query.id} description={profileData.about} navbar={false} >
+    <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} edit={edit} setShare={setShare} ogImg={profileData && profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} >
       <div className="connectme__user">
         <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
           <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
@@ -566,7 +575,7 @@ const User = ({ edit }) => {
         </motion.div>
 
 
-        {
+        {/* {
           JSON.parse(localStorage.getItem("UserAuth"))?.existingUser && (
             <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => { showEditOptionOnViewSide ? router.push(`/edit/${userName}`) : router.push(`/${userName}`) }}>
               <div className="edit__button">
@@ -577,7 +586,7 @@ const User = ({ edit }) => {
               </div>
             </motion.div>
           )
-        }
+        } */}
         <div className="lower__sec">
           <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
             {userDetail.map((d) => (
@@ -825,22 +834,6 @@ const User = ({ edit }) => {
             <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} crop={isCrop} setCrop={setIsCrop} usetextarea={textArea} setTextArea={setTextArea} />
           )
         }
-        {edit && (
-          <>
-            <BorderComp />
-            <div className="connectme__user-setting">
-              {/* <div className="private" onClick={() => {
-                setShowPop(true)
-                setPopUpData({ ...popUpData, success: false, confirm: true, setModal: setShowPop, message: `This Means your connects and personal info become ${profileData?.isPrivate ? "Public" : "Private"},are your sure ?`, handler: privacyHandler })
-              }}>
-                <h3>Make Account {profileData?.isPrivate ? "Public" : "Private"}</h3>
-              </div> */}
-              <motion.div className="request" whileTap={{ scale: 1.1 }} initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} onClick={() => setShowRequesList(true)}>
-                <h2>Requests</h2>
-              </motion.div>
-            </div>
-          </>
-        )}
         {privacyModal && (
           <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private"} Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
         )}
@@ -852,6 +845,16 @@ const User = ({ edit }) => {
         {
           showRequesList && (
             <Request data={profileData?.requests} setModal={setShowRequesList} />
+          )
+        }
+        {
+          share && (
+            <Share setShare={setShare} username={router.query.id}  />
+          )
+        }
+        {
+          searchBar && (
+            <SearchBar setSearchBar={setSearchBar} />
           )
         }
         <BorderComp />

@@ -2,13 +2,14 @@ import React from 'react'
 import Head from 'next/head'
 import { Navbar, Footer } from '.'
 
-const Layout = ({ title, children, description ,navbar=true,icon,favicon="/favicon.ico"}) => {
+const Layout = ({ title, children, description ,navbar=true,edit,footer=false,setShare,ogImg="",setShowRequesList,setSearchBar}) => {
     
     return (
         <div>
             <Head>
                 <title>{title ? `${title} - ConnectMe` : 'ConnectMe'}</title>
                 {description && <meta name='description' content={description} />}
+                <meta property="og:image" content={ogImg!=="" ? ogImg : "/logo.png"} />
             </Head>
             {navbar && (
                 <Navbar />
@@ -16,7 +17,12 @@ const Layout = ({ title, children, description ,navbar=true,icon,favicon="/favic
             <main>
                 {children}
             </main>
-            {/* <Footer /> */}
+            {
+                footer && (
+                    <Footer edit={edit} setShare={setShare} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} />
+                )
+            }
+            
         </div>
     )
 }

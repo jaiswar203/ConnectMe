@@ -15,7 +15,7 @@ const Modal = ({ isImg = true,showNaviagtion=true ,isIframe = false,index, img, 
                 </motion.div>
                 <motion.div className="connectme__modal-img" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }}>
                     {isImg ? (
-                        <Image src={img} width={1900} layout="responsive" height={1000} objectFit="contain" />
+                        <Image src={img}  layout="responsive" width={400} height={400} objectFit="cover" />
                     ) : isIframe ? <iframe width="560" height="315" src={`https://www.youtube.com/embed/${img}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : <video src={img} autoPlay muted controls></video>}
                 </motion.div>
                 {isImg && showNaviagtion && (
