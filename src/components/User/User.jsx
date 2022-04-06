@@ -121,9 +121,9 @@ const User = ({ edit }) => {
     if (edit) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
-    if(!edit && router.query.id=== data?.existingUser?.username){
-      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
-    }
+    // if(!edit && router.query.id=== data?.existingUser?.username){
+    //   dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
+    // }
     if (!edit) {
       if (data !== null && cookie) {
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
@@ -511,9 +511,18 @@ const User = ({ edit }) => {
   }
 
 
+  function footerData(){
+    const data=JSON.parse(localStorage.getItem("UserAuth"))
+
+    if(!data){
+      return false
+    }else{
+      return true
+    }
+  }
 
   return (
-    <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} edit={edit} setShare={setShare} ogImg={profileData && profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} >
+    <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData && profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} >
       <div className="connectme__user">
         <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
           <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
