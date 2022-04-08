@@ -18,12 +18,6 @@ const SearchBar = ({setSearchBar}) => {
         router.push(`${prod_url}/${searchText}`)
         setSearchBar(false)
     }
-    const onKeyPress=(e)=>{
-        if(e.keyCode===13){
-            router.push(`${prod_url}/${searchText}`)
-            // pushToSearch()
-        }
-    }
     
     return (
         <div className="connectme__search">

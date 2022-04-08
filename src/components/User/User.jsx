@@ -510,6 +510,8 @@ const User = ({ edit }) => {
     arr.splice(toIndex, 0, element);
   }
 
+  console.log({k: Object.keys(profileData?.social),val: Object.values(profileData?.social)})
+  
 
   function footerData(){
     const data=JSON.parse(localStorage.getItem("UserAuth"))
@@ -521,6 +523,7 @@ const User = ({ edit }) => {
     }
   }
 
+  console.log({profileData})
   return (
     <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData && profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} >
       <div className="connectme__user">
@@ -535,7 +538,7 @@ const User = ({ edit }) => {
             </motion.div>
           )}
         </motion.div>
-        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: edit ? -75 : -55, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
+        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: edit ? -75 : -40, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
           {edit && (
             <motion.div className="background" onClick={() => {
               openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })
@@ -583,19 +586,6 @@ const User = ({ edit }) => {
           </div>
         </motion.div>
 
-
-        {/* {
-          JSON.parse(localStorage.getItem("UserAuth"))?.existingUser && (
-            <motion.div className="connectme__user-edit__button" whileTap={{ scale: 1.1 }} onClick={() => { showEditOptionOnViewSide ? router.push(`/edit/${userName}`) : router.push(`/${userName}`) }}>
-              <div className="edit__button">
-                <AiFillSetting />
-                <div className="text">
-                  <h3>{showEditOptionOnViewSide ? "Edit" : "View"}</h3>
-                </div>
-              </div>
-            </motion.div>
-          )
-        } */}
         <div className="lower__sec">
           <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
             {userDetail.map((d) => (
@@ -688,7 +678,7 @@ const User = ({ edit }) => {
               <h1>Social Handles</h1>
             </div>
             <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              {socialHandle.map((d, i) => i < 6 && (
+              {socialHandle.map((d, i) => !edit ? i < 6 : i<8 && (
                 <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
                   <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
                     {d.item}
