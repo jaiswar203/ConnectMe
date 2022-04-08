@@ -608,64 +608,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #b1178f;
+  background: #2bd6f7;
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #63fccd;
+  background: #f24097;
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #d7ee9a;
+  background: #fae6c1;
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #39881b;
+  background: #24b875;
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #717a10;
+  background: #4628f3;
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #194f0a;
+  background: #b3f6dd;
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #72dcf1;
+  background: #89b9e4;
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #4cbe73;
+  background: #4ac8d0;
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #9ad6f3;
+  background: #16d8b0;
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #88164a;
+  background: #20b906;
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #d3564d;
+  background: #f319e1;
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #ec9642;
+  background: #60255f;
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #9aa17b;
+  background: #6ff501;
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #685b12;
+  background: #c3c870;
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #bb1af5;
+  background: #6aa2e5;
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #ef0b9f;
+  background: #6aa0aa;
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #cd442d;
+  background: #c1c960;
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #b25e2d;
+  background: #e7820c;
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #089758;
+  background: #2adb39;
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #da0444;
+  background: #2aba79;
 }
 .connectme__user-social__title {
   display: flex;
@@ -1987,7 +1987,7 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 0;
   background: black;
   color: springgreen;
 }

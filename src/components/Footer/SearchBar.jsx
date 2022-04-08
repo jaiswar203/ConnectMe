@@ -15,12 +15,12 @@ const SearchBar = ({setSearchBar}) => {
     const url ="http://localhost:3000"
     const prod_url="https://connectme.co.in"
     const pushToSearch=()=>{
-        router.push(`${url}/${searchText}`)
+        router.push(`${prod_url}/${searchText}`)
         setSearchBar(false)
     }
     const onKeyPress=(e)=>{
         if(e.keyCode===13){
-            router.push(`${url}/${searchText}`)
+            router.push(`${prod_url}/${searchText}`)
             // pushToSearch()
         }
     }
