@@ -1481,6 +1481,11 @@
       background: gray;
       padding: 3rem;
       width: 25rem;
+      
+      @media screen and (max-width: 420px) {
+        
+        width: 100%;
+      }
       border-radius: 0.7rem;
 
       &-title{
