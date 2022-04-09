@@ -14,6 +14,8 @@ const Layout = ({ title, children, description, navbar = true, edit, footer = fa
                     <title>{title ? `${title} - ConnectMe` : 'ConnectMe'}</title>
                 )}
                 {description && <meta name='description' content={description} />}
+                <meta property="og:title" content="Create Awesome Film Debut Profile" />
+                <meta property="og:image" content={ogImg} />
                 <meta property="og:image:secure_url" content={ogImg !== "" ? ogImg : "/logo.png"} />
                 <meta property="og:url" content="https://www.connectme.co.in" />
                 <meta property="og:description" content={`Profile of ${name}`} />
