@@ -18,7 +18,7 @@ const Share = ({ setShare, username }) => {
 
     }, [])
 
-    const url = "https://connectme.co.in"
+    const url = "https://www.connectme.co.in"
     const dev_url = "http://localhost:3000"
     const copyToClipBoard = () => {
         copy(url)
