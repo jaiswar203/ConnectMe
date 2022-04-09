@@ -121,13 +121,18 @@ const User = ({ edit }) => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
     const cookie = localStorage.getItem("unique")
-    if (edit || !edit && router.query.id === data?.existingUser?.username) {
+    if (edit && data) {
+      console.log("skjfjjfkj")
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     // if(!edit && router.query.id=== data?.existingUser?.username){
     //   dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     // }
+    if (data && !edit && data?.existingUser?.username === router.query.id) {
+      dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
+    }
     if (!edit) {
+
       if (data !== null && cookie) {
         dispatch(getProfileByUserName(query?.id, { userId: data?.existingUser._id }, true, cookie))
       } else if (cookie) {
@@ -189,7 +194,7 @@ const User = ({ edit }) => {
   }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
 
 
-  console.log({ profcookie })
+
 
 
   const logout = () => {
@@ -231,7 +236,7 @@ const User = ({ edit }) => {
 
     }
 
-    dispatch(getCookieData())
+    // dispatch(getCookieData())
   }, [dispatch, isUserLikeProfile, profile, popUpData, profileData, error, isCrop])
 
 
@@ -516,9 +521,6 @@ const User = ({ edit }) => {
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
   }
-
-
-  console.log({ k: Object.keys(profileData?.social), val: Object.values(profileData?.social) })
 
 
   function footerData() {
@@ -865,7 +867,7 @@ const User = ({ edit }) => {
           }
           {
             showRequesList && (
-              <Request data={profcookie?.data?.requests} setModal={setShowRequesList} />
+              <Request data={profileData.requests} setModal={setShowRequesList} />
             )
           }
           {

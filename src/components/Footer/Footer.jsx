@@ -21,7 +21,7 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
         setReqCount(profile?.requests?.length)
         console.log({len:profile?.requests?.length})
         
-    }, [dispatch, reqCount])
+    }, [dispatch, reqCount,profileReducer])
 
     const userData = state !== undefined && state.AuthRedu.user
 
