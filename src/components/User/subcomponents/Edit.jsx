@@ -76,6 +76,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         file.append('file', crop?.crop ? croppedUrl : cloudImage[0])
         file.append('upload_preset', 'profile')
         axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
+            
             if (data?.isSubDoc?.isSubDoc) {
                 dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: res.data.secure_url }, profile?._id, data?.name))
             } else if (data?.addImage) {

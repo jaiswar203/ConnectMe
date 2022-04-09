@@ -536,13 +536,15 @@ const User = ({ edit }) => {
     <>
       <Head>
         <meta property="og:title" content="Create Awesome Film Debut Profile" />
-        <meta property="og:image" content={profileData?.profileimg} />
-        {/* <meta property="og:image:secure_url" content={profileData?.profileimg} /> */}
+        {/* <meta property="og:image" content={profileData?.profileimg} /> */}
+        <meta property="og:image:secure_url" content={profileData?.profileimg} />
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="400" />
+        <link rel="icon" type="image/x-icon" href={profileData?.profileimg} />
+        <link rel="shortcut icon" type="image/x-icon" href={profileData?.profileimg} />
         <meta property="og:url" content="https://www.connectme.co.in" />
         <meta property="og:description" content={`Profile of ${profileData?.name}`} />
-        <meta property="og:type" content="profile:username" />
+        <meta property="og:type" content="profile" />
       </Head>
       <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} >
 
