@@ -540,7 +540,7 @@ const User = ({ edit }) => {
         <meta property="og:image:secure_url" content={profileData?.profileimg} />
         <meta property="og:url" content="https://www.connectme.co.in" />
         <meta property="og:description" content={`Profile of ${profileData?.name}`} />
-        <meta property="og:type" content="profile:jaiswar203" />
+        <meta property="og:type" content="profile:username" />
       </Head>
       <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} >
 
