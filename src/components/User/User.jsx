@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from 'next/link'
+import Head from "next/head"
 
 import { deleteSubDocInProfileById, getCookieData, getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
 import Layout from '../Layout'
@@ -50,7 +51,7 @@ const User = ({ edit }) => {
   const [showModal, setShowModal] = useState(false)
   const [imgProp, setImgProp] = useState({ w: 200, h: 250 })
   const dispatch = useDispatch()
-  const { profile, error, isLoading,profcookie } = state.profileReducer
+  const { profile, error, isLoading, profcookie } = state.profileReducer
   const router = useRouter()
   const profileData = profile !== null ? profile?.data : []
   // edititable content
@@ -111,7 +112,7 @@ const User = ({ edit }) => {
       setBannerHeight(500)
       setImgProp({ ...imgProp, w: 200, h: 250 })
     }
-  }, [width, bannerHeight,share,searchBar])
+  }, [width, bannerHeight, share, searchBar])
 
   useEffect(() => {
 
@@ -120,7 +121,7 @@ const User = ({ edit }) => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
     const cookie = localStorage.getItem("unique")
-    if (edit || !edit && router.query.id===data?.existingUser?.username) {
+    if (edit || !edit && router.query.id === data?.existingUser?.username) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     // if(!edit && router.query.id=== data?.existingUser?.username){
@@ -139,11 +140,11 @@ const User = ({ edit }) => {
       setUserName(data?.existingUser?.username)
     }
 
-    if(profileData?._id ===data?.existingUser?.profile){
+    if (profileData?._id === data?.existingUser?.profile) {
 
     }
-    
-    
+
+
     const profileData = JSON.parse(localStorage.getItem("profile"))
 
     if (profileData) {
@@ -183,13 +184,13 @@ const User = ({ edit }) => {
         setShowEditOptionOnViewSide(false)
       }
     }
-    
+
 
   }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
 
 
-  console.log({profcookie})
-  
+  console.log({ profcookie })
+
 
   const logout = () => {
     dispatch({ type: "LOGOUT" })
@@ -297,7 +298,7 @@ const User = ({ edit }) => {
       forupdate: profileData?.personal?.mail
     },
   ]
-  
+
 
 
   const BorderComp = () => {
@@ -515,365 +516,375 @@ const User = ({ edit }) => {
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
   }
-  
 
-  console.log({k: Object.keys(profileData?.social),val: Object.values(profileData?.social)})
-  
 
-  function footerData(){
-    const data=JSON.parse(localStorage.getItem("UserAuth"))
+  console.log({ k: Object.keys(profileData?.social), val: Object.values(profileData?.social) })
 
-    if(!data){
+
+  function footerData() {
+    const data = JSON.parse(localStorage.getItem("UserAuth"))
+
+    if (!data) {
       return false
-    }else{
+    } else {
       return true
     }
   }
 
-  console.log({profileData})
+  console.log({ profileData })
   return (
-    <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={ !edit && true} >
-      <div className="connectme__user">
-        <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
-          <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
-          {edit && (
-            <motion.div className="background" onClick={() => {
-              openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })
-              setIsCrop({ crop: true, w: 540, h: 164 })
-            }} whileTap={{ scale: 1.1 }}>
-              <FaEdit />
-            </motion.div>
-          )}
-        </motion.div>
-        <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: edit ? -75 : -40, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
-          {edit && (
-            <motion.div className="background" onClick={() => {
-              openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })
-              setIsCrop({ crop: true, w: 200, h: 250 })
-            }} whileTap={{ scale: 1.1 }}>
-              <FaEdit />
-            </motion.div>
-          )}
-          <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" />
-          <div className="info">
-            <div className="info__name">
-              <h2>{profileData?.name}</h2>
-              {edit && (
-                <motion.div className="background-name" onClick={() => openEditHandler(profileData?.name, "Name", "name")} whileTap={{ scale: 1.1 }}>
-                  <FaEdit />
-                </motion.div>
-              )}
-            </div>
-            <div className="info__city">
-              <p>{profileData?.city}</p>
-              {edit && (
-                <motion.div className="background-city" onClick={() =>
-                  openEditHandler(profileData?.city, "City", "city")
-                } whileTap={{ scale: 1.1 }}>
-                  <FaEdit />
-                </motion.div>
-              )}
-            </div>
-            {profileData?.tagline && (
-              <div className="info__tagline">
-                <h4>
-                  <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
-                </h4>
+    <>
+      <Head>
+        <meta property="og:title" content="Create Awesome Film Debut Profile" />
+        <meta property="og:image" content={profileData?.profileimg} />
+        <meta property="og:image:secure_url" content={profileData?.profileimg} />
+        <meta property="og:url" content="https://www.connectme.co.in" />
+        <meta property="og:description" content={`Profile of ${profileData?.name}`} />
+      </Head>
+      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} >
+
+        <div className="connectme__user">
+          <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
+            <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
+            {edit && (
+              <motion.div className="background" onClick={() => {
+                openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })
+                setIsCrop({ crop: true, w: 540, h: 164 })
+              }} whileTap={{ scale: 1.1 }}>
+                <FaEdit />
+              </motion.div>
+            )}
+          </motion.div>
+          <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: edit ? -75 : -40, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
+            {edit && (
+              <motion.div className="background" onClick={() => {
+                openEditHandler(profileData?.profileimg, "Profile Image", "profileimg", { isSubdoc: false }, { active: true, data: "image/*" })
+                setIsCrop({ crop: true, w: 200, h: 250 })
+              }} whileTap={{ scale: 1.1 }}>
+                <FaEdit />
+              </motion.div>
+            )}
+            <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" />
+            <div className="info">
+              <div className="info__name">
+                <h2>{profileData?.name}</h2>
                 {edit && (
-                  <motion.div className="background__tagline" onClick={() => {
-                    setTextArea(true)
-                    openEditHandler(profileData?.tagline, "Tagline", "tagline")
-                  }
+                  <motion.div className="background-name" onClick={() => openEditHandler(profileData?.name, "Name", "name")} whileTap={{ scale: 1.1 }}>
+                    <FaEdit />
+                  </motion.div>
+                )}
+              </div>
+              <div className="info__city">
+                <p>{profileData?.city}</p>
+                {edit && (
+                  <motion.div className="background-city" onClick={() =>
+                    openEditHandler(profileData?.city, "City", "city")
                   } whileTap={{ scale: 1.1 }}>
                     <FaEdit />
                   </motion.div>
                 )}
               </div>
-            )}
-          </div>
-        </motion.div>
-
-        <div className="lower__sec">
-          <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
-            {userDetail.map((d) => (
-              <motion.div className="connectme__user-detail__item" key={d.name} variants={childForDetail} >
-                {edit && d.editable && (
-                  <motion.div className="background" onClick={() => edit && openEditHandler(d.item, `${d.name}`, `additional.${d.name.toLowerCase()}`, true)} whileTap={{ scale: 1.1 }}>
-                    <FaEdit />
-                  </motion.div>
-                )}
-                <p>{d.name}</p>
-                <h3>{d.item}</h3>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {
-            !edit && JSON.parse(localStorage.getItem("UserAuth")) && (
-              <div className="connectme__user-like">
-                <div className="like__button" onClick={likeHandler}>
-                  {
-                    isUserLikeProfile ? (
-                      <FcLike />
-                    ) : (
-                      <FcLikePlaceholder />
-                    )
-                  }
-                  <h3>{isUserLikeProfile ? "Dislike" : "Like"} This Profile</h3>
+              {profileData?.tagline && (
+                <div className="info__tagline">
+                  <h4>
+                    <span className="quotes">&quot; </span>{profileData.tagline}<span className="quotes">&quot;</span>
+                  </h4>
+                  {edit && (
+                    <motion.div className="background__tagline" onClick={() => {
+                      setTextArea(true)
+                      openEditHandler(profileData?.tagline, "Tagline", "tagline")
+                    }
+                    } whileTap={{ scale: 1.1 }}>
+                      <FaEdit />
+                    </motion.div>
+                  )}
                 </div>
-              </div>
-            )
-          }
-
-          <BorderComp />
-          <div className="connectme__user-about">
-            {!edit && (
-              <h1>About Me</h1>
-            )}
-            {edit && (
-              <motion.div className="background" whileTap={{ scale: 1.1 }}>
-                <h1>About Me</h1>
-                <FaEdit onClick={() => {
-                  setTextArea(true)
-                  openEditHandler(profileData?.about, "About", "about")
-                }
-                } />
-              </motion.div>
-            )}
-            <ReadMore>
-              {profileData?.about}
-            </ReadMore>
-          </div>
-          <BorderComp />
-
-          <div className="connectme__user-interests">
-            <div className="connectme__user-interests__title">
-              <h1>Interests</h1>
-              {edit && (
-                <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Interests", `interests`, { testimonial: true })} >
-                  <h2>Add Interest</h2>
-                </motion.div>
               )}
             </div>
-            <motion.div className="connectme__user-interests__info" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }} >
-              {profileData?.interests.map((d) => (
-                <div className="bodies" key={d._id}  >
-                  {
-                    edit && (
-                      <div className="background" onClick={() => deleteSubDoc(d._id, "interests")}>
-                        <MdDelete />
-                      </div>
-                    )
-                  }
-                  <p>{d.data}</p>
-                  {
-                    edit && (
-                      <div className="background" onClick={() => openEditHandler(d.data, "Interests", 'interests', { isSubDoc: true, _id: d._id })}>
-                        <FaEdit />
-                      </div>
-                    )
-                  }
-                </div>
-              ))}
+          </motion.div>
 
-            </motion.div>
-          </div>
-          <BorderComp />
-
-          <div className="connectme__user-social">
-            <div className="connectme__user-social__title">
-              <h1>Social Handles</h1>
-            </div>
-            <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              {socialHandle.map((d, i) =>  i < 6 && (
-                <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
-                  <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
-                    {d.item}
-                    {edit && (
-                      <div className="background" onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}`)}>
-                        <FaEdit />
-                      </div>
-                    )}
-                    <motion.p> {d.name}</motion.p>
-                  </motion.div>
-                </a>
-              ))}
-            </motion.div>
-          </div>
-          <BorderComp />
-          <div className="connectme__user-connects">
-            <div className="connectme__user-connects__title">
-              {
-                profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
-
-                  <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} />
-                )
-              }
-              <h1>ConnectMe</h1>
-            </div>
-            <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              {
-                connects.map((d) => profileData?.isPrivate && !profile?.access && profileData?._id !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile ? (
-                  <div className="privacy" onClick={() => {
-                    setShowPop(true)
-                    setPopUpData({ ...popUpData, success: false, confirm: true, setModal: setShowPop, message: "You are not allowed to access this Information ,Send Request to Owner", handler: requestHandler })
-                  }}
-                  >
-                    {connectsChildren(d)}
-                  </div>
-                ) : (
-                  <a href={connectsClick(d)} key={d.name} target="_blank" rel="noreferrer"   >
-                    {connectsChildren(d)}
-                  </a>
-                ))
-              }
-            </motion.div>
-          </div>
-          <BorderComp />
-
-          <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
-
-          <BorderComp />
-          <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${userName}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
-          <BorderComp />
-
-          <Port data={profileData?.services} title={"Services"} link={`/gallery/${userName}?content=services`} edit={edit} openEditHandler={openEditHandler} />
-
-          {
-            profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (
-              <>
-                <BorderComp />
-                <div className="connectme__user-personal">
-                  <div className="connectme__user-personal__title">
-                    <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} />
-                    <h1>Personal Info</h1>
-                  </div>
-                  <div className="connectme__user-personal__content">
-                    <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
-                      <FcLock />
-                      <h3>Get Perosnal Info</h3>
-                    </motion.div>
-                  </div>
-                </div>
-              </>
-            ): profileData?.userInfo?.access && (
-              <>
-                <BorderComp />
-                <div className="connectme__user-personal">
-                  <div className="connectme__user-personal__title">
-                    <h1>Personal Info</h1>
-                  </div>
-                  <div className="connectme__user-personal__content">
-                    <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
-                      <FcLock />
-                      <h3>Get Perosnal Info</h3>
-                    </motion.div>
-                  </div>
-                </div>
-              </>
-            )
-          }
-          {profileData?.document.active && !edit ? (
-            <>
-              <BorderComp />
-              <div className="connectme__user-document">
-                <div className="connectme__user-document__title">
-                  <h1>Documentation</h1>
-                </div>
-                <div className="connectme__user-document__content">
-                  <motion.div className="button" whileTap={{ scale: 1.1 }} onClick={() => window.open(profileData?.document?.data, "_blank")}>
-                    <IoIosDocument />
-                    <h3>Get PDF</h3>
-                  </motion.div>
-                </div>
-              </div>
-            </>
-          ) : edit && (
-            <>
-              <BorderComp />
-              <div className="connectme__user-document">
-                <div className="connectme__user-document__title">
-                  <h1>Documentation</h1>
-                  <ToggleSwitch label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} profile={profileData} apiId="document.active" />
-                </div>
-                <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`, { isSubDoc: false }, { active: true, data: "application/pdf" })} >
-                  <motion.div className="button" whileTap={{ scale: 1.1 }} >
-                    <IoIosDocument />
-                    <h3>Get PDF</h3>
-                  </motion.div>
-                  {edit &&
-                    (<div className="background" >
+          <div className="lower__sec">
+            <motion.div className="connectme__user-detail" variants={parentVariantForInterests} initial="hidden" animate="visible">
+              {userDetail.map((d) => (
+                <motion.div className="connectme__user-detail__item" key={d.name} variants={childForDetail} >
+                  {edit && d.editable && (
+                    <motion.div className="background" onClick={() => edit && openEditHandler(d.item, `${d.name}`, `additional.${d.name.toLowerCase()}`, true)} whileTap={{ scale: 1.1 }}>
                       <FaEdit />
-                    </div>)
-                  }
-                </div>
-              </div>
-            </>
-          )}
+                    </motion.div>
+                  )}
+                  <p>{d.name}</p>
+                  <h3>{d.item}</h3>
+                </motion.div>
+              ))}
+            </motion.div>
 
-          {!edit && userName !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.username
-            ? (
+            {
+              !edit && JSON.parse(localStorage.getItem("UserAuth")) && (
+                <div className="connectme__user-like">
+                  <div className="like__button" onClick={likeHandler}>
+                    {
+                      isUserLikeProfile ? (
+                        <FcLike />
+                      ) : (
+                        <FcLikePlaceholder />
+                      )
+                    }
+                    <h3>{isUserLikeProfile ? "Dislike" : "Like"} This Profile</h3>
+                  </div>
+                </div>
+              )
+            }
+
+            <BorderComp />
+            <div className="connectme__user-about">
+              {!edit && (
+                <h1>About Me</h1>
+              )}
+              {edit && (
+                <motion.div className="background" whileTap={{ scale: 1.1 }}>
+                  <h1>About Me</h1>
+                  <FaEdit onClick={() => {
+                    setTextArea(true)
+                    openEditHandler(profileData?.about, "About", "about")
+                  }
+                  } />
+                </motion.div>
+              )}
+              <ReadMore>
+                {profileData?.about}
+              </ReadMore>
+            </div>
+            <BorderComp />
+
+            <div className="connectme__user-interests">
+              <div className="connectme__user-interests__title">
+                <h1>Interests</h1>
+                {edit && (
+                  <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Interests", `interests`, { testimonial: true })} >
+                    <h2>Add Interest</h2>
+                  </motion.div>
+                )}
+              </div>
+              <motion.div className="connectme__user-interests__info" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }} >
+                {profileData?.interests.map((d) => (
+                  <div className="bodies" key={d._id}  >
+                    {
+                      edit && (
+                        <div className="background" onClick={() => deleteSubDoc(d._id, "interests")}>
+                          <MdDelete />
+                        </div>
+                      )
+                    }
+                    <p>{d.data}</p>
+                    {
+                      edit && (
+                        <div className="background" onClick={() => openEditHandler(d.data, "Interests", 'interests', { isSubDoc: true, _id: d._id })}>
+                          <FaEdit />
+                        </div>
+                      )
+                    }
+                  </div>
+                ))}
+
+              </motion.div>
+            </div>
+            <BorderComp />
+
+            <div className="connectme__user-social">
+              <div className="connectme__user-social__title">
+                <h1>Social Handles</h1>
+              </div>
+              <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                {socialHandle.map((d, i) => i < 6 && (
+                  <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
+                    <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
+                      {d.item}
+                      {edit && (
+                        <div className="background" onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}`)}>
+                          <FaEdit />
+                        </div>
+                      )}
+                      <motion.p> {d.name}</motion.p>
+                    </motion.div>
+                  </a>
+                ))}
+              </motion.div>
+            </div>
+            <BorderComp />
+            <div className="connectme__user-connects">
+              <div className="connectme__user-connects__title">
+                {
+                  profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
+
+                    <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} />
+                  )
+                }
+                <h1>ConnectMe</h1>
+              </div>
+              <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                {
+                  connects.map((d) => profileData?.isPrivate && !profile?.access && profileData?._id !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile ? (
+                    <div className="privacy" onClick={() => {
+                      setShowPop(true)
+                      setPopUpData({ ...popUpData, success: false, confirm: true, setModal: setShowPop, message: "You are not allowed to access this Information ,Send Request to Owner", handler: requestHandler })
+                    }}
+                    >
+                      {connectsChildren(d)}
+                    </div>
+                  ) : (
+                    <a href={connectsClick(d)} key={d.name} target="_blank" rel="noreferrer"   >
+                      {connectsChildren(d)}
+                    </a>
+                  ))
+                }
+              </motion.div>
+            </div>
+            <BorderComp />
+
+            <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
+
+            <BorderComp />
+            <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${userName}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
+            <BorderComp />
+
+            <Port data={profileData?.services} title={"Services"} link={`/gallery/${userName}?content=services`} edit={edit} openEditHandler={openEditHandler} />
+
+            {
+              profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (
+                <>
+                  <BorderComp />
+                  <div className="connectme__user-personal">
+                    <div className="connectme__user-personal__title">
+                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} />
+                      <h1>Personal Info</h1>
+                    </div>
+                    <div className="connectme__user-personal__content">
+                      <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
+                        <FcLock />
+                        <h3>Get Perosnal Info</h3>
+                      </motion.div>
+                    </div>
+                  </div>
+                </>
+              ) : profileData?.userInfo?.access && (
+                <>
+                  <BorderComp />
+                  <div className="connectme__user-personal">
+                    <div className="connectme__user-personal__title">
+                      <h1>Personal Info</h1>
+                    </div>
+                    <div className="connectme__user-personal__content">
+                      <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
+                        <FcLock />
+                        <h3>Get Perosnal Info</h3>
+                      </motion.div>
+                    </div>
+                  </div>
+                </>
+              )
+            }
+            {profileData?.document.active && !edit ? (
               <>
                 <BorderComp />
-                <div className="connectme__user-footer">
-                  <div className="text" >
-                    <h3>Create Your Professional/Personal Profile for Free!</h3>
+                <div className="connectme__user-document">
+                  <div className="connectme__user-document__title">
+                    <h1>Documentation</h1>
                   </div>
-                  <div className="content">
-                    <Link href={"login?signup=true"} passHref>
-                      <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
-                        <h3>Create Now</h3>
-                      </motion.div>
-                    </Link>
+                  <div className="connectme__user-document__content">
+                    <motion.div className="button" whileTap={{ scale: 1.1 }} onClick={() => window.open(profileData?.document?.data, "_blank")}>
+                      <IoIosDocument />
+                      <h3>Get PDF</h3>
+                    </motion.div>
                   </div>
                 </div>
               </>
-            ) : null}
+            ) : edit && (
+              <>
+                <BorderComp />
+                <div className="connectme__user-document">
+                  <div className="connectme__user-document__title">
+                    <h1>Documentation</h1>
+                    <ToggleSwitch label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} profile={profileData} apiId="document.active" />
+                  </div>
+                  <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`, { isSubDoc: false }, { active: true, data: "application/pdf" })} >
+                    <motion.div className="button" whileTap={{ scale: 1.1 }} >
+                      <IoIosDocument />
+                      <h3>Get PDF</h3>
+                    </motion.div>
+                    {edit &&
+                      (<div className="background" >
+                        <FaEdit />
+                      </div>)
+                    }
+                  </div>
+                </div>
+              </>
+            )}
+
+            {!edit && userName !== JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.username
+              ? (
+                <>
+                  <BorderComp />
+                  <div className="connectme__user-footer">
+                    <div className="text" >
+                      <h3>Create Your Professional/Personal Profile for Free!</h3>
+                    </div>
+                    <div className="content">
+                      <Link href={"login?signup=true"} passHref>
+                        <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
+                          <h3>Create Now</h3>
+                        </motion.div>
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              ) : null}
+            {
+              showModal && (
+                <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo?.data} openEditHandler={openEditHandler} />
+              )
+            }
+          </div>
           {
-            showModal && (
-              <Modal setModal={setShowModal} edit={edit} data={profileData?.userInfo?.data} openEditHandler={openEditHandler} />
+            openEdit && (
+              <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} crop={isCrop} setCrop={setIsCrop} usetextarea={textArea} setTextArea={setTextArea} />
             )
           }
+          {privacyModal && (
+            <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private"} Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
+          )}
+          {
+            showPop && (
+              <PopupModal {...popUpData} />
+            )
+          }
+          {
+            showRequesList && (
+              <Request data={profcookie?.data?.requests} setModal={setShowRequesList} />
+            )
+          }
+          {
+            share && (
+              <Share setShare={setShare} username={router.query.id} />
+            )
+          }
+          {
+            searchBar && (
+              <SearchBar setSearchBar={setSearchBar} />
+            )
+          }
+          <BorderComp />
+          <div className="connectme__user-feedback">
+            <a href="mailto:info@connectme.com">
+              <motion.div className="feedback" whileTap={{ scale: 1.1 }}>
+                <VscFeedback />
+                <h3>Offer FeedBack</h3>
+              </motion.div>
+            </a>
+          </div>
         </div>
-        {
-          openEdit && (
-            <Edit modal={setOpenEdit} data={editData} isLoading={isLoading} state={profile} crop={isCrop} setCrop={setIsCrop} usetextarea={textArea} setTextArea={setTextArea} />
-          )
-        }
-        {privacyModal && (
-          <PopupModal success={true} message={`Your Account is  ${isPrivate ? "Public " : "Private"} Now`} title={`Privacy`} setModal={setPrivacyModal} handler={privacyHandler} />
-        )}
-        {
-          showPop && (
-            <PopupModal {...popUpData} />
-          )
-        }
-        {
-          showRequesList && (
-            <Request data={profcookie?.data?.requests} setModal={setShowRequesList} />
-          )
-        }
-        {
-          share && (
-            <Share setShare={setShare} username={router.query.id}  />
-          )
-        }
-        {
-          searchBar && (
-            <SearchBar setSearchBar={setSearchBar} />
-          )
-        }
-        <BorderComp />
-        <div className="connectme__user-feedback">
-          <a href="mailto:info@connectme.com">
-            <motion.div className="feedback" whileTap={{ scale: 1.1 }}>
-              <VscFeedback />
-              <h3>Offer FeedBack</h3>
-            </motion.div>
-          </a>
-        </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   )
 }
 
