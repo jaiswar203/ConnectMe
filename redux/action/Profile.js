@@ -9,6 +9,15 @@ export const createProfile = (formData) => async (dispatch) => {
   }
 };
 
+
+export const  getCookieData=()=>async(dispatch)=>  {
+  try {
+    dispatch({type:"GET_COOKIE_DATA"})
+  } catch (error) {
+    console.log({error})
+  }
+}
+
 export const getProfileById = (formData, id) => async (dispatch) => {
   try {
     const { data } = await api.getProfileById(formData, id);

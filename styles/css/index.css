@@ -457,7 +457,7 @@ A {
   }
 }
 .connectme__user .lower__sec {
-  margin-top: -4rem;
+  margin-top: -3rem;
   padding: 0rem 10rem;
 }
 .connectme__user-like {
@@ -608,64 +608,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: #2bd6f7;
+  background: rgb(16, 211, 104);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: #f24097;
+  background: rgb(94, 127, 158);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: #fae6c1;
+  background: rgb(127, 81, 163);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: #24b875;
+  background: rgb(103, 42, 86);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: #4628f3;
+  background: rgb(99, 96, 192);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: #b3f6dd;
+  background: rgb(164, 50, 158);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: #89b9e4;
+  background: rgb(224, 36, 119);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: #4ac8d0;
+  background: rgb(42, 154, 27);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: #16d8b0;
+  background: rgb(100, 88, 88);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: #20b906;
+  background: rgb(65, 210, 168);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: #f319e1;
+  background: rgb(194, 122, 141);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: #60255f;
+  background: rgb(190, 179, 86);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: #6ff501;
+  background: rgb(92, 23, 153);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: #c3c870;
+  background: rgb(236, 212, 235);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: #6aa2e5;
+  background: rgb(84, 61, 7);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: #6aa0aa;
+  background: rgb(150, 95, 182);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: #c1c960;
+  background: rgb(241, 134, 172);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: #e7820c;
+  background: rgb(130, 19, 152);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: #2adb39;
+  background: rgb(207, 113, 233);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: #2aba79;
+  background: rgb(228, 180, 51);
 }
 .connectme__user-social__title {
   display: flex;
@@ -991,7 +991,7 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: flex-end;
-  overflow-x: hidden;
+  overflow: hidden;
   margin-top: 2rem;
 }
 .connectme__user-services__more svg {
@@ -1507,7 +1507,7 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #41cb41;
+  background: rgb(65, 203, 65);
   border-radius: 50%;
   color: white;
 }
@@ -1517,7 +1517,7 @@ A {
 .connectme__user-request__container-content__item .right__wrong {
   color: black;
   margin-left: 1rem;
-  background: #df0606;
+  background: rgb(223, 6, 6);
 }
 @media screen and (max-width: 450px) {
   .connectme__user-request__container-content {
@@ -1861,12 +1861,34 @@ A {
 .connectme__gallery {
   padding: 3rem;
 }
+@media screen and (max-width: 500px) {
+  .connectme__gallery {
+    padding: 2rem;
+  }
+}
 .connectme__gallery-title {
   font-family: "Lora", serif !important;
   color: #3080C0;
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
+}
+.connectme__gallery-title svg {
+  font-size: 3rem;
+}
+.connectme__gallery .images {
+  position: relative;
+}
+.connectme__gallery .delete {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  font-size: 2rem;
+}
+.connectme__gallery .delete svg {
+  fill: gray;
 }
 .connectme__gallery .border {
   margin-top: 2rem;
@@ -1987,7 +2009,7 @@ A {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem 0;
+  padding: 1rem 3rem 0;
   background: black;
   color: springgreen;
 }

@@ -8,7 +8,7 @@ import Gallery from "../../src/components/Gallery/Gallery"
 
 const Grid = () => {
     const router = useRouter()
-    const {id,content}=router.query
+    const {id,content,edit}=router.query
 
     const dispatch=useDispatch()
     const {profile}=useSelector((state)=>state.profileReducer)
@@ -45,9 +45,12 @@ const Grid = () => {
             <h1>waiting..</h1>
         )
     }
+
+    const isEdit=edit==="true"
+    console.log({isEdit})
     return (
         <Layout title={`Profile of Jaiswar203`} description={profile?.name} navbar={false} icon={profileData?.profileimg} >
-            <Gallery data={profileData[content]} title={id} content={content} />
+            <Gallery data={profileData[content]} title={id} content={content} edit={isEdit}  />
         </Layout>
     )
 }

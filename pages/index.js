@@ -33,6 +33,7 @@ const Index = () => {
         createProfile({
           ...demoProfile,
           createdBy: data?.existingUser?._id,
+          name: data?.existingUser?.name
         })
       );
     }
@@ -51,6 +52,7 @@ const Index = () => {
       createProfile({
         ...demoProfile,
         createdBy: data?.existingUser?._id,
+        name: data?.existingUser?.name
       })
     );
     dispatch(getUserById(data?._id));

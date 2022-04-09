@@ -1,8 +1,31 @@
 .connectme__gallery {
   padding: 3rem;
+
+  @media screen and (max-width:500px) {
+    padding: 2rem;
+  }
   &-title {
     @include click_font;
     @include center__element;
+    justify-content: space-between;
+
+    svg{
+      font-size: 3rem;
+    }
+  }
+  .images{
+    position: relative;
+  }
+  .delete {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    font-size: 2rem;
+
+    svg {
+      fill: gray;
+    }
   }
   .border {
     margin-top: 2rem;

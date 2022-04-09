@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from 'next/link'
 
-import { deleteSubDocInProfileById, getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
+import { deleteSubDocInProfileById, getCookieData, getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
 import Layout from '../Layout'
 
 import Port from "./subcomponents/Port"
@@ -50,7 +50,7 @@ const User = ({ edit }) => {
   const [showModal, setShowModal] = useState(false)
   const [imgProp, setImgProp] = useState({ w: 200, h: 250 })
   const dispatch = useDispatch()
-  const { profile, error, isLoading } = state.profileReducer
+  const { profile, error, isLoading,profcookie } = state.profileReducer
   const router = useRouter()
   const profileData = profile !== null ? profile?.data : []
   // edititable content
@@ -87,6 +87,8 @@ const User = ({ edit }) => {
   const [share, setShare] = useState(false)
   // search
   const [searchBar, setSearchBar] = useState(false)
+  // repositioning in social handle
+  // const [rePos, setRePos] = useState({from:null,})
 
   useEffect(() => {
 
@@ -118,7 +120,7 @@ const User = ({ edit }) => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
     const cookie = localStorage.getItem("unique")
-    if (edit) {
+    if (edit || !edit && router.query.id===data?.existingUser?.username) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     // if(!edit && router.query.id=== data?.existingUser?.username){
@@ -181,10 +183,12 @@ const User = ({ edit }) => {
         setShowEditOptionOnViewSide(false)
       }
     }
+    
 
   }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
 
 
+  console.log({profcookie})
   
 
   const logout = () => {
@@ -225,6 +229,8 @@ const User = ({ edit }) => {
       profileData.requests = []
 
     }
+
+    dispatch(getCookieData())
   }, [dispatch, isUserLikeProfile, profile, popUpData, profileData, error, isCrop])
 
 
@@ -509,6 +515,7 @@ const User = ({ edit }) => {
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
   }
+  
 
   console.log({k: Object.keys(profileData?.social),val: Object.values(profileData?.social)})
   
@@ -525,7 +532,7 @@ const User = ({ edit }) => {
 
   console.log({profileData})
   return (
-    <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData && profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} >
+    <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={ !edit && true} >
       <div className="connectme__user">
         <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
           <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
@@ -678,7 +685,7 @@ const User = ({ edit }) => {
               <h1>Social Handles</h1>
             </div>
             <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              {socialHandle.map((d, i) => !edit ? i < 6 : i<8 && (
+              {socialHandle.map((d, i) =>  i < 6 && (
                 <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
                   <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
                     {d.item}
@@ -843,7 +850,7 @@ const User = ({ edit }) => {
         }
         {
           showRequesList && (
-            <Request data={profileData?.requests} setModal={setShowRequesList} />
+            <Request data={profcookie?.data?.requests} setModal={setShowRequesList} />
           )
         }
         {

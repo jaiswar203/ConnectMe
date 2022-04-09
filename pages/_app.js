@@ -39,15 +39,14 @@ export default function MyApp(props) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>This is film debut Portfolio platform , to let folks create Awesome debut profile with this</title>
+        
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />  
         <meta name="viewport" content="user-scalable=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="HandheldFriendly" content="true" />
 
-        <meta property="og:url" content="https://www.connectme.co.in" />
-        <meta property="og:description" content="Create Awesome Film Debut Portfolio" />
+        
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

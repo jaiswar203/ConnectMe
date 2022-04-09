@@ -1,5 +1,5 @@
-import { AiFillEye, AiFillEyeInvisible, AiOutlineShareAlt, AiOutlineSearch } from 'react-icons/ai'
-import { GrConnect } from 'react-icons/gr'
+import { AiFillEye,AiFillBell, AiFillEyeInvisible, AiOutlineShareAlt, AiOutlineSearch } from 'react-icons/ai'
+import { BsBell } from 'react-icons/bs'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
@@ -11,6 +11,7 @@ import { getCurrentUserData } from '../../../redux/action/Auth'
 const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
     const router = useRouter()
     const state = useSelector((state) => state)
+    const {profileReducer}=state
     const dispatch = useDispatch()
     const [reqCount, setReqCount] = useState(0)
 
@@ -18,13 +19,13 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
         dispatch(getCurrentUserData())
         setReqCount(profile?.requests?.length)
-    }, [dispatch, reqCount])
+        console.log({len:profile?.requests?.length})
+        
+    }, [dispatch, reqCount,profileReducer])
 
     const userData = state !== undefined && state.AuthRedu.user
-    console.log({ reqCount })
 
     const editHandler = () => {
-
         if (edit) {
             router.push(`/${userData?.existingUser?.username}`)
         } else {
@@ -49,7 +50,7 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
                     <AiOutlineShareAlt />
                 </motion.div>
                 <div className="connectme__footer-request" onClick={() => setShowRequesList(true)} >
-                    <GrConnect />
+                    <BsBell />
                     {reqCount > 0 && (
                         <div className="notify">
                             <p>{reqCount}</p>

@@ -88,8 +88,6 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
         console.log({ user, id })
         dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, title.toLowerCase()))
     }
-
-    
     
     return (
         <div className="connectme__user-services">
@@ -134,7 +132,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                 </Swiper>
             </motion.div>
             <div className="connectme__user-services__more" >
-                <Link href={`/${link}`} passHref>
+                <Link href={`/${link}&edit=${edit}`} passHref>
                     <motion.div className="" initial={{ x: -300, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} whileHover={{ scale: 1.1, x: 10 }}>
                         <BsThreeDots />
                     </motion.div>

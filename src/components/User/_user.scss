@@ -127,7 +127,7 @@
     }
   }
   .lower__sec {
-    margin-top: -4rem;
+    margin-top: -3rem;
     padding: 0rem 10rem;
   }
 
@@ -583,7 +583,7 @@
     &__more {
       @include center__element;
       justify-content: flex-end;
-      overflow-x: hidden;
+      overflow: hidden;
 
       margin-top: 2rem;
       svg {

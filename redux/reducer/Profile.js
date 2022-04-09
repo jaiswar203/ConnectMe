@@ -26,7 +26,10 @@ const profileReducer=(state={profile:null,error:null,isLoading: false},action)=>
         case "LIKE_PROFILE":
             return {...state,profile: action?.data}
         case "CONFIRM_REQUEST":
+            localStorage.setItem("profile",JSON.stringify(action?.data))
             return {...state,profile: action?.data}
+        case "GET_COOKIE_DATA":
+            return {...state,profcookie: JSON.parse(localStorage.getItem("profile"))}
         default:
             return state
     }

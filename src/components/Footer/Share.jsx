@@ -7,6 +7,7 @@ import Linkedin from '../User/logo/linkedin'
 import { useState } from "react"
 import { useEffect } from "react"
 import { motion } from "framer-motion"
+import { ToastContainer, toast } from 'react-toast'
 
 import copy from 'copy-to-clipboard'
 
@@ -21,7 +22,10 @@ const Share = ({ setShare, username }) => {
     const dev_url = "http://localhost:3000"
     const copyToClipBoard = () => {
         copy(url)
-        alert("url Copied")
+        toast("Url Copied",{
+            backgroundColor:"#3080C0",
+            color:"white"
+        })
     }
     return (
         <div className="connectme__share">
@@ -36,7 +40,9 @@ const Share = ({ setShare, username }) => {
                 <div className="connectme__share-content__share">
                     <div className="title">
                         <h4>Share Profile Via</h4>
+
                     </div>
+                    <ToastContainer position="top-right" delay={4000}  />
                     <div className="social">
                         <motion.div className="social__item" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }}>
                             <a href={`https://api.whatsapp.com/send?text=${url}/${username}`} target="_blank" rel="noreferrer" data-action="share/whatsapp/share">
