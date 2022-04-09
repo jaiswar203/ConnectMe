@@ -42,6 +42,7 @@ import { MdDelete } from "react-icons/md"
 import Request from "./subcomponents/Request"
 import Share from "../Footer/Share"
 import SearchBar from "../Footer/SearchBar"
+import Social from "./subcomponents/social"
 
 
 const User = ({ edit }) => {
@@ -91,6 +92,8 @@ const User = ({ edit }) => {
   // repositioning in social handle
   // const [rePos, setRePos] = useState({from:null,})
 
+  const [socialRefactor, setSocialRefactor] = useState(false)
+
   useEffect(() => {
 
     window.addEventListener("resize", () => {
@@ -116,7 +119,7 @@ const User = ({ edit }) => {
 
   useEffect(() => {
 
-  }, [imgProp.w, imgProp.h, showPop, showRequesList, textArea])
+  }, [imgProp.w, imgProp.h, showPop, showRequesList, textArea, socialRefactor])
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
@@ -392,42 +395,50 @@ const User = ({ edit }) => {
     {
       item: <Instagram />,
       name: "Instagram",
-      link: profileData?.social?.insta
+      link: profileData?.social?.instagram?.data,
+      active: profileData?.social?.instagram?.active,
     },
     {
       item: <Facebook />,
       name: "Facebook",
-      link: profileData?.social?.facebook
+      link: profileData?.social?.facebook?.data,
+      active: profileData?.social?.facebook?.active,
     },
     {
       item: <Twitter />,
       name: "Twitter",
-      link: profileData?.social?.twitter
+      link: profileData?.social?.twitter?.data,
+      active: profileData?.social?.twitter?.active,
     },
     {
       item: <Linkedin />,
       name: "Linkedin",
-      link: profileData?.social?.linkedin
+      link: profileData?.social?.linkedin?.data,
+      active: profileData?.social?.linkedin?.active,
     },
     {
       item: <Youtube />,
       name: "Youtube",
-      link: profileData?.social?.youtube
+      link: profileData?.social?.youtube?.data,
+      active: profileData?.social?.youtube?.active,
     },
     {
       item: <Website />,
       name: "WebSite",
-      link: profileData?.social?.website
+      link: profileData?.social?.website?.data,
+      active: profileData?.social?.website?.active,
     },
     {
       item: <Wikipedia />,
       name: "WikiPedia",
-      link: profileData?.social?.wikipedia
+      link: profileData?.social?.wikipedia?.data,
+      active: profileData?.social?.wikipedia?.active,
     },
     {
       item: <IMDB />,
       name: "IMDB",
-      link: profileData?.social?.imdb
+      link: profileData?.social?.imdb?.data,
+      active: profileData?.social?.imdb?.active,
     },
   ]
 
@@ -700,14 +711,23 @@ const User = ({ edit }) => {
             <div className="connectme__user-social">
               <div className="connectme__user-social__title">
                 <h1>Social Handles</h1>
+                {
+                  profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
+                    <div className="refactor">
+                      <div className="refactor__button" onClick={() => setSocialRefactor(true)}>
+                        <h2>Refactor</h2>
+                      </div>
+                    </div>
+                  )
+                }
               </div>
               <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                {socialHandle.map((d, i) => i < 6 && (
+                {socialHandle.map((d, i) => d.active && (
                   <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
                     <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
                       {d.item}
                       {edit && (
-                        <div className="background" onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}`)}>
+                        <div className="background" onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}.data`)}>
                           <FaEdit />
                         </div>
                       )}
@@ -878,6 +898,11 @@ const User = ({ edit }) => {
           {
             searchBar && (
               <SearchBar setSearchBar={setSearchBar} />
+            )
+          }
+          {
+            socialRefactor && (
+              <Social data={socialHandle} setSocialRefactor={setSocialRefactor} />
             )
           }
           <BorderComp />

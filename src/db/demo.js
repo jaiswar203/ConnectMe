@@ -1,7 +1,7 @@
 const demoProfile = {
   background:
     "https://res.cloudinary.com/redwine/image/upload/v1644848677/1000_cka9mr.jpg",
-  name: "Jhon Doe",
+    name:"Jhon Doe",
   profileimg:
     "https://res.cloudinary.com/redwine/image/upload/v1644848807/photo-1494790108377-be9c29b29330_zrapqv.jpg",
   city: "Mumbai,Maharahtra",
@@ -39,14 +39,30 @@ const demoProfile = {
     },
   ],
   social: {
-    insta: "https://www.instagram.com/",
-    facebook: "https://www.facebook.com/",
-    twitter: "https://www.twitter.com/",
-    imdb: "https://www.imdb.com/",
-    website: "https://www.website.com/",
-    linkedin: "https://www.linkedin.com/",
-    youtube: "https://www.youtube.com",
-    wikipedia: "https://www.wikipedia.com",
+    instagram: {
+      data: "https://www.instagram.com/",
+    },
+    facebook: {
+      data: "https://www.facebook.com/",
+    },
+    twitter: {
+      data: "https://www.twitter.com/",
+    },
+    imdb: {
+      data: "https://www.imdb.com/",
+    },
+    website: {
+      data: "https://www.website.com/",
+    },
+    linkedin: {
+      data: "https://www.linkedin.com/",
+    },
+    youtube: {
+      data: "https://www.youtube.com",
+    },
+    wikipedia: {
+      data: "https://www.wikipedia.com",
+    } 
   },
   personal: {
     whatsapp: "394997499",
