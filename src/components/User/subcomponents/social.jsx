@@ -26,7 +26,7 @@ const Social = ({ setSocialRefactor, data }) => {
                     </div>
                     <div className="connectme__social-refactor__content-data">
                         {data?.map((d) => (
-                            <div className="item">
+                            <div className="item" key={d.name}>
                                 <h3>{d.name}</h3>
                                 <div className="item__action">
                                     <motion.div className="button" style={{ background: d.active ? "" : "red" }} whileTap={{ scale: 1.1 }} onClick={()=>changaActive(d.name,d.active)}>
