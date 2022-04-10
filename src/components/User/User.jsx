@@ -680,12 +680,12 @@ const User = ({ edit }) => {
 
             <div className="connectme__user-interests">
               <div className="connectme__user-interests__title">
-                <h1>Interests</h1>
                 {edit && (
                   <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Interests", `interests`, { testimonial: true })} >
                     <h2>Add Interest</h2>
                   </motion.div>
                 )}
+                <h1>Interests</h1>
               </div>
               <motion.div className="connectme__user-interests__info" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }} >
                 {profileData?.interests.map((d) => (
