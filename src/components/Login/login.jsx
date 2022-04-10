@@ -87,6 +87,7 @@ const Login = () => {
           createProfile({
             ...demoProfile,
             createdBy: authData?.existingUser?._id,
+            name: authData?.existingUser?.name
           })
         );
       }else{
