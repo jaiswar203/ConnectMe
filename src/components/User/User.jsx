@@ -442,6 +442,10 @@ const User = ({ edit }) => {
     },
   ]
 
+  useEffect(()=>{
+
+  },[socialHandle])
+
 
   if (error?.type === "EXIST_ERROR") {
     return (
@@ -712,7 +716,7 @@ const User = ({ edit }) => {
               <div className="connectme__user-social__title">
                 <h1>Social Handles</h1>
                 {
-                  profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
+                  edit && profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
                     <div className="refactor">
                       <div className="refactor__button" onClick={() => setSocialRefactor(true)}>
                         <h2>Refactor</h2>
