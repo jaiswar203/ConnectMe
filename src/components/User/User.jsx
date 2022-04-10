@@ -744,13 +744,13 @@ const User = ({ edit }) => {
             <BorderComp />
             <div className="connectme__user-connects">
               <div className="connectme__user-connects__title">
+                <h1>ConnectMe</h1>
                 {
                   profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
 
                     <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} />
                   )
                 }
-                <h1>ConnectMe</h1>
               </div>
               <motion.div className="connectme__user-connects__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                 {
@@ -786,8 +786,8 @@ const User = ({ edit }) => {
                   <BorderComp />
                   <div className="connectme__user-personal">
                     <div className="connectme__user-personal__title">
-                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} />
                       <h1>Personal Info</h1>
+                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} />
                     </div>
                     <div className="connectme__user-personal__content">
                       <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
