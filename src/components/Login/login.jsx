@@ -36,7 +36,7 @@ const Login = () => {
   useEffect(() => {
 
   }, [icon])
-  console.log({ state })
+  
 
   const onSubmit = async (data) => {
     if (Boolean(SignUp)) {

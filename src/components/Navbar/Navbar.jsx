@@ -23,21 +23,20 @@ const Navbar = () => {
         const data = localStorage.getItem("UserAuth")
         dispacth(existingUserData(JSON.parse(data)))
 
-        const token=authData?.token
+        // const token=authData?.token
 
-        if(token){
-            const decodeToken=decode(token)
-            if(decodeToken.exp * 1000 < new Date().getTime()) 
-            return logout()
-            console.log(token)
-        }
+        // if(token){
+        //     const decodeToken=decode(token)
+        //     if(decodeToken.exp * 1000 < new Date().getTime()) 
+        //     return logout()
+            
+        // }
     }, [dispacth])
     const { signup } = router.query
 
     const SignOutHandler = () => {
         dispacth({ type: "LOGOUT" })
     }
-    console.log({ authData })
     
 
     return (

@@ -67,12 +67,12 @@ const  ToggleSwitch=({data,setHandler,apiId,profileId,profile,isPrivate=false,in
 
     },[dispatch])
 
-    console.log({profileId,profile})
+    
     const onClickHandler=()=>{
         const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
         
         if(isPrivate){
-            console.log("udk")
+            
             dispatch(updateProfile( {userId: user?._id, data: {isPrivate:!profile.isPrivate}},profileId))
         }else if(info){
             dispatch(updateProfile( {userId: user?._id, data: {["userInfo.access"]:!profile.userInfo.access}},profileId))

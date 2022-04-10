@@ -38,15 +38,6 @@ const Crop = ({ img, w, h, setcroppedUrl, setModal }) => {
         setModal(false)
     }
 
-    // const preview = async() => {
-    //     try {
-    //         const croppedImage = await getCroppedImg(img, croppedAreaPixels)
-    //         setCroppedImage(croppedImage)
-    //     } catch (error) {
-    //         console.log({ error })
-    //     }
-    // }
-
     return (
         <div className="connectme__cropper">
             <div className="connectme__cropper-action">

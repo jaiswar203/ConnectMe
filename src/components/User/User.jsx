@@ -125,7 +125,7 @@ const User = ({ edit }) => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
     const cookie = localStorage.getItem("unique")
     if (edit && data) {
-      console.log("skjfjjfkj")
+      
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     // if(!edit && router.query.id=== data?.existingUser?.username){
@@ -219,7 +219,7 @@ const User = ({ edit }) => {
     //   if (decodedData.exp * 1000 < new Date().getTime()) return logout()
 
     //   const date=new Date().getTime()
-    //   console.log({decodedData,date})
+    
     // }
 
     const userData = user?.existingUser
@@ -548,7 +548,7 @@ const User = ({ edit }) => {
     }
   }
 
-  console.log({ profileData })
+  
   return (
     <>
       <Head>
@@ -725,10 +725,10 @@ const User = ({ edit }) => {
                   )
                 }
               </div>
-              <motion.div className="connectme__user-social__content" variants={parentVariantForInterests} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <div className="connectme__user-social__content" >
                 {socialHandle.map((d, i) => d.active && (
                   <a href={edit ? null : d.link} target="_blank" key={d.name} rel="noreferrer" >
-                    <motion.div className="item" variants={childVariantForSocial} viewport={{ once: true }} whileHover={{ scale: 1.2, color: "red" }} >
+                    <div className="item">
                       {d.item}
                       {edit && (
                         <div className="background" onClick={() => openEditHandler(d.link, "Social Handles", `social.${d.name.toLowerCase()}.data`)}>
@@ -736,10 +736,10 @@ const User = ({ edit }) => {
                         </div>
                       )}
                       <motion.p> {d.name}</motion.p>
-                    </motion.div>
+                    </div>
                   </a>
                 ))}
-              </motion.div>
+              </div>
             </div>
             <BorderComp />
             <div className="connectme__user-connects">

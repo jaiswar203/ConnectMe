@@ -8,7 +8,7 @@ const Confirm = () => {
     const [modalData, setModalData] = useState({})
     const router = useRouter()
     const query = router.query
-    console.log({ query })
+    
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("UserAuth"))
@@ -33,7 +33,7 @@ const Confirm = () => {
         }
     }, [modal, query])
 
-    console.log({ modal })
+    
     return (
         <Layout title={"confirm your email"}>
             {

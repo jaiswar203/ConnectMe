@@ -312,6 +312,68 @@ A {
   border-radius: 5px;
 }
 
+.connectme__user-update__once {
+  padding: 2rem 1rem;
+}
+.connectme__user-update__once-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+.connectme__user-update__once-title svg {
+  font-size: 2rem;
+}
+.connectme__user-update__once .border {
+  width: 100%;
+  height: 0.15rem;
+  background-color: black;
+}
+.connectme__user-update__once-content {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.connectme__user-update__once-content .personal__form {
+  padding: 2rem;
+  width: 28rem;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(200, 204, 211, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+.connectme__user-update__once-content .personal__form-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.connectme__user-update__once-content .personal__form .submit {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.connectme__user-update__once-content .personal__form .submit button {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background: black;
+  color: white;
+}
+@media screen and (max-width: 500px) {
+  .connectme__user-update__once {
+    font-size: 0.7rem;
+  }
+  .connectme__user-update__once-content {
+    width: 100%;
+    padding: 1rem 0;
+  }
+}
+
 .connectme__user {
   margin-bottom: 5rem;
 }
@@ -608,64 +670,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(60, 252, 222);
+  background: rgb(179, 231, 202);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(211, 110, 3);
+  background: rgb(158, 114, 2);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(225, 144, 10);
+  background: rgb(197, 39, 159);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(160, 166, 11);
+  background: rgb(138, 82, 216);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(20, 73, 213);
+  background: rgb(195, 129, 154);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(144, 211, 186);
+  background: rgb(33, 120, 81);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(47, 42, 60);
+  background: rgb(142, 10, 149);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(81, 145, 122);
+  background: rgb(181, 120, 72);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(180, 145, 30);
+  background: rgb(48, 1, 226);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(36, 222, 115);
+  background: rgb(12, 120, 35);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(96, 230, 65);
+  background: rgb(45, 91, 66);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(159, 250, 149);
+  background: rgb(172, 54, 154);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(116, 245, 42);
+  background: rgb(100, 96, 9);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(131, 249, 78);
+  background: rgb(139, 107, 9);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(1, 8, 5);
+  background: rgb(70, 217, 105);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(127, 99, 94);
+  background: rgb(171, 136, 104);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(216, 122, 210);
+  background: rgb(95, 118, 183);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(199, 8, 121);
+  background: rgb(123, 240, 183);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(171, 224, 141);
+  background: rgb(44, 22, 158);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(52, 192, 156);
+  background: rgb(213, 32, 117);
 }
 .connectme__user-social__title {
   display: flex;

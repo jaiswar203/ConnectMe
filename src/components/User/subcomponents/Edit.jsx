@@ -14,7 +14,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
     const [formData, setFormData] = useState({})
     const [cloudImage, setCloudImage] = useState("")
 
-    console.log({ multiple })
+    
 
     const [isSuccess, setIsSuccess] = useState(false)
     const [runFunction, setRunFunction] = useState(false)
@@ -51,19 +51,19 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         setRunFunction(true)
 
     }
-    console.log({ data, crop })
+    
     const handleChange = (e) => {
         e.preventDefault()
 
         if (data?.isSubDoc?.isSubDoc) {
-            console.log("exec")
+            
             setFormData({ ...formData, data: e.target.value })
         } else if (data?.isSubDoc?.testimonial) {
             setFormData({ ...formData, data: e.target.value.slice(17) })
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
-        console.log({ formData })
+        
     }
 
     const uploadImage = () => {

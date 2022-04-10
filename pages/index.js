@@ -59,7 +59,7 @@ const Index = () => {
   };
 
   const newData = authData !== undefined && authData?.existingUser;
-  console.log({ newData });
+  
   return (
     <Layout description={"ConnectMe Login"}>
       {!authData && (

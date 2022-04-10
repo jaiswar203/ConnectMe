@@ -26,14 +26,9 @@ const Detail = () => {
   },[authData])
 
   useEffect(()=>{
-    // const cookie=localStorage.getItem("unique")
-
-    // if(id!==undefined && cookie){
-    //   dispatch(viewProfile(id,cookie))
-    // }
     
   },[dispatch,router])
-  console.log({id})
+  
   return (
     <User edit={false} />
   )

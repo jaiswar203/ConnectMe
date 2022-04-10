@@ -19,7 +19,7 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
         dispatch(getCurrentUserData())
         setReqCount(profile?.requests?.length)
-        console.log({len:profile?.requests?.length})
+        
         
     }, [dispatch, reqCount,profileReducer])
 

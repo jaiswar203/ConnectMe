@@ -22,7 +22,7 @@ const Gallery = ({ data, title, content, edit }) => {
         setIndex(newData?.length - 1)
     } else if (index > newData.length - 1) {
         setIndex(0)
-        console.log("limit Reached")
+        
     }
 
     const refinedData = newData[index]
@@ -34,7 +34,7 @@ const Gallery = ({ data, title, content, edit }) => {
     const deleteSubDoc = (id) => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
 
-        console.log({ user, id })
+        
         dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, content.toLowerCase()))
     }
 
@@ -42,7 +42,7 @@ const Gallery = ({ data, title, content, edit }) => {
         setIndex(i)
         setModal(true)
     }
-    console.log({edit})
+    
     return (
         <div className="connectme__gallery">
             <div className="connectme__gallery-title">
@@ -57,7 +57,7 @@ const Gallery = ({ data, title, content, edit }) => {
             <div className="connectme__gallery-content" >
                 {data.map((d, i) => (
                     <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * .3 }} key={d.data} className="images" onClick={() => !edit && onClickHandler(i)}>
-                        {console.log({d})}
+
                         <Image src={d.data} width={300} height={300} objectFit="cover" />
                         {edit && (
                             <>

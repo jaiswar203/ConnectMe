@@ -62,7 +62,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
             setIndex(newData.length - 1)
         } else if (index >= newData.length - 1) {
             setIndex(0)
-            console.log("limit Reached")
+            
         }
         
     }, [refinedData,profile,index,multipleUpload])
@@ -85,7 +85,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     const deleteSubDoc = (id) => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
 
-        console.log({ user, id })
+        
         dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, title.toLowerCase()))
     }
     

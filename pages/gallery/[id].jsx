@@ -47,7 +47,7 @@ const Grid = () => {
     }
 
     const isEdit=edit==="true"
-    console.log({isEdit})
+    
     return (
         <Layout title={`Profile of Jaiswar203`} description={profile?.name} navbar={false} icon={profileData?.profileimg} >
             <Gallery data={profileData[content]} title={id} content={content} edit={isEdit}  />
