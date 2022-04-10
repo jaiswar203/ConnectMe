@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getCurrentUserData } from '../../../redux/action/Auth'
+import {RiLogoutCircleRFill} from 'react-icons/ri'
 
 
 const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
@@ -37,7 +38,6 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
 
     return (
         <div className='center__footer'>
-
             <div className="connectme__footer">
                 <motion.div className="connectme__footer-view" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }} onClick={editHandler} >
                     {edit ? (
@@ -60,6 +60,9 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar }) => {
                 <motion.div className="connectme__footer-search" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }} onClick={() => setSearchBar(true)}>
                     <AiOutlineSearch />
                 </motion.div>
+                {/* <motion.div className="connectme__footer-logout" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }} onClick={() => setSearchBar(true)}>
+                    <RiLogoutCircleRFill color='red' />
+                </motion.div> */}
             </div>
         </div>
     )

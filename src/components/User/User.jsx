@@ -549,6 +549,9 @@ const User = ({ edit }) => {
   }
 
   
+
+  console.log({router: router.query})
+  
   return (
     <>
       <Head>
@@ -775,10 +778,9 @@ const User = ({ edit }) => {
             <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
 
             <BorderComp />
-            <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${userName}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
+            <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${router?.query?.id}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
             <BorderComp />
-
-            <Port data={profileData?.services} title={"Services"} link={`/gallery/${userName}?content=services`} edit={edit} openEditHandler={openEditHandler} />
+            <Port data={profileData?.services} title={"Services"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler} />
 
             {
               profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (
@@ -862,7 +864,7 @@ const User = ({ edit }) => {
                     </div>
                     <div className="content">
                       <Link href={"login?signup=true"} passHref>
-                        <motion.div className="content__button" whileTap={{ scale: 1.1 }}>
+                        <motion.div className="content__button" whileTap={{ scale: 1.1 }} style={{background:"#9820d9"}}>
                           <h3>Create Now</h3>
                         </motion.div>
                       </Link>
