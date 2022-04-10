@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { Navbar, Footer } from '.'
 
-const Layout = ({ title, children, description ,navbar=true,edit,footer=false,setShare,ogImg="",setShowRequesList,setSearchBar}) => {
+const Layout = ({ title, children, description ,navbar=true,edit,footer=false,setShare,ogImg="",setShowRequesList,setSearchBar,view=false}) => {
     
     return (
         <div>
@@ -18,7 +18,7 @@ const Layout = ({ title, children, description ,navbar=true,edit,footer=false,se
             </main>
             {
                 footer && (
-                    <Footer edit={edit} setShare={setShare} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} />
+                    <Footer edit={edit} setShare={setShare} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} view={view} />
                 )
             }
             

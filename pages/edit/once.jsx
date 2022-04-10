@@ -50,7 +50,7 @@ const Once = () => {
     return (
         <div className="connectme__user-update__once">
             <div className="connectme__user-update__once-title">
-                <motion.div className="previous" whileHover={{ x: -20 }} onClick={() => router.back()}>
+                <motion.div className="previous" whileTap={{ x: -20 }} onClick={() => router.back()}>
                     <AiOutlineArrowLeft />
                 </motion.div>
                 <h1>Personal Info</h1>

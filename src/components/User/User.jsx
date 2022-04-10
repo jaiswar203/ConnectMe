@@ -125,7 +125,7 @@ const User = ({ edit }) => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
     const cookie = localStorage.getItem("unique")
     if (edit && data) {
-      
+
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
     // if(!edit && router.query.id=== data?.existingUser?.username){
@@ -219,7 +219,7 @@ const User = ({ edit }) => {
     //   if (decodedData.exp * 1000 < new Date().getTime()) return logout()
 
     //   const date=new Date().getTime()
-    
+
     // }
 
     const userData = user?.existingUser
@@ -442,9 +442,9 @@ const User = ({ edit }) => {
     },
   ]
 
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[socialHandle])
+  }, [socialHandle])
 
 
   if (error?.type === "EXIST_ERROR") {
@@ -542,16 +542,16 @@ const User = ({ edit }) => {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
 
     if (!data) {
-      return false
-    } else {
       return true
+    } else {
+      return false
     }
   }
 
-  
 
-  console.log({router: router.query})
-  
+
+  console.log({ router: router.query })
+
   return (
     <>
       <Head>
@@ -566,7 +566,7 @@ const User = ({ edit }) => {
         <meta property="og:description" content={`Profile of ${profileData?.name}`} />
         <meta property="og:type" content="profile" />
       </Head>
-      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} >
+      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} >
 
         <div className="connectme__user">
           <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
@@ -749,7 +749,7 @@ const User = ({ edit }) => {
               <div className="connectme__user-connects__title">
                 <h1>ConnectMe</h1>
                 {
-                  profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
+                  edit && profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
 
                     <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} />
                   )
@@ -864,7 +864,7 @@ const User = ({ edit }) => {
                     </div>
                     <div className="content">
                       <Link href={"login?signup=true"} passHref>
-                        <motion.div className="content__button" whileTap={{ scale: 1.1 }} style={{background:"#9820d9"}}>
+                        <motion.div className="content__button" whileTap={{ scale: 1.1 }} style={{ background: "#9820d9" }}>
                           <h3>Create Now</h3>
                         </motion.div>
                       </Link>

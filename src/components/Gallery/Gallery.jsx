@@ -46,7 +46,7 @@ const Gallery = ({ data, title, content, edit }) => {
     return (
         <div className="connectme__gallery">
             <div className="connectme__gallery-title">
-                <motion.div whileHover={{ scale: 1.1, x: -30 }}>
+                <motion.div whileTap={{ scale: 1.1, x: -30 }}>
                     <BsArrowLeft onClick={() => router.back()} />
                 </motion.div>
                 <h1>{content.toUpperCase()}</h1>
