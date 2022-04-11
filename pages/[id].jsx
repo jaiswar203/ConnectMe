@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react"
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
+import Head from "next/head"
 import { useSelector } from "react-redux"
 import { User } from "../src/components"
 import { useDispatch } from "react-redux"
@@ -10,27 +11,37 @@ import { viewProfile } from "../redux/action/Profile"
 const Detail = () => {
   const router = useRouter()
   const { id } = router.query
-  const state = useSelector((state) => state.AuthRedu)
-  const authData = state?.authData
-  const dispatch=useDispatch()
-  
-  const uniqueIdForVisitor=uuid()
+  const state = useSelector((state) => state)
+  const authData = state?.AuthRedu.authData
+  const profileData = state?.profileReducer && state?.profileReducer?.profile?.data
+  const dispatch = useDispatch()
 
-  
-  useEffect(()=>{
-    const is_cookie_exist=localStorage.getItem("unique")
+  const uniqueIdForVisitor = uuid()
 
-    if(is_cookie_exist===null){
-      localStorage.setItem("unique",uniqueIdForVisitor)
+
+  useEffect(() => {
+    const is_cookie_exist = localStorage.getItem("unique")
+
+    if (is_cookie_exist === null) {
+      localStorage.setItem("unique", uniqueIdForVisitor)
     }
-  },[authData])
+  }, [authData])
 
-  useEffect(()=>{
-    
-  },[dispatch,router])
-  
+  useEffect(() => {
+
+  }, [dispatch, router])
+  console.log({state,profileData})
+
   return (
-    <User edit={false} />
+    <>
+      <Head>
+        <meta property="og:title" content={profileData?.name} />
+        <meta property="og:type" content="video.movie" />
+        <meta property="og:url" content={"https://connectme.co.in"} />
+        <meta property="og:image" content={profileData?.profileimg} />
+      </Head>
+      <User edit={false} />
+    </>
   )
 }
 

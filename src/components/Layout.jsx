@@ -9,11 +9,6 @@ const Layout = ({ title, children, description, navbar = true, edit, footer = fa
             <Head>
                 <title>{title ? `${title} - ConnectMe` : 'ConnectMe'}</title>
                 {description && <meta name='description' content={description} />}
-                <meta property="og:title" content="The Rock" />
-                <meta property="og:type" content="video.movie" />
-                <meta property="og:url" content={"https://connectme.co.in"} />
-                <meta property="og:image" content={tab.img} />
-                
             </Head>
             {navbar && (
                 <Navbar />
