@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getCurrentUserData } from '../../../redux/action/Auth'
 import { RiLogoutCircleRFill } from 'react-icons/ri'
+import { FiEdit } from 'react-icons/fi'
 
 
 const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
@@ -43,9 +44,9 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
                 {!view && (
                     <motion.div className="connectme__footer-view" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }} onClick={editHandler} >
                         {edit ? (
-                            <AiFillEyeInvisible />
-                        ) : (
                             <AiFillEye />
+                        ) : (
+                            <FiEdit />
                         )}
                     </motion.div>
                 )}
