@@ -554,19 +554,8 @@ const User = ({ edit }) => {
 
   return (
     <>
-      <Head>
-        <meta property="og:title" content="Create Awesome Film Debut Profile" />
-        {/* <meta property="og:image" content={profileData?.profileimg} /> */}
-        <meta property="og:image:secure_url" content={profileData?.profileimg} />
-        <meta property="og:image:width" content="400" />
-        <meta property="og:image:height" content="400" />
-        <link rel="icon" type="image/x-icon" href={profileData?.profileimg} />
-        <link rel="shortcut icon" type="image/x-icon" href={profileData?.profileimg} />
-        <meta property="og:url" content="https://www.connectme.co.in" />
-        <meta property="og:description" content={`Profile of ${profileData?.name}`} />
-        <meta property="og:type" content="profile" />
-      </Head>
-      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} >
+      
+      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{img: profileData?.profileimg, title:profileData?.name}} >
 
         <div className="connectme__user">
           <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>

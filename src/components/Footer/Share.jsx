@@ -23,7 +23,7 @@ const Share = ({ setShare, username }) => {
     const copyToClipBoard = () => {
         copy(url)
         toast("Url Copied",{
-            backgroundColor:"#3080C0",
+            backgroundColor:"green",
             color:"white"
         })
     }
@@ -40,7 +40,6 @@ const Share = ({ setShare, username }) => {
                 <div className="connectme__share-content__share">
                     <div className="title">
                         <h4>Share Profile Via</h4>
-
                     </div>
                     <ToastContainer position="top-right" delay={4000}  />
                     <div className="social">

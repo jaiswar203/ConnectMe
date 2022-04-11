@@ -22,11 +22,10 @@ const store = createStore(
 );
 
 import "../styles/css/index.css";
-import 'swiper/css'
+import "swiper/css";
 import { useRouter } from "next/router";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-
 
 export default function MyApp(props) {
   const {
@@ -36,17 +35,22 @@ export default function MyApp(props) {
     session,
   } = props;
 
+  
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />  
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="user-scalable=no" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
         <meta name="HandheldFriendly" content="true" />
-
-        
+        <meta property="og:title" content="The Rock" />
+        <meta property="og:type" content="video.movie" />
+        <meta property="og:url" content={"https://connectme.co.in"} />
+        <meta property="og:image" content={"https://images.wsj.net/im-515021?width=860&height=573"} />
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
