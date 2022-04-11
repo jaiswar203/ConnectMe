@@ -36,8 +36,8 @@ const Detail = () => {
     <div>
       <Head>
         <meta property="og:title" content={profileData?.name} />
-        <meta property="og:type" content="video.movie" />
-        <meta property="og:url" content={"https://connectme.co.in"} />
+        <meta property="og:type" content="profile.image" />
+        <meta property="og:url" content={"https://connectme.co.in/"} />
         <meta property="og:image" content={profileData?.profileimg} />
       </Head>
       <User edit={false} />
