@@ -33,7 +33,7 @@ const Detail = () => {
   console.log({state,profileData})
 
   return (
-    <>
+    <div>
       <Head>
         <meta property="og:title" content={profileData?.name} />
         <meta property="og:type" content="video.movie" />
@@ -41,7 +41,7 @@ const Detail = () => {
         <meta property="og:image" content={profileData?.profileimg} />
       </Head>
       <User edit={false} />
-    </>
+    </div>
   )
 }
 
