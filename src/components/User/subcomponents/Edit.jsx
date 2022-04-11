@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { addImageInProfile, updateProfile, updateSubDocInProfileById } from "../../../../redux/action/Profile"
 import axios from "axios"
+import { ToastContainer, toast } from "react-toast"
+import ProgressBar from "@ramonak/react-progress-bar";
+
 
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -14,7 +17,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
     const [formData, setFormData] = useState({})
     const [cloudImage, setCloudImage] = useState("")
 
-    
+
 
     const [isSuccess, setIsSuccess] = useState(false)
     const [runFunction, setRunFunction] = useState(false)
@@ -36,34 +39,34 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
     }, [dispatch, formData, cloudImage])
 
+    const placeholder = data?.isSubDoc && data?.isSubDoc?.placeholder
     const handleSub = (e) => {
         e.preventDefault()
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
         if (data?.isSubDoc?.isSubDoc) {
-            dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data}, profile?._id, data?.name,data?.isSubDoc?.isSubDoc?.underneath ? true : false ))
+            dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data }, profile?._id, data?.name, data?.isSubDoc?.isSubDoc?.underneath ? true : false))
         } else if (data?.isSubDoc?.testimonial) {
             dispatch(addImageInProfile({ data: formData?.data, userId: user?._id }, profile?._id, data?.name))
         } else {
             dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
         }
         setRunFunction(true)
-
     }
-    
+
     const handleChange = (e) => {
         e.preventDefault()
 
         if (data?.isSubDoc?.isSubDoc) {
-            
+
             setFormData({ ...formData, data: e.target.value })
         } else if (data?.isSubDoc?.testimonial) {
             setFormData({ ...formData, data: e.target.value.slice(17) })
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
-        
+
     }
 
     const uploadImage = () => {
@@ -75,8 +78,14 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
         file.append('file', crop?.crop ? croppedUrl : cloudImage[0])
         file.append('upload_preset', 'profile')
-        axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
-            
+        axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file,{
+            onUploadProgress: (pro)=>{
+                const {loaded, total} = pro;
+                let percent = Math.floor(loaded * 100 / total)
+                setProgress(percent)
+            }
+        }).then((res) => {
+
             if (data?.isSubDoc?.isSubDoc) {
                 dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: res.data.secure_url }, profile?._id, data?.name))
             } else if (data?.addImage) {
@@ -119,13 +128,21 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
         const file = new FormData()
 
+
+        if (cloudImage==='') {
+            toast("Please Select an Image", {
+                backgroundColor: "red",
+                color: "white"
+            })
+        }
+
         for (let i = 0; i < cloudImage.length; i++) {
             setRunFunction(true)
             file.append('file', cloudImage[i])
             file.append('upload_preset', 'profile')
             axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
                 if (data?.addImage) {
-                    setMultipleCounter(i+1)
+                    setMultipleCounter(i + 1)
                     dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
                 }
             })
@@ -136,7 +153,13 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
 
     const onChangeHandler = (event) => {
-        if (crop?.crop) {
+        if (event.target.files.length > 5) {
+            toast("You can't Upload more than 5 images", {
+                backgroundColor: "red",
+                color: "white"
+            })
+            setCloudImage("")
+        } else if (crop?.crop) {
             if (event.target.files.length > 0) {
                 var src = URL.createObjectURL(event.target.files[0]);
                 setCropUrl(src)
@@ -146,15 +169,17 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setCloudImage(event.target.files)
         }
     }
+    
+    
     return (
         <div className="connectme__edit">
+            <ToastContainer position="top-right" delay={2000} />
             <motion.div className="connectme__edit-modal" whileInView={{ y: 0, opacity: 1 }} initial={{ y: 200, opacity: 0 }}>
                 <motion.div className="connectme__edit-close" onClick={() => onCloseHandler()} whileTap={{ scale: 1.1 }}>
                     <IoIosCloseCircleOutline />
                 </motion.div>
                 <div className="title">
                     <h1>{data?.title}</h1>
-
                 </div>
                 {
                     data?.fileUploader?.active ? (
@@ -163,10 +188,12 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                             {isSuccess && (
                                 <p style={{ color: "green" }} >{data?.title} Updated</p>
                             )}
-                            {multipleCounter > 0 && (
-                                <p>{multipleCounter} files uploaded </p>
-                            )}
-
+                            {/* {multipleCounter > 0 && multipleCounterHandler()} */}
+                            {
+                                cloudImage.length > 5 && (
+                                    <p> You Can't Upload More than 5 photos </p>
+                                )
+                            }
                             <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
                                 {isLoading ? (
                                     <ClipLoader size={35} color="#000" />
@@ -175,7 +202,6 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                                 )}
                             </motion.div>
                         </div>
-
                     ) : (
 
                         <form onSubmit={handleSub}>
@@ -184,7 +210,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                                     <textarea rows={5} defaultValue={data?.data} name={data?.name} onChange={handleChange} />
 
                                 ) : (
-                                    <input type="text" defaultValue={data?.data} name={data?.name} onChange={handleChange} />
+                                    <input type="text" defaultValue={data?.data} name={data?.name} onChange={handleChange} placeholder={placeholder} />
 
                                 )}
                                 {isSuccess && (
@@ -208,7 +234,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             </motion.div>
             {
                 enableCrop && (
-                    <Crop img={cropUrl} w={crop.w} h={crop.h} setcroppedUrl={setcroppedUrl} setModal={setEnableCrop} />
+                    <Crop img={cropUrl} w={crop.w} h={crop.h} uploadImage={uploadImage} setcroppedUrl={setcroppedUrl} setModal={setEnableCrop} />
                 )
             }
         </div>

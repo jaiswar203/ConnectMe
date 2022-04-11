@@ -40,7 +40,6 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
 
     const deleteSubDoc = (id) => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-
         
         dispatch(deleteSubDocInProfileById({ subId: id, userId: user?._id }, user?.profile, "testimonial"))
     }
@@ -49,7 +48,7 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
             <div className="connectme__user-testimonial__title">
                 <h1>Testimonial</h1>
                 {edit && (
-                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Testimonial", `testimonial`, { testimonial: true })} >
+                    <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Testimonial", `testimonial`, { testimonial: true ,placeholder:"Paste Youtube Url/Link"},)} >
                         <h2>Add Video</h2>
                     </motion.div>
                 )}
@@ -61,7 +60,7 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
                             <SwiperSlide className='connectme__user-testimonial__content-carousel' key={d.name}>
                                 {edit && (
                                     <>
-                                        <div className="background" onClick={() => openEditHandler(d.data, "Testimonial", `testimonial`, { isSubDoc: true, _id: d._id })}>
+                                        <div className="background" onClick={() => openEditHandler(d.data, "Testimonial", `testimonial`, { isSubDoc: true, _id: d._id ,placeholder:"Paste Youtube Url/Link"})}>
                                             <FaEdit />
                                         </div>
                                         <div className="delete" onClick={() => deleteSubDoc(d._id)}>
@@ -86,7 +85,7 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
                 </Swiper>
             </div>
             {showVid && (
-                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} />
+                <Modal isImg={false} img={vidUrl} isIframe={true} setModal={setShowVid} placeholder={"Paste Youtube Url/Link from"} />
             )}
         </div>
     )
