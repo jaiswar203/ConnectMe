@@ -34,7 +34,6 @@ const Detail = () => {
 
   return (
     <>
-      {profileData && (
         <Head>
           <meta property="og:title" content="hello World" key="ogTitlw" />
           <meta property="og:type" content="profile.image" key="ogType" />
@@ -43,7 +42,6 @@ const Detail = () => {
           <meta property="og:image" content={profileData?.profileImg} key="ogimage" />
           <meta property="og:desc" content="Why to be King When You can be god" key="ogdesc" />
         </Head>
-      )}
       <User edit={false} />
     </>
   )
