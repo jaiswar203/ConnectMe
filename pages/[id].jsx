@@ -30,16 +30,17 @@ const Detail = () => {
   useEffect(() => {
 
   }, [dispatch, router])
-  console.log({ state, profileData })
+  console.log({state,profileData})
 
   return (
     <div>
       <Head>
-        <meta
-          property="og:image"
-          content={`https://connectme.co.in/api/og-image?name=${id}&stage=adopt`}
-        />
-
+        <meta property="og:title" content={profileData?.name} key="ogTitlw" />
+        <meta property="og:type" content="profile.image" key="ogType" />
+        <meta property="og:site_name" content="ConnectMe" key="ogSitename"  />
+        <meta property="og:url" content={"https://connectme.co.in/"} key="ogUrl" />
+        <meta property="og:image" content={profileData?.profileimg} key="ogimage" />
+        <meta property="og:desc" content={profileData?.tagline} key="ogdesc" />
       </Head>
       <User edit={false} />
     </div>
