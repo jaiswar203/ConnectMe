@@ -35,12 +35,12 @@ const Detail = () => {
   return (
     <div>
       <Head>
-        <meta property="og:title" content={profileData?.name} key="ogTitlw" />
+        <meta property="og:title" content="hello World" key="ogTitlw" />
         <meta property="og:type" content="profile.image" key="ogType" />
         <meta property="og:site_name" content="ConnectMe" key="ogSitename"  />
         <meta property="og:url" content={"https://connectme.co.in/"} key="ogUrl" />
-        <meta property="og:image" content={profileData?.profileimg} key="ogimage" />
-        <meta property="og:desc" content={profileData?.tagline} key="ogdesc" />
+        <meta property="og:image" content="https://res.cloudinary.com/redwine/image/upload/v1649611237/connectme/t049jfdtjs2gxbzdjhdu.jpg" key="ogimage" />
+        {/* <meta property="og:desc" content={profileData?.tagline} key="ogdesc" /> */}
       </Head>
       <User edit={false} />
     </div>
