@@ -191,7 +191,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                             {/* {multipleCounter > 0 && multipleCounterHandler()} */}
                             {
                                 cloudImage.length > 5 && (
-                                    <p> You Can't Upload More than 5 photos </p>
+                                    <p> You Can&apos;t Upload More than 5 photos </p>
                                 )
                             }
                             <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
