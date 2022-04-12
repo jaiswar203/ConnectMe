@@ -21,7 +21,7 @@ const Detail = () => {
 
   useEffect(() => {
     const is_cookie_exist = localStorage.getItem("unique")
-
+ 
     if (is_cookie_exist === null) {
       localStorage.setItem("unique", uniqueIdForVisitor)
     }

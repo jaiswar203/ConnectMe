@@ -453,11 +453,11 @@ const User = ({ edit }) => {
     )
   }
 
-  if (profile === null) {
-    return (
-      <PopupModal success={false} title={"Fetching"} message={"Wait While Fetching Data"} />
-    )
-  }
+  // if (profile === null) {
+  //   return (
+  //     <PopupModal success={false} title={"Fetching"} message={"Wait While Fetching Data"} />
+  //   )
+  // }
 
   const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false) => {
     setEditData({ ...editData, title: title, name: name, data: data, isSubDoc, fileUploader })
