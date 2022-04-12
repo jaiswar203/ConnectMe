@@ -33,7 +33,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
     const [progress, setProgress] = useState()
 
-    const [multipleCounter, setMultipleCounter] = useState(0)
+    const [multipleCounter, setMultipleCounter] = useState([])
 
     useEffect(() => {
 
@@ -140,15 +140,16 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setRunFunction(true)
             file.append('file', cloudImage[i])
             file.append('upload_preset', 'profile')
+            console.log({multipleCounter})
             axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
-                if (data?.addImage) {
-                    setMultipleCounter(i + 1)
-                    dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
-                }
+                // if (data?.addImage) {
+                // setMultipleCounter( (old)=> [...old,i+1])
+                dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
+                // }
             })
         }
         setRunFunction(false)
-        setMultipleCounter(0)
+        setMultipleCounter([])
     }
 
 
@@ -169,7 +170,6 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setCloudImage(event.target.files)
         }
     }
-    
     
     return (
         <div className="connectme__edit">

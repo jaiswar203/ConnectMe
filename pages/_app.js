@@ -47,10 +47,7 @@ export default function MyApp(props) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
         <meta name="HandheldFriendly" content="true" />
-        <meta property="og:title" content="The Rock" />
-        <meta property="og:type" content="video.movie" />
-        <meta property="og:url" content={"https://connectme.co.in"} />
-        <meta property="og:image" content={"https://images.wsj.net/im-515021?width=860&height=573"} />
+        
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

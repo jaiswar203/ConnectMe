@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Navbar, Footer } from '.'
 
 const Layout = ({ title, children, description, navbar = true, edit, footer = false, setShare, ogImg = "", setShowRequesList, setSearchBar, view = false ,tab={}}) => {
-    console.log({tab})
+    
     return (
         <div>
             <Head>

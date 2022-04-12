@@ -550,7 +550,7 @@ const User = ({ edit }) => {
 
 
 
-  console.log({ router: router.query })
+  
 
   return (
     <>
