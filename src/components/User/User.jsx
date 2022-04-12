@@ -556,7 +556,6 @@ const User = ({ edit }) => {
     <>
       
       <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{img: profileData?.profileimg, title:profileData?.name}} >
-
         <div className="connectme__user">
           <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
             <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
