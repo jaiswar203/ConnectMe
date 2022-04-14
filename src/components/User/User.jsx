@@ -454,7 +454,9 @@ const User = ({ edit }) => {
   }
 
   if (profile === null) {
-    return null
+    return (
+      <PopupModal success={false} title={"Fetching"} message={"Wait While Fetching Data"} />
+    )
   }
 
   const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false) => {
