@@ -449,6 +449,14 @@ A {
   background: #ffffff;
   box-shadow: 11px 11px 22px #696969, -11px -11px 22px #ffffff;
 }
+.connectme__user-profile .verified {
+  position: relative;
+  top: -1.8rem;
+  z-index: 1;
+  font-size: 1.5rem;
+  left: 3rem;
+  color: #007aff;
+}
 .connectme__user-profile .info {
   display: flex;
   justify-content: center;
@@ -670,64 +678,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(179, 231, 202);
+  background: rgb(74, 38, 169);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(158, 114, 2);
+  background: rgb(37, 189, 85);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(197, 39, 159);
+  background: rgb(73, 242, 77);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(138, 82, 216);
+  background: rgb(100, 92, 206);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(195, 129, 154);
+  background: rgb(91, 210, 122);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(33, 120, 81);
+  background: rgb(190, 221, 217);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(142, 10, 149);
+  background: rgb(122, 28, 218);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(181, 120, 72);
+  background: rgb(118, 3, 115);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(48, 1, 226);
+  background: rgb(122, 145, 160);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(12, 120, 35);
+  background: rgb(134, 219, 49);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(45, 91, 66);
+  background: rgb(233, 200, 107);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(172, 54, 154);
+  background: rgb(11, 43, 197);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(100, 96, 9);
+  background: rgb(39, 220, 22);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(139, 107, 9);
+  background: rgb(244, 214, 47);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(70, 217, 105);
+  background: rgb(178, 213, 69);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(171, 136, 104);
+  background: rgb(140, 156, 180);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(95, 118, 183);
+  background: rgb(17, 2, 15);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(123, 240, 183);
+  background: rgb(39, 63, 228);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(44, 22, 158);
+  background: rgb(186, 110, 194);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(213, 32, 117);
+  background: rgb(120, 166, 117);
 }
 .connectme__user-social__title {
   display: flex;

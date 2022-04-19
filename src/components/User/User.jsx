@@ -4,10 +4,11 @@ import { useRouter } from 'next/router'
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from 'next/link'
-import Head from "next/head"
 
-import { deleteSubDocInProfileById, getCookieData, getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
+
+import { deleteSubDocInProfileById, getProfileById, getProfileByUserName, likeProfile, profileRequests, updateProfile } from "../../../redux/action/Profile"
 import Layout from '../Layout'
+
 
 import Port from "./subcomponents/Port"
 import Testimonial from './subcomponents/Testimonial'
@@ -21,6 +22,7 @@ import { VscFeedback } from 'react-icons/vsc'
 
 import { IoIosDocument } from 'react-icons/io'
 import { FcLike, FcLikePlaceholder, FcLock } from 'react-icons/fc'
+import {MdVerified} from 'react-icons/md'
 
 
 
@@ -578,6 +580,9 @@ const User = ({ edit }) => {
               </motion.div>
             )}
             <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" />
+            <div className="verified">
+              <MdVerified />
+            </div>
             <div className="info">
               <div className="info__name">
                 <h2>{profileData?.name}</h2>
@@ -768,7 +773,7 @@ const User = ({ edit }) => {
             <BorderComp />
             <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${router?.query?.id}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
             <BorderComp />
-            <Port data={profileData?.services} title={"Services"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler} />
+            <Port data={profileData?.services} title={"Work"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler} />
 
             {
               profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (

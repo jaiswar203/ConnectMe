@@ -64,6 +64,15 @@
       box-shadow: 11px 11px 22px #696969, -11px -11px 22px #ffffff;
     }
 
+    .verified{
+      position: relative;
+      top: -1.8rem;
+      z-index: 1;
+      font-size: 1.5rem;
+      left: 3rem;
+      color: #007aff;
+    }
+
     .info {
       @include center__element;
       flex-direction: column;
