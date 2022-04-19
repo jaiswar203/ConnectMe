@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
+import Router from "next/router";
 
 import { SessionProvider } from "next-auth/react";
 
@@ -24,10 +25,14 @@ const store = createStore(
 import "../styles/css/index.css";
 import "swiper/css";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import Loading from "../src/components/Loading";
+import { useEffect } from "react";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
+  const [loading, setLoading] = useState(false)
   const {
     Component,
     emotionCache = clientSideEmotionCache,
@@ -35,6 +40,19 @@ export default function MyApp(props) {
     session,
   } = props;
 
+  Router.events.on("routeChangeStart",()=>{
+    setLoading(true)
+    console.log("Running")
+  })
+  
+  Router.events.on("routeChangeComplete",()=>{
+    setLoading(false)
+  })
+
+  useEffect(()=>{
+
+  },[loading])
+  console.log({loading})
   
   return (
     <CacheProvider value={emotionCache}>
@@ -54,7 +72,11 @@ export default function MyApp(props) {
         <CssBaseline />
         <SessionProvider session={session}>
           <Provider store={store}>
-            <Component {...pageProps} />
+            {
+              loading ? <Loading /> : (
+                <Component {...pageProps} />
+              )
+            }
           </Provider>
         </SessionProvider>
       </ThemeProvider>

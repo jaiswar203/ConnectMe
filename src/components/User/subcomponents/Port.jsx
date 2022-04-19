@@ -72,7 +72,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
     
     
     const addImageHandler = (addImage = true) => {
-        setEditData({ fileUploader:{active:true,data:"image/*"}, title, addImage, query: title.toLowerCase() })
+        setEditData({ fileUploader:{active:true,data:"image/*"}, title, addImage, query: title==="Work" ? "services": title.toLowerCase() })
         setOpenEdit(true)
     }
 

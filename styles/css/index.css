@@ -678,64 +678,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(74, 38, 169);
+  background: rgb(221, 181, 148);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(37, 189, 85);
+  background: rgb(246, 151, 20);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(73, 242, 77);
+  background: rgb(102, 94, 95);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(100, 92, 206);
+  background: rgb(109, 187, 132);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(91, 210, 122);
+  background: rgb(214, 245, 85);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(190, 221, 217);
+  background: rgb(236, 67, 239);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(122, 28, 218);
+  background: rgb(146, 137, 255);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(118, 3, 115);
+  background: rgb(224, 192, 194);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(122, 145, 160);
+  background: rgb(94, 252, 164);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(134, 219, 49);
+  background: rgb(108, 102, 173);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(233, 200, 107);
+  background: rgb(42, 163, 200);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(11, 43, 197);
+  background: rgb(197, 93, 117);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(39, 220, 22);
+  background: rgb(189, 137, 230);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(244, 214, 47);
+  background: rgb(240, 37, 237);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(178, 213, 69);
+  background: rgb(186, 147, 150);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(140, 156, 180);
+  background: rgb(178, 184, 9);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(17, 2, 15);
+  background: rgb(222, 195, 153);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(39, 63, 228);
+  background: rgb(40, 53, 11);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(186, 110, 194);
+  background: rgb(180, 140, 85);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(120, 166, 117);
+  background: rgb(93, 4, 213);
 }
 .connectme__user-social__title {
   display: flex;
@@ -2010,6 +2010,19 @@ A {
   border-radius: 50%;
   flex-direction: column;
   padding: 0.4rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(227, 227, 227);
+  height: 100vh;
+  pointer-events: none;
+}
+.loading__box {
+  border-radius: 10px;
+  padding: 5rem;
 }
 
 .connectme__gallery {

@@ -1,11 +1,12 @@
 import React from 'react'
-import SearchBar from '../src/components/Footer/SearchBar'
+import Loading from '../src/components/Loading'
+
 
 
 const Test = () => {
   return (
     <div className="connectme__test">
-      <SearchBar />
+      <Loading />
     </div>
   )
 }
