@@ -524,22 +524,6 @@ const User = ({ edit }) => {
     setShowPop(false)
   }
 
-
-  const isUserAllowed = () => {
-    if (profile.access) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  function socialHandleFilter(arr, fromIndex, toIndex) {
-    var element = arr[fromIndex];
-    arr.splice(fromIndex, 1);
-    arr.splice(toIndex, 0, element);
-  }
-
-
   function footerData() {
     const data = JSON.parse(localStorage.getItem("UserAuth"))
 
@@ -556,7 +540,6 @@ const User = ({ edit }) => {
 
   return (
     <>
-      
       <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{img: profileData?.profileimg, title:profileData?.name}} >
         <div className="connectme__user">
           <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>

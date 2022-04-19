@@ -34,14 +34,14 @@ const Detail = () => {
 
   return (
     <>
-        <Head>
+        {/* <Head>
           <meta property="og:title" content="hello World" key="ogTitlw" />
           <meta property="og:type" content="profile.image" key="ogType" />
           <meta property="og:site_name" content="ConnectMe" key="ogSitename" />
           <meta property="og:url" content={"https://connectme.co.in/"} key="ogUrl" />
           <meta property="og:image" content={profileData?.profileImg} key="ogimage" />
           <meta property="og:desc" content="Why to be King When You can be god" key="ogdesc" />
-        </Head>
+        </Head> */}
       <User edit={false} />
     </>
   )
