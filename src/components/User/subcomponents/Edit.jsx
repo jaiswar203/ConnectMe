@@ -78,9 +78,9 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
         file.append('file', crop?.crop ? croppedUrl : cloudImage[0])
         file.append('upload_preset', 'profile')
-        axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file,{
-            onUploadProgress: (pro)=>{
-                const {loaded, total} = pro;
+        axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file, {
+            onUploadProgress: (pro) => {
+                const { loaded, total } = pro;
                 let percent = Math.floor(loaded * 100 / total)
                 setProgress(percent)
             }
@@ -129,7 +129,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         const file = new FormData()
 
 
-        if (cloudImage==='') {
+        if (cloudImage === '') {
             toast("Please Select an Image", {
                 backgroundColor: "red",
                 color: "white"
@@ -138,13 +138,12 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
         setRunFunction(true)
         for (let i = 0; i < cloudImage.length; i++) {
-            setMultipleCounter(i+1)
+            setMultipleCounter(i)
             file.append('file', cloudImage[i])
             file.append('upload_preset', 'profile')
-            console.log({multipleCounter,i})
+
             axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
                 // if (data?.addImage) {
-                // setMultipleCounter( (old)=> [...old,i+1])
                 dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
                 // }
             })
@@ -171,7 +170,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setCloudImage(event.target.files)
         }
     }
-    
+
     return (
         <div className="connectme__edit">
             <ToastContainer position="top-right" delay={2000} />
