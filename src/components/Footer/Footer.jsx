@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { getCurrentUserData } from '../../../redux/action/Auth'
 import { RiLogoutCircleRFill } from 'react-icons/ri'
 import { FiEdit } from 'react-icons/fi'
+import PopModal from '../modal/Popup'
 
 
 const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
@@ -16,6 +17,7 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
     const { profileReducer } = state
     const dispatch = useDispatch()
     const [reqCount, setReqCount] = useState(0)
+    const [popUpModal, setpopUpModal] = useState(false)
 
     useEffect(() => {
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
@@ -23,7 +25,7 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
         setReqCount(profile?.requests?.length)
 
 
-    }, [dispatch, reqCount, profileReducer])
+    }, [dispatch, reqCount, profileReducer, popUpModal])
 
     const userData = state !== undefined && state.AuthRedu.user
 
@@ -35,8 +37,10 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
         }
     }
 
-
-    
+    const logouthandler=()=>{
+        dispatch({type:"LOGOUT"})
+        setpopUpModal(false)
+    }
 
     return (
         <div className='center__footer'>
@@ -70,7 +74,7 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
                 }
                 {
                     !view ? (
-                        <motion.div className="connectme__footer-logout" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }} onClick={() => dispatch({type:"LOGOUT"})}>
+                        <motion.div className="connectme__footer-logout" whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.2 }} onClick={() => setpopUpModal(true)}>
                             <RiLogoutCircleRFill color='red' />
                         </motion.div>
                     ) : (
@@ -80,6 +84,11 @@ const Footer = ({ edit, setShare, setShowRequesList, setSearchBar, view }) => {
                     )
                 }
             </div>
+            {
+                popUpModal && (
+                    <PopModal setModal={setpopUpModal} handler={logouthandler} title="Logout" message={"Are You sure you want to logout?"} confirm={true} success={false} />
+                )
+            }
         </div>
     )
 }

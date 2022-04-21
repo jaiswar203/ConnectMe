@@ -178,9 +178,9 @@ const User = ({ edit }) => {
       }
     }
 
-    if (!data && edit) {
-      router.push("/login")
-    }
+    // if (!data && edit) {
+    //   router.push("/login")
+    // }
 
   }, [showModal, dispatch, router.query, popUpData])
 

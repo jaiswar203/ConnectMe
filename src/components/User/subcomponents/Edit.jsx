@@ -207,7 +207,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                         <form onSubmit={handleSub}>
                             <div className="content">
                                 {usetextarea ? (
-                                    <textarea rows={5} defaultValue={data?.data} name={data?.name} onChange={handleChange} />
+                                    <textarea rows={7} defaultValue={data?.data} name={data?.name} onChange={handleChange} />
 
                                 ) : (
                                     <input type="text" defaultValue={data?.data} name={data?.name} onChange={handleChange} placeholder={placeholder} />
