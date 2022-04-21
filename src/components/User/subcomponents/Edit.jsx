@@ -6,6 +6,7 @@ import { addImageInProfile, updateProfile, updateSubDocInProfileById } from "../
 import axios from "axios"
 import { ToastContainer, toast } from "react-toast"
 import ProgressBar from "@ramonak/react-progress-bar";
+import { MdOutlineDone } from 'react-icons/md'
 
 
 
@@ -33,11 +34,14 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
     const [progress, setProgress] = useState()
 
-    const [multipleCounter, setMultipleCounter] = useState(0)
+    const [allImageUploaded, seAllImageUploaded] = useState(false)
+    const [showLoading, setshowLoading] = useState(false)
+
+
 
     useEffect(() => {
 
-    }, [dispatch, formData, cloudImage])
+    }, [dispatch, formData, cloudImage, showLoading])
 
     const placeholder = data?.isSubDoc && data?.isSubDoc?.placeholder
     const handleSub = (e) => {
@@ -103,8 +107,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setIsSuccess(true)
         }
 
-    }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl, progress, multipleCounter])
-
+    }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl, progress, allImageUploaded])
 
 
     const onCloseHandler = () => {
@@ -122,6 +125,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
     }
 
+
     const addMultipleImage = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
@@ -136,20 +140,32 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             })
         }
 
+        seAllImageUploaded(false)
         setRunFunction(true)
         for (let i = 0; i < cloudImage.length; i++) {
-            setMultipleCounter(i)
             file.append('file', cloudImage[i])
             file.append('upload_preset', 'profile')
+            setProgress(0)
+            setshowLoading(true)
+            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file, {
+                onUploadProgress: function (progressEvent) {
+                    var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
 
-            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
-                // if (data?.addImage) {
+                    setProgress(percentCompleted)
+                }
+            }).then((res) => {
+
                 dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
-                // }
+
+                if (i + 1 === cloudImage.length) {
+                    seAllImageUploaded(true)
+                }
+                
+            }).catch((err) => {
+                console.log({ err })
             })
         }
         setRunFunction(false)
-        setMultipleCounter([])
     }
 
 
@@ -171,6 +187,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         }
     }
 
+    
     return (
         <div className="connectme__edit">
             <ToastContainer position="top-right" delay={2000} />
@@ -188,14 +205,43 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                             {isSuccess && (
                                 <p style={{ color: "green" }} >{data?.title} Updated</p>
                             )}
-                            {/* {multipleCounter > 0 && multipleCounterHandler()} */}
+
+                            {/* {
+                                multipleCounter.map((d) => (
+                                    <>
+                                        {cloudImage.length !== 1 && (
+                                            <p style={{ display: "flex", justifyContent: "center" }}>
+                                                {d.num + 1}. <ProgressBar completed={d.progress} height={3} isLabelVisible={false} width={100} customLabel="" margin=".7rem" /> {d.progress === 100 && (
+                                                    <MdOutlineDone color="springgreen" />
+                                                )}
+                                            </p>
+                                        )}
+                                    </>
+                                ))
+                            } */}
+                            {
+                                showLoading && (
+                                    <div className="progress__bar">
+                                        {!allImageUploaded ? (
+                                            <p style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                                <ProgressBar completed={progress} height={3} isLabelVisible={false} width={100} customLabel="" margin=".7rem" /> {progress === 100 && (
+                                                    <MdOutlineDone color="springgreen" />
+                                                )}
+                                            </p>
+                                        ) : (
+                                            <p>{cloudImage.length === 1 ? "Image" : "All Images"} Uploaded</p>
+                                        )}
+                                    </div>
+                                )
+                            }
+
                             {
                                 cloudImage.length > 5 && (
                                     <p> You Can&apos;t Upload More than 5 photos </p>
                                 )
                             }
                             <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
-                                {isLoading ? (
+                                {!multiple && isLoading ? (
                                     <ClipLoader size={35} color="#000" />
                                 ) : (
                                     <h1>Submit </h1>

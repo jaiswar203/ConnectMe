@@ -678,64 +678,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(221, 181, 148);
+  background: rgb(18, 201, 48);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(246, 151, 20);
+  background: rgb(155, 193, 209);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(102, 94, 95);
+  background: rgb(67, 115, 116);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(109, 187, 132);
+  background: rgb(170, 16, 20);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(214, 245, 85);
+  background: rgb(93, 236, 161);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(236, 67, 239);
+  background: rgb(222, 130, 83);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(146, 137, 255);
+  background: rgb(43, 78, 254);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(224, 192, 194);
+  background: rgb(142, 238, 245);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(94, 252, 164);
+  background: rgb(32, 65, 68);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(108, 102, 173);
+  background: rgb(96, 250, 60);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(42, 163, 200);
+  background: rgb(218, 125, 246);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(197, 93, 117);
+  background: rgb(69, 188, 41);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(189, 137, 230);
+  background: rgb(251, 124, 113);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(240, 37, 237);
+  background: rgb(67, 133, 61);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(186, 147, 150);
+  background: rgb(41, 212, 44);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(178, 184, 9);
+  background: rgb(127, 234, 124);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(222, 195, 153);
+  background: rgb(167, 203, 214);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(40, 53, 11);
+  background: rgb(42, 238, 83);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(180, 140, 85);
+  background: rgb(131, 117, 73);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(93, 4, 213);
+  background: rgb(166, 31, 125);
 }
 .connectme__user-social__title {
   display: flex;
@@ -1696,6 +1696,9 @@ A {
   font-size: 2.5rem;
   top: 0;
   right: 0;
+}
+.connectme__edit .progress__bar {
+  margin-bottom: 1rem;
 }
 .connectme__edit-modal {
   position: absolute;
