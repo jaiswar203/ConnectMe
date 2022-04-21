@@ -30,7 +30,7 @@ const Detail = () => {
   useEffect(() => {
 
   }, [dispatch, router])
-  console.log({ state, profileData })
+  
 
   return (
     <>

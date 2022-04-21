@@ -563,9 +563,9 @@ const User = ({ edit }) => {
               </motion.div>
             )}
             <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" />
-            <div className="verified">
+            {/* <div className="verified">
               <MdVerified />
-            </div>
+            </div> */}
             <div className="info">
               <div className="info__name">
                 <h2>{profileData?.name}</h2>

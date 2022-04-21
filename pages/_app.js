@@ -42,7 +42,7 @@ export default function MyApp(props) {
 
   Router.events.on("routeChangeStart",()=>{
     setLoading(true)
-    console.log("Running")
+    
   })
   
   Router.events.on("routeChangeComplete",()=>{
@@ -52,7 +52,7 @@ export default function MyApp(props) {
   useEffect(()=>{
 
   },[loading])
-  console.log({loading})
+  
   
   return (
     <CacheProvider value={emotionCache}>
