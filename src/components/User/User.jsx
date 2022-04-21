@@ -660,7 +660,7 @@ const User = ({ edit }) => {
             <div className="connectme__user-interests">
               <div className="connectme__user-interests__title">
                 {edit && (
-                  <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Interests", `interests`, { testimonial: true })} >
+                  <motion.div className="add" whileTap={{ scale: 1.1 }} onClick={() => openEditHandler(null, "Interests", `interests`, { interests: true })} >
                     <h2>Add Interest</h2>
                   </motion.div>
                 )}

@@ -49,29 +49,34 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
 
+        setRunFunction(true)
         if (data?.isSubDoc?.isSubDoc) {
+            console.log("rsika")
             dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data }, profile?._id, data?.name, data?.isSubDoc?.isSubDoc?.underneath ? true : false))
-        } else if (data?.isSubDoc?.testimonial) {
+        } else if (data?.isSubDoc?.testimonial || data?.isSubDoc?.interests) {
+            console.log("rujsj")
             dispatch(addImageInProfile({ data: formData?.data, userId: user?._id }, profile?._id, data?.name))
         } else {
             dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
         }
-        setRunFunction(true)
+        setRunFunction(false)
     }
 
     const handleChange = (e) => {
         e.preventDefault()
-
-        if (data?.isSubDoc?.isSubDoc) {
-
+        if (data?.isSubDoc?.isSubDoc || data?.isSubDoc?.interests) {
+            console.log("runn")
             setFormData({ ...formData, data: e.target.value })
         } else if (data?.isSubDoc?.testimonial) {
+            console.log("runnadd")
             setFormData({ ...formData, data: e.target.value.slice(17) })
         } else {
+            console.log("runnaddsss")
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
 
     }
+    console.log({formData,data})
 
     const uploadImage = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
@@ -82,6 +87,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
         file.append('file', crop?.crop ? croppedUrl : cloudImage[0])
         file.append('upload_preset', 'profile')
+        setRunFunction(true)
         axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file, {
             onUploadProgress: (pro) => {
                 const { loaded, total } = pro;
@@ -98,7 +104,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                 dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
             }
         })
-        setRunFunction(true)
+        setRunFunction(false)
 
     }
 
@@ -162,6 +168,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                 }
                 
             }).catch((err) => {
+                setRunFunction(false)
                 console.log({ err })
             })
         }
