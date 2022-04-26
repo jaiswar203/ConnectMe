@@ -101,7 +101,7 @@ const Login = () => {
 
 
 
-  console.log({error: state?.error?.data})
+  console.log({errors})
   return (
     <div className='connectme__login'>
       <div className="connectme__login-intro">
@@ -134,9 +134,11 @@ const Login = () => {
             </>
           )}
           <div className="email">
-            <TextField variant="outlined" label="Email" focused={errors?.email && true} type="email" fullWidth color={errors?.email && SignUp ? "secondary" : "primary"} {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} />
-            {SignUp && (
+            <TextField variant="outlined" label="Email" focused={errors?.email && true} type="email" fullWidth color={errors?.email && SignUp ? "secondary" : errors?.email?.type==="required" && !SignUp ? "secondary" : "primary"} {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} />
+            {SignUp ? (
               <span>{errors?.email?.type === "required" && "Please Enter Your Email"}</span>
+              ) : (
+                <span>{errors?.email?.type === "required" && "Please Enter Your Email"}</span>
             )}
             {
               errors?.email?.type === "required" ? null : state?.error?.data?.message === "User Already Exist" && (
@@ -152,7 +154,7 @@ const Login = () => {
             }
           </div>
           <div className="password">
-            <TextField variant="outlined" label="Password" focused={errors?.password} type={icon ? "password" : "text"} color={errors?.password && SignUp ? "secondary" : "primary"} {...register("password", { required: true, minLength: 8 })} fullWidth InputProps={{
+            <TextField variant="outlined" label="Password" focused={errors?.password} type={icon ? "password" : "text"} color={errors?.password && SignUp ? "secondary" : errors?.password?.type==="required" && !SignUp ? "secondary" :"primary"} {...register("password", { required: true, minLength: SignUp && 8 })} fullWidth InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setIcon(!icon)}>
@@ -161,12 +163,14 @@ const Login = () => {
                 </InputAdornment>
               )
             }} />
-            {SignUp && (
+            {SignUp ? (
               <>
                 <span>{errors?.password?.type === "required" && "Please Enter Your Password"}</span>
                 <span>{errors?.password?.type === "minLength" && "PassWord should be greater than 8 digit"}</span>
               </>
-            )}
+            ): (
+              <span>{errors?.password?.type === "required" && "Please Enter Your Password"}</span>
+            ) }
             {
               state?.error?.status === 400 && (
                 <span>Wrong Password or username</span>
