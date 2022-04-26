@@ -9,9 +9,9 @@
       @include center__element;
       width: 10rem;
       @include box_color;
-      background-color: black !important;
+      background-color: $primary-color !important;
       border-radius: 5px;
-      color: $primary-color !important;
+      color: white !important;
 
       @include click_font;
       cursor: pointer;
