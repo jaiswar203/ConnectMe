@@ -85,7 +85,7 @@ const Login = () => {
     if (authData && !SignUp) {
       if (authData?.existingUser?.isVerified && authData?.existingUser?.profile) {
         router.push(`/edit/${authData?.existingUser?.username}`)
-      } else if (!authData?.existingUser?.profile) {
+      } else if (!authData?.existingUser?.profile && authData?.existingUser?.isVerified) {
         dispatch({ type: "MESSAGE", data: { type: "error", message: "Your Profile Doen't Created , Please Wait while creating your Profile" } })
         dispatch(
           createProfile({

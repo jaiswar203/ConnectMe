@@ -19,7 +19,7 @@
       position: absolute;
       right: 1.5rem;
       top: 1rem;
-      color: white;
+      color: black;
       font-size: 2rem;
     }
   }
@@ -58,11 +58,12 @@
     @include center__element;
     flex-direction: column;
 
-    span:first-child {
-      border-radius: 15px;
-      background: #ffffff;
-      box-shadow: 11px 11px 22px #696969, -11px -11px 22px #ffffff;
-    }
+    
+    // span:first-child {
+    //   border-radius: 15px;
+    //   background: #ffffff;
+    //   box-shadow: 11px 11px 22px #696969, -11px -11px 22px #ffffff;
+    // }
 
     .verified{
       position: relative;
@@ -1248,7 +1249,7 @@
     color: white;
     top: 50%;
     width: 25rem;
-    padding: 3rem;
+    padding: 3rem 1rem;
     border-radius: 5px;
     transform: translate(-50%, -50%) !important;
     left: 50%;
@@ -1351,6 +1352,12 @@
       background: white;
     }
 
+    .wait{
+      @include center__element;
+      svg{
+        width: 10rem
+      }
+    }
     &__title {
       @include center__element;
       h1 {

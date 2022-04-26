@@ -1,9 +1,9 @@
 const demoProfile = {
   background:
-    "https://res.cloudinary.com/redwine/image/upload/v1644848677/1000_cka9mr.jpg",
+    "https://res.cloudinary.com/redwine/image/upload/v1650980930/logo/no_image_hp57yl.webp",
     name:"Jhon Doe",
   profileimg:
-    "https://res.cloudinary.com/redwine/image/upload/v1644848807/photo-1494790108377-be9c29b29330_zrapqv.jpg",
+    "https://res.cloudinary.com/redwine/image/upload/v1650981051/logo/user_14_sycg7z.png",
   city: "Mumbai,Maharahtra",
   about:
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam cupiditate saepe, excepturi inventore ducimus, qui nulla incidunt explicabo architecto, in nihil aut! Obcaecati iure autem quis fugiat exercitationem iusto quam. Amet voluptatum deleniti dolorem libero, corporis possimus? Velit dolore voluptatibus eos tenetur accusamus culpa labore aut impedit reiciendis esse sint commodi adipisci harum ipsa recusandae ratione, iure magnam, quidem autem. Aspernatur rerum ad rem veniam amet exercitationem aut? Dolor culpa necessitatibus quia non maiores libero ipsum assumenda qui at? Accusamus, perferendis enim porro recusandae consequatur magnam doloremque neque dolore veritatis. Rem ad provident recusandae magni harum nam porro temporibus distinctio dignissimos labore iure consequatur quisquam sint dolor officiis et odit illum magnam quasi, commodi ipsa perferendis. Quibusdam mollitia dolorum eveniet.",
@@ -83,31 +83,20 @@ const demoProfile = {
   ],
   portfolio: [
     {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
+      data: "https://res.cloudinary.com/redwine/image/upload/v1650980930/logo/no_image_hp57yl.webp",
     },
     {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
-    },
-    {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
-    },
-    {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
+      data: "https://res.cloudinary.com/redwine/image/upload/v1650980930/logo/no_image_hp57yl.webp",
     },
   ],
   services: [
     {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
+      data: "https://res.cloudinary.com/redwine/image/upload/v1650980930/logo/no_image_hp57yl.webp",
     },
     {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
+      data: "https://res.cloudinary.com/redwine/image/upload/v1650980930/logo/no_image_hp57yl.webp",
     },
-    {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
-    },
-    {
-      data: "https://res.cloudinary.com/redwine/image/upload/v1649173115/connectme/wp2071637_u6ahoq.jpg",
-    },
+    
   ],
   userInfo: {
     data: [

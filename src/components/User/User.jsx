@@ -22,7 +22,7 @@ import { VscFeedback } from 'react-icons/vsc'
 
 import { IoIosDocument } from 'react-icons/io'
 import { FcLike, FcLikePlaceholder, FcLock } from 'react-icons/fc'
-import {MdVerified} from 'react-icons/md'
+
 
 
 
@@ -457,7 +457,7 @@ const User = ({ edit }) => {
 
   if (profile === null) {
     return (
-      <PopupModal success={false} title={"Fetching"} message={"Wait While Fetching Data"} />
+      <PopupModal success={false} title={"Fetching"} message={"Wait While Fetching Data"} showImg={true} />
     )
   }
 
@@ -500,6 +500,7 @@ const User = ({ edit }) => {
     }
   }
 
+  console.log({profileData})
 
 
   const connectsChildren = (d) => {
@@ -534,10 +535,6 @@ const User = ({ edit }) => {
     }
   }
 
-
-
-  
-
   return (
     <>
       <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{img: profileData?.profileimg, title:profileData?.name}} >
@@ -562,7 +559,7 @@ const User = ({ edit }) => {
                 <FaEdit />
               </motion.div>
             )}
-            <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" />
+            <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" className="profile__img" />
             {/* <div className="verified">
               <MdVerified />
             </div> */}
@@ -727,7 +724,7 @@ const User = ({ edit }) => {
                 {
                   edit && profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && (
 
-                    <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} />
+                    <ToggleSwitch isPrivate={true} profile={profileData} profileId={profileData?._id} title={"This Will Make your Contacts private"} />
                   )
                 }
               </div>
@@ -765,7 +762,7 @@ const User = ({ edit }) => {
                   <div className="connectme__user-personal">
                     <div className="connectme__user-personal__title">
                       <h1>Personal Info</h1>
-                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} />
+                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} title={"This Will Hide/Show your Personal Info Section "} />
                     </div>
                     <div className="connectme__user-personal__content">
                       <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
@@ -813,7 +810,8 @@ const User = ({ edit }) => {
                 <div className="connectme__user-document">
                   <div className="connectme__user-document__title">
                     <h1>Documentation</h1>
-                    <ToggleSwitch label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} profile={profileData} apiId="document.active" />
+                    <ToggleSwitch label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} profile={profileData} apiId="document.active" title={"This Will Hide/Show your Documents Section "} />
+
                   </div>
                   <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`, { isSubDoc: false }, { active: true, data: "application/pdf" })} >
                     <motion.div className="button" whileTap={{ scale: 1.1 }} >

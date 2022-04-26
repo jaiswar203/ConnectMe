@@ -31,6 +31,10 @@
       margin-right: 10rem;
     }
 
+    @media screen and (max-width:500px) {
+      width: 100%;
+    }
+
   }
 
   @media screen and (max-width:800px) {

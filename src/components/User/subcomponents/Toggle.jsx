@@ -1,12 +1,13 @@
 
 
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../../../redux/action/Profile';
+import Tooltip from '@mui/material/Tooltip';
 
 const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -60,37 +61,47 @@ const IOSSwitch = styled((props) => (
     },
 }));
 
-const  ToggleSwitch=({data,setHandler,apiId,profileId,profile,isPrivate=false,info=false}) =>{
-    const dispatch=useDispatch()
-    
-    useEffect(()=>{
+const ToggleSwitch = ({ data, setHandler, apiId, profileId, profile, isPrivate = false, info = false, title }) => {
+    const dispatch = useDispatch()
 
-    },[dispatch])
+    useEffect(() => {
 
-    
-    const onClickHandler=()=>{
-        const user=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
-        
-        if(isPrivate){
-            
-            dispatch(updateProfile( {userId: user?._id, data: {isPrivate:!profile.isPrivate}},profileId))
-        }else if(info){
-            dispatch(updateProfile( {userId: user?._id, data: {["userInfo.access"]:!profile.userInfo.access}},profileId))
-        }else{
-            const data=profile.document.active ? false : true
-            dispatch(updateProfile( {userId: user?._id, data: {[apiId.toString()]:data}},profileId))
+    }, [dispatch])
+
+
+    const onClickHandler = () => {
+        const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+
+        if (isPrivate) {
+
+            dispatch(updateProfile({ userId: user?._id, data: { isPrivate: !profile.isPrivate } }, profileId))
+        } else if (info) {
+            dispatch(updateProfile({ userId: user?._id, data: { ["userInfo.access"]: !profile.userInfo.access } }, profileId))
+        } else {
+            const data = profile.document.active ? false : true
+            dispatch(updateProfile({ userId: user?._id, data: { [apiId.toString()]: data } }, profileId))
         }
         // setHandler(!data)
     }
 
-    const checked=isPrivate ? profile?.isPrivate : info ? profile?.userInfo?.access :  profile?.document.active
+    const checked = isPrivate ? profile?.isPrivate : info ? profile?.userInfo?.access : profile?.document.active
     return (
         <FormGroup>
-            <FormControlLabel
-                control={<IOSSwitch sx={{ m: 2 }} defaultChecked={ checked} />}
-                label=""
-                onClick={onClickHandler}
-            />
+            {title ? (
+                <Tooltip title={title} arrow placement="top-start">
+                    <FormControlLabel
+                        control={<IOSSwitch sx={{ m: 2 }} defaultChecked={checked} />}
+                        label=""
+                        onClick={onClickHandler}
+                    />
+                </Tooltip>
+            ) : (
+                <FormControlLabel
+                    control={<IOSSwitch sx={{ m: 2 }} defaultChecked={checked} />}
+                    label=""
+                    onClick={onClickHandler}
+                />
+            )}
         </FormGroup>
     );
 }
