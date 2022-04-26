@@ -119,16 +119,16 @@
     @include center__element;
     top: 0;
     z-index: 1;
-    transform: translate(0, 50%) !important;
+    transform: translate(0, 180%) !important;
     position: absolute;
     left: 0;
     width: 100%;
     .cross{
       position: absolute;
       
-      top: 0;
+      top: 1rem;
       left: 21rem;
-      right: 0;
+      right: 1rem;
       bottom: 18rem;
       svg{
         z-index: 2;
@@ -149,7 +149,7 @@
       @include center__element;
       flex-direction: column;
       width: 23rem;
-      
+      border-radius: 10px;
       height: 20rem;
       background-color: black;
       z-index: 1;
