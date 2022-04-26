@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     if (existingUser || existingUserName) {
       return res.status(404).json({
         message: `User Already Exist ${
-          existingUser ? "with this gmail" : "with this name"
+          existingUser ? "with this gmail" : "with this username"
         } `,
       });
     }

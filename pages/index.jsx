@@ -69,7 +69,7 @@ const Index = () => {
           title={"Not Authenticated"}
         />
       )}
-      {authData && (
+      {authData?.existingUser?.isVerified ? (
         <div className="connectme__home">
           {!newData.profile ? (
             <motion.div
@@ -89,6 +89,12 @@ const Index = () => {
               </motion.div>
             </Link>
           )}
+        </div>
+      ): (
+        <div className="not__verified">
+          <div className="box">
+            <h3>Your account is not verified , Please Verify Your Account. As Soon As Possible</h3>
+          </div>
         </div>
       )}
     </Layout>

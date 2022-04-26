@@ -26,6 +26,10 @@
       @media screen and (max-width: 470px) {
         width: 100%;
       }
+      span {
+        color: red;
+        font-size: .8rem
+      }
 
       svg {
         // font-size: 2rem;
@@ -42,10 +46,19 @@
         width: 100%;
         span {
           color: red;
+          font-size: .8rem
         }
       }
       .name {
         @include center__element;
+
+        span{
+          color: red;
+          font-size: .8rem;
+        }
+        &__firstname{
+          margin-right: 1rem;
+        }
       }
       button.submit {
         @include click_font;

@@ -112,3 +112,18 @@
     }
   }
 }
+
+
+.not__verified{
+  @include center__element;
+  height: 75vh;
+  .box{
+    width: 20rem;
+    background:$primary-color;
+    color: white;
+    padding: 3rem;
+    text-align: center;
+    border-radius: 10px;
+
+  }
+}
