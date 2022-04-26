@@ -7,9 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from 'react-toast'
-import Image from "next/image";
-import Illus from "../../../illustrations/illus.jsx"
-// import Illus1 from "../../../illustrations/illus1.jsx"
 import Illus1 from "../../../illustrations/girl.jsx"
 import Wave from "../../../illustrations/wave.jsx"
 
