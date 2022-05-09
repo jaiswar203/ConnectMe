@@ -76,7 +76,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         }
 
     }
-    console.log({formData,data})
+    console.log({ formData, data })
 
     const uploadImage = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
@@ -109,9 +109,15 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
     }
 
     useEffect(() => {
-        if (profile?.success && runFunction) {
+        if (profile?.success) {
             setIsSuccess(true)
+
+            setTimeout(()=>{
+                setIsSuccess(false)
+                profile.success=null
+            },[3000])
         }
+        
 
     }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl, progress, allImageUploaded])
 
@@ -166,7 +172,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                 if (i + 1 === cloudImage.length) {
                     seAllImageUploaded(true)
                 }
-                
+
             }).catch((err) => {
                 setRunFunction(false)
                 console.log({ err })
@@ -194,7 +200,8 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         }
     }
 
-    
+    console.log({isSuccess})
+
     return (
         <div className="connectme__edit">
             <ToastContainer position="top-right" delay={2000} />
@@ -247,13 +254,22 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                                     <p> You Can&apos;t Upload More than 5 photos </p>
                                 )
                             }
-                            <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
-                                {!multiple && isLoading ? (
-                                    <ClipLoader size={35} color="#000" />
-                                ) : (
-                                    <h1>Submit </h1>
-                                )}
-                            </motion.div>
+                            {
+                                isSuccess && (
+                                    <p>Image Uploaded Successfully</p>
+                                )
+                            }
+                            {
+                                data.name === "background" || data.name === "profileimg" ? null :    (
+                                    <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
+                                        {!multiple && isLoading ? (
+                                            <ClipLoader size={35} color="#000" />
+                                        ) : (
+                                            <h1>Submit </h1>
+                                        )}
+                                    </motion.div>
+                                )
+                            }
                         </div>
                     ) : (
 
@@ -287,7 +303,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             </motion.div>
             {
                 enableCrop && (
-                    <Crop img={cropUrl} w={crop.w} h={crop.h} uploadImage={uploadImage} setcroppedUrl={setcroppedUrl} setModal={setEnableCrop} />
+                    <Crop img={cropUrl} w={crop.w} data={data} h={crop.h} uploadImage={uploadImage} setcroppedUrl={setcroppedUrl} setModal={setEnableCrop} />
                 )
             }
         </div>

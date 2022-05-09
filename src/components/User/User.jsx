@@ -544,7 +544,7 @@ const User = ({ edit }) => {
             {edit && (
               <motion.div className="background" onClick={() => {
                 openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })
-                setIsCrop({ crop: true, w: 540, h: 164 })
+                setIsCrop({ crop: true, w: 450, h: 164 })
               }} whileTap={{ scale: 1.1 }}>
                 <FaEdit />
               </motion.div>

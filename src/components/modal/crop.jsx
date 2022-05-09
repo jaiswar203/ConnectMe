@@ -1,14 +1,19 @@
 import { useEffect } from 'react'
 import { useState, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
+import { useDispatch } from 'react-redux'
 import getCroppedImg from '../../../lib/crop'
+import axios from 'axios'
 import Modal from './Modal'
+import { updateSubDocInProfileById, addImageInProfile, updateProfile } from '../../../redux/action/Profile'
 
-const Crop = ({ img, w, h, setcroppedUrl, setModal }) => {
+const Crop = ({ img, w, h, setcroppedUrl, setModal, data }) => {
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1)
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
     const [croppedImage, setCroppedImage] = useState(null)
+
+    const [croppedUrl, setCroppedUrl] = useState("")
 
     const [previeModal, setPrevieModal] = useState(false)
 
@@ -16,20 +21,44 @@ const Crop = ({ img, w, h, setcroppedUrl, setModal }) => {
         setCroppedAreaPixels(croppedAreaPixels)
     }, [])
 
+    // upload config
+    const dispatch = useDispatch()
+    const [runFunc, setRunFunc] = useState(false)
+
+    // upload handler
+
 
     const onClickHandler = useCallback(async () => {
         try {
             const croppedImage = await getCroppedImg(img, croppedAreaPixels)
-            setcroppedUrl(croppedImage)
+            setCroppedUrl(croppedImage)
             setCroppedImage(croppedImage)
+            setRunFunc(true)
         } catch (error) {
             console.log({ error })
         }
-        setModal(false)
+        // setModal(false)
     })
+    
     useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+        const profile = JSON.parse(localStorage.getItem("profile"))?.data
+    
+        const file = new FormData()
+    
+        file.append('file', croppedUrl)
+        file.append('upload_preset', 'profile')
 
-    }, [zoom, croppedAreaPixels, croppedImage, previeModal])
+        if (croppedUrl && runFunc) {
+            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
+                dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
+            })
+            console.log({runFunc})
+            setRunFunc(false)
+            setModal(false)
+        }
+        
+    }, [zoom, croppedAreaPixels, runFunc,croppedImage, previeModal, croppedUrl])
 
     const newUrl = croppedImage && URL.createObjectURL(croppedImage)
 
@@ -63,7 +92,7 @@ const Crop = ({ img, w, h, setcroppedUrl, setModal }) => {
                     cropSize={{ width: w, height: h }}
                 />
             </div>
-            
+
         </div>
     )
 }
