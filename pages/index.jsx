@@ -8,6 +8,8 @@ import { getUserById } from "../redux/action/Auth";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+import { v4 as uuid } from 'uuid'
+
 import PopupModal from "../src/components/modal/Popup";
 
 const Index = () => {
@@ -39,7 +41,15 @@ const Index = () => {
     }
   }, [dispatch]);
 
+  const uniqueIdForVisitor = uuid()
   useEffect(() => {
+    const is_cookie_exist = localStorage.getItem("unique")
+    
+ 
+    if (is_cookie_exist === null) {
+      localStorage.setItem("unique", uniqueIdForVisitor)
+    }
+
     if (authData === null) {
       router.push("/login");
     }
