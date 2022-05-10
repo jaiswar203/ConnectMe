@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { useRouter } from "next/router"
 import Wait from "../../../illustrations/Wait"
 
-const PopupModal = ({ message, title, success = true, error = false, confirm = false, setModal, handler, showImg = false }) => {
+const PopupModal = ({ message, title, success = true, error = false, confirm = false, setModal, handler, showImg = false ,prev}) => {
     const router = useRouter()
     return (
         <div className="outer__shell">
@@ -20,7 +20,15 @@ const PopupModal = ({ message, title, success = true, error = false, confirm = f
                 <div className="connectme__message-modal__content">
                     <div className="message">
                         <h3>{message}</h3>
+                        
                     </div>
+                    {prev && (
+                        <div className="previous" onClick={()=>router.push(window.location.origin)}>
+                            <motion.div whileTap={{scale:1.1}} className="button" >
+                                <h3>Home</h3>
+                            </motion.div>
+                        </div>
+                    )}
                     {success && (
                         <div className="button">
                             <motion.div className="confirm" whileTap={{ scale: 1.1 }} onClick={() => setModal(false)}>

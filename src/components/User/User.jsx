@@ -451,7 +451,7 @@ const User = ({ edit }) => {
 
   if (error?.type === "EXIST_ERROR") {
     return (
-      <PopupModal success={false} title={"Data Not Found"} message={"No User with this Id"} />
+      <PopupModal success={false} title={"Data Not Found"} message={"No User with this Id"} prev={true} />
     )
   }
 

@@ -744,64 +744,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(192, 64, 248);
+  background: rgb(175, 189, 13);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(133, 65, 185);
+  background: rgb(196, 84, 192);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(201, 163, 99);
+  background: rgb(165, 11, 10);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(44, 158, 66);
+  background: rgb(141, 174, 56);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(99, 106, 186);
+  background: rgb(243, 137, 56);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(183, 34, 36);
+  background: rgb(123, 83, 209);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(135, 212, 204);
+  background: rgb(40, 59, 14);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(54, 8, 252);
+  background: rgb(159, 99, 100);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(188, 97, 8);
+  background: rgb(111, 254, 105);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(32, 160, 87);
+  background: rgb(98, 46, 140);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(163, 175, 29);
+  background: rgb(252, 230, 47);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(159, 68, 21);
+  background: rgb(198, 108, 104);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(150, 125, 93);
+  background: rgb(66, 192, 207);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(85, 90, 240);
+  background: rgb(138, 57, 63);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(56, 158, 66);
+  background: rgb(244, 135, 72);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(108, 247, 97);
+  background: rgb(63, 246, 228);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(112, 155, 110);
+  background: rgb(209, 99, 118);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(215, 253, 125);
+  background: rgb(97, 47, 117);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(105, 33, 165);
+  background: rgb(20, 66, 245);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(73, 68, 8);
+  background: rgb(244, 86, 44);
 }
 .connectme__user-social__title {
   display: flex;
@@ -1906,6 +1906,17 @@ A {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.outer__shell .connectme__message-modal__content .previous {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+  margin-top: 1rem;
+  cursor: pointer;
 }
 .outer__shell .connectme__message-modal__content .message {
   display: flex;

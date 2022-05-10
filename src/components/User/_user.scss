@@ -1374,6 +1374,17 @@
       margin-top: 2rem;
       @include center__element;
       flex-direction: column;
+
+      .previous{
+        @include center__element;
+        background: white;
+        color: black;
+        padding: .5rem 1rem; 
+        border-radius: 7px;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+
       .message {
         @include center__element;
         h3 {
