@@ -5,10 +5,13 @@ import axios from "axios"
 
 import { User } from "../src/components"
 
-const Detail = ({profile}) => {
-  
+const Detail = ({ profile }) => {
+
+
   return (
     <>
+      {!profile.error && (
+
         <Head>
           <meta property="og:title" content={`${profile?.data?.name}`} key="ogTitle" />
           <meta property="og:type" content={"profile.image"} key="ogType" />
@@ -17,7 +20,8 @@ const Detail = ({profile}) => {
           <meta property="og:image" content={profile?.data?.profileimg} key="ogimage" />
           <meta property="og:desc" content={`${profile?.data?.tagline}`} key="ogdesc" />
         </Head>
-      <User edit={false}  />
+      )}
+      <User edit={false} />
     </>
   )
 }
@@ -25,15 +29,22 @@ const Detail = ({profile}) => {
 export default Detail
 
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
 
-  const query=context.query
+  let profData
+  const query = context.query
 
-  const {data}=await axios.get(`https://connecmev1.herokuapp.com/profile/og/${query.id}`)
-  
+  try {
+    const { data } = await axios.get(`https://connecmev1.herokuapp.com/profile/og/${query.id}`)
+    profData = data
+  } catch (error) {
+    profData = { error: "Error" }
+  }
+
+
   return {
-    props:{
-      profile: data
+    props: {
+      profile: profData
     }
   }
 }

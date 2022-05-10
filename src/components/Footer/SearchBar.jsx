@@ -15,7 +15,7 @@ const SearchBar = ({setSearchBar}) => {
     const url ="http://localhost:3000"
     const prod_url="https://connectme.co.in"
     const pushToSearch=()=>{
-        router.push(`${prod_url}/${searchText}`)
+        router.push(`${url}/${searchText}`)
         setSearchBar(false)
     }
     
