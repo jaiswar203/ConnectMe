@@ -28,11 +28,8 @@ export default Detail
 export async function getServerSideProps(context){
 
   const query=context.query
-<<<<<<< HEAD
+
   const {data}=await axios.get(`https://connecmev1.herokuapp.com//profile/og/${query.id}`)
-=======
->>>>>>> d094a60f507eb0b01c3872f4e59f8ab568ffae50
-  
   
   return {
     props:{
