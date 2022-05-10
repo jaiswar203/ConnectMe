@@ -28,7 +28,7 @@ export default Detail
 export async function getServerSideProps(context){
 
   const query=context.query
-  const {data}=await axios.get(`https://connectmev2.herokuapp.com/profile/${query.id}`)
+  const {data}=await axios.get(`https://connecmev1.herokuapp.com//profile/og/${query.id}`)
   
   
   return {
