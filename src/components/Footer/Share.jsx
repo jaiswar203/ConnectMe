@@ -13,15 +13,13 @@ import copy from 'copy-to-clipboard'
 
 
 const Share = ({ setShare, username }) => {
+    const [url, setUrl] = useState("")
 
     useEffect(() => {
-
+        setUrl(window.location.origin)
     }, [])
-
-    const url = "https://www.connectme.co.in"
-    const dev_url = "http://localhost:3000"
     const copyToClipBoard = () => {
-        copy(url)
+        copy(`${url}/${username}`)
         toast("Url Copied",{
             backgroundColor:"green",
             color:"white"
