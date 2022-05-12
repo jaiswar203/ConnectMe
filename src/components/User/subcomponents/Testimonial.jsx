@@ -54,7 +54,7 @@ const Testimonial = ({ edit, data, openEditHandler }) => {
                 )}
             </div>
             <div className="connectme__user-testimonial__content">
-                <Swiper loop={true} slidesPerView={1} spaceBetween={50} breakpoints={breakpoints} autoplay speed={600} modules={[Autoplay]} >
+                <Swiper loop={false} slidesPerView={1} spaceBetween={50} breakpoints={breakpoints} autoplay speed={600} modules={[Autoplay]} >
                     {data?.map((d, i) => (
                         <>
                             <SwiperSlide className='connectme__user-testimonial__content-carousel' key={d.name}>

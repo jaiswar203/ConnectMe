@@ -58,14 +58,13 @@
     @include center__element;
     flex-direction: column;
 
-    
     // span:first-child {
     //   border-radius: 15px;
     //   background: #ffffff;
     //   box-shadow: 11px 11px 22px #696969, -11px -11px 22px #ffffff;
     // }
 
-    .verified{
+    .verified {
       position: relative;
       top: -1.8rem;
       z-index: 1;
@@ -287,11 +286,11 @@
         @include click_font;
       }
 
-      .refactor{
-        &__button{
-          padding: .6rem 1rem; 
+      .refactor {
+        &__button {
+          padding: 0.6rem 1rem;
           @include box_color;
-          border-radius:5px;
+          border-radius: 5px;
           cursor: pointer;
         }
       }
@@ -1164,6 +1163,82 @@
       }
     }
   }
+
+  &-audition {
+    &__title {
+      @include center__element;
+      justify-content: space-between;
+
+      .edit{
+        @include box_color;
+        padding: .4rem 1rem ;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      h1 {
+        @include click_font;
+      }
+      margin: 1rem 0;
+    }
+
+    &__content {
+      padding: 1rem;
+      
+      border-radius: 10px;
+      background: #e0e0e0;
+      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      iframe {
+        border-radius: 1rem;
+        width: 100%;
+        height: 16rem;
+
+        @media screen and (min-width:600px) {
+          height:20rem ;
+        }
+        @media screen and (min-width:800px) {
+          height:25rem ;
+        }
+      }
+
+      video{
+        width: 100%;
+        border-radius: 10px;
+        
+      }
+
+      @media screen and (min-width:1000px) {
+        padding: 5rem;
+
+        @media screen and (max-width:1300px) {
+          iframe{
+            height: 27rem;
+          }
+          
+        }
+
+        @media screen and (min-width:1300px) {
+          iframe{
+            height: 35rem;
+          }
+        }
+        @media screen and (min-width:1700px) {
+          iframe{
+            height: 40rem;
+          }
+        }
+        @media screen and (min-width:2000px) {
+          iframe{
+            height: 45rem;
+          }
+        }
+        @media screen and (min-width:2400px) {
+          iframe{
+            height: 50rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 .modal {
@@ -1240,7 +1315,7 @@
     top: 0;
     right: 0;
   }
-  .progress__bar{
+  .progress__bar {
     margin-bottom: 1rem;
   }
   &-modal {
@@ -1352,10 +1427,10 @@
       background: white;
     }
 
-    .wait{
+    .wait {
       @include center__element;
-      svg{
-        width: 10rem
+      svg {
+        width: 10rem;
       }
     }
     &__title {
@@ -1375,11 +1450,11 @@
       @include center__element;
       flex-direction: column;
 
-      .previous{
+      .previous {
         @include center__element;
         background: white;
         color: black;
-        padding: .5rem 1rem; 
+        padding: 0.5rem 1rem;
         border-radius: 7px;
         margin-top: 1rem;
         cursor: pointer;
@@ -1511,33 +1586,30 @@
       background: gray;
       padding: 3rem;
       width: 25rem;
-      
+
       @media screen and (max-width: 420px) {
-        
         width: 100%;
       }
       border-radius: 0.7rem;
 
-      &-title{
+      &-title {
         @include center__element;
       }
 
-      &-data{
+      &-data {
         margin-top: 2rem;
         @include center__element;
         flex-direction: column;
-        
-        
-        .item{
-          margin-bottom: .4rem;
+
+        .item {
+          margin-bottom: 0.4rem;
           width: 100%;
           @include center__element;
           justify-content: space-between;
-          
 
-          .button{
+          .button {
             width: 6rem;
-            padding: .5rem 1rem;
+            padding: 0.5rem 1rem;
             color: white;
             background: rgb(48, 216, 48);
             border-radius: 5px;
@@ -1559,7 +1631,7 @@
     }
   }
 }
-.loading{
+.loading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1567,7 +1639,7 @@
   height: 100vh;
   pointer-events: none;
 
-  &__box{
+  &__box {
     border-radius: 10px;
     padding: 5rem;
   }

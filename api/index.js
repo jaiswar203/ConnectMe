@@ -3,7 +3,7 @@ import axios from "axios";
 const devServer="http://localhost:4000"
 const prodServer="https://connectmev2.herokuapp.com"
 
-const API = axios.create({ baseURL: prodServer });
+const API = axios.create({ baseURL: devServer });
 
 
 API.interceptors.request.use((req) => {

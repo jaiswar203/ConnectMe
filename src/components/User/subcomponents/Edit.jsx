@@ -43,7 +43,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
     }, [dispatch, formData, cloudImage, showLoading])
 
-    const placeholder = data?.isSubDoc && data?.isSubDoc?.placeholder
+    const placeholder = data?.isSubDoc ? data?.isSubDoc?.placeholder : data.placeholder
     const handleSub = (e) => {
         e.preventDefault()
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
@@ -51,10 +51,8 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
         setRunFunction(true)
         if (data?.isSubDoc?.isSubDoc) {
-            console.log("rsika")
             dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data }, profile?._id, data?.name, data?.isSubDoc?.isSubDoc?.underneath ? true : false))
         } else if (data?.isSubDoc?.testimonial || data?.isSubDoc?.interests) {
-            console.log("rujsj")
             dispatch(addImageInProfile({ data: formData?.data, userId: user?._id }, profile?._id, data?.name))
         } else {
             dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
@@ -65,18 +63,18 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
     const handleChange = (e) => {
         e.preventDefault()
         if (data?.isSubDoc?.isSubDoc || data?.isSubDoc?.interests) {
-            console.log("runn")
             setFormData({ ...formData, data: e.target.value })
         } else if (data?.isSubDoc?.testimonial) {
-            console.log("runnadd")
             setFormData({ ...formData, data: e.target.value.slice(17) })
-        } else {
-            console.log("runnaddsss")
+        }else if(data?.isSubDoc?.audition){
+            setFormData({ ...formData,  [data.name]: e.target.value.slice(17) })
+        }
+        else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
 
     }
-    console.log({ formData, data })
+    
 
     const uploadImage = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser

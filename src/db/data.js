@@ -55,6 +55,10 @@ const data = {
       isVid: false,
     },
   ],
+  audition:{
+    vidtype: "youtube",
+    value:"sjja838s"
+  },
   portfolioData: [
     {
       img: "https://res.cloudinary.com/redwine/image/upload/v1645087937/connectme/photo-1644901441692-0ece88594153_tjnbn3.jpg",

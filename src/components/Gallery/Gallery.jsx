@@ -42,6 +42,8 @@ const Gallery = ({ data, title, content, edit }) => {
         setIndex(i)
         setModal(true)
     }
+
+    
     
     return (
         <div className="connectme__gallery">
@@ -55,10 +57,10 @@ const Gallery = ({ data, title, content, edit }) => {
                 <b className="hr anim"></b>
             </div>
             <div className="connectme__gallery-content" >
-                {data.map((d, i) => (
+                {data && data?.map((d, i) => (
                     <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * .3 }} key={d.data} className="images" onClick={() => !edit && onClickHandler(i)}>
 
-                        <Image src={d.data} width={300} height={300} objectFit="cover" />
+                        <Image src={d?.data} width={300} height={300} objectFit="cover" />
                         {edit && (
                             <>
                                 {/* <div className="background" onClick={() => {

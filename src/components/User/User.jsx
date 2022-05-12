@@ -45,6 +45,7 @@ import Request from "./subcomponents/Request"
 import Share from "../Footer/Share"
 import SearchBar from "../Footer/SearchBar"
 import Social from "./subcomponents/social"
+import Audition from "./subcomponents/Audition"
 
 
 const User = ({ edit }) => {
@@ -461,8 +462,8 @@ const User = ({ edit }) => {
     )
   }
 
-  const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false) => {
-    setEditData({ ...editData, title: title, name: name, data: data, isSubDoc, fileUploader })
+  const openEditHandler = (data, title, name, isSubDoc = {}, fileUploader = false, placeholder = "") => {
+    setEditData({ ...editData, title: title, name: name, data: data, isSubDoc, fileUploader, placeholder })
     setOpenEdit(true)
   }
 
@@ -500,7 +501,7 @@ const User = ({ edit }) => {
     }
   }
 
-  console.log({profileData})
+  console.log({ profileData })
 
 
   const connectsChildren = (d) => {
@@ -537,7 +538,7 @@ const User = ({ edit }) => {
 
   return (
     <>
-      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{img: profileData?.profileimg, title:profileData?.name}} >
+      <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{ img: profileData?.profileimg, title: profileData?.name }} >
         <div className="connectme__user">
           <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
             <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
@@ -753,6 +754,13 @@ const User = ({ edit }) => {
             <BorderComp />
             <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${router?.query?.id}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
             <BorderComp />
+            {edit || profileData?.audition?.value ? (
+              <>
+                <Audition edit={edit} openHandler={openEditHandler} data={profileData?.audition} />
+                <BorderComp />
+              </>
+
+            ):  null}
             <Port data={profileData?.services} title={"Work"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler} />
 
             {
