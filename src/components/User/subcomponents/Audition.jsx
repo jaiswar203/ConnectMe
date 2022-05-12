@@ -18,7 +18,7 @@ const Audition = ({ isYoutube = true, edit,openHandler ,data}) => {
             </div>
             <div className="connectme__user-audition__content">
                 {isYoutube ? (
-                    <iframe src={`https://www.youtube.com/embed/${data?.value}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src={`https://www.youtube.com/embed/${data?.value}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 ) : (
                     <video src="https://cdn.videvo.net/videvo_files/video/free/2012-10/large_watermarked/hd1967_preview.mp4" controls></video>
                 )}
