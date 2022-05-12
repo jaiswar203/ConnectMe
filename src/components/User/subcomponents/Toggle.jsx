@@ -61,36 +61,37 @@ const IOSSwitch = styled((props) => (
     },
 }));
 
-const ToggleSwitch = ({ data, setHandler, apiId, profileId, profile, isPrivate = false, info = false, title }) => {
+const ToggleSwitch = ({ apiId, profileId, profile, isPrivate = false, info = false, title ,audition=false}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
 
     }, [dispatch])
 
-
+    
     const onClickHandler = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
 
         if (isPrivate) {
-
             dispatch(updateProfile({ userId: user?._id, data: { isPrivate: !profile.isPrivate } }, profileId))
-        } else if (info) {
-            dispatch(updateProfile({ userId: user?._id, data: { ["userInfo.access"]: !profile.userInfo.access } }, profileId))
+        } else if (info){
+            dispatch(updateProfile({ userId: user?._id, data: { ["userInfo.access"]: !profile.userInfo.access }}, profileId))
         } else {
-            const data = profile.document.active ? false : true
+            const data = audition ? (profile?.audition?.active ? false : true ):(  profile?.document?.active ? false : true)
             dispatch(updateProfile({ userId: user?._id, data: { [apiId.toString()]: data } }, profileId))
         }
         // setHandler(!data)
     }
 
-    const checked = isPrivate ? profile?.isPrivate : info ? profile?.userInfo?.access : profile?.document.active
+    const checked =  isPrivate ? profile?.isPrivate : info ? profile?.userInfo?.access : audition ? profile?.audition?.active : profile?.document?.active
+    
+    
     return (
         <FormGroup>
             {title ? (
                 <Tooltip title={title} arrow placement="top-start">
                     <FormControlLabel
-                        control={<IOSSwitch sx={{ m: 2 }} defaultChecked={checked} />}
+                        control={<IOSSwitch sx={{ m: 2 }} defaultChecked={ checked } />}
                         label=""
                         onClick={onClickHandler}
                     />

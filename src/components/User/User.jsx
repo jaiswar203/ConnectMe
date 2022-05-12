@@ -750,18 +750,18 @@ const User = ({ edit }) => {
             <BorderComp />
 
             <Testimonial edit={edit} data={profileData?.testimonial} openEditHandler={openEditHandler} />
-
             <BorderComp />
+
             <Port data={profileData?.portfolio} title={"PortFolio"} link={`/gallery/${router?.query?.id}?content=portfolio`} edit={edit} openEditHandler={openEditHandler} />
             <BorderComp />
-            {edit || profileData?.audition?.value ? (
+
+            {profileData?.audition?.active || edit ? (
               <>
-                <Audition edit={edit} openHandler={openEditHandler} data={profileData?.audition} />
+                <Audition edit={edit} openHandler={openEditHandler} data={profileData?.audition} profileId={profileData?._id} profile={profileData} isFile={profileData?.audition?.isFile} />
                 <BorderComp />
               </>
-
-            ):  null}
-            <Port data={profileData?.services} title={"Work"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler} />
+            ):null}
+            <Port data={profileData?.services} title={"Work"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler}  />
 
             {
               profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (
@@ -770,7 +770,7 @@ const User = ({ edit }) => {
                   <div className="connectme__user-personal">
                     <div className="connectme__user-personal__title">
                       <h1>Personal Info</h1>
-                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} title={"This Will Hide/Show your Personal Info Section "} />
+                      <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} title={"This Will Hide/Show your Personal Info Section "} api="personal" />
                     </div>
                     <div className="connectme__user-personal__content">
                       <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
@@ -818,7 +818,7 @@ const User = ({ edit }) => {
                 <div className="connectme__user-document">
                   <div className="connectme__user-document__title">
                     <h1>Documentation</h1>
-                    <ToggleSwitch label={"hel"} data={pdfData} setHandler={setPdfData} profileId={profileData?._id} profile={profileData} apiId="document.active" title={"This Will Hide/Show your Documents Section "} />
+                    <ToggleSwitch label={"hel"} profileId={profileData?._id} profile={profileData} apiId="document.active" title={"This Will Hide/Show your Documents Section "} api="document" />
 
                   </div>
                   <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`, { isSubDoc: false }, { active: true, data: "application/pdf" })} >

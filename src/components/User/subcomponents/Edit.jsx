@@ -54,7 +54,10 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: formData.data }, profile?._id, data?.name, data?.isSubDoc?.isSubDoc?.underneath ? true : false))
         } else if (data?.isSubDoc?.testimonial || data?.isSubDoc?.interests) {
             dispatch(addImageInProfile({ data: formData?.data, userId: user?._id }, profile?._id, data?.name))
-        } else {
+        }else if (data?.isSubDoc?.audition){
+            dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
+
+        }else {
             dispatch(updateProfile({ userId: user?._id, data: formData }, profile?._id))
         }
         setRunFunction(false)
@@ -66,16 +69,17 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setFormData({ ...formData, data: e.target.value })
         } else if (data?.isSubDoc?.testimonial) {
             setFormData({ ...formData, data: e.target.value.slice(17) })
-        }else if(data?.isSubDoc?.audition){
-            setFormData({ ...formData,  [data.name]: e.target.value.slice(17) })
+        } else if (data?.isSubDoc?.audition) {
+            
+            setFormData({ ...formData, [data.name]: e.target.value.slice(17) ,"audition.isFile":false})
         }
         else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
-
     }
-    
 
+    console.log({formData})
+    
     const uploadImage = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
         const profile = JSON.parse(localStorage.getItem("profile"))?.data
@@ -86,7 +90,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         file.append('file', crop?.crop ? croppedUrl : cloudImage[0])
         file.append('upload_preset', 'profile')
         setRunFunction(true)
-        axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file, {
+        axios.post(`https://api.cloudinary.com/v1_1/redwine/${data?.isSubDoc?.audition ?"video":"image"}/upload`, file, {
             onUploadProgress: (pro) => {
                 const { loaded, total } = pro;
                 let percent = Math.floor(loaded * 100 / total)
@@ -98,7 +102,12 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                 dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: res.data.secure_url }, profile?._id, data?.name))
             } else if (data?.addImage) {
                 dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
-            } else {
+            }if(data?.isSubDoc?.audition){
+                console.log("djjd")
+                dispatch(updateProfile({userId:user?._id,data:{"audition.isFile":true,"audition.value": res.data.secure_url}},profile?._id))
+                // dispatch(updateProfile({userId:user?._id,data:{"audition.vidtype":"personal"}},profile?._id))
+
+            }else {
                 dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
             }
         })
@@ -110,12 +119,12 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         if (profile?.success) {
             setIsSuccess(true)
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 setIsSuccess(false)
-                profile.success=null
-            },[3000])
+                profile.success = null
+            }, [3000])
         }
-        
+
 
     }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl, progress, allImageUploaded])
 
@@ -167,6 +176,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
 
                 dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
 
+
                 if (i + 1 === cloudImage.length) {
                     seAllImageUploaded(true)
                 }
@@ -198,8 +208,9 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         }
     }
 
-    console.log({isSuccess})
 
+
+    console.log({ cloudImage })
     return (
         <div className="connectme__edit">
             <ToastContainer position="top-right" delay={2000} />
@@ -258,7 +269,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                                 )
                             }
                             {
-                                data.name === "background" || data.name === "profileimg" ? null :    (
+                                data.name === "background" || data.name === "profileimg" ? null : (
                                     <motion.div className="uploader_button" onClick={multiple ? addMultipleImage : uploadImage} whileTap={{ scale: 1.1 }} style={{ cursor: "pointer" }}>
                                         {!multiple && isLoading ? (
                                             <ClipLoader size={35} color="#000" />
