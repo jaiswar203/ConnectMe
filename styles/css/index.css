@@ -747,64 +747,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(208, 60, 8);
+  background: rgb(154, 164, 20);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(216, 186, 26);
+  background: rgb(54, 238, 239);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(228, 193, 188);
+  background: rgb(1, 6, 76);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(215, 26, 176);
+  background: rgb(81, 74, 192);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(19, 32, 138);
+  background: rgb(45, 74, 200);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(247, 152, 37);
+  background: rgb(159, 202, 34);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(133, 251, 1);
+  background: rgb(147, 64, 74);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(195, 140, 240);
+  background: rgb(85, 114, 47);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(90, 236, 193);
+  background: rgb(59, 62, 134);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(51, 71, 245);
+  background: rgb(109, 104, 179);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(13, 4, 194);
+  background: rgb(34, 160, 36);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(62, 179, 21);
+  background: rgb(60, 141, 27);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(54, 50, 174);
+  background: rgb(49, 33, 93);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(152, 108, 2);
+  background: rgb(45, 203, 78);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(74, 184, 243);
+  background: rgb(111, 166, 70);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(37, 142, 23);
+  background: rgb(208, 76, 245);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(223, 65, 109);
+  background: rgb(56, 215, 38);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(95, 16, 197);
+  background: rgb(214, 99, 231);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(105, 171, 79);
+  background: rgb(238, 253, 92);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(152, 118, 45);
+  background: rgb(20, 177, 89);
 }
 .connectme__user-social__title {
   display: flex;
@@ -1937,7 +1937,8 @@ A {
 }
 .connectme__edit-modal .content textarea {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-family: "Courier New", Courier, monospace;
 }
 .connectme__edit-modal .content-array {
   display: flex;

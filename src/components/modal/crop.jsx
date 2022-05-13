@@ -7,7 +7,7 @@ import axios from 'axios'
 import Modal from './Modal'
 import { updateSubDocInProfileById, addImageInProfile, updateProfile } from '../../../redux/action/Profile'
 
-const Crop = ({ img, w, h, setcroppedUrl, setModal, data }) => {
+const Crop = ({ img, w, h, setcroppedUrl, setModal, data,setshowProgress,setProgress,setshowLoading }) => {
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1)
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
@@ -50,7 +50,14 @@ const Crop = ({ img, w, h, setcroppedUrl, setModal, data }) => {
         file.append('upload_preset', 'profile')
 
         if (croppedUrl && runFunc) {
-            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file).then((res) => {
+            axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file,{
+                onUploadProgress: function (progressEvent) {
+                    var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                    setshowLoading(true)
+                    setshowProgress(true)
+                    setProgress(percentCompleted)
+                }
+            }).then((res) => {
                 dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
             })
             console.log({runFunc})
@@ -60,7 +67,7 @@ const Crop = ({ img, w, h, setcroppedUrl, setModal, data }) => {
         
     }, [zoom, croppedAreaPixels, runFunc,croppedImage, previeModal, croppedUrl])
 
-    const newUrl = croppedImage && URL.createObjectURL(croppedImage)
+    // const newUrl = croppedImage && URL.createObjectURL(croppedImage)
 
     const onCancel = () => {
         setCroppedImage(null)

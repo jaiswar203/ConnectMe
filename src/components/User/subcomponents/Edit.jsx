@@ -27,7 +27,6 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
     const [cropUrl, setCropUrl] = useState("")
     const [enableCrop, setEnableCrop] = useState(false)
 
-    const [vidUrl, setVidUrl] = useState("")
 
     // cropImage
     const [croppedUrl, setcroppedUrl] = useState("")
@@ -37,7 +36,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
     const [allImageUploaded, seAllImageUploaded] = useState(false)
     const [showLoading, setshowLoading] = useState(false)
 
-
+    const [showProgress, setshowProgress] = useState(false)
 
     useEffect(() => {
 
@@ -77,8 +76,6 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
     }
-
-    console.log({formData})
     
     const uploadImage = () => {
         const user = JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
@@ -91,22 +88,18 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         file.append('upload_preset', 'profile')
         setRunFunction(true)
         axios.post(`https://api.cloudinary.com/v1_1/redwine/${data?.isSubDoc?.audition ?"video":"image"}/upload`, file, {
-            onUploadProgress: (pro) => {
-                const { loaded, total } = pro;
-                let percent = Math.floor(loaded * 100 / total)
-                setProgress(percent)
+            onUploadProgress: (progressEvent) => {
+                var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                setProgress(percentCompleted)
             }
         }).then((res) => {
-
+            
             if (data?.isSubDoc?.isSubDoc) {
                 dispatch(updateSubDocInProfileById({ subId: data?.isSubDoc?._id, userId: user?._id, newData: res.data.secure_url }, profile?._id, data?.name))
             } else if (data?.addImage) {
                 dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
             }if(data?.isSubDoc?.audition){
-                console.log("djjd")
                 dispatch(updateProfile({userId:user?._id,data:{"audition.isFile":true,"audition.value": res.data.secure_url}},profile?._id))
-                // dispatch(updateProfile({userId:user?._id,data:{"audition.vidtype":"personal"}},profile?._id))
-
             }else {
                 dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
             }
@@ -123,10 +116,11 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                 setIsSuccess(false)
                 profile.success = null
             }, [3000])
+            modal(false)
         }
 
 
-    }, [state, isSuccess, runFunction, vidUrl, enableCrop, croppedUrl, progress, allImageUploaded])
+    }, [state, isSuccess, runFunction, enableCrop, croppedUrl, progress,showProgress, allImageUploaded])
 
 
     const onCloseHandler = () => {
@@ -169,14 +163,11 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             axios.post("https://api.cloudinary.com/v1_1/redwine/image/upload", file, {
                 onUploadProgress: function (progressEvent) {
                     var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-
+                    setshowProgress(true)
                     setProgress(percentCompleted)
                 }
             }).then((res) => {
-
                 dispatch(addImageInProfile({ data: res.data.secure_url, userId: user?._id }, profile?._id, data?.query))
-
-
                 if (i + 1 === cloudImage.length) {
                     seAllImageUploaded(true)
                 }
@@ -208,9 +199,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         }
     }
 
-
-
-    console.log({ cloudImage })
+    console.log({showProgress,progress})
     return (
         <div className="connectme__edit">
             <ToastContainer position="top-right" delay={2000} />
@@ -228,32 +217,16 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
                             {isSuccess && (
                                 <p style={{ color: "green" }} >{data?.title} Updated</p>
                             )}
-
-                            {/* {
-                                multipleCounter.map((d) => (
-                                    <>
-                                        {cloudImage.length !== 1 && (
-                                            <p style={{ display: "flex", justifyContent: "center" }}>
-                                                {d.num + 1}. <ProgressBar completed={d.progress} height={3} isLabelVisible={false} width={100} customLabel="" margin=".7rem" /> {d.progress === 100 && (
-                                                    <MdOutlineDone color="springgreen" />
-                                                )}
-                                            </p>
-                                        )}
-                                    </>
-                                ))
-                            } */}
                             {
                                 showLoading && (
                                     <div className="progress__bar">
-                                        {!allImageUploaded ? (
+                                        {!allImageUploaded || showProgress ? (
                                             <p style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                                 <ProgressBar completed={progress} height={3} isLabelVisible={false} width={100} customLabel="" margin=".7rem" /> {progress === 100 && (
                                                     <MdOutlineDone color="springgreen" />
                                                 )}
                                             </p>
-                                        ) : (
-                                            <p>{cloudImage.length === 1 ? "Image" : "All Images"} Uploaded</p>
-                                        )}
+                                        ) : null}
                                     </div>
                                 )
                             }
@@ -312,7 +285,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
             </motion.div>
             {
                 enableCrop && (
-                    <Crop img={cropUrl} w={crop.w} data={data} h={crop.h} uploadImage={uploadImage} setcroppedUrl={setcroppedUrl} setModal={setEnableCrop} />
+                    <Crop img={cropUrl} w={crop.w} setProgress={setProgress} setshowLoading={setshowLoading} data={data} h={crop.h} uploadImage={uploadImage} setcroppedUrl={setcroppedUrl} setModal={setEnableCrop} setshowProgress={setshowProgress} />
                 )
             }
         </div>
