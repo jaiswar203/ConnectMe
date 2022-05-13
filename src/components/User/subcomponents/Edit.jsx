@@ -90,6 +90,8 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         axios.post(`https://api.cloudinary.com/v1_1/redwine/${data?.isSubDoc?.audition ?"video":"image"}/upload`, file, {
             onUploadProgress: (progressEvent) => {
                 var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                setshowLoading(true)
+                setshowProgress(true)
                 setProgress(percentCompleted)
             }
         }).then((res) => {

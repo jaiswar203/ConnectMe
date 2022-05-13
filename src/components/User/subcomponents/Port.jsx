@@ -27,7 +27,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     const dispatch = useDispatch()
 
-    const newData = data?.slice(0, 4)
+    const newData = data
 
 
 
