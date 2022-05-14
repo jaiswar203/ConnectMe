@@ -201,7 +201,7 @@ const Edit = ({ modal, data, isLoading, usetextarea = false, state, multiple = f
         }
     }
 
-    console.log({showProgress,progress})
+    
     return (
         <div className="connectme__edit">
             <ToastContainer position="top-right" delay={2000} />
