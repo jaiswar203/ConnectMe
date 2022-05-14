@@ -292,7 +292,7 @@ const User = ({ edit }) => {
     },
     {
       item: <Phone />,
-      name: "Call",
+      name: "Phone",
       link: `tel:${profileData?.personal?.phone}`,
       forupdate: profileData?.personal?.phone
     },
@@ -304,9 +304,9 @@ const User = ({ edit }) => {
     },
     {
       item: <SMS />,
-      name: "SMS",
+      name: "Message",
       link: `sms:${profileData?.personal?.message}`,
-      forupdate: profileData?.personal?.mail
+      forupdate: profileData?.personal?.message
     },
   ]
 
