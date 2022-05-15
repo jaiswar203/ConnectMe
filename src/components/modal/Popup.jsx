@@ -23,7 +23,7 @@ const PopupModal = ({ message, title, success = true, error = false, confirm = f
                         
                     </div>
                     {prev && (
-                        <div className="previous" onClick={()=>router.push(window.location.origin)}>
+                        <div className="previous" onClick={()=>router.back()}>
                             <motion.div whileTap={{scale:1.1}} className="button" >
                                 <h3>Home</h3>
                             </motion.div>

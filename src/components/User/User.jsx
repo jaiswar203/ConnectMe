@@ -287,13 +287,13 @@ const User = ({ edit }) => {
     {
       item: <WhatsApp />,
       name: "Whatsapp",
-      link: `https://wa.me/${profileData?.personal?.whatsapp}`,
+      link: `https://wa.me/+91${profileData?.personal?.whatsapp}`,
       forupdate: profileData?.personal?.whatsapp
     },
     {
       item: <Phone />,
       name: "Phone",
-      link: `tel:${profileData?.personal?.phone}`,
+      link: `tel:+91${profileData?.personal?.phone}`,
       forupdate: profileData?.personal?.phone
     },
     {
@@ -305,7 +305,7 @@ const User = ({ edit }) => {
     {
       item: <SMS />,
       name: "Message",
-      link: `sms:${profileData?.personal?.message}`,
+      link: `sms:+91${profileData?.personal?.message}`,
       forupdate: profileData?.personal?.message
     },
   ]
@@ -382,7 +382,6 @@ const User = ({ edit }) => {
 
         {
           text.length > 250 && (
-
             <span onClick={toggleReadMore}>
               {readMore ? "less" : "more"}
             </span>

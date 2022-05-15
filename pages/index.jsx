@@ -44,7 +44,7 @@ const Index = () => {
   const uniqueIdForVisitor = uuid()
   useEffect(() => {
     const is_cookie_exist = localStorage.getItem("unique")
-    
+    const is_user_logged=JSON.parse(localStorage.getItem("UserAuth"))
  
     if (is_cookie_exist === null) {
       localStorage.setItem("unique", uniqueIdForVisitor)
@@ -52,6 +52,11 @@ const Index = () => {
 
     if (authData === null) {
       router.push("/login");
+    }
+
+    console.log({is_user_logged})
+    if(is_user_logged!==null && is_user_logged?.existingUser?.isVerified){
+      router.push(`/edit/${is_user_logged.existingUser.username}`)
     }
   }, [authData]);
 
@@ -68,6 +73,7 @@ const Index = () => {
     dispatch(getUserById(data?._id));
   };
 
+  
   const newData = authData !== undefined && authData?.existingUser;
   
   return (
