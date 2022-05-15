@@ -4,6 +4,17 @@ import Wait from "../../../illustrations/Wait"
 
 const PopupModal = ({ message, title, success = true, error = false, confirm = false, setModal, handler, showImg = false ,prev}) => {
     const router = useRouter()
+
+    const homePage=()=>{
+        const data=JSON.parse(localStorage.getItem("UserAuth"))?.existingUser
+
+        console.log({data})
+        if(data){
+            window.location.replace(`/${data?.username}`)
+        }else{
+            router.push(`/login`)
+        }
+    }
     return (
         <div className="outer__shell">
             <motion.div className='connectme__message-modal'>
@@ -23,8 +34,8 @@ const PopupModal = ({ message, title, success = true, error = false, confirm = f
                         
                     </div>
                     {prev && (
-                        <div className="previous" onClick={()=>router.back()}>
-                            <motion.div whileTap={{scale:1.1}} className="button" >
+                        <div className="previous" >
+                            <motion.div whileTap={{scale:1.1}} className="button" onClick={homePage}>
                                 <h3>Home</h3>
                             </motion.div>
                         </div>

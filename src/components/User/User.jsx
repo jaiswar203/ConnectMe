@@ -79,7 +79,7 @@ const User = ({ edit }) => {
   const [showEditOptionOnViewSide, setShowEditOptionOnViewSide] = useState(false)
 
   // toggle 
-  const [pdfData, setPdfData] = useState(false)
+  
 
   const [showRequesList, setShowRequesList] = useState(false)
 
@@ -92,8 +92,7 @@ const User = ({ edit }) => {
   const [share, setShare] = useState(false)
   // search
   const [searchBar, setSearchBar] = useState(false)
-  // repositioning in social handle
-  // const [rePos, setRePos] = useState({from:null,})
+  
 
   const [socialRefactor, setSocialRefactor] = useState(false)
 
@@ -131,9 +130,6 @@ const User = ({ edit }) => {
 
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
-    // if(!edit && router.query.id=== data?.existingUser?.username){
-    //   dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
-    // }
     if (data && !edit && data?.existingUser?.username === router.query.id) {
       dispatch(getProfileById({ email: data?.existingUser?.email }, data?.existingUser?.profile))
     }
@@ -151,16 +147,12 @@ const User = ({ edit }) => {
       setUserName(data?.existingUser?.username)
     }
 
-    if (profileData?._id === data?.existingUser?.profile) {
-
-    }
+    
 
 
     const profileData = JSON.parse(localStorage.getItem("profile"))
 
-    if (profileData) {
-      setPdfData(profileData?.data?.document?.active)
-    }
+    
 
     if (profileData !== null && !profileData?.isUserAdmin) {
       // router.push("/?not-authorized")
@@ -179,9 +171,7 @@ const User = ({ edit }) => {
       }
     }
 
-    // if (!data && edit) {
-    //   router.push("/login")
-    // }
+    
 
   }, [showModal, dispatch, router.query, popUpData])
 
