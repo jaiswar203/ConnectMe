@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Hind&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&family=Playfair+Display:wght@600&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Orbitron&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Hind&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&family=Playfair+Display:wght@600&display=swap");
 
 * {
   margin: 0;
@@ -11,28 +10,30 @@
   outline: none;
   box-sizing: border-box;
   scroll-behavior: smooth;
-//   background: black;
-//   color: white;
+  //   background: black;
+  //   color: white;
 }
 
 @mixin center__element {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-A{
+A {
   text-decoration: none;
   color: inherit;
 }
 
-$bg: #10111F;
+$bg: #10111f;
 $barsize: 15px;
 
-
-$primary-color: #3080C0;
+$primary-color: #3080c0;
 $secondary-color: #fff;
 $dark-color: #000;
+
+// $box_highlight: #e0e0e0;
+$box_highlight: #56d5c7;
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -40,40 +41,44 @@ $dark-color: #000;
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $primary-color; 
+  background: $primary-color;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
-
 
 @mixin box_color {
   background: $primary-color !important;
   color: $secondary-color !important;
-  
-  &:hover{
+
+  &:hover {
     color: $primary-color !important;
     background-color: $secondary-color !important;
     border: 1px solid black;
-    transition: all .1s ease-in;
+    transition: all 0.1s ease-in;
   }
 }
 
 @mixin click_font {
-  font-family: 'Lora', serif !important;
-  color: #3080C0;
+  font-family: "Lora", serif !important;
+  color: #3080c0;
 }
 
 @mixin normal_font {
-  font-family: 'Lora', serif;
-font-family: 'Playfair Display', serif;
+  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
+}
+
+@mixin purple_gradient {
+  background: #94e594;
+  color: black;
 }

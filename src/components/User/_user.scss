@@ -1,4 +1,15 @@
+@mixin box__shadow {
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
+}
+
+@mixin gradient__text {
+  background: -webkit-linear-gradient(#bdc3c7, #800080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .connectme__user {
+  // background: black;
   &-background {
     border-radius: 2rem;
 
@@ -97,6 +108,7 @@
       }
       &__tagline {
         @include click_font;
+        color: black;
         padding: 1rem;
         .background {
           color: black;
@@ -161,8 +173,12 @@
     justify-content: space-between;
     overflow: hidden;
     border-radius: 10px;
-    background: #e0e0e0;
-    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    background: $box_highlight;
+
+    // gradient
+    @include purple_gradient;
+
+    @include box__shadow;
     padding: 1rem;
     .background {
       width: 1rem;
@@ -175,8 +191,10 @@
     p {
       @include click_font;
       margin-bottom: 0.4rem;
+      color: $primary-color;
     }
     h3 {
+      color: white;
       @include normal_font;
     }
   }
@@ -193,14 +211,15 @@
       text-align: start;
       margin-top: 0.5rem;
       border-radius: 10px;
-      background: #e0e0e0;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      background: $box_highlight;
+      @include box__shadow;
       padding: 1rem;
       @include normal_font;
 
+      @include purple_gradient;
       span {
         margin-left: 0.5rem;
-        color: blue;
+        color: $primary-color;
       }
     }
     .background {
@@ -302,9 +321,11 @@
       justify-content: space-between;
       padding: 2rem;
       border-radius: 10px;
-      background: #e0e0e0;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      background: $box_highlight;
+      @include box__shadow;
       margin-top: 2rem;
+
+      @include purple_gradient;
 
       .item {
         @include center__element;
@@ -353,8 +374,10 @@
       margin-top: 2rem;
       padding: 1rem;
       border-radius: 20px;
-      background: #e0e0e0;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      background: $box_highlight;
+
+      @include purple_gradient;
+      @include box__shadow;
 
       .background {
         position: absolute;
@@ -427,8 +450,10 @@
     }
     &__content {
       border-radius: 10px;
-      background: #e0e0e0;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      background: $box_highlight;
+
+      @include purple_gradient;
+      @include box__shadow;
       padding: 1rem;
       overflow: hidden;
       @include center__element;
@@ -565,8 +590,9 @@
     &__content {
       margin-top: 3rem;
       border-radius: 10px;
-      background: #e0e0e0;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      background: $box_highlight;
+      @include purple_gradient;
+      @include box__shadow;
       padding: 1rem;
 
       .background {
@@ -1181,19 +1207,18 @@
       }
       margin: 1rem 0;
     }
-    .modal{
+    .modal {
       @include center__element;
-      
 
-      &__cancel{
+      &__cancel {
         position: absolute;
         color: green;
-        top: -.5rem;
-        right: -.5rem;
+        top: -0.5rem;
+        right: -0.5rem;
         font-size: 2rem;
       }
 
-      &__box{
+      &__box {
         position: relative;
 
         border-radius: 10px;
@@ -1204,19 +1229,18 @@
         flex-direction: column;
 
         width: 20rem;
-
-        
       }
-      &__youtube,&__file{
+      &__youtube,
+      &__file {
         border-radius: 5px;
         color: black;
         background: white;
         width: 10rem;
 
-        padding: .5rem 1rem;
+        padding: 0.5rem 1rem;
       }
 
-      &__youtube{
+      &__youtube {
         margin-bottom: 1rem;
       }
     }
@@ -1225,8 +1249,9 @@
       padding: 1rem;
       position: relative;
       border-radius: 10px;
-      background: #e0e0e0;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+      background: $box_highlight;
+      @include purple_gradient;
+      @include box__shadow;
 
       .background {
         z-index: 3;
@@ -1248,7 +1273,6 @@
           height: 25rem;
         }
       }
-
 
       video {
         width: 100%;
@@ -1406,7 +1430,7 @@
       textarea {
         width: 100%;
         font-size: 1.1rem;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: "Courier New", Courier, monospace;
       }
       &-array {
         @include center__element;

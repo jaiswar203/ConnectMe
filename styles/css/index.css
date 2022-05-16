@@ -28,7 +28,7 @@ A {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #3080C0;
+  background: #3080c0;
   border-radius: 10px;
 }
 
@@ -91,9 +91,9 @@ A {
 }
 .connectme__login-intro h1 {
   font-size: 2.5rem;
-  color: #3080C0;
+  color: #3080c0;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   text-align: center;
 }
 .connectme__login-intro p {
@@ -125,7 +125,7 @@ A {
 }
 .connectme__login-content__manual input {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__login-content__manual > * {
   margin-bottom: 1rem;
@@ -153,18 +153,18 @@ A {
 }
 .connectme__login-content__manual button.submit {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   padding: 1rem;
   border-radius: 5px;
   width: 100%;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .connectme__login-content__manual button.submit:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -236,7 +236,7 @@ A {
   position: absolute;
   margin-top: 10rem;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -282,7 +282,7 @@ A {
 }
 .connectme__login .auth .google {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   cursor: pointer;
   padding: 1rem;
   width: 100%;
@@ -324,17 +324,17 @@ A {
   justify-content: center;
   align-items: center;
   width: 10rem;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  background-color: #3080C0 !important;
+  background-color: #3080c0 !important;
   border-radius: 5px;
   color: white !important;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   cursor: pointer;
 }
 .connectme__header-signup .box:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -365,7 +365,7 @@ A {
 }
 .connectme__home-profile {
   padding: 1rem;
-  background: #3080C0;
+  background: #3080c0;
   color: white;
   cursor: pointer;
   border-radius: 5px;
@@ -441,7 +441,7 @@ A {
 }
 .not__verified .box {
   width: 20rem;
-  background: #3080C0;
+  background: #3080c0;
   color: white;
   padding: 3rem;
   text-align: center;
@@ -489,18 +489,18 @@ A {
   justify-content: center;
   align-items: center;
   transform: rotate(-90deg);
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
   padding: 0.4rem 1rem;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   justify-content: space-between;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
 }
 .connectme__user-edit__button .edit__button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -533,11 +533,11 @@ A {
   flex-direction: column;
 }
 .connectme__user-profile .info h2 {
-  background: -webkit-linear-gradient(#000000, #3080C0);
+  background: -webkit-linear-gradient(#000000, #3080c0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   font-weight: bold;
 }
 .connectme__user-profile .info p {
@@ -555,7 +555,8 @@ A {
 }
 .connectme__user-profile .info__tagline {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
+  color: black;
   padding: 1rem;
 }
 .connectme__user-profile .info__tagline .background {
@@ -611,12 +612,12 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
   border-radius: 5px;
 }
 .connectme__user-like .like__button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -632,8 +633,10 @@ A {
   justify-content: space-between;
   overflow: hidden;
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  background: #94e594;
+  color: black;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
   padding: 1rem;
 }
 .connectme__user-detail .background {
@@ -645,10 +648,12 @@ A {
 }
 .connectme__user-detail p {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   margin-bottom: 0.4rem;
+  color: #3080c0;
 }
 .connectme__user-detail h3 {
+  color: white;
   font-family: "Lora", serif;
   font-family: "Playfair Display", serif;
 }
@@ -661,21 +666,23 @@ A {
 }
 .connectme__user-about h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-about p {
   text-align: start;
   margin-top: 0.5rem;
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
   padding: 1rem;
   font-family: "Lora", serif;
   font-family: "Playfair Display", serif;
+  background: #94e594;
+  color: black;
 }
 .connectme__user-about p span {
   margin-left: 0.5rem;
-  color: blue;
+  color: #3080c0;
 }
 .connectme__user-about .background {
   display: flex;
@@ -696,21 +703,21 @@ A {
 }
 .connectme__user-interests__title .add {
   cursor: pointer;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
 .connectme__user-interests__title .add:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
 }
 .connectme__user-interests__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-interests__title .background {
   margin-right: 0.3rem;
@@ -748,64 +755,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(172, 208, 212);
+  background: rgb(174, 204, 66);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(63, 212, 73);
+  background: rgb(60, 193, 72);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(173, 176, 85);
+  background: rgb(52, 118, 97);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(80, 89, 110);
+  background: rgb(7, 173, 123);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(138, 232, 129);
+  background: rgb(220, 195, 41);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(189, 207, 212);
+  background: rgb(2, 98, 186);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(92, 32, 171);
+  background: rgb(71, 159, 160);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(103, 223, 75);
+  background: rgb(156, 141, 2);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(55, 118, 169);
+  background: rgb(14, 93, 191);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(78, 255, 123);
+  background: rgb(167, 226, 171);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(210, 140, 11);
+  background: rgb(46, 9, 235);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(213, 118, 174);
+  background: rgb(76, 9, 149);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(40, 129, 227);
+  background: rgb(204, 171, 205);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(108, 188, 210);
+  background: rgb(196, 234, 173);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(21, 135, 156);
+  background: rgb(171, 156, 150);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(15, 11, 198);
+  background: rgb(111, 137, 148);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(231, 23, 157);
+  background: rgb(21, 138, 55);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(60, 228, 104);
+  background: rgb(228, 73, 181);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(175, 77, 49);
+  background: rgb(95, 206, 183);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(38, 107, 223);
+  background: rgb(239, 45, 140);
 }
 .connectme__user-social__title {
   display: flex;
@@ -815,17 +822,17 @@ A {
 }
 .connectme__user-social__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-social__title .refactor__button {
   padding: 0.6rem 1rem;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
   border-radius: 5px;
   cursor: pointer;
 }
 .connectme__user-social__title .refactor__button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -838,9 +845,11 @@ A {
   justify-content: space-between;
   padding: 2rem;
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
   margin-top: 2rem;
+  background: #94e594;
+  color: black;
 }
 .connectme__user-social__content .item {
   display: flex;
@@ -876,18 +885,18 @@ A {
 }
 .connectme__user-testimonial__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-testimonial__title .add {
   cursor: pointer;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
 .connectme__user-testimonial__title .add:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -896,8 +905,10 @@ A {
   margin-top: 2rem;
   padding: 1rem;
   border-radius: 20px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  background: #94e594;
+  color: black;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
 }
 .connectme__user-testimonial__content .background {
   position: absolute;
@@ -952,7 +963,7 @@ A {
 }
 .connectme__user-connects__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-connects__title .background {
   margin-left: 0.4rem;
@@ -962,8 +973,10 @@ A {
 }
 .connectme__user-connects__content {
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  background: #94e594;
+  color: black;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
   padding: 1rem;
   overflow: hidden;
   display: flex;
@@ -1018,7 +1031,7 @@ A {
 }
 .connectme__user-portfolio__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-portfolio__title .add {
   cursor: pointer;
@@ -1087,18 +1100,18 @@ A {
 }
 .connectme__user-services__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-services__title .add {
   cursor: pointer;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
 .connectme__user-services__title .add:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1112,8 +1125,10 @@ A {
 .connectme__user-services__content {
   margin-top: 3rem;
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  background: #94e594;
+  color: black;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
   padding: 1rem;
 }
 .connectme__user-services__content .background {
@@ -1158,7 +1173,7 @@ A {
 }
 .connectme__user-personal__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-personal__content {
   margin-top: 2rem;
@@ -1179,15 +1194,15 @@ A {
   justify-content: center;
   align-items: center;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   padding: 1rem;
   width: 15rem;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
 }
 .connectme__user-personal__content .button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1232,13 +1247,13 @@ A {
 }
 .connectme__user-modal__content .edit__once-button {
   padding: 0.6rem 1rem;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
   cursor: pointer;
   border-radius: 5px;
 }
 .connectme__user-modal__content .edit__once-button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1307,7 +1322,7 @@ A {
   left: 0;
 }
 .connectme__user .border .hr:before {
-  background: linear-gradient(90deg, #10111F 0%, #10111F 50%, transparent 50%, transparent 100%);
+  background: linear-gradient(90deg, #10111f 0%, #10111f 50%, transparent 50%, transparent 100%);
   background-size: 15px;
   background-position: center;
   z-index: 1;
@@ -1339,7 +1354,7 @@ A {
   }
 }
 .connectme__user .border .hr.anim:before {
-  background: linear-gradient(90deg, #10111F 0%, #10111F 5%, transparent 5%, transparent 10%, #10111F 10%, #10111F 15%, transparent 15%, transparent 20%, #10111F 20%, #10111F 25%, transparent 25%, transparent 30%, #10111F 30%, #10111F 35%, transparent 35%, transparent 40%, #10111F 40%, #10111F 45%, transparent 45%, transparent 50%, #10111F 50%, #10111F 55%, transparent 55%, transparent 60%, #10111F 60%, #10111F 65%, transparent 65%, transparent 70%, #10111F 70%, #10111F 75%, transparent 75%, transparent 80%, #10111F 80%, #10111F 85%, transparent 85%, transparent 90%, #10111F 90%, #10111F 95%, transparent 95%, transparent 100%);
+  background: linear-gradient(90deg, #10111f 0%, #10111f 5%, transparent 5%, transparent 10%, #10111f 10%, #10111f 15%, transparent 15%, transparent 20%, #10111f 20%, #10111f 25%, transparent 25%, transparent 30%, #10111f 30%, #10111f 35%, transparent 35%, transparent 40%, #10111f 40%, #10111f 45%, transparent 45%, transparent 50%, #10111f 50%, #10111f 55%, transparent 55%, transparent 60%, #10111f 60%, #10111f 65%, transparent 65%, transparent 70%, #10111f 70%, #10111f 75%, transparent 75%, transparent 80%, #10111f 80%, #10111f 85%, transparent 85%, transparent 90%, #10111f 90%, #10111f 95%, transparent 95%, transparent 100%);
   background-size: 150px;
   background-position: center;
   z-index: 1;
@@ -1392,12 +1407,12 @@ A {
   background: black;
   color: white;
   border-radius: 5px;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
 }
 .connectme__user-setting .private:hover,
 .connectme__user-setting .request:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1488,15 +1503,15 @@ A {
 .connectme__user-footer .content__button {
   padding: 1rem;
   cursor: pointer;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
   font-family: "Lora", serif !important;
-  color: #3080C0;
-  border: 1px solid #3080C0;
+  color: #3080c0;
+  border: 1px solid #3080c0;
   border-radius: 5px;
 }
 .connectme__user-footer .content__button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1519,18 +1534,18 @@ A {
   cursor: pointer;
   padding: 1rem;
   border-radius: 5px;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-feedback .feedback:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1549,7 +1564,7 @@ A {
 }
 .connectme__user-document__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-document__content {
   margin-top: 2rem;
@@ -1564,16 +1579,16 @@ A {
   padding: 1rem;
   cursor: pointer;
   border-radius: 5px;
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
-  border: 1px solid #3080C0;
+  border: 1px solid #3080c0;
 }
 .connectme__user-document__content .button svg {
   font-size: 2rem;
   margin-right: 1rem;
 }
 .connectme__user-document__content .button:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -1688,7 +1703,7 @@ A {
   border: 2px solid black;
   top: 1rem;
   right: 1rem;
-  color: #3080C0;
+  color: #3080c0;
   font-size: 1.4rem;
 }
 .connectme__user-audition__title {
@@ -1699,21 +1714,21 @@ A {
   margin: 1rem 0;
 }
 .connectme__user-audition__title .edit {
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
   padding: 0.4rem 1rem;
   border-radius: 5px;
   cursor: pointer;
 }
 .connectme__user-audition__title .edit:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
 }
 .connectme__user-audition__title h1 {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
 }
 .connectme__user-audition .modal {
   display: flex;
@@ -1753,8 +1768,10 @@ A {
   padding: 1rem;
   position: relative;
   border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #56d5c7;
+  background: #94e594;
+  color: black;
+  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
 }
 .connectme__user-audition__content .background {
   z-index: 3;
@@ -1991,7 +2008,7 @@ A {
 }
 .outer__shell .connectme__message-modal {
   position: absolute;
-  background: #3080C0;
+  background: #3080c0;
   color: black;
   top: 50%;
   width: 28rem;
@@ -2118,12 +2135,12 @@ A {
 }
 .connectme__cropper-action .crop,
 .connectme__cropper-action .upload {
-  background: #3080C0 !important;
+  background: #3080c0 !important;
   color: #fff !important;
 }
 .connectme__cropper-action .crop:hover,
 .connectme__cropper-action .upload:hover {
-  color: #3080C0 !important;
+  color: #3080c0 !important;
   background-color: #fff !important;
   border: 1px solid black;
   transition: all 0.1s ease-in;
@@ -2219,7 +2236,7 @@ A {
 .connectme__social-refactor__off {
   position: absolute;
   font-size: 2rem;
-  color: #3080C0;
+  color: #3080c0;
   right: 1rem;
   top: 3rem;
   border-radius: 50%;
@@ -2250,7 +2267,7 @@ A {
 }
 .connectme__gallery-title {
   font-family: "Lora", serif !important;
-  color: #3080C0;
+  color: #3080c0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2295,7 +2312,7 @@ A {
   left: 0;
 }
 .connectme__gallery .border .hr:before {
-  background: linear-gradient(90deg, #10111F 0%, #10111F 50%, transparent 50%, transparent 100%);
+  background: linear-gradient(90deg, #10111f 0%, #10111f 50%, transparent 50%, transparent 100%);
   background-size: 15px;
   background-position: center;
   z-index: 1;
@@ -2319,7 +2336,7 @@ A {
   }
 }
 .connectme__gallery .border .hr.anim:before {
-  background: linear-gradient(90deg, #10111F 0%, #10111F 5%, transparent 5%, transparent 10%, #10111F 10%, #10111F 15%, transparent 15%, transparent 20%, #10111F 20%, #10111F 25%, transparent 25%, transparent 30%, #10111F 30%, #10111F 35%, transparent 35%, transparent 40%, #10111F 40%, #10111F 45%, transparent 45%, transparent 50%, #10111F 50%, #10111F 55%, transparent 55%, transparent 60%, #10111F 60%, #10111F 65%, transparent 65%, transparent 70%, #10111F 70%, #10111F 75%, transparent 75%, transparent 80%, #10111F 80%, #10111F 85%, transparent 85%, transparent 90%, #10111F 90%, #10111F 95%, transparent 95%, transparent 100%);
+  background: linear-gradient(90deg, #10111f 0%, #10111f 5%, transparent 5%, transparent 10%, #10111f 10%, #10111f 15%, transparent 15%, transparent 20%, #10111f 20%, #10111f 25%, transparent 25%, transparent 30%, #10111f 30%, #10111f 35%, transparent 35%, transparent 40%, #10111f 40%, #10111f 45%, transparent 45%, transparent 50%, #10111f 50%, #10111f 55%, transparent 55%, transparent 60%, #10111f 60%, #10111f 65%, transparent 65%, transparent 70%, #10111f 70%, #10111f 75%, transparent 75%, transparent 80%, #10111f 80%, #10111f 85%, transparent 85%, transparent 90%, #10111f 90%, #10111f 95%, transparent 95%, transparent 100%);
   background-size: 150px;
   background-position: center;
   z-index: 1;
@@ -2408,7 +2425,7 @@ A {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: #3080C0;
+  background: #3080c0;
   color: white;
   position: absolute;
   top: 0;
@@ -2497,7 +2514,7 @@ A {
 }
 .connectme__share-content__share .copy__content {
   margin-top: 1.5rem;
-  border: 2px solid #3080C0;
+  border: 2px solid #3080c0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2513,7 +2530,7 @@ A {
 .connectme__share-content__share .copy__button {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  background: #3080C0;
+  background: #3080c0;
   border-radius: 5px;
 }
 

@@ -5,7 +5,7 @@ import { Navbar, Footer } from '.'
 const Layout = ({ title, children, description, navbar = true, edit, footer = false, setShare, ogImg = "", setShowRequesList, setSearchBar, view = false ,tab={}}) => {
     
     return (
-        <div>
+        <>
             <Head>
                 <title>{title ? `${title} - ConnectMe` : 'ConnectMe'}</title>
                 {description && <meta name='description' content={description} />}
@@ -22,7 +22,7 @@ const Layout = ({ title, children, description, navbar = true, edit, footer = fa
                 )
             }
 
-        </div>
+        </>
     )
 }
 
