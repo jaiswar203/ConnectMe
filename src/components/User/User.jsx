@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/router'
 import { motion } from "framer-motion"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from 'next/link'
 
@@ -10,8 +11,6 @@ import { deleteSubDocInProfileById, getProfileById, getProfileByUserName, likePr
 import Layout from '../Layout'
 
 
-import Port from "./subcomponents/Port"
-import Testimonial from './subcomponents/Testimonial'
 import Modal from "./subcomponents/Modal"
 
 import Instagram from "./logo/insta"
@@ -27,7 +26,6 @@ import { FcLike, FcLikePlaceholder, FcLock } from 'react-icons/fc'
 
 
 // icons 
-import Edit from "./subcomponents/Edit"
 import PopupModal from "../modal/Popup"
 import Facebook from "./logo/facebook"
 import Twitter from "./logo/twitter"
@@ -39,14 +37,20 @@ import Youtube from "./logo/youtube"
 import Wikipedia from "./logo/wikipedia"
 import WhatsApp from "./logo/whatsapp"
 import SMS from "./logo/Sms"
-import ToggleSwitch from "./subcomponents/Toggle"
 import { MdDelete } from "react-icons/md"
-import Request from "./subcomponents/Request"
 import Share from "../Footer/Share"
+
+import Edit from "./subcomponents/Edit"
+import ToggleSwitch from "./subcomponents/Toggle"
+import Request from "./subcomponents/Request"
 import SearchBar from "../Footer/SearchBar"
 import Social from "./subcomponents/social"
-import Audition from "./subcomponents/Audition"
 
+
+
+const Audition = dynamic(() => import("./subcomponents/Audition"))
+const Port = dynamic(() => import("./subcomponents/Port"))
+const Testimonial = dynamic(() => import('./subcomponents/Testimonial'))
 
 const User = ({ edit }) => {
   const [width, setWidth] = useState(1000)
@@ -79,7 +83,7 @@ const User = ({ edit }) => {
   const [showEditOptionOnViewSide, setShowEditOptionOnViewSide] = useState(false)
 
   // toggle 
-  
+
 
   const [showRequesList, setShowRequesList] = useState(false)
 
@@ -92,7 +96,7 @@ const User = ({ edit }) => {
   const [share, setShare] = useState(false)
   // search
   const [searchBar, setSearchBar] = useState(false)
-  
+
 
   const [socialRefactor, setSocialRefactor] = useState(false)
 
@@ -147,12 +151,12 @@ const User = ({ edit }) => {
       setUserName(data?.existingUser?.username)
     }
 
-    
+
 
 
     const profileData = JSON.parse(localStorage.getItem("profile"))
 
-    
+
 
     if (profileData !== null && !profileData?.isUserAdmin) {
       // router.push("/?not-authorized")
@@ -171,7 +175,7 @@ const User = ({ edit }) => {
       }
     }
 
-    
+
 
   }, [showModal, dispatch, router.query, popUpData])
 
@@ -749,8 +753,8 @@ const User = ({ edit }) => {
                 <Audition edit={edit} openHandler={openEditHandler} data={profileData?.audition} profileId={profileData?._id} profile={profileData} isFile={profileData?.audition?.isFile} />
                 <BorderComp />
               </>
-            ):null}
-            <Port data={profileData?.services} title={"Work"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler}  />
+            ) : null}
+            <Port data={profileData?.services} title={"Work"} link={`/gallery/${router?.query?.id}?content=services`} edit={edit} openEditHandler={openEditHandler} />
 
             {
               profileData?._id === JSON.parse(localStorage.getItem("UserAuth"))?.existingUser?.profile && edit ? (
