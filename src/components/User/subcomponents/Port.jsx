@@ -126,7 +126,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                                         </div>
                                     </>
                                 )}
-                                <Image src={d.data} width={400} height={400} objectFit="cover" />
+                                <Image src={d.data} width={400} height={400} objectFit="cover" alt={"Profile Image"} />
                             </motion.div>
                         </SwiperSlide>
                     ))}
