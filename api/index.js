@@ -4,7 +4,7 @@ const devServer="http://localhost:4000"
 const prodServer="https://connecmev1.herokuapp.com"
 const ubuntu="http://52.44.219.142:4000"
 
-const API = axios.create({ baseURL: ubuntu });
+const API = axios.create({ baseURL: prodServer });
 
 
 API.interceptors.request.use((req) => {
