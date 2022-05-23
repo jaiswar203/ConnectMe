@@ -2,7 +2,7 @@ import axios from "axios";
 
 const devServer="http://localhost:4000"
 const prodServer="https://connecmev1.herokuapp.com"
-const ubuntu="http://52.44.219.142:4000"
+const ubuntu="https://connectixx.in"
 
 const API = axios.create({ baseURL: prodServer });
 
