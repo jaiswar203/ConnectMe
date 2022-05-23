@@ -4,7 +4,7 @@ const devServer="http://localhost:4000"
 const prodServer="https://connecmev1.herokuapp.com"
 const ubuntu="https://connectixx.in"
 
-const API = axios.create({ baseURL: prodServer });
+const API = axios.create({ baseURL: ubuntu });
 
 
 API.interceptors.request.use((req) => {
