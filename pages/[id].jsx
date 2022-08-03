@@ -6,12 +6,10 @@ import axios from "axios"
 import { User } from "../src/components"
 
 const Detail = ({ profile }) => {
-
-
+  
   return (
     <>
       {!profile.error && (
-
         <Head>
           <meta property="og:title" content={`${profile?.data?.name}`} key="ogTitle" />
           <meta property="og:type" content={"profile.image"} key="ogType" />

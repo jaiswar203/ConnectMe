@@ -29,8 +29,6 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     const newData = data
 
-
-
     const breakpoint = {
         500: {
             slidesPerView: 2,
@@ -67,8 +65,6 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
 
     }, [refinedData, profile, index, multipleUpload])
     var refinedData = newData[index]
-
-
 
 
     const addImageHandler = (addImage = true) => {
