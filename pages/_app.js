@@ -10,7 +10,7 @@ import Router from "next/router";
 
 import { SessionProvider } from "next-auth/react";
 
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -24,11 +24,11 @@ const store = createStore(
 
 import "../styles/css/index.css";
 import "swiper/css";
-import { useRouter } from "next/router";
+
 import { useState } from "react";
 import Loading from "../src/components/Loading";
 import { useEffect } from "react";
-// Client-side cache, shared for the whole session of the user in the browser.
+
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
