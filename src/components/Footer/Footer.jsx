@@ -1,4 +1,4 @@
-import { AiFillEye, AiOutlineLogin, AiFillEyeInvisible, AiOutlineShareAlt, AiOutlineSearch } from 'react-icons/ai'
+import { AiFillEye, AiOutlineLogin, AiOutlineShareAlt, AiOutlineSearch } from 'react-icons/ai'
 import { BsBell } from 'react-icons/bs'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
