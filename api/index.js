@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const devServer="http://localhost:4000"
-const prodServer="https://connecmev1.herokuapp.com"
+const devServer="http://localhost:3000"
+const prodServer="http://165.232.178.229"
 const ubuntu="https://connectixx.in"
 
 const API = axios.create({ baseURL: prodServer });
