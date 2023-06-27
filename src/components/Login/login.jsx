@@ -221,7 +221,7 @@ const Login = () => {
 
               ) : (
                 <GoogleLogin
-                  clientId="997233871583-5eppubk9g40htsamhqs4t15mcer7ejk0.apps.googleusercontent.com"
+                  clientId="799398963297-26kkp6l8semmfa0hpinvphdgduof6mbq.apps.googleusercontent.com"
                   render={(renderprops) => (
                     <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ scale: 1.03, background: "black", color: "#3080C0", border: "1px solid #3080C0" }} onClick={renderprops.onClick} >
                       <Gmail w={33} h={33} />
@@ -254,7 +254,7 @@ const Login = () => {
                       </span>
                     ) : null}
                     <GoogleLogin
-                      clientId="997233871583-5eppubk9g40htsamhqs4t15mcer7ejk0.apps.googleusercontent.com"
+                      clientId="799398963297-26kkp6l8semmfa0hpinvphdgduof6mbq.apps.googleusercontent.com"
                       render={(renderprops) => (
                         <motion.button className="google" disabled={askUserName === "" ? true : false} style={{ background: askUserName === '' ? "gray" : "white" }} whileHover={{ background: "#3080C0", color: "white" }} initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileTap={{ scale: 1.02 }} onClick={renderprops.onClick} >
                           <p>SignUp With Google</p>
