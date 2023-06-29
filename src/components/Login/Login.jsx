@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from 'react-toast'
 import Illus1 from "../../../illustrations/girl.jsx"
 import Wave from "../../../illustrations/wave.jsx"
-
+import decode from "jwt-decode"
 
 import Gmail from "../User/logo/gmail";
 
@@ -17,7 +17,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 
 import { getAllUser, signInUser, signUpUser } from "../../../redux/action/Auth";
-import GoogleLogin from "react-google-login";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 import { createProfile } from '../../../redux/action/Profile'
@@ -53,21 +53,26 @@ const Login = () => {
 
 
   const googleSuccess = async (res) => {
-    const { name, email } = res?.profileObj
-    const token = res?.tokenId
-    if (SignUp) {
-      try {
-        const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
-        dispatch({ type: "AUTH", data: { existingUser, token } })
-      } catch (error) {
-        dispatch({ type: "USER_ERROR", error: error.response })
-      }
-    } else {
-      try {
-        const { data: { existingUser } } = await axios.post("/api/auth/signin", { email })
-        dispatch({ type: "AUTH", data: { existingUser, token } })
-      } catch (error) {
-        dispatch({ type: "USER_ERROR", error: error.response })
+    const credential = decode(res.credential)
+    console.log({ credential })
+    if (credential) {
+
+      const { name, email } = credential
+      const token = res.credential
+      if (SignUp) {
+        try {
+          const { data: { existingUser } } = await axios.post("/api/auth/auth", { name, email, username: askUserName })
+          dispatch({ type: "AUTH", data: { existingUser, token } })
+        } catch (error) {
+          dispatch({ type: "USER_ERROR", error: error.response })
+        }
+      } else {
+        try {
+          const { data: { existingUser } } = await axios.post("/api/auth/signin", { email })
+          dispatch({ type: "AUTH", data: { existingUser, token } })
+        } catch (error) {
+          dispatch({ type: "USER_ERROR", error: error.response })
+        }
       }
     }
   }
@@ -220,18 +225,14 @@ const Login = () => {
                 </motion.div>
 
               ) : (
-                <GoogleLogin
-                  clientId="799398963297-26kkp6l8semmfa0hpinvphdgduof6mbq.apps.googleusercontent.com"
-                  render={(renderprops) => (
-                    <motion.div className="google" initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileHover={{ scale: 1.03, background: "black", color: "#3080C0", border: "1px solid #3080C0" }} onClick={renderprops.onClick} >
-                      <Gmail w={33} h={33} />
-                      <p>{SignUp ? "SignUp" : "SignIn"} With Google</p>
-                    </motion.div>
-                  )}
-                  onRequest={() => { console.log("Request Maded") }}
-                  onSuccess={googleSuccess}
-                  onFailure={googleFailure}
-                  cookiePolicy="single_host_origin" />
+                <GoogleOAuthProvider clientId={"799398963297-26kkp6l8semmfa0hpinvphdgduof6mbq.apps.googleusercontent.com"}>
+                  <GoogleLogin
+                    text={SignUp ? "SignUp With Google" : "SignIn With Google"}
+                    onSuccess={googleSuccess}
+                    
+                    onError={googleFailure}
+                  />
+                </GoogleOAuthProvider>
 
               )}
 
@@ -253,16 +254,16 @@ const Login = () => {
                         User Already Exist
                       </span>
                     ) : null}
-                    <GoogleLogin
-                      clientId="799398963297-26kkp6l8semmfa0hpinvphdgduof6mbq.apps.googleusercontent.com"
-                      render={(renderprops) => (
-                        <motion.button className="google" disabled={askUserName === "" ? true : false} style={{ background: askUserName === '' ? "gray" : "white" }} whileHover={{ background: "#3080C0", color: "white" }} initial={{ x: 200, opacity: 0, border: "1px solid black" }} animate={{ x: 0, opacity: 1 }} whileTap={{ scale: 1.02 }} onClick={renderprops.onClick} >
-                          <p>SignUp With Google</p>
-                        </motion.button>
-                      )}
-                      onSuccess={googleSuccess}
-                      onFailure={googleFailure}
-                      cookiePolicy="single_host_origin" />
+                    <p></p>
+                    <GoogleOAuthProvider clientId={"799398963297-26kkp6l8semmfa0hpinvphdgduof6mbq.apps.googleusercontent.com"}>
+                      <GoogleLogin
+                        text='SignUp With Google'
+                        onSuccess={googleSuccess}
+                        onError={googleFailure}
+                        size="large"
+                        containerProps={{style:{marginTop:"1rem"}}}
+                      />
+                    </GoogleOAuthProvider>
                   </motion.div>
                 </div>
               )

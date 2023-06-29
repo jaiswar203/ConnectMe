@@ -6,13 +6,13 @@ const postmark=require("postmark")
 
 const emailSend= new postmark.ServerClient("d1f350b1-dc6a-4842-b191-3b02dd68f054")
 
-const dev_server="http://localhost:4000"
-const prod_server="https://connectmev2.herokuapp.com"
+const dev_server="http://localhost:3000"
+const prod_server="https://api.connectixx.in"
 
 export default async function handler(req, res) {
   
   if (req.method === "POST") {
-    
+
     const { email, name, username } = req.body;
     const client = await MongoClient.connect(process.env.MONGODB_URI);
     const db = client.db();
