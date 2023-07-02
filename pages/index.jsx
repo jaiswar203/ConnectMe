@@ -54,7 +54,6 @@ const Index = () => {
       router.push("/login");
     }
 
-    console.log({is_user_logged})
     if(is_user_logged!==null && is_user_logged?.existingUser?.isVerified){
       router.push(`/edit/${is_user_logged.existingUser.username}`)
     }

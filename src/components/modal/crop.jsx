@@ -60,7 +60,7 @@ const Crop = ({ img, w, h, setcroppedUrl, setModal, data,setshowProgress,setProg
             }).then((res) => {
                 dispatch(updateProfile({ userId: user?._id, data: { [data?.name]: res.data.secure_url } }, profile?._id))
             })
-            console.log({runFunc})
+
             setRunFunc(false)
             setModal(false)
         }

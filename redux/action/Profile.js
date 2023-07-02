@@ -30,7 +30,6 @@ export const getProfileById = (formData, id) => async (dispatch) => {
 export const getProfileByUserName = (id,formData,auth,unique) => async (dispatch) => {
   try {
     if (id !== undefined) {
-      console.log({id,formData,auth,unique})
       const { data } = await api.getProfileByUsername(id,formData,auth,unique);
       dispatch({ type: "FETCH_PROFILE_BY_USERNAME", data });
     }
@@ -68,7 +67,6 @@ export const updateSubDocInProfileById = (formData, id, subdoc,underneath) => as
     
     export const deleteSubDocInProfileById=(formData,id,query)=>async(dispatch)=>{
       try {
-        console.log({formData,id,query})
         const {data}=await api.deleteSubDocInProfileById(formData,id,query)
         dispatch({type:"DELETE_SUBDOC_IN_PROFILE_BY_ID",data})
       } catch (error) {
@@ -99,7 +97,6 @@ export const addImageInProfile=(formData,id,query)=>async(dispatch)=>{
 export const profileRequests=(formData,id)=>async(dispatch)=>{
   try {
     const {data}=await api.profileRequests(formData,id)
-    console.log({formData,id})
     dispatch({type:"PROFILE_REQUEST",data})
   } catch (error) {
     console.log(error)

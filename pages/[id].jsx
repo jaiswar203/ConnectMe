@@ -6,7 +6,7 @@ import axios from "axios"
 import { User } from "../src/components"
 
 const Detail = ({ profile }) => {
-  
+
   return (
     <>
       {!profile.error && (
@@ -14,7 +14,7 @@ const Detail = ({ profile }) => {
           <meta property="og:title" content={`${profile?.data?.name}`} key="ogTitle" />
           <meta property="og:type" content={"profile.image"} key="ogType" />
           <meta property="og:site_name" content="ConnectMe" key="ogSitename" />
-          <meta property="og:url" content={"https://connectme.co.in/"} key="ogUrl" />
+          <meta property="og:url" content={"https://connectixx.in/"} key="ogUrl" />
           <meta property="og:image" content={profile?.data?.profileimg} key="ogimage" />
           <meta property="og:desc" content={`${profile?.data?.tagline}`} key="ogdesc" />
         </Head>
@@ -33,9 +33,10 @@ export async function getServerSideProps(context) {
   const query = context.query
 
   try {
-    const { data } = await axios.get(`https://connecmev1.herokuapp.com/profile/og/${query.id}`)
+    const { data } = await axios.get(`https://api.connectixx.in/profile/og/${query.id}`)
     profData = data
   } catch (error) {
+    // console.log({error})
     profData = { error: "Error" }
   }
 

@@ -494,8 +494,6 @@ const User = ({ edit }) => {
     }
   }
 
-  console.log({ profileData })
-
 
   const connectsChildren = (d) => {
     return (

@@ -54,7 +54,6 @@ const Login = () => {
 
   const googleSuccess = async (res) => {
     const credential = decode(res.credential)
-    console.log({ credential })
     if (credential) {
 
       const { name, email } = credential
