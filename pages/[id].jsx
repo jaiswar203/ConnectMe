@@ -4,9 +4,16 @@ import Head from "next/head"
 import axios from "axios"
 
 import { User } from "../src/components"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 
 const Detail = ({ profile }) => {
-
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    if(profile){
+      dispatch({type:"UPDATE_PROFILE",data:profile})
+    }
+  },[profile])
   return (
     <>
       {!profile.error && (

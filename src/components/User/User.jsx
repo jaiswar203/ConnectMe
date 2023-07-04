@@ -72,6 +72,7 @@ const User = ({ edit }) => {
 
   const { query } = router
 
+  console.log({profile})
   // editable
   const [privacyModal, setPrivacyModal] = useState(false)
   const [popUpData, setPopUpData] = useState({
