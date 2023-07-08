@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const devServer="http://localhost:3000"
-const prodServer="https://api.connectixx.in"
-const ubuntu="https://api.connectixx.in"
+const prodServer="https://api.connectme.co.in"
+const ubuntu="https://api.connectme.co.in"
 
 const API = axios.create({ baseURL: prodServer });
 

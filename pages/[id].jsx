@@ -21,7 +21,7 @@ const Detail = ({ profile }) => {
           <meta property="og:title" content={`${profile?.data?.name}`} key="ogTitle" />
           <meta property="og:type" content={"profile.image"} key="ogType" />
           <meta property="og:site_name" content="ConnectMe" key="ogSitename" />
-          <meta property="og:url" content={"https://connectixx.in/"} key="ogUrl" />
+          <meta property="og:url" content={"https://connectme.co.in/"} key="ogUrl" />
           <meta property="og:image" content={profile?.data?.profileimg} key="ogimage" />
           <meta property="og:desc" content={`${profile?.data?.tagline}`} key="ogdesc" />
         </Head>
@@ -35,18 +35,15 @@ export default Detail
 
 
 export async function getServerSideProps(context) {
-
   let profData
   const query = context.query
 
   try {
-    const { data } = await axios.get(`https://api.connectixx.in/profile/og/${query.id}`)
+    const { data } = await axios.get(`https://api.connectme.co.in/profile/og/${query.id}`)
     profData = data
   } catch (error) {
-    // console.log({error})
     profData = { error: "Error" }
   }
-
 
   return {
     props: {

@@ -7,7 +7,7 @@ const postmark=require("postmark")
 const emailSend= new postmark.ServerClient("d1f350b1-dc6a-4842-b191-3b02dd68f054")
 
 const dev_server="http://localhost:3000"
-const prod_server="https://api.connectixx.in"
+const prod_server="https://api.connectme.co.in"
 
 export default async function handler(req, res) {
   
