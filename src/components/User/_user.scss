@@ -173,10 +173,8 @@
     justify-content: space-between;
     overflow: hidden;
     border-radius: 10px;
-    background: $box_highlight;
-
-    // gradient
-    @include purple_gradient;
+    
+    background: #f7a0ff;
 
     @include box__shadow;
     padding: 1rem;
@@ -211,12 +209,12 @@
       text-align: start;
       margin-top: 0.5rem;
       border-radius: 10px;
-      background: $box_highlight;
+      background: #f7a0ff;
       @include box__shadow;
       padding: 1rem;
       @include normal_font;
 
-      @include purple_gradient;
+      color: rgb(97, 97, 97);
       span {
         margin-left: 0.5rem;
         color: $primary-color;
