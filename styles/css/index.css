@@ -651,7 +651,7 @@ A {
   color: #3080c0;
 }
 .connectme__user-detail h3 {
-  color: white;
+  color: black;
   font-family: "Lora", serif;
   font-family: "Playfair Display", serif;
 }
@@ -752,64 +752,64 @@ A {
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(167, 58, 73);
+  background: rgb(62, 91, 66);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(135, 127, 90);
+  background: rgb(252, 193, 121);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(26, 134, 178);
+  background: rgb(95, 220, 123);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(187, 172, 93);
+  background: rgb(6, 149, 177);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(115, 234, 49);
+  background: rgb(147, 211, 85);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(39, 28, 203);
+  background: rgb(122, 41, 243);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(208, 80, 41);
+  background: rgb(227, 173, 226);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(243, 6, 59);
+  background: rgb(131, 152, 4);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(175, 251, 211);
+  background: rgb(209, 64, 167);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(51, 190, 32);
+  background: rgb(47, 23, 9);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(214, 173, 13);
+  background: rgb(111, 130, 226);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(95, 35, 245);
+  background: rgb(152, 7, 136);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(209, 131, 18);
+  background: rgb(97, 146, 199);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(128, 71, 137);
+  background: rgb(174, 85, 53);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(152, 225, 120);
+  background: rgb(117, 104, 136);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(27, 174, 54);
+  background: rgb(242, 192, 171);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(94, 19, 144);
+  background: rgb(253, 246, 175);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(84, 48, 105);
+  background: rgb(252, 111, 203);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(199, 252, 226);
+  background: rgb(32, 221, 100);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(38, 162, 118);
+  background: rgb(106, 140, 38);
 }
 .connectme__user-social__title {
   display: flex;

@@ -887,7 +887,7 @@ const User = ({ edit }) => {
           }
           <BorderComp />
           <div className="connectme__user-feedback">
-            <a href="mailto:info@connectme.com">
+            <a href="mailto:help@connectme.co.in">
               <motion.div className="feedback" whileTap={{ scale: 1.1 }}>
                 <VscFeedback />
                 <h3>Offer FeedBack</h3>
