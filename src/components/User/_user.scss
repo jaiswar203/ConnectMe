@@ -174,7 +174,7 @@
     overflow: hidden;
     border-radius: 10px;
     
-    background: #f7a0ff;
+    background: #c6c6c6;
 
     @include box__shadow;
     padding: 1rem;
@@ -209,7 +209,7 @@
       text-align: start;
       margin-top: 0.5rem;
       border-radius: 10px;
-      background: #f7a0ff;
+      background: #c6c6c6;
       @include box__shadow;
       padding: 1rem;
       @include normal_font;
@@ -319,12 +319,11 @@
       justify-content: space-between;
       padding: 2rem;
       border-radius: 10px;
-      background: $box_highlight;
       @include box__shadow;
       margin-top: 2rem;
-
-      @include purple_gradient;
-
+    
+      
+      background: #c6c6c6;
       .item {
         @include center__element;
         flex-direction: column;
@@ -370,11 +369,10 @@
 
     &__content {
       margin-top: 2rem;
-      padding: 1rem;
+      padding: 6px;
       border-radius: 20px;
-      background: $box_highlight;
+      background: black;
 
-      @include purple_gradient;
       @include box__shadow;
 
       .background {
@@ -448,9 +446,8 @@
     }
     &__content {
       border-radius: 10px;
-      background: $box_highlight;
-
-      @include purple_gradient;
+      
+      background: #c6c6c6;
       @include box__shadow;
       padding: 1rem;
       overflow: hidden;
@@ -588,10 +585,9 @@
     &__content {
       margin-top: 3rem;
       border-radius: 10px;
-      background: $box_highlight;
-      @include purple_gradient;
       @include box__shadow;
-      padding: 1rem;
+      padding: 6px;
+      background: black;
 
       .background {
         position: absolute;
@@ -1244,11 +1240,10 @@
     }
 
     &__content {
-      padding: 1rem;
       position: relative;
       border-radius: 10px;
-      background: $box_highlight;
-      @include purple_gradient;
+      padding: 6px;
+      background: black;
       @include box__shadow;
 
       .background {
