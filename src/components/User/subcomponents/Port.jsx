@@ -100,10 +100,10 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                     </motion.div>
                 )}
             </div>
-            <motion.div className="connectme__user-services__content" >
-                <Swiper loop={false} slidesPerView={1} breakpoints={breakpoint} spaceBetween={50} autoplay speed={600} modules={[Autoplay]}>
+            <motion.div className="connectme__user-services__content " >
+                {/* <Swiper loop={false} slidesPerView={1} breakpoints={breakpoint} spaceBetween={50} autoplay speed={600} modules={[Autoplay]}> */}
                     {newData?.map((d, i) => (
-                        <SwiperSlide key={d._id}>
+                        // <SwiperSlide key={d._id}>
                             <motion.div className="image" whileHover={{ scale: !edit && 1.1 }} onClick={() => {
                                 !edit && setIndex(i)
                                 !edit && setShowModal(true)
@@ -124,9 +124,9 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                                 )}
                                 <Image src={d.data} width={400} height={400} objectFit="cover" alt={"Profile Image"} />
                             </motion.div>
-                        </SwiperSlide>
+                        // </SwiperSlide>
                     ))}
-                </Swiper>
+                {/* </Swiper> */}
             </motion.div>
             {
                 data?.length > 5 && (

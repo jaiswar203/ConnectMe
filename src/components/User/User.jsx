@@ -72,7 +72,6 @@ const User = ({ edit }) => {
 
   const { query } = router
 
-  console.log({profile})
   // editable
   const [privacyModal, setPrivacyModal] = useState(false)
   const [popUpData, setPopUpData] = useState({
@@ -193,8 +192,6 @@ const User = ({ edit }) => {
 
 
   }, [editData, openEdit, userName, showEditOptionOnViewSide, router])
-
-
 
 
 
@@ -439,11 +436,6 @@ const User = ({ edit }) => {
     },
   ]
 
-  useEffect(() => {
-
-  }, [socialHandle])
-
-
   if (error?.type === "EXIST_ERROR") {
     return (
       <PopupModal success={false} title={"Data Not Found"} message={"No User with this Id"} prev={true} />
@@ -532,16 +524,16 @@ const User = ({ edit }) => {
     <>
       <Layout title={router.query.id} description={profileData.about} navbar={false} footer={true} view={footerData()} edit={edit} setShare={setShare} ogImg={profileData?.profileimg} setShowRequesList={setShowRequesList} setSearchBar={setSearchBar} name={profileData?.name} share={!edit && true} tab={{ img: profileData?.profileimg, title: profileData?.name }} >
         <div className="connectme__user">
-          <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
-            <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" />
-            {edit && (
+          <motion.div className="connectme__user-background" initial={{ y: -100, opacity: 0 }} style={{ height: "10rem" }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
+            {/* <Image src={profileData?.background} width={1900} height={bannerHeight} layout="responsive" objectFit="cover" /> */}
+            {/* {edit && (
               <motion.div className="background" onClick={() => {
                 openEditHandler(profileData?.background, "Background Image", "background", { isSubdoc: false }, { active: true, data: "image/*" })
                 setIsCrop({ crop: true, w: 450, h: 164 })
               }} whileTap={{ scale: 1.1 }}>
                 <FaEdit />
               </motion.div>
-            )}
+            )} */}
           </motion.div>
           <motion.div className="connectme__user-profile" initial={{ y: 100, opacity: 0 }} animate={{ translateY: edit ? -75 : -40, y: 0, opacity: 1 }} transition={{ type: "spring", stiffness: 300, delay: .6, duration: 1.3 }}>
             {edit && (
@@ -552,7 +544,13 @@ const User = ({ edit }) => {
                 <FaEdit />
               </motion.div>
             )}
-            <Image src={profileData?.profileimg} width={imgProp.w} height={imgProp.h} objectFit="cover" className="profile__img" />
+            <img src={profileData?.profileimg} style={{
+              borderRadius: "50%",
+              width: "12rem",
+              height: "12rem",
+              border: "6px solid #3080c0",
+              objectFit: "cover"
+            }} className="profile__img" />
             {/* <div className="verified">
               <MdVerified />
             </div> */}
@@ -765,8 +763,8 @@ const User = ({ edit }) => {
                       <ToggleSwitch profile={profileData} profileId={profileData?._id} info={true} title={"This Will Hide/Show your Personal Info Section "} api="personal" />
                     </div>
                     <div className="connectme__user-personal__content">
+                      <img style={{ width: 100, height: 100, borderRadius: "50%" }} src="/personal.png" alt="image" />
                       <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
-                        <FcLock />
                         <h3>Get Perosnal Info</h3>
                       </motion.div>
                     </div>
@@ -780,8 +778,8 @@ const User = ({ edit }) => {
                       <h1>Personal Info</h1>
                     </div>
                     <div className="connectme__user-personal__content">
+                      <img style={{ width: 100, height: 100, borderRadius: "50%" }} src="/personal.png" alt="image" />
                       <motion.div className="button" initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.1 }} onClick={() => setShowModal(true)}>
-                        <FcLock />
                         <h3>Get Perosnal Info</h3>
                       </motion.div>
                     </div>
@@ -797,8 +795,8 @@ const User = ({ edit }) => {
                     <h1>Documentation</h1>
                   </div>
                   <div className="connectme__user-document__content">
+                    <img style={{ width: 100, height: 100, borderRadius: "50%" }} src="/pdf.png" alt="image" />
                     <motion.div className="button" whileTap={{ scale: 1.1 }} onClick={() => window.open(profileData?.document?.data, "_blank")}>
-                      <IoIosDocument />
                       <h3>Get PDF</h3>
                     </motion.div>
                   </div>
@@ -814,15 +812,15 @@ const User = ({ edit }) => {
 
                   </div>
                   <div className="connectme__user-document__content" onClick={() => openEditHandler(profileData?.document?.data, "Documents", `document.data`, { isSubDoc: false }, { active: true, data: "application/pdf" })} >
+                    <img style={{ width: 100, height: 100, borderRadius: "50%" }} src="/pdf.png" alt="image" />
                     <motion.div className="button" whileTap={{ scale: 1.1 }} >
-                      <IoIosDocument />
                       <h3>Get PDF</h3>
+                      {edit &&
+                        (<div className="background" >
+                          <FaEdit />
+                        </div>)
+                      }
                     </motion.div>
-                    {edit &&
-                      (<div className="background" >
-                        <FaEdit />
-                      </div>)
-                    }
                   </div>
                 </div>
               </>

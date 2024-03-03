@@ -11,13 +11,15 @@
 .connectme__user {
   // background: black;
   &-background {
-    border-radius: 2rem;
+    // border-radius: 2rem;
 
     @media screen and (min-width: 750px) {
       border-radius: 5rem;
     }
-    background: #ffffff;
-    box-shadow: 32px 22px 10px #696969, -11px -11px 22px #ffffff;
+    background: #0000000d;
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    // box-shadow: 32px 22px 10px #696969, -11px -11px 22px #ffffff;
     img {
       border-bottom-left-radius: 5rem !important;
       border-bottom-right-radius: 5rem !important;
@@ -68,6 +70,7 @@
     right: 0;
     @include center__element;
     flex-direction: column;
+    margin-top:-3rem;
 
     // span:first-child {
     //   border-radius: 15px;
@@ -280,10 +283,10 @@
         margin-top: 1rem;
         @include center__element;
         width: 10rem;
-        border-radius: 2rem;
+        border-radius: 5px;
         padding: 0.5rem 1rem;
         background: black;
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: white;
 
         @for $i from 0 to 20 {
@@ -585,9 +588,17 @@
     &__content {
       margin-top: 3rem;
       border-radius: 10px;
-      @include box__shadow;
       padding: 6px;
-      background: black;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Create four columns */
+      grid-gap: 8px; /* Adjust gap between items */
+      overflow-y: auto; /* Enable vertical scrolling */
+      max-height: 28rem; /* Adjust based on your layout */
+
+      .image{
+        position: relative;
+      }
 
       .background {
         position: absolute;
@@ -642,6 +653,7 @@
     &__content {
       margin-top: 2rem;
       @include center__element;
+      justify-content: space-between;
 
       svg {
         font-size: 2rem;
@@ -1056,6 +1068,7 @@
     &__content {
       margin-top: 2rem;
       @include center__element;
+      justify-content: space-between;
 
       .button {
         svg {
@@ -1068,16 +1081,17 @@
         border-radius: 5px;
         @include box_color;
         border: 1px solid $primary-color;
+        position: relative;
       }
 
       .background {
-        color: white;
+        color: black;
 
-        position: relative;
+        position: absolute;
         top: -1.2rem;
         z-index: 1;
         font-size: 1.5rem;
-        left: -1.5rem;
+        right: -1.5rem;
       }
     }
   }

@@ -17,7 +17,7 @@ A {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
@@ -452,9 +452,9 @@ A {
   margin-bottom: 5rem;
 }
 .connectme__user-background {
-  border-radius: 2rem;
-  background: #ffffff;
-  box-shadow: 32px 22px 10px #696969, -11px -11px 22px #ffffff;
+  background: rgba(0, 0, 0, 0.0509803922);
+  border-bottom-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
 }
 @media screen and (min-width: 750px) {
   .connectme__user-background {
@@ -517,6 +517,7 @@ A {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: -3rem;
 }
 .connectme__user-profile .verified {
   position: relative;
@@ -745,71 +746,71 @@ A {
   justify-content: center;
   align-items: center;
   width: 10rem;
-  border-radius: 2rem;
+  border-radius: 5px;
   padding: 0.5rem 1rem;
   background: black;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: white;
 }
 .connectme__user-interests__info .bodies:nth-child(0) {
-  background: rgb(62, 91, 66);
+  background: rgb(139, 44, 107);
 }
 .connectme__user-interests__info .bodies:nth-child(1) {
-  background: rgb(252, 193, 121);
+  background: rgb(156, 181, 110);
 }
 .connectme__user-interests__info .bodies:nth-child(2) {
-  background: rgb(95, 220, 123);
+  background: rgb(118, 254, 16);
 }
 .connectme__user-interests__info .bodies:nth-child(3) {
-  background: rgb(6, 149, 177);
+  background: rgb(89, 18, 89);
 }
 .connectme__user-interests__info .bodies:nth-child(4) {
-  background: rgb(147, 211, 85);
+  background: rgb(26, 111, 114);
 }
 .connectme__user-interests__info .bodies:nth-child(5) {
-  background: rgb(122, 41, 243);
+  background: rgb(26, 74, 9);
 }
 .connectme__user-interests__info .bodies:nth-child(6) {
-  background: rgb(227, 173, 226);
+  background: rgb(219, 35, 45);
 }
 .connectme__user-interests__info .bodies:nth-child(7) {
-  background: rgb(131, 152, 4);
+  background: rgb(135, 139, 9);
 }
 .connectme__user-interests__info .bodies:nth-child(8) {
-  background: rgb(209, 64, 167);
+  background: rgb(111, 68, 129);
 }
 .connectme__user-interests__info .bodies:nth-child(9) {
-  background: rgb(47, 23, 9);
+  background: rgb(252, 58, 55);
 }
 .connectme__user-interests__info .bodies:nth-child(10) {
-  background: rgb(111, 130, 226);
+  background: rgb(16, 23, 65);
 }
 .connectme__user-interests__info .bodies:nth-child(11) {
-  background: rgb(152, 7, 136);
+  background: rgb(215, 104, 23);
 }
 .connectme__user-interests__info .bodies:nth-child(12) {
-  background: rgb(97, 146, 199);
+  background: rgb(89, 252, 42);
 }
 .connectme__user-interests__info .bodies:nth-child(13) {
-  background: rgb(174, 85, 53);
+  background: rgb(110, 82, 238);
 }
 .connectme__user-interests__info .bodies:nth-child(14) {
-  background: rgb(117, 104, 136);
+  background: rgb(203, 151, 99);
 }
 .connectme__user-interests__info .bodies:nth-child(15) {
-  background: rgb(242, 192, 171);
+  background: rgb(96, 222, 3);
 }
 .connectme__user-interests__info .bodies:nth-child(16) {
-  background: rgb(253, 246, 175);
+  background: rgb(105, 161, 122);
 }
 .connectme__user-interests__info .bodies:nth-child(17) {
-  background: rgb(252, 111, 203);
+  background: rgb(59, 96, 247);
 }
 .connectme__user-interests__info .bodies:nth-child(18) {
-  background: rgb(32, 221, 100);
+  background: rgb(82, 64, 233);
 }
 .connectme__user-interests__info .bodies:nth-child(19) {
-  background: rgb(106, 140, 38);
+  background: rgb(114, 250, 103);
 }
 .connectme__user-social__title {
   display: flex;
@@ -1116,9 +1117,15 @@ A {
 .connectme__user-services__content {
   margin-top: 3rem;
   border-radius: 10px;
-  box-shadow: 6px 6px 12px #e0dee0, -6px -6px 12px #dcdcdc;
   padding: 6px;
-  background: black;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create four columns */
+  grid-gap: 8px; /* Adjust gap between items */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 28rem; /* Adjust based on your layout */
+}
+.connectme__user-services__content .image {
+  position: relative;
 }
 .connectme__user-services__content .background {
   position: absolute;
@@ -1169,6 +1176,7 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
 }
 .connectme__user-personal__content svg {
   font-size: 2rem;
@@ -1546,6 +1554,7 @@ A {
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
 }
 .connectme__user-document__content .button {
   display: flex;
@@ -1557,6 +1566,7 @@ A {
   background: #3080c0 !important;
   color: #fff !important;
   border: 1px solid #3080c0;
+  position: relative;
 }
 .connectme__user-document__content .button svg {
   font-size: 2rem;
@@ -1569,12 +1579,12 @@ A {
   transition: all 0.1s ease-in;
 }
 .connectme__user-document__content .background {
-  color: white;
-  position: relative;
+  color: black;
+  position: absolute;
   top: -1.2rem;
   z-index: 1;
   font-size: 1.5rem;
-  left: -1.5rem;
+  right: -1.5rem;
 }
 .connectme__user-request {
   position: fixed;
