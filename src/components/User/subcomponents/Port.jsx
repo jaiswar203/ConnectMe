@@ -104,7 +104,7 @@ const Port = ({ data, title, link = "", edit, openEditHandler }) => {
                 {/* <Swiper loop={false} slidesPerView={1} breakpoints={breakpoint} spaceBetween={50} autoplay speed={600} modules={[Autoplay]}> */}
                     {newData?.map((d, i) => (
                         // <SwiperSlide key={d._id}>
-                            <motion.div className="image" whileHover={{ scale: !edit && 1.1 }} onClick={() => {
+                            <motion.div className="image" key={d._id} whileHover={{ scale: !edit && 1.1 }} onClick={() => {
                                 !edit && setIndex(i)
                                 !edit && setShowModal(true)
                             }
